@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  dart_wormhole_william
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
