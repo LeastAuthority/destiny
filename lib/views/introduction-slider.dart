@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intro_slider/dot_animation_enum.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
@@ -22,51 +21,24 @@ class IntroScreenState extends State<IntroScreen> {
       new Slide(
         title: "ERASER",
         description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
-        pathImage: "assets/logo1.jpg",
-        backgroundColor: Color(0xfff5a623),
+        pathImage: "assets/images/privacy.png",
+        backgroundColor: Colors.black,
       ),
     );
     slides.add(
       new Slide(
-        title: "CITY",
-        backgroundColor:Colors.black,
-        styleTitle: TextStyle(
-            color: Color(0xff7FFFD4),
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'RobotoMono'),
-        description:
-        "Ye indulgence unreserved connection alteration appearance",
-        styleDescription: TextStyle(
-            color: Color(0xff7FFFD4),
-            fontSize: 20.0,
-            fontStyle: FontStyle.italic,
-            fontFamily: 'Raleway'),
-        // backgroundImage: "images/city.jpeg",
-        directionColorBegin: Alignment.topRight,
-        directionColorEnd: Alignment.bottomLeft,
+        title: "ERASER",
+        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
+        pathImage: "assets/images/privacy.png",
+        backgroundColor: Colors.black,
       ),
     );
     slides.add(
       new Slide(
-        title: "BEACH",
-        backgroundColor:Colors.black,
-        styleTitle: TextStyle(
-            color: Color(0xffFFDAB9),
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'RobotoMono'),
-        description:
-        "Much evil soon high in hope do view. Out may few northward believing attempted. Yet timed being songs marry one defer men our. Although finished blessing do of",
-        styleDescription: TextStyle(
-            color: Color(0xffFFDAB9),
-            fontSize: 20.0,
-            fontStyle: FontStyle.italic,
-            fontFamily: 'Raleway'),
-        // backgroundImage: "images/beach.jpeg",
-        directionColorBegin: Alignment.topCenter,
-        directionColorEnd: Alignment.bottomCenter,
-        maxLineTextDescription: 3,
+        title: "ERASER",
+        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
+        pathImage: "assets/images/privacy.png",
+        backgroundColor: Colors.black,
       ),
     );
   }
@@ -75,7 +47,7 @@ class IntroScreenState extends State<IntroScreen> {
     // Do what you want
     // Navigator.push(
     //   context,
-    //   MaterialPageRoute(builder: (context) => HomeScreen()),
+    //   MaterialPageRoute(builder: (context) => Home()),
     // );
   }
 
