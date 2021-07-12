@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'widgets/custom-app-bar.dart';
 import 'package:flutter/widgets.dart';
+import 'package:file_picker/file_picker.dart';
 void main() => runApp(MaterialApp(
   routes: {
     '/': (context) => Home(),
@@ -12,13 +14,25 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
+  // final keyCounter = GlobalKey<_HomeState>();
+  selecteFile () async
+  {
+    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
+    print(result);
+    print("Paaaat");
+    if(result != null)
+      print(result.files.single.path!);
+  }
   @override
   Widget build(BuildContext context) {
 
     return Scaffold (
       body: Column(
         children: [
+          CustomAppBar(),
+          FlatButton(onPressed: (){
+            selecteFile();
+          }, child: Text('Click')),
           Container(
             //Container to control width of progress bar
             width: 100.0,
