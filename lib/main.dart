@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'views/introduction-slider.dart';
+ import 'views/splash.dart';
+import 'views/send.dart';
 import 'widgets/custom-app-bar.dart';
 import 'package:flutter/widgets.dart';
 import 'package:file_picker/file_picker.dart';
 void main() => runApp(MaterialApp(
   routes: {
-    '/': (context) => Home(),
+    '/': (context) => Splash(),
+    '/intro': (context) => IntroScreen(),
+    '/home': (context) => Home(),
+    '/send': (context) => Send(),
   },
 ));
 
