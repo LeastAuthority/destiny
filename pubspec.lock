@@ -103,9 +103,11 @@ packages:
   intro_slider:
     dependency: "direct main"
     description:
-      name: intro_slider
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "827faa8d685c8325475bc24d69f0a0489d0cdd6d"
+      url: "https://github.com/shareef-dweikat/flutter-intro-slider"
+    source: git
     version: "3.0.2"
   js:
     dependency: transitive

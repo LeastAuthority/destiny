@@ -15,13 +15,13 @@ class SplashState extends State<Splash> {
   Future checkFirstSeen() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs.getBool('seen') ?? false);
-    //Navigator.pushNamed(context, '/intro');
-    if (_seen) {
-      Navigator.pushNamed(context, '/home');
-    } else {
-      await prefs.setBool('seen', true);
-      Navigator.pushNamed(context, '/intro');
-    }
+    Navigator.pushNamed(context, '/intro');
+    // if (_seen) {
+    //   Navigator.pushNamed(context, '/home');
+    // } else {
+    //   await prefs.setBool('seen', true);
+    //   Navigator.pushNamed(context, '/intro');
+    // }
   }
 
   @override

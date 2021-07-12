@@ -29,7 +29,9 @@ dependencies:
   cupertino_icons: 1.0.2
   shared_preferences: ^2.0.6
   file_picker: ^3.0.3
-  intro_slider: ^3.0.2
+  intro_slider:
+    git:
+      url: https://github.com/shareef-dweikat/flutter-intro-slider
 
 dev_dependencies:
   flutter_test:
