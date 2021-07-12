@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Receive extends StatefulWidget {
+
+class Send extends StatefulWidget {
   @override
-  ReceiveState createState() => new ReceiveState();
+  SendState createState() => new SendState();
 }
 
-class ReceiveState extends State<Receive> {
+class SendState extends State<Send> {
 
   @override
   Widget build(BuildContext context) {
 
     return new Scaffold(
       body: new Center(
-        child: new Text('Receive...'),
+        child: new Text('Send...'),
       ),
     );
   }

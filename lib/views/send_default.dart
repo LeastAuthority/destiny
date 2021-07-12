@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dart_wormhole_william/client.dart';
+// import 'package:dart_wormhole_william/client.dart';
 
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _SendDefaultState extends State<SendDefault> {
   String _code = '';
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  Client client = Client();
+  // Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -30,7 +30,8 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void _send() {
-    String code = client.sendText(_msg);
+    // String code = client.sendText(_msg);
+    String code = "";
     _codeTxtCtrl.text = code;
     setState(() {
       _code = code;
