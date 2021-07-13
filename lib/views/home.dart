@@ -25,20 +25,52 @@ class _HomeState extends State<Home> {
     return Scaffold (
       body: Column(
         children: [
-          CustomAppBar(),
-          FlatButton(onPressed: (){
-            selecteFile();
-          }, child: Text('Click')),
-          Container(
-            //Container to control width of progress bar
-            width: 100.0,
-            child:  LinearProgressIndicator(
-              value: 0.2,
-              semanticsLabel: 'Linear progress indicator',
-              backgroundColor: Colors.purple,
-              color: Colors.red,
-            ),
+          CustomAppBar('Home'),
+          Row(
+            children: [
+              SizedBox(
+                width: 70.0,
+                height: 120.0,
+                child: TextButton (
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/receive');
+                  },
+                  style: TextButton.styleFrom(
+                      primary: Colors.pink,
+                      backgroundColor: Colors.grey
+                  ),
+                  child: Text('Receive', style: TextStyle(color: Colors.white),),
+                ),
+              ),
+              SizedBox(
+                width: 70.0,
+                height: 120.0,
+                child: TextButton (
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/send');
+                  },
+                  style: TextButton.styleFrom(
+                      primary: Colors.pink,
+                      backgroundColor: Colors.grey
+                  ),
+                  child: Text('Send', style: TextStyle(color: Colors.white),),
+                ),
+              ),
+            ],
           )
+          // FlatButton(onPressed: (){
+          //   selecteFile();
+          // }, child: Text('Click')),
+          // Container(
+          //   //Container to control width of progress bar
+          //   width: 100.0,
+          //   child:  LinearProgressIndicator(
+          //     value: 0.2,
+          //     semanticsLabel: 'Linear progress indicator',
+          //     backgroundColor: Colors.purple,
+          //     color: Colors.red,
+          //   ),
+          // )
         ],
       ),
       bottomNavigationBar:  CustomBottomBar(),
