@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
 import '../widgets/custom-bottom-bar.dart';
 
@@ -23,56 +25,103 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     return Scaffold (
-      body: Column(
-        children: [
-          CustomAppBar('Home'),
-          Row(
-            children: [
-              SizedBox(
-                width: 70.0,
-                height: 120.0,
-                child: TextButton (
-                  onPressed: (){
-                    Navigator.pushNamed(context, '/receive');
-                  },
-                  style: TextButton.styleFrom(
-                      primary: Colors.pink,
-                      backgroundColor: Colors.grey
+      appBar: CustomAppBar('Home'),
+      backgroundColor: Color(0xff1A1C2E),
+      body:
+      // ScreenUtilInit(
+      //   designSize: Size(375,590),
+      //   builder:
+      //   ()=>
+        Column(
+          children: [
+            // CustomAppBar('Home'),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text('Send and receive files securely and fast',
+                style:TextStyle(color: Colors.white, fontSize: 14.sp, ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(8.0),
+                  width: 100.0.w,
+                  height: 150.0.w,
+                  child:  FlatButton(
+                    onPressed: () => Navigator.pushNamed(context, '/receive'),
+                    color: Color(0xff353846),
+                    child: Column( // Replace with a Row for horizontal icon + text
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/images/receive.png',
+                          width: 90.0.w,
+                          // fit:BoxFit.fitHeight,
+                        ),
+                        Text("Receive", style:TextStyle(color: Colors.white))
+                      ],
+                    ),
                   ),
-                  child: Text('Receive', style: TextStyle(color: Colors.white),),
+                ),
+                Container(
+                  width: 100.0.w,
+                  height: 150.0.w,
+                  margin: const EdgeInsets.all(8.0),
+                  child:  FlatButton(
+                    onPressed: () => Navigator.pushNamed(context, '/send'),
+                    color: Color(0xff353846),
+                    child: Column( // Replace with a Row for horizontal icon + text
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset(
+                          'assets/images/send.png',
+                          width: 90.0.w,
+                          // fit:BoxFit.fitHeight,
+                        ),
+                        Text("Send", style:TextStyle(color: Colors.white))
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              width: 220.0.w,
+              height: 50.0.w,
+              margin: const EdgeInsets.fromLTRB(0,8.0,0,0),
+              child:  FlatButton(
+                onPressed: () => Navigator.pushNamed(context, '/settings'),
+                color: Color(0xff353846),
+                child: Row( // Replace with a Row for horizontal icon + text
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/images/send.png',
+                      width: 30.0.w,
+                      // fit:BoxFit.fitHeight,
+                    ),
+                    Text("Settings", style:TextStyle(color: Colors.white))
+                  ],
                 ),
               ),
-              SizedBox(
-                width: 70.0,
-                height: 120.0,
-                child: TextButton (
-                  onPressed: (){
-                    Navigator.pushNamed(context, '/send');
-                  },
-                  style: TextButton.styleFrom(
-                      primary: Colors.pink,
-                      backgroundColor: Colors.grey
-                  ),
-                  child: Text('Send', style: TextStyle(color: Colors.white),),
-                ),
-              ),
-            ],
-          )
-          // FlatButton(onPressed: (){
-          //   selecteFile();
-          // }, child: Text('Click')),
-          // Container(
-          //   //Container to control width of progress bar
-          //   width: 100.0,
-          //   child:  LinearProgressIndicator(
-          //     value: 0.2,
-          //     semanticsLabel: 'Linear progress indicator',
-          //     backgroundColor: Colors.purple,
-          //     color: Colors.red,
-          //   ),
-          // )
-        ],
-      ),
+            ),
+            // FlatButton(onPressed: (){
+            //   selecteFile();
+            // }, child: Text('Click')),
+            // Container(
+            //   //Container to control width of progress bar
+            //   width: 100.0,
+            //   child:  LinearProgressIndicator(
+            //     value: 0.2,
+            //     semanticsLabel: 'Linear progress indicator',
+            //     backgroundColor: Colors.purple,
+            //     color: Colors.red,
+            //   ),
+            // )
+          ],
+        ),
+      // ),
       bottomNavigationBar:  CustomBottomBar(),
     );
   }

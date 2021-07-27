@@ -49,7 +49,14 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
+  dart_wormhole_william:
+    dependency: "direct main"
+    description:
+      path: dart_wormhole_william
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -90,6 +97,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0+2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -105,7 +119,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "827faa8d685c8325475bc24d69f0a0489d0cdd6d"
+      resolved-ref: "9847faffc95c63a784b36d527526a014c8e6c8c3"
       url: "https://github.com/shareef-dweikat/flutter-intro-slider"
     source: git
     version: "3.0.2"
@@ -178,7 +192,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.2"
   shared_preferences:
     dependency: "direct main"
     description:

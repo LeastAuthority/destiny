@@ -21,17 +21,21 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  flutter_screenutil: ^5.0.0+2
+  shared_preferences: ^2.0.6
+  file_picker: ^3.0.3
+  dart_wormhole_william:
+    path: ./dart_wormhole_william
+  intro_slider:
+    git:
+      url: https://github.com/shareef-dweikat/flutter-intro-slider
+
   flutter:
     sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: 1.0.2
-  shared_preferences: ^2.0.6
-  file_picker: ^3.0.3
-  intro_slider:
-    git:
-      url: https://github.com/shareef-dweikat/flutter-intro-slider
+  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -50,9 +54,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/logo1.jpg
     - assets/images/privacy.png
     - assets/images/logo.png
+    - assets/images/send.png
+    - assets/images/receive.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
