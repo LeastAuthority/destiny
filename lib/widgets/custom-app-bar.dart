@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
-  CustomAppBar(this.title) : preferredSize = Size.fromHeight(70.0.w);
+  CustomAppBar(this.title) : preferredSize = Size.fromHeight(85.0.h);
   //  CustomAppBar(this.title) : preferredSize = Size.fromHeight(120.0.w); tablet
 
   @override
@@ -20,13 +21,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SizedBox(
+      child: Container(
         child: Column(
           children: [
             Row(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
+                 padding: EdgeInsets.only(left:16.0.w),
                   width: MediaQuery.of(context).size.width / 3.0,
                   child:  Text('$title', style: TextStyle(fontSize: 20.0.sp, color: Colors.white),),
                 ),

@@ -27,85 +27,87 @@ class _HomeState extends State<Home> {
     return Scaffold (
       appBar: CustomAppBar('Home'),
       backgroundColor: Color(0xff1A1C2E),
-      body:
-      // ScreenUtilInit(
-      //   designSize: Size(375,590),
-      //   builder:
-      //   ()=>
-        Column(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child:  Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // CustomAppBar('Home'),
             Align(
               alignment: Alignment.centerLeft,
               child: Text('Send and receive files securely and fast',
-                style:TextStyle(color: Colors.white, fontSize: 14.sp, ),
+                style:TextStyle(color: Colors.white, fontSize: 22.sp),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.all(8.0),
-                  width: 100.0.w,
-                  height: 150.0.w,
-                  child:  FlatButton(
-                    onPressed: () => Navigator.pushNamed(context, '/receive'),
-                    color: Color(0xff353846),
-                    child: Column( // Replace with a Row for horizontal icon + text
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/receive.png',
-                          width: 90.0.w,
-                          // fit:BoxFit.fitHeight,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(8.0),
+                      width: 100.0.w,
+                      height: 150.0.w,
+                      child:  FlatButton(
+                        onPressed: () => Navigator.pushNamed(context, '/receive'),
+                        color: Color(0xff353846),
+                        child: Column( // Replace with a Row for horizontal icon + text
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset(
+                              'assets/images/receive.png',
+                              width: 90.0.w,
+                            ),
+                            Text("Receive", style:TextStyle(color: Colors.white, fontSize: 16))
+                          ],
                         ),
-                        Text("Receive", style:TextStyle(color: Colors.white))
-                      ],
+                      ),
                     ),
-                  ),
+                    Container(
+                      width: 100.0.w,
+                      height: 150.0.w,
+                      margin: const EdgeInsets.all(8.0),
+                      child:  FlatButton(
+                        onPressed: () => Navigator.pushNamed(context, '/send'),
+                        color: Color(0xff353846),
+                        child: Column( // Replace with a Row for horizontal icon + text
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset(
+                              'assets/images/send.png',
+                              width: 90.0.w,
+                            ),
+                            Text("Send", style:TextStyle(color: Colors.white, fontSize: 16))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Container(
-                  width: 100.0.w,
-                  height: 150.0.w,
-                  margin: const EdgeInsets.all(8.0),
+                  width: 220.0.w,
+                  height: 50.0.w,
+                  margin: const EdgeInsets.fromLTRB(0,8.0,0,0),
                   child:  FlatButton(
-                    onPressed: () => Navigator.pushNamed(context, '/send'),
+                    onPressed: () => Navigator.pushNamed(context, '/settings'),
                     color: Color(0xff353846),
-                    child: Column( // Replace with a Row for horizontal icon + text
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Image.asset(
                           'assets/images/send.png',
-                          width: 90.0.w,
-                          // fit:BoxFit.fitHeight,
+                          width: 30.0.w,
                         ),
-                        Text("Send", style:TextStyle(color: Colors.white))
+                        Text("Settings", style:TextStyle(color: Colors.white, fontSize: 16))
                       ],
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 100.h,
+                )
               ],
-            ),
-            Container(
-              width: 220.0.w,
-              height: 50.0.w,
-              margin: const EdgeInsets.fromLTRB(0,8.0,0,0),
-              child:  FlatButton(
-                onPressed: () => Navigator.pushNamed(context, '/settings'),
-                color: Color(0xff353846),
-                child: Row( // Replace with a Row for horizontal icon + text
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/send.png',
-                      width: 30.0.w,
-                      // fit:BoxFit.fitHeight,
-                    ),
-                    Text("Settings", style:TextStyle(color: Colors.white))
-                  ],
-                ),
-              ),
-            ),
+            )
             // FlatButton(onPressed: (){
             //   selecteFile();
             // }, child: Text('Click')),
@@ -121,6 +123,7 @@ class _HomeState extends State<Home> {
             // )
           ],
         ),
+      ),
       // ),
       bottomNavigationBar:  CustomBottomBar(),
     );
