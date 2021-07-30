@@ -1,13 +1,16 @@
+import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/widgets/FileInfo.dart';
+import '../widgets/Button.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_william/client.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
+import '../widgets/custom-bottom-bar.dart';
+import '../widgets/ButtonWithIcon.dart';
 
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
-
-//  final String title;
-
   @override
   _SendDefaultState createState() => _SendDefaultState();
 }
@@ -15,6 +18,8 @@ class SendDefault extends StatefulWidget {
 class _SendDefaultState extends State<SendDefault> {
   String _msg = '';
   String _code = '';
+  String fileName = '';
+  int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
    Client client = Client();
@@ -39,52 +44,77 @@ class _SendDefaultState extends State<SendDefault> {
     });
   }
 
+  void handleSelectFile () async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
+    if(result != null) {
+      PlatformFile file = result.files.first;
+      setState(() {
+        fileName = file.name;
+        fileSize = (file.size/8).toInt();
+      });
+      // print("filenameeeeeee");
+      // print(file.name);
+      // print(file.bytes);
+      // print(file.size);
+      // print(file.extension);
+      // print(file.path);
+    } else {
+      // User canceled the picker
+    }
+  }
+
+  Widget getCodeGenerationUI () {
+    if(fileSize > 0)
+        return Column(
+          children: [
+            FileInfo(fileSize, fileName),
+            ButtonWithIcon('Generating Code', () {},
+                CircularProgressIndicator(
+                  value: 1,
+                  semanticsLabel: 'Linear progress indicator',
+                )),
+            DescriptionContainer(
+                'Share code with recipient & wait until the transfer is complete.',
+                TextAlign.center,
+                16.0.h,
+                18.sp
+            ),
+           Button('Cancel', () {})
+          ],
+        );
+
+      return ButtonWithIcon('Select a File', ()=> handleSelectFile(),
+          Image.asset(
+          'assets/images/send.png',
+          width: 30.0.w,
+      ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar:  CustomBottomBar(),
+        appBar: CustomAppBar('Home'),
         backgroundColor: Color(0xff1A1C2E),
         body: Container(
+          padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
           child: Container(
              child: SizedBox(
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      // Text('Select the file you would like to send from your device & wait for the generated code.',
-                      //   style:TextStyle(color: Colors.white, fontSize: 14.sp)
-                      // ),
-                      Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          border: Border(
-                            top: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-                            left: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-                            right: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-                            bottom: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-                          ),
-                        ),
-                        width: 190.0.w,
-                        height: 70.0.w,
-                        margin: const EdgeInsets.all(8.0),
-                        child:  FlatButton(
-                          onPressed: () => Navigator.pushNamed(context, '/send'),
-                          color: Color(0x00353846),
-                          child: Row( // Replace with a Row for horizontal icon + text
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text("Select a File", style:TextStyle(color: Colors.white, fontSize: 14.sp)),
-                              Image.asset(
-                                'assets/images/send.png',
-                                width: 30.0.w,
-                                // fit:BoxFit.fitHeight,
-                              ),
-                            ],
-                          ),
-                        ),
+                      DescriptionContainer(
+                          'Send and receive files securely and fast',
+                          TextAlign.left,
+                          0,
+                          18.sp
+                      ),
+                      getCodeGenerationUI(),
+                      SizedBox(
+                        height: fileSize > 0? 0.h:100.h,
                       ),
                     ]
                 ),
               )
-            // ],
           ),
     ));
   }

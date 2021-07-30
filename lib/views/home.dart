@@ -5,6 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
 import '../widgets/custom-bottom-bar.dart';
+import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,7 +24,6 @@ class _HomeState extends State<Home> {
   }
   @override
   Widget build(BuildContext context) {
-
     return Scaffold (
       appBar: CustomAppBar('Home'),
       backgroundColor: Color(0xff1A1C2E),
@@ -32,13 +32,7 @@ class _HomeState extends State<Home> {
         child:  Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // CustomAppBar('Home'),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text('Send and receive files securely and fast',
-                style:TextStyle(color: Colors.white, fontSize: 22.sp),
-              ),
-            ),
+            DescriptionContainer('Send and receive files securely and fast', TextAlign.left, 0, 18.sp),
             Column(
               children: [
                 Row(
@@ -108,23 +102,9 @@ class _HomeState extends State<Home> {
                 )
               ],
             )
-            // FlatButton(onPressed: (){
-            //   selecteFile();
-            // }, child: Text('Click')),
-            // Container(
-            //   //Container to control width of progress bar
-            //   width: 100.0,
-            //   child:  LinearProgressIndicator(
-            //     value: 0.2,
-            //     semanticsLabel: 'Linear progress indicator',
-            //     backgroundColor: Colors.purple,
-            //     color: Colors.red,
-            //   ),
-            // )
           ],
         ),
       ),
-      // ),
       bottomNavigationBar:  CustomBottomBar(),
     );
   }

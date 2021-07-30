@@ -20,26 +20,32 @@ class IntroScreenState extends State<IntroScreen> {
 
     slides.add(
       new Slide(
-        title: "ERASER",
-        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
-        pathImage: "assets/images/privacy.png",
+        title: "End-to-End Encryption",
+        description: "Send & receive files securely with simplicity & speed.",
+        pathImage: "assets/images/intro-logo.png",
         backgroundColor: Colors.black,
+        // widthImage: 300.0,
+        heightImage: 300.0
       ),
     );
     slides.add(
       new Slide(
-        title: "ERASER",
-        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
+        title: "No Sign-Up",
+        description: "Send & receive files with no need to sign up.",
         pathImage: "assets/images/privacy.png",
         backgroundColor: Colors.black,
+        // widthImage: 300.0,
+        heightImage: 300.0
       ),
     );
     slides.add(
       new Slide(
-        title: "ERASER",
-        description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
-        pathImage: "assets/images/privacy.png",
+        title: "Device to Device",
+        description: "Send & receive from & to your device without storing data in the cloud.",
+        pathImage: "assets/images/device-device.png",
         backgroundColor: Colors.black,
+        // widthImage: 300.0,
+        heightImage: 300.0
       ),
     );
   }
