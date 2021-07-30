@@ -60,6 +60,7 @@ flutter:
     - assets/images/receive.png
     - assets/images/device-device.png
     - assets/images/intro-logo.png
+    - assets/images/file-sent-white.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

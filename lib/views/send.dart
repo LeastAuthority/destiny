@@ -1,5 +1,7 @@
 import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
 import 'package:dart_wormhole_gui/widgets/FileInfo.dart';
+import 'package:dart_wormhole_gui/widgets/SendingProgress.dart';
+import 'package:dart_wormhole_gui/widgets/SentSuccessfully.dart';
 import '../widgets/Button.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +18,7 @@ class SendDefault extends StatefulWidget {
 }
 
 class _SendDefaultState extends State<SendDefault> {
-  String _msg = '';
+  String _msg = 'test test';
   String _code = '';
   String fileName = '';
   int fileSize = 0;
@@ -64,6 +66,8 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   Widget getCodeGenerationUI () {
+
+    return SentSuccessfully(fileSize, fileName);
     if(fileSize > 0)
         return Column(
           children: [
@@ -88,6 +92,9 @@ class _SendDefaultState extends State<SendDefault> {
           'assets/images/send.png',
           width: 30.0.w,
       ));
+
+      //Warning!! Don't delete next comment
+    return SendingProgress(fileSize, fileName); //change params
   }
   @override
   Widget build(BuildContext context) {
