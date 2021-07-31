@@ -4,10 +4,11 @@
 // // utility that Flutter provides. For example, you can send tap and scroll
 // // gestures. You can also use WidgetTester to find child widgets in the widget
 // // tree, read text, and verify that the values of widget properties are correct.
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/home.dart';
 import 'package:dart_wormhole_gui/views/splash.dart';
 import 'package:dart_wormhole_gui/widgets/Button.dart';
-import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/widgets/Heading.dart';
 import 'package:flutter/material.dart';
  import 'package:flutter_test/flutter_test.dart';
 import 'package:dart_wormhole_gui/main.dart';
@@ -39,12 +40,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
      );
 
      // Create the Finders.
-     final homeScaffoldFinder = find.byKey(Key('HOME_SCAFFOLD'));
+     final homeScaffoldFinder = find.byKey(Key(HOME_SCAFFOLD));
 
-     final containerFinder = find.byKey(Key('HOME_MAIN_CONTAINER'));
+     final containerFinder = find.byKey(Key(HOME_MAIN_CONTAINER));
 
-     final descriptionFinder = find.byKey(Key('HOME_DESCRIPTION'));
-     final homeBody = find.byKey(Key('HOME_BODY'));
+     final descriptionFinder = find.byKey(Key(HOME_MAIN_HEADING));
 
 
      expect(descriptionFinder, findsOneWidget);
@@ -52,9 +52,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
      expect(containerFinder, findsOneWidget);
 
      expect(homeScaffoldFinder, findsOneWidget);
-
-     expect(homeBody, findsOneWidget);
-
 
    });
 }

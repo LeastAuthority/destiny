@@ -1,6 +1,7 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/widgets/Button.dart';
 
-import '../widgets/DescriptionContainer.dart';
+import '../widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _ReceiveState extends State<Receive> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar:  CustomBottomBar(),
-      appBar: CustomAppBar('Home'),
+      appBar: CustomAppBar(RECEIVE),
       backgroundColor: Color(0xff1A1C2E),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -55,13 +56,13 @@ class _ReceiveState extends State<Receive> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           DescriptionContainer(
-                  'Enter the code in order to receive the file.',
-                  TextAlign.left,
-                  0,
-                  14.sp,
-                  Key('Receive_Description'),
-      ),
+            Heading(
+              title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+              textAlign: TextAlign.left,
+              marginTop:0,
+              fontSize: 14.sp,
+              key:  Key('Receive_Description'),
+            ),
            Container(
             alignment: Alignment.center,
            child:  Column(

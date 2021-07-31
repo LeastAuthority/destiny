@@ -1,4 +1,5 @@
-import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/widgets/SendingProgress.dart';
 import 'package:dart_wormhole_gui/widgets/SentSuccessfully.dart';
@@ -52,7 +53,7 @@ class _SendDefaultState extends State<SendDefault> {
       PlatformFile file = result.files.first;
       setState(() {
         fileName = file.name;
-        fileSize = (file.size/8).toInt();
+        fileSize = (file.size/8).toInt(); //bytes to kb
       });
       // print("filenameeeeeee");
       // print(file.name);
@@ -66,8 +67,6 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   Widget getCodeGenerationUI () {
-
-
     if(fileSize > 0)
         return Column(
           children: [
@@ -77,18 +76,19 @@ class _SendDefaultState extends State<SendDefault> {
                   value: 1,
                   semanticsLabel: 'Linear progress indicator',
                 )),
-            DescriptionContainer(
-                'Share code with recipient & wait until the transfer is complete.',
-                TextAlign.center,
-                16.0.h,
-                18.sp,
-                Key('Generation_Description'),
+
+            Heading(
+                title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
+                textAlign:TextAlign.center,
+                marginTop: 16.0.h,
+                fontSize: 12.sp,
+                key:Key('Generation_Description')
             ),
            Button('Cancel', () {})
           ],
         );
 
-      return ButtonWithIcon('Select a File', ()=> handleSelectFile(),
+      return ButtonWithIcon(SELECT_A_FILE, ()=> handleSelectFile(),
           Image.asset(
           'assets/images/send.png',
           width: 30.0.w,
@@ -102,7 +102,7 @@ class _SendDefaultState extends State<SendDefault> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar:  CustomBottomBar(),
-        appBar: CustomAppBar('Home'),
+        appBar: CustomAppBar(SEND),
         backgroundColor: Color(0xff1A1C2E),
         body: Container(
           padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
@@ -111,12 +111,12 @@ class _SendDefaultState extends State<SendDefault> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      DescriptionContainer(
-                          'Send and receive files securely and fast',
-                          TextAlign.left,
-                          0,
-                          18.sp,
-                          Key('Send_Description'),
+                      Heading(
+                        title: SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST,
+                        textAlign: TextAlign.left,
+                        marginTop:0,
+                        fontSize: 18.sp,
+                        key: Key('Send_Description'),
                       ),
                       getCodeGenerationUI(),
                       SizedBox(

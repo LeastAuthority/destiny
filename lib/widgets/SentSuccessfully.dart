@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 import 'Button.dart';
 import 'FileInfo.dart';
@@ -16,12 +16,12 @@ class SentSuccessfully extends StatelessWidget {
     return Column(
       children: [
         FileInfo(fileSize, fileName),
-        DescriptionContainer(
-            'File sent',
-            TextAlign.left,
-            16.0.h,
-            25.sp,
-           Key('FILE_SENT')
+        Heading(
+          title: 'File sent',
+          textAlign: TextAlign.left,
+          marginTop:16.0.h,
+          fontSize:25.sp,
+          key: Key('FILE_SENT'),
         ),
         Image.asset(
           'assets/images/file-sent-white.png',

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 class GridButtons extends StatelessWidget {
-  final Function handleSendClicked;
-  final Function handleReceiveClicked;
-  final Function handleSettingsClicked;
+   Function? handleSendClicked;
+   Function? handleReceiveClicked;
+   Function? handleSettingsClicked;
 
-  GridButtons(this.handleSendClicked, this.handleReceiveClicked, this.handleSettingsClicked);
-
+   GridButtons({Key? key, Function? handleSendClicked, Function? handleReceiveClicked, Function? handleSettingsClicked}):super(key:key) {
+    this.handleSendClicked = handleSendClicked;
+    this.handleReceiveClicked = handleReceiveClicked;
+    this.handleSettingsClicked = handleSettingsClicked;
+  }
   @override
   Widget build(BuildContext context) {
-    return   Column(
-      key:Key('HOME_BODY'),
+    return Column(
+      key:Key('GRID_BUTTONS_BODY'),
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

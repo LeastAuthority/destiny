@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 import 'Button.dart';
 import 'FileInfo.dart';
@@ -22,19 +22,19 @@ class SendingProgress extends StatelessWidget {
             value: 0.5,
           ),
         ),
-        DescriptionContainer(
-            '2 Seconds',
-            TextAlign.left,
-            16.0.h,
-            12.sp,
-            Key('Timing_Progress')
+        Heading(
+          title: '2 Seconds',
+          textAlign: TextAlign.left,
+          marginTop:16.0.h,
+          fontSize:12.sp,
+          key: Key('Timing_Progress'),
         ),
-        DescriptionContainer(
-            'App must remain open until the transfer is complete.',
-            TextAlign.center,
-            16.0.h,
-            18.sp,
-            Key('APP_MUST_REMAIN_OPEN')
+        Heading(
+          title: 'App must remain open until the transfer is complete.',
+          textAlign: TextAlign.center,
+          marginTop:16.0.h,
+          fontSize:18.sp,
+          key: Key('APP_MUST_REMAIN_OPEN'),
         ),
         Button('Cancel', () {})
       ],

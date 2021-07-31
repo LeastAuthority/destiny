@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 class FileInfo extends StatelessWidget {
   final int fileSize;
@@ -21,7 +21,13 @@ class FileInfo extends StatelessWidget {
             ),
           ),
         ),
-        DescriptionContainer('(${fileSize} kb)', TextAlign.center,0, 12.sp, Key('File_Info_Description'),),
+        Heading(
+          title: '(${fileSize} kb)',
+          textAlign: TextAlign.center,
+          marginTop:0,
+          fontSize:12.sp,
+          key: Key('File_Info_Description'),
+        ),
       ],
     );
   }
