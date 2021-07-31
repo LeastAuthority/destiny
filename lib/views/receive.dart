@@ -1,5 +1,11 @@
+import 'package:dart_wormhole_gui/widgets/Button.dart';
+
+import '../widgets/DescriptionContainer.dart';
+import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_william/client.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Receive extends StatefulWidget {
   Receive({Key? key}) : super(key: key);
@@ -39,44 +45,53 @@ class _ReceiveState extends State<Receive> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-//        title: Text(widget.title),
-        title: Text('Receive Text'),
-      ),
+      bottomNavigationBar:  CustomBottomBar(),
+      appBar: CustomAppBar('Home'),
+      backgroundColor: Color(0xff1A1C2E),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 250),
-//        margin: EdgeInsets.all(100),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, '/s'),
-                child: Text('Go to Send')),
-            TextField(
-              onChanged: _codeChanged,
-            ),
-            Text(
-              '$_msg',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            TextField(
-              controller: _msgTxtCtrl,
-            ),
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column (
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+           DescriptionContainer(
+                  'Enter the code in order to receive the file.',
+                  TextAlign.left,
+                  0,
+                  14.sp,
+                  Key('Receive_Description'),
+      ),
+           Container(
+            alignment: Alignment.center,
+           child:  Column(
+               children: [
+                 SizedBox(
+                   width: MediaQuery.of(context).size.width - 100.0,
+                   height: 150.0.h,
+                   child: TextField(
+                     textAlign: TextAlign.center,
+                     decoration: InputDecoration(
+                       hintStyle: TextStyle(fontSize: 14.0, color: Colors.white, ),
+                       enabledBorder: const OutlineInputBorder(
+                         borderSide: const BorderSide(color: Color(0XffC24DF8), width: 1.0),
+                       ),
+                       hintText: 'Enter Code',
+                     ),
+                   ),
+                 ),
+                 Button('Next', () {}),
+                 Button('Cancel', () {}),
+                 // SizedBox(
+                 //   height: 100.h,
+                 // ),
+               ],
+             ),
+           )
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _receive,
-        tooltip: 'Receive',
-        child: Icon(Icons.move_to_inbox),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

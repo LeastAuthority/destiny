@@ -7,19 +7,16 @@ class DescriptionContainer extends StatelessWidget {
   final TextAlign textAlign;
   final double marginTop;
   final double fontSize;
-
-  DescriptionContainer(this.title, this.textAlign, this.marginTop, this.fontSize);
+  DescriptionContainer(this.title, this.textAlign, this.marginTop, this.fontSize, Key key):super(key:key);
 
   @override
   Widget build(BuildContext context) {
     return  Container(
         margin: EdgeInsets.only(top:marginTop),
-        child: Align(
           child: Text('${title}',
             textAlign: textAlign,
             style:TextStyle(color: Colors.white, fontSize: fontSize,),
           ),
-        )
     );
   }
 }

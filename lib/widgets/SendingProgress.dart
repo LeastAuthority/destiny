@@ -26,13 +26,15 @@ class SendingProgress extends StatelessWidget {
             '2 Seconds',
             TextAlign.left,
             16.0.h,
-            12.sp
+            12.sp,
+            Key('Timing_Progress')
         ),
         DescriptionContainer(
             'App must remain open until the transfer is complete.',
             TextAlign.center,
             16.0.h,
-            18.sp
+            18.sp,
+            Key('APP_MUST_REMAIN_OPEN')
         ),
         Button('Cancel', () {})
       ],

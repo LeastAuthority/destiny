@@ -67,7 +67,7 @@ class _SendDefaultState extends State<SendDefault> {
 
   Widget getCodeGenerationUI () {
 
-    return SentSuccessfully(fileSize, fileName);
+
     if(fileSize > 0)
         return Column(
           children: [
@@ -81,7 +81,8 @@ class _SendDefaultState extends State<SendDefault> {
                 'Share code with recipient & wait until the transfer is complete.',
                 TextAlign.center,
                 16.0.h,
-                18.sp
+                18.sp,
+                Key('Generation_Description'),
             ),
            Button('Cancel', () {})
           ],
@@ -93,8 +94,9 @@ class _SendDefaultState extends State<SendDefault> {
           width: 30.0.w,
       ));
 
-      //Warning!! Don't delete next comment
+      //Warning!! Don't delete next 2 comment
     return SendingProgress(fileSize, fileName); //change params
+   // return SentSuccessfully(fileSize, fileName);
   }
   @override
   Widget build(BuildContext context) {
@@ -113,7 +115,8 @@ class _SendDefaultState extends State<SendDefault> {
                           'Send and receive files securely and fast',
                           TextAlign.left,
                           0,
-                          18.sp
+                          18.sp,
+                          Key('Send_Description'),
                       ),
                       getCodeGenerationUI(),
                       SizedBox(

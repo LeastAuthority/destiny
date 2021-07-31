@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/widgets/GridButtons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -25,82 +26,23 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold (
+      key: Key('HOME_SCAFFOLD'),
       appBar: CustomAppBar('Home'),
       backgroundColor: Color(0xff1A1C2E),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        key: Key('HOME_MAIN_CONTAINER'),
+        padding: EdgeInsets.symmetric(horizontal: 16.0.w),
         child:  Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            DescriptionContainer('Send and receive files securely and fast', TextAlign.left, 0, 18.sp),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.all(8.0),
-                      width: 100.0.w,
-                      height: 150.0.w,
-                      child:  FlatButton(
-                        onPressed: () => Navigator.pushNamed(context, '/receive'),
-                        color: Color(0xff353846),
-                        child: Column( // Replace with a Row for horizontal icon + text
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              'assets/images/receive.png',
-                              width: 90.0.w,
-                            ),
-                            Text("Receive", style:TextStyle(color: Colors.white, fontSize: 16))
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 100.0.w,
-                      height: 150.0.w,
-                      margin: const EdgeInsets.all(8.0),
-                      child:  FlatButton(
-                        onPressed: () => Navigator.pushNamed(context, '/send'),
-                        color: Color(0xff353846),
-                        child: Column( // Replace with a Row for horizontal icon + text
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image.asset(
-                              'assets/images/send.png',
-                              width: 90.0.w,
-                            ),
-                            Text("Send", style:TextStyle(color: Colors.white, fontSize: 16))
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  width: 220.0.w,
-                  height: 50.0.w,
-                  margin: const EdgeInsets.fromLTRB(0,8.0,0,0),
-                  child:  FlatButton(
-                    onPressed: () => Navigator.pushNamed(context, '/settings'),
-                    color: Color(0xff353846),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/send.png',
-                          width: 30.0.w,
-                        ),
-                        Text("Settings", style:TextStyle(color: Colors.white, fontSize: 16))
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 100.h,
-                )
-              ],
+            DescriptionContainer(
+                'Send and receive files securely and fast',
+                TextAlign.left, 0, 18.sp,
+                Key('HOME_DESCRIPTION'),
+            ),
+            GridButtons((){}, (){},(){}),
+            SizedBox(
+              height: 100.h,
             )
           ],
         ),

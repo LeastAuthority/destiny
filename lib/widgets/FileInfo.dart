@@ -21,7 +21,7 @@ class FileInfo extends StatelessWidget {
             ),
           ),
         ),
-        DescriptionContainer('(${fileSize} kb)', TextAlign.center,0, 12.sp),
+        DescriptionContainer('(${fileSize} kb)', TextAlign.center,0, 12.sp, Key('File_Info_Description'),),
       ],
     );
   }

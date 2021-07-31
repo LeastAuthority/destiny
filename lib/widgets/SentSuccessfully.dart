@@ -20,7 +20,8 @@ class SentSuccessfully extends StatelessWidget {
             'File sent',
             TextAlign.left,
             16.0.h,
-            25.sp
+            25.sp,
+           Key('FILE_SENT')
         ),
         Image.asset(
           'assets/images/file-sent-white.png',
