@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
+import 'package:app_settings/app_settings.dart';
 
 class GridButtons extends StatelessWidget {
-   Function? handleSendClicked;
-   Function? handleReceiveClicked;
+
    Function? handleSettingsClicked;
 
-   GridButtons({Key? key, Function? handleSendClicked, Function? handleReceiveClicked, Function? handleSettingsClicked}):super(key:key) {
-    this.handleSendClicked = handleSendClicked;
-    this.handleReceiveClicked = handleReceiveClicked;
+   GridButtons({Key? key, Function? handleSettingsClicked}):super(key:key) {
+
     this.handleSettingsClicked = handleSettingsClicked;
   }
   @override
@@ -68,7 +67,24 @@ class GridButtons extends StatelessWidget {
           margin: const EdgeInsets.fromLTRB(0,8.0,0,0),
           child:  FlatButton(
             // padding: EdgeInsets.fromLTRB(10.0, 18.0, 10.0, 14.0),
-            onPressed: () => Navigator.pushNamed(context, '/settings'),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) => new AlertDialog(
+                    content: new Text("Select the default save destination for your files on this device."),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('Select'),
+                        onPressed: () {
+                          AppSettings.openDeviceSettings();
+                        },
+                        // onPressed: () {
+                        //   Navigator.of(context).pop();
+                        // },
+                      )
+                    ],
+                  ));
+            },
             color: Color(0xff353846),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

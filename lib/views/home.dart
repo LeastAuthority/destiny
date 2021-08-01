@@ -43,14 +43,31 @@ class _HomeState extends State<Home> {
               fontSize: 18.sp,
               key:  Key(HOME_MAIN_HEADING),
             ),
-            GridButtons(
-                handleSendClicked: (){},
-                handleReceiveClicked: (){},
-                handleSettingsClicked: (){}
-            ),
+            GridButtons(),
             SizedBox(
               height: 100.h,
-            )
+            ),
+            // Dialog(
+            //   shape: RoundedRectangleBorder(
+            //     // borderRadius: BorderRadius.circular(Constants.padding),
+            //   ),
+            //   elevation: 0,
+            //   backgroundColor: Colors.transparent,
+            //   // child: contentBox(context),
+            // ),
+
+            // AlertDialog(
+            //   title: const Text('AlertDialog Title'),
+            //
+            //   actions: <Widget>[
+            //     TextButton(
+            //       child: const Text('Approve'),
+            //       onPressed: () {
+            //         Navigator.of(context).pop();
+            //       },
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
