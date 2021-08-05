@@ -51,6 +51,9 @@ class _SendDefaultState extends State<SendDefault> {
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
     if(result != null) {
       PlatformFile file = result.files.first;
+      //FIXME
+      //Here we should have a call to a function that generate and returns wormhole code.
+      //When we have the code, we set it to the state below so user can see it in the UI.
       setState(() {
         fileName = file.name;
         fileSize = (file.size/8).toInt(); //bytes to kb
@@ -85,7 +88,7 @@ class _SendDefaultState extends State<SendDefault> {
                 key:Key('Generation_Description')
             ),
            Button('Cancel', () {
-             _send();
+
            })
           ],
         );
