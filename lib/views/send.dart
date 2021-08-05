@@ -40,7 +40,7 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void _send() {
-    String code = client.sendText(_msg);
+    String code = client.sendFile(_msg);
     _codeTxtCtrl.text = code;
     setState(() {
       _code = code;
@@ -84,7 +84,9 @@ class _SendDefaultState extends State<SendDefault> {
                 fontSize: 12.sp,
                 key:Key('Generation_Description')
             ),
-           Button('Cancel', () {})
+           Button('Cancel', () {
+             _send();
+           })
           ],
         );
 

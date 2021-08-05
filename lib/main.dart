@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
                       routes: {
                             SPLASH_ROUTE: (context) => Splash(),
                             INTRO_ROUTE: (context) => IntroScreen(),
-                            HOME_ROUTE: (context) => Home(),
+                            // HOME_ROUTE: (context) => Home(),
                             SEND_ROUTE: (context) => SendDefault(),
                             RECEIVE_ROUTE: (context) => Receive(),
                       },

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
-import 'home.dart';
+import '../views/send.dart';
 
 
 class IntroScreen extends StatefulWidget {
@@ -54,7 +54,7 @@ class IntroScreenState extends State<IntroScreen> {
     // Do what you want
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Home()),
+      MaterialPageRoute(builder: (context) => SendDefault()),
     );
   }
 
