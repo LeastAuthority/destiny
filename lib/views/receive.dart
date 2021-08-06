@@ -46,8 +46,9 @@ class _ReceiveState extends State<Receive> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      bottomNavigationBar:  CustomBottomBar(),
+      bottomNavigationBar:  CustomBottomBar('RECEIVE_SCREEN'),
       appBar: CustomAppBar(RECEIVE),
       backgroundColor: Color(0xff1A1C2E),
       body: Container(

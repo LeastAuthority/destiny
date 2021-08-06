@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      bottomNavigationBar:  CustomBottomBar(),
+      // bottomNavigationBar:  CustomBottomBar(),
     );
   }
 }

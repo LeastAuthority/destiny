@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
 import '../widgets/custom-bottom-bar.dart';
 import '../widgets/ButtonWithIcon.dart';
+import 'package:path/path.dart';
 
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
@@ -79,7 +80,6 @@ class _SendDefaultState extends State<SendDefault> {
                   value: 1,
                   semanticsLabel: 'Linear progress indicator',
                 )),
-
             Heading(
                 title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
                 textAlign:TextAlign.center,
@@ -105,8 +105,11 @@ class _SendDefaultState extends State<SendDefault> {
   }
   @override
   Widget build(BuildContext context) {
+    void test () {
+      print(ModalRoute.of(context));
+    }
     return Scaffold(
-        bottomNavigationBar:  CustomBottomBar(),
+        bottomNavigationBar:  CustomBottomBar('SEND_SCREEN'),
         appBar: CustomAppBar(SEND),
         backgroundColor: Color(0xff1A1C2E),
         body: Container(
