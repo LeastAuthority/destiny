@@ -1,5 +1,6 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/widgets/Button.dart';
+import 'package:dart_wormhole_gui/widgets/EnterCode.dart';
 
 import '../widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
@@ -10,9 +11,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Receive extends StatefulWidget {
   Receive({Key? key}) : super(key: key);
-
-//  final String title;
-
   @override
   _ReceiveState createState() => _ReceiveState();
 }
@@ -22,7 +20,7 @@ class _ReceiveState extends State<Receive> {
   String _code = '';
   TextEditingController _msgTxtCtrl = TextEditingController();
 
-  Client client = Client();
+  // Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -37,23 +35,31 @@ class _ReceiveState extends State<Receive> {
   }
 
   void _receive() {
-    String msg = client.recvText(_code);
-    _msgTxtCtrl.text = msg;
-    setState(() {
-      _msg = msg;
-    });
+    // String msg = client.recvText(_code);
+    // _msgTxtCtrl.text = msg;
+    // setState(() {
+    //   _msg = msg;
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      bottomNavigationBar:  CustomBottomBar('RECEIVE_SCREEN'),
-      appBar: CustomAppBar(RECEIVE),
+      bottomNavigationBar: CustomBottomBar(
+        path:'RECEIVE_SCREEN',
+        key: Key(BOTTOM_NAV_BAR),
+      ),
+      appBar: CustomAppBar(
+        title: RECEIVE,
+        key: Key(CUSTOM_NAV_BAR),
+      ),
       backgroundColor: Color(0xff1A1C2E),
       body: Container(
+        key:Key(RECEIVE_SCREEN_BODY),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: Column (
+          key:Key(RECEIVE_SCREEN_CONTENT),
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -62,38 +68,9 @@ class _ReceiveState extends State<Receive> {
               textAlign: TextAlign.left,
               marginTop:0,
               fontSize: 14.sp,
-              key:  Key('Receive_Description'),
+              key:  Key(RECEIVE_SCREEN_HEADING),
             ),
-           Container(
-            alignment: Alignment.center,
-           child:  Column(
-               children: [
-                 SizedBox(
-                   width: MediaQuery.of(context).size.width - 100.0,
-                   height: 150.0.h,
-                   child: TextField(
-                     textAlign: TextAlign.center,
-                     decoration: InputDecoration(
-                       hintStyle: TextStyle(fontSize: 14.0, color: Colors.white, ),
-                       enabledBorder: const OutlineInputBorder(
-                         borderSide: const BorderSide(color: Color(0XffC24DF8), width: 1.0),
-                       ),
-                       hintText: 'Enter Code',
-                     ),
-                   ),
-                 ),
-                 Button('Next', () {
-                   //FIXME
-                   //Here we call a function to start receiving a file. The function takes the generated code as parameter.
-                   //Note that the UI here is not ready. So maybe we should pass a static code to the fun
-                 }),
-                 Button('Cancel', () {}),
-                 // SizedBox(
-                 //   height: 100.h,
-                 // ),
-               ],
-             ),
-           )
+            EnterCode(key: Key(RECEIVE_SCREEN_ENTER_CODE),),
           ],
         ),
       ),

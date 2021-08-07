@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 class FileInfo extends StatelessWidget {
-  final int fileSize;
-  final String fileName;
+  final int? fileSize;
+  final String? fileName;
 
   FileInfo(this.fileSize, this.fileName);
 

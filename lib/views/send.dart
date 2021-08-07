@@ -1,4 +1,5 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/widgets/RowGroupButtons.dart';
@@ -13,6 +14,7 @@ import '../widgets/custom-app-bar.dart';
 import '../widgets/custom-bottom-bar.dart';
 import '../widgets/ButtonWithIcon.dart';
 import 'package:path/path.dart';
+import '../constants/api_path.dart';
 
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
@@ -27,7 +29,7 @@ class _SendDefaultState extends State<SendDefault> {
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-   Client client = Client();
+   // Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -42,11 +44,11 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void _send() {
-    String code = client.sendFile(_msg);
-    _codeTxtCtrl.text = code;
-    setState(() {
-      _code = code;
-    });
+    // String code = client.sendFile(_msg);
+    // _codeTxtCtrl.text = code;
+    // setState(() {
+    //   _code = code;
+    // });
   }
 
   void handleSelectFile () async {
@@ -73,33 +75,23 @@ class _SendDefaultState extends State<SendDefault> {
 
   Widget getCodeGenerationUI () {
     if(fileSize > 0)
-        return Column(
-          children: [
-            FileInfo(fileSize, fileName),
-            RowGroupButton('Generating Code'),
-            Heading(
-                title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
-                textAlign:TextAlign.center,
-                marginTop: 16.0.h,
-                fontSize: 12.sp,
-                key:Key('Generation_Description')
-            ),
-           Button('Cancel', () {
-
-           })
-          ],
+        return CodeGeneration(
+          fileName: fileName,
+          fileSize: fileSize,
+          key: Key(SEND_SCREEN_CODE_GENERATION_UI),
         );
 
       return ButtonWithIcon(
           label:SELECT_A_FILE,
           handleSelectFile:handleSelectFile,
           icon:Image.asset(
-          'assets/images/send.png',
-          width: 30.0.w,
-      ),
-        height:70.0,
-        width:190.0,
-        isVertical: false
+            'assets/images/send.png',
+            width: 30.0.w,
+          ),
+        height:60.0.h,
+        width: 200.0.w,
+        isVertical: false,
+        key:Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)
       );
 
       //Warning!! Don't delete next 2 comment
@@ -112,14 +104,20 @@ class _SendDefaultState extends State<SendDefault> {
       print(ModalRoute.of(context));
     }
     return Scaffold(
-        bottomNavigationBar:  CustomBottomBar('SEND_SCREEN'),
-        appBar: CustomAppBar(SEND),
+        bottomNavigationBar:  CustomBottomBar(
+             path:'SEND_SCREEN',
+             key: Key(BOTTOM_NAV_BAR),
+        ),
+        appBar: CustomAppBar(
+            title:SEND,
+            key:Key(CUSTOM_NAV_BAR),
+        ),
         backgroundColor: Color(0xff1A1C2E),
         body: Container(
+          key: Key(SEND_SCREEN_BODY),
           padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
-          child: Container(
-             child: SizedBox(
-                child: Column(
+          child: Column(
+                    key: Key(SEND_SCREEN_CONTENT),
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Heading(
@@ -127,90 +125,16 @@ class _SendDefaultState extends State<SendDefault> {
                         textAlign: TextAlign.left,
                         marginTop:0,
                         fontSize: 18.sp,
-                        key: Key('Send_Description'),
+                        key: Key(SEND_SCREEN_HEADING),
                       ),
                       getCodeGenerationUI(),
                       SizedBox(
+                        key:Key(SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER),
                         height: fileSize > 0? 0.h:100.h,
                       ),
                     ]
                 ),
-              )
-          ),
+
     ));
   }
 }
-
-
-//
-//
-// class _SendDefaultState extends State<SendDefault> {
-//   String _msg = '';
-//   String _code = '';
-//   TextEditingController _codeTxtCtrl = TextEditingController();
-//
-//   Client client = Client();
-//
-//   void _msgChanged(String msg) {
-//     setState(() {
-//       _msg = msg;
-//     });
-//   }
-//
-//   void _codeChanged(String code) {
-//     setState(() {
-//       _code = code;
-//     });
-//   }
-//
-//   void _send() {
-//     String code = client.sendText(_msg);
-//     _codeTxtCtrl.text = code;
-//     setState(() {
-//       _code = code;
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     // This method is rerun every time setState is called, for instance as done
-//     // by the _incrementCounter method above.
-//     //
-//     // The Flutter framework has been optimized to make rerunning build methods
-//     // fast, so that you can just rebuild anything that needs updating rather
-//     // than having to individually change instances of widgets.
-//     return Scaffold(
-//       appBar: AppBar(
-// //        title: Text(widget.title),
-//         title: Text('Send Text'),
-//       ),
-//       body: Container(
-//         padding: EdgeInsets.symmetric(horizontal: 250),
-// //        margin: EdgeInsets.all(100),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             ElevatedButton(
-//                 onPressed: () => Navigator.pushReplacementNamed(context, '/r'),
-//                 child: Text('Go to Receive')),
-//             TextField(
-//               onChanged: _msgChanged,
-//             ),
-//             Text(
-//               '$_code',
-//               style: Theme.of(context).textTheme.headline4,
-//             ),
-//             TextField(
-//               controller: _codeTxtCtrl,
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _send,
-//         tooltip: 'Send',
-//         child: Icon(Icons.send),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }
-// }

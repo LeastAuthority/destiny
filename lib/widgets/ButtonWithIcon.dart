@@ -10,7 +10,12 @@ class ButtonWithIcon extends StatelessWidget {
   double? height;
   bool? isVertical;
 
-  ButtonWithIcon({String? label, Function? handleSelectFile, Widget? icon, double? height, double? width, bool? isVertical}) {
+  ButtonWithIcon({
+    String? label, Function? handleSelectFile,
+    Widget? icon, double? height,
+    double? width, bool? isVertical,
+    Key? key}):super(key:key) {
+
     this.label = label;
     this.isVertical = isVertical;
     this.handleSelectFile = handleSelectFile;
@@ -42,11 +47,11 @@ class ButtonWithIcon extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(right: 8.0.w),
-              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 14.sp)),
+              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 12.sp)),
             ),
             SizedBox(
-              width: 20,
-              height: 20,
+              width: 35,
+              height: 35,
               child: icon,
             ),
           ],

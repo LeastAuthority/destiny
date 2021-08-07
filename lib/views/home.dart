@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold (
       key: Key(HOME_SCAFFOLD),
-      appBar: CustomAppBar(HOME),
+      // appBar: CustomAppBar(HOME),
       backgroundColor: Color(0xff1A1C2E),
       body: Container(
         key: Key(HOME_MAIN_CONTAINER),

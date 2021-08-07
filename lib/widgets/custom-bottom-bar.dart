@@ -4,9 +4,13 @@ import 'package:path/path.dart';
 
 class CustomBottomBar extends StatelessWidget {
   String? path;
-  CustomBottomBar(this.path);
+  CustomBottomBar({Key? key, String? path}):super(key:key){
+    this.path = path;
+  }
   @override
   Widget build(BuildContext context) {
+    print('SCREENWIDTH');
+    print(MediaQuery.of(context).size.width * 0.4);
     Decoration getCurrentPath (String screen) {
       if(path == screen)
         return  BoxDecoration(
@@ -32,40 +36,40 @@ class CustomBottomBar extends StatelessWidget {
         color: Colors.black,
         child: Container(
         height: (MediaQuery.of(context).size.height * 0.045).h,
-        color: Color(0xff353846),
-        child: Row(
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: (MediaQuery.of(context).size.width * 0.4).w,
-              decoration: getCurrentPath('SEND_SCREEN'),
-              child: FlatButton(
-                  onPressed: () {
-                    // isCurrentScreen(context);
-                  },
-                  child:  Image.asset(
-                    'assets/images/send.png',
-                    width: 30.0.w,
-                    // fit:BoxFit.fitHeight,
-                  )),
+            Expanded (
+              flex:1,
+              child: Container(
+                decoration: getCurrentPath('SEND_SCREEN'),
+                child: FlatButton(
+                    onPressed: () {
+                      // isCurrentScreen(context);
+                    },
+                    child:  Image.asset(
+                      'assets/images/send.png',
+                      width: 30.0.w,
+                    )),
+              ),
             ),
-            Container(
-              width: (MediaQuery.of(context).size.width * 0.4).w,
-              decoration: getCurrentPath('RECEIVE_SCREEN'),
-              child: FlatButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/receive');
-                  },
-                  child:  Image.asset(
-                    'assets/images/receive.png',
-                    width: 30.0.w,
-                    // fit:BoxFit.fitHeight,
-                  )),
+            Expanded(
+              flex:1,
+              child:Container(
+                decoration: getCurrentPath('RECEIVE_SCREEN'),
+                child: FlatButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/receive');
+                    },
+                    child:  Image.asset(
+                      'assets/images/receive.png',
+                      width: 30.0.w,
+                    )),
+              ),
             ),
-
           ],
-        )
+        ),
     )
     );
   }
