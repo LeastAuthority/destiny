@@ -1,6 +1,7 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/FileInfo.dart';
+import 'package:dart_wormhole_gui/widgets/RowGroupButtons.dart';
 import 'package:dart_wormhole_gui/widgets/SendingProgress.dart';
 import 'package:dart_wormhole_gui/widgets/SentSuccessfully.dart';
 import '../widgets/Button.dart';
@@ -75,11 +76,7 @@ class _SendDefaultState extends State<SendDefault> {
         return Column(
           children: [
             FileInfo(fileSize, fileName),
-            ButtonWithIcon('Generating Code', () {},
-                CircularProgressIndicator(
-                  value: 1,
-                  semanticsLabel: 'Linear progress indicator',
-                )),
+            RowGroupButton('Generating Code'),
             Heading(
                 title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
                 textAlign:TextAlign.center,
@@ -93,11 +90,17 @@ class _SendDefaultState extends State<SendDefault> {
           ],
         );
 
-      return ButtonWithIcon(SELECT_A_FILE, ()=> handleSelectFile(),
-          Image.asset(
+      return ButtonWithIcon(
+          label:SELECT_A_FILE,
+          handleSelectFile:handleSelectFile,
+          icon:Image.asset(
           'assets/images/send.png',
           width: 30.0.w,
-      ));
+      ),
+        height:70.0,
+        width:190.0,
+        isVertical: false
+      );
 
       //Warning!! Don't delete next 2 comment
     return SendingProgress(fileSize, fileName); //change params

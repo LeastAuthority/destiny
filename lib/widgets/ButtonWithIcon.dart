@@ -2,46 +2,47 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ButtonWithIcon extends StatefulWidget {
-  final String title;
-  Function handleSelectFile;
-  Widget icon;
-  ButtonWithIcon(this.title, this.handleSelectFile, this.icon);
-
-  @override
-  _CustomAppBarState createState() => _CustomAppBarState(title, handleSelectFile, icon);
-}
-
-class _CustomAppBarState extends State<ButtonWithIcon> {
-  final String title;
-  Function handleSelectFile;
+class ButtonWithIcon extends StatelessWidget {
+  String? label;
+  Function? handleSelectFile;
   Widget? icon;
-  _CustomAppBarState(this.title, this.handleSelectFile, this.icon);
+  double? width;
+  double? height;
+  bool? isVertical;
+
+  ButtonWithIcon({String? label, Function? handleSelectFile, Widget? icon, double? height, double? width, bool? isVertical}) {
+    this.label = label;
+    this.isVertical = isVertical;
+    this.handleSelectFile = handleSelectFile;
+    this.icon = icon;
+    this.height = height;
+    this.width = width;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        border: Border(
-          top: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-          left: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-          right: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-          bottom: BorderSide(width: 1.0, color: Color(0xffC24DF8)),
-        ),
-      ),
-      width: 190.0.w,
-      height: 70.0.w,
-      margin: const EdgeInsets.only(top: 30.0),
-      child:  FlatButton(
-        onPressed: () => handleSelectFile(),
-        color: Color(0x00353846),
-        child: Row( // Replace with a Row for horizontal icon + text
+    Widget getCopyButton() {
+      if(this.isVertical!)
+        return Column( // Replace with a Row for horizontal icon + text
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              width: 35,
+              height: 35,
+              child: icon,
+            ),
+            Container(
+              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 8.sp)),
+            ),
+          ],
+        );
+      else
+        return Row( // Replace with a Row for horizontal icon + text
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(right: 8.0.w),
-              child: Text('${title}', style:TextStyle(color: Colors.white, fontSize: 14.sp)),
+              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 14.sp)),
             ),
             SizedBox(
               width: 20,
@@ -49,7 +50,33 @@ class _CustomAppBarState extends State<ButtonWithIcon> {
               child: icon,
             ),
           ],
+        );
+    }
+    BoxDecoration getBorder () {
+      var BORDER_COLOR = this.isVertical!? Colors.white : Color(0xffC24DF8);
+      return  BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        border: Border(
+          top: BorderSide(width: 1.0, color: BORDER_COLOR),
+          left: BorderSide(width: 1.0, color: BORDER_COLOR),
+          right: BorderSide(width: 1.0, color: BORDER_COLOR),
+          bottom: BorderSide(width: 1.0, color: BORDER_COLOR),
         ),
+      );
+    }
+    return Container(
+      decoration: getBorder(),
+      width: width,
+      height: height,
+      margin: const EdgeInsets.only(top: 30.0),
+      child:  FlatButton(
+        onPressed: () {
+          if(handleSelectFile != null) {
+            this.handleSelectFile!();
+          }
+        },
+        color: Color(0x00353846),
+        child: getCopyButton()
       ),
     );
   }
