@@ -1,4 +1,5 @@
 import 'package:app_settings/app_settings.dart';
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     alignment: Alignment.centerLeft,
                     height: 60.0.h,
                     padding: EdgeInsets.only(left:8.0.w),
-                    child:  Text('$title', style: TextStyle(fontSize: 20.0.sp, color: Colors.white),),
+                    child:  Text(
+                      '$title',
+                      style: TextStyle(
+                          fontSize: 20.0.sp,
+                          color: Colors.white,fontFamily: LATO,
+                          fontWeight: FontWeight.w500)
+                    ),
                   ),
                 Container(
                   height: 60.0.h,
@@ -44,6 +51,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
                Container(
                   height: 60.0.h,
+                  width: 60.0.w,
                   alignment: Alignment.centerRight,
                   child:  FlatButton.icon(
                       label: Text(''),
@@ -65,7 +73,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
                               ),
                               actions: <Widget>[
                                 FlatButton(
-                                  child: Text('Open settings', style:TextStyle(color: Colors.white)),
+                                  child: Text(
+                                      'Open settings',
+                                      style:TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: MONTSERRAT,
+                                          fontWeight: FontWeight.w500
+                                      )),
                                   onPressed: () {
                                     AppSettings.openDeviceSettings();
                                   },
@@ -74,8 +88,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                             ));
                       },
                       icon: Image.asset(
-                        'assets/images/send.png',
-                        width: 30.0,
+                        'assets/images/SETTINGS-WHITE.png',
+                        width: 25.0.w,
                       )
                   ),
                 ),

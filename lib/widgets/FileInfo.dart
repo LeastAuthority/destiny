@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
@@ -17,7 +18,7 @@ class FileInfo extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text('${fileName}',
-              style:TextStyle(color: Colors.white, fontSize: 17.sp),
+              style:TextStyle(color: Colors.white, fontSize: 17.sp, fontFamily: ROBOTO ,fontWeight: FontWeight.bold),
             ),
           ),
         ),

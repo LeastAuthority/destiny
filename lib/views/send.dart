@@ -105,7 +105,7 @@ class _SendDefaultState extends State<SendDefault> {
     }
     return Scaffold(
         bottomNavigationBar:  CustomBottomBar(
-             path:'SEND_SCREEN',
+             path: SEND_ROUTE,
              key: Key(BOTTOM_NAV_BAR),
         ),
         appBar: CustomAppBar(
@@ -125,6 +125,8 @@ class _SendDefaultState extends State<SendDefault> {
                         textAlign: TextAlign.left,
                         marginTop:0,
                         fontSize: 18.sp,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.w300,
                         key: Key(SEND_SCREEN_HEADING),
                       ),
                       getCodeGenerationUI(),

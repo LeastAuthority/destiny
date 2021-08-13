@@ -33,6 +33,40 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   //   expect(find.text('0'), findsNothing);
   //   expect(find.text('1'), findsOneWidget);
   // });
+   testWidgets('Splash screen', (WidgetTester tester) async {
+     await tester.pumpWidget(
+       MaterialApp(
+         home: ScreenUtilInit(
+             designSize: Size(375,590), builder: () => Splash()),
+       ),
+     );
+  //   SplashState splashState = SplashState();
+    // bool isItFirstLunch = await splashState.isItAppFirstLunch();
+     // Create the Finders.
+     final splashScreenBody = find.byKey(Key(SPLASH_SCREEN_BODY));
+     final splashScreenLoading = find.byKey(Key(SPLASH_SCREEN_LOADING));
+
+     expect(splashScreenBody, findsOneWidget);
+     expect(splashScreenLoading, findsOneWidget);
+    // expect(isItFirstLunch, true);
+
+   });
+   testWidgets('Slider screen', (WidgetTester tester) async {
+     await tester.pumpWidget(
+       MaterialApp(
+         home: ScreenUtilInit(
+             designSize: Size(375,590), builder: () => Splash()),
+       ),
+     );
+     
+     final splashScreenBody = find.byKey(Key(SPLASH_SCREEN_BODY));
+     final splashScreenLoading = find.byKey(Key(SPLASH_SCREEN_LOADING));
+
+     expect(splashScreenBody, findsOneWidget);
+     expect(splashScreenLoading, findsOneWidget);
+     // expect(isItFirstLunch, true);
+
+   });
    testWidgets('Send screen', (WidgetTester tester) async {
      await tester.pumpWidget(
        MaterialApp(
@@ -74,22 +108,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
      final receiveScreenBody = find.byKey(Key(RECEIVE_SCREEN_BODY));
      final receiveScreenContent = find.byKey(Key(RECEIVE_SCREEN_CONTENT));
-     // final sendScreenHeading = find.byKey(Key(SEND_SCREEN_HEADING));
-     // final sendScreenBottomPlaceholder = find.byKey(Key(SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER));
-     // final sendScreenSelectAFileButton = find.byKey(Key(SEND_SCREEN_SELECT_A_FILE_BUTTON));
-
-     // final sendScreenCodeGenerationUI = find.byKey(Key(SEND_SCREEN_CODE_GENERATION_UI));
-
+     final receiveScreenHeading = find.byKey(Key(RECEIVE_SCREEN_HEADING));
+     final receiveScreenEnterCode = find.byKey(Key(RECEIVE_SCREEN_ENTER_CODE));
 
      expect(navbar, findsOneWidget);
      expect(bottomNav, findsOneWidget);
      expect(receiveScreenBody, findsOneWidget);
      expect(receiveScreenContent, findsOneWidget);
 
-     // expect(sendScreenHeading, findsOneWidget);
-     // expect(sendScreenBottomPlaceholder, findsOneWidget);
-     // expect(sendScreenSelectAFileButton, findsOneWidget);
+     expect(receiveScreenHeading, findsOneWidget);
+     expect(receiveScreenEnterCode, findsOneWidget);
 
-     // expect(sendScreenCodeGenerationUI, findsOneWidget);
    });
 }

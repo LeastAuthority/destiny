@@ -47,7 +47,7 @@ class _ReceiveState extends State<Receive> {
 
     return Scaffold(
       bottomNavigationBar: CustomBottomBar(
-        path:'RECEIVE_SCREEN',
+        path: RECEIVE_ROUTE,
         key: Key(BOTTOM_NAV_BAR),
       ),
       appBar: CustomAppBar(

@@ -25,7 +25,9 @@ class CodeGeneration extends StatelessWidget {
             textAlign:TextAlign.center,
             marginTop: 16.0.h,
             fontSize: 12.sp,
-            key:Key('Generation_Description')
+            key:Key('Generation_Description'),
+            fontFamily: MONTSERRAT,
+            fontWeight: FontWeight.w300,
         ),
         Button('Cancel', () {
         })

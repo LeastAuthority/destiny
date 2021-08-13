@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/widgets/ButtonLinearGradientWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
@@ -12,7 +13,7 @@ class RowGroupButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ButtonWithIcon(
+        ButtonLinearGradientWithIcon(
             label:label,
             handleSelectFile: () {},
             icon: CircularProgressIndicator(
@@ -21,7 +22,7 @@ class RowGroupButton extends StatelessWidget {
             ),
           height:70.0,
           width: 190.0,
-           isVertical: false,
+          isVertical: false,
         ),
         SizedBox(
           width: 8.0.w,
@@ -30,7 +31,7 @@ class RowGroupButton extends StatelessWidget {
           label:'Copy',
           handleSelectFile: () {},
           icon:Image.asset(
-            'assets/images/send.png',
+            'assets/images/icons/Paste-white.png',
             width: 30.0.w,
           ),
           height:70.0,

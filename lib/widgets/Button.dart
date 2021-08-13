@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,7 @@ class _CustomAppBarState extends State<Button> {
       child:  FlatButton(
         onPressed: () => handleSelectFile(),
         color: Color(0x00353846),
-        child:Text('${title}', style:TextStyle(color: Color(0xff808080), fontSize: 12.sp)),
+        child:Text('${title}', style:TextStyle(color: Color(0xff808080), fontSize: 12.sp, fontFamily: MONTSERRAT)),
       ),
     );
   }

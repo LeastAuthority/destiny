@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
@@ -27,6 +28,8 @@ class SendingProgress extends StatelessWidget {
           textAlign: TextAlign.left,
           marginTop:16.0.h,
           fontSize:12.sp,
+          fontFamily: MONTSERRAT,
+          fontWeight: FontWeight.w300,
           key: Key('Timing_Progress'),
         ),
         Heading(
@@ -34,6 +37,8 @@ class SendingProgress extends StatelessWidget {
           textAlign: TextAlign.center,
           marginTop:16.0.h,
           fontSize:18.sp,
+          fontFamily: MONTSERRAT,
+          fontWeight: FontWeight.w300,
           key: Key('APP_MUST_REMAIN_OPEN'),
         ),
         Button('Cancel', () {})

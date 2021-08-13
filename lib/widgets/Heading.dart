@@ -7,12 +7,15 @@ class Heading extends StatelessWidget {
   TextAlign? textAlign;
   double marginTop = 0.0;
   double? fontSize;
-
-  Heading({Key? key, String? title, TextAlign? textAlign, double marginTop=0, double? fontSize}):super(key:key) {
+  String? fontFamily;
+  FontWeight? fontWeight;
+  Heading({Key? key, String? title, TextAlign? textAlign, double marginTop=0, double? fontSize, String? fontFamily, FontWeight? fontWeight}):super(key:key) {
     this.title = title;
     this.textAlign = textAlign;
     this.marginTop = marginTop;
     this.fontSize = fontSize;
+    this.fontFamily = fontFamily;
+    this.fontWeight = fontWeight;
   }
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class Heading extends StatelessWidget {
         margin: EdgeInsets.only(top:marginTop),
           child: Text('${title}',
             textAlign: textAlign,
-            style:TextStyle(color: Colors.white, fontSize: fontSize,),
+            style:TextStyle(color: Colors.white, fontSize: fontSize, fontFamily: fontFamily, fontWeight: fontWeight),
           ),
     );
   }

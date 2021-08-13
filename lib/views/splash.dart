@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/dot_animation_enum.dart';
 import 'package:intro_slider/intro_slider.dart';
@@ -12,27 +13,38 @@ class Splash extends StatefulWidget {
 }
 
 class SplashState extends State<Splash> {
-  Future checkFirstSeen() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
-    Navigator.pushNamed(context, '/intro');
-    // if (_seen) {
-    //   Navigator.pushNamed(context, '/home');
-    // } else {
-    //   await prefs.setBool('seen', true);
-    //   Navigator.pushNamed(context, '/intro');
-    // }
+  SharedPreferences? prefs;
+  Future isItAppFirstLunch() async {
+    prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs?.getBool(SEEN) ?? false);
+    return _seen;
   }
-
-  @override
-  void afterFirstLayout(BuildContext context) => checkFirstSeen();
+  Future setSeenToTrue() async {
+    return prefs?.setBool(SEEN, true);
+  }
+  Future checkFirstSeen() async {
+    bool isItFirstLunch = await isItAppFirstLunch();
+   // Navigator.pushNamed(context, '/intro');
+    if (isItFirstLunch) {
+      Navigator.pushNamed(context, SEND_ROUTE);
+    } else {
+      await setSeenToTrue();
+      Navigator.pushNamed(context, INTRO_ROUTE);
+    }
+  }
+  //
+  // @override
+  // void afterFirstLayout(BuildContext context) => checkFirstSeen();
   @override
   Widget build(BuildContext context) {
     checkFirstSeen();
-
-    return new Scaffold(
-      body: new Center(
-        child: new Text('Loading...'),
+    return  Scaffold(
+      body:  Center(
+        key: Key(SPLASH_SCREEN_BODY),
+        child:  Text(
+          LOADING,
+          key: Key(SPLASH_SCREEN_LOADING),
+        ),
       ),
     );
   }

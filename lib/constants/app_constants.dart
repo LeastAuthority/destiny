@@ -8,8 +8,8 @@ final String SETTINGS = "Settings";
 final String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST = 'Send and receive files securely and fast';
 final String ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE = 'Enter the code in order to receive the file.';
 final String SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE = 'Share code with recipient & wait until the transfer is complete.';
-
 final String SELECT_A_FILE = 'Select a File';
+
 //routes
 final String HOME_ROUTE = '/home';
 final String INTRO_ROUTE = '/intro';
@@ -25,7 +25,7 @@ final String HOME_MAIN_HEADING = 'HOME_MAIN_HEADING';
 final String BOTTOM_NAV_BAR = 'BOTTOM_NAV_BAR';
 final String CUSTOM_NAV_BAR = 'CUSTOM_NAV_BAR';
 
-//Send screen
+//-Send screen
 final String SEND_SCREEN_BODY = 'SEND_SCREEN_BODY';
 final String SEND_SCREEN_CONTENT = 'SEND_SCREEN_CONTENT';
 final String SEND_SCREEN_HEADING = 'SEND_SCREEN_HEADING';
@@ -33,10 +33,23 @@ final String SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER = 'SEND_SCREEN_BOTTOM_SPACE_PL
 final String SEND_SCREEN_CODE_GENERATION_UI = 'SEND_SCREEN_CODE_GENERATION_UI';
 final String SEND_SCREEN_SELECT_A_FILE_BUTTON = 'SEND_SCREEN_SELECT_A_FILE_BUTTON';
 
+//-receive screen
 final String RECEIVE_SCREEN_BODY = 'RECEIVE_SCREEN_BODY';
 final String RECEIVE_SCREEN_CONTENT = 'RECEIVE_SCREEN_CONTENT';
 final String RECEIVE_SCREEN_HEADING = 'RECEIVE_SCREEN_HEADING';
 final String RECEIVE_SCREEN_ENTER_CODE= 'RECEIVE_SCREEN_ENTER_CODE';
 
+//-Splash screen
+final String SPLASH_SCREEN_BODY= 'SPLASH_SCREEN_BODY';
+final String SPLASH_SCREEN_LOADING= 'SPLASH_SCREEN_LOADING';
 
+//Strings
+final String SEEN= 'seen';
+final String LOADING= 'Loading...';
+
+
+//fonts
+final String MONTSERRAT = 'Montserrat';
+final String ROBOTO = 'Roboto';
+final String LATO = 'Lato';
 

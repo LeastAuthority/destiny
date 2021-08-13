@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path/path.dart';
@@ -9,7 +10,6 @@ class CustomBottomBar extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    print('SCREENWIDTH');
     print(MediaQuery.of(context).size.width * 0.4);
     Decoration getCurrentPath (String screen) {
       if(path == screen)
@@ -35,7 +35,7 @@ class CustomBottomBar extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 1.0),
         color: Colors.black,
         child: Container(
-        height: (MediaQuery.of(context).size.height * 0.045).h,
+        height: (MediaQuery.of(context).size.height * 0.060).h,
         child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,30 +43,51 @@ class CustomBottomBar extends StatelessWidget {
             Expanded (
               flex:1,
               child: Container(
-                decoration: getCurrentPath('SEND_SCREEN'),
-                child: FlatButton(
-                    onPressed: () {
-                      // isCurrentScreen(context);
-                    },
-                    child:  Image.asset(
-                      'assets/images/send.png',
-                      width: 30.0.w,
-                    )),
-              ),
+                decoration: getCurrentPath(SEND_ROUTE),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      child: FlatButton(
+                          onPressed: () {
+                            // isCurrentScreen(context);
+                          },
+                          child:  Image.asset(
+                            'assets/images/send.png',
+                            width: 40.0.w,
+                          )),
+                    ),
+                    Text(
+                      SEND,
+                      style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
+                    )
+                  ],
+                ),
+              )
             ),
             Expanded(
               flex:1,
-              child:Container(
-                decoration: getCurrentPath('RECEIVE_SCREEN'),
-                child: FlatButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/receive');
-                    },
-                    child:  Image.asset(
-                      'assets/images/receive.png',
-                      width: 30.0.w,
-                    )),
-              ),
+              child: Container(
+                decoration: getCurrentPath(RECEIVE_ROUTE),
+                child: Column (
+                  children: [
+                    SizedBox(
+                      // decoration: getCurrentPath('RECEIVE_SCREEN'),
+                      child: FlatButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/receive');
+                          },
+                          child:  Image.asset(
+                            'assets/images/receive.png',
+                            width: 40.0.w,
+                          )),
+                    ),
+                    Text(
+                      RECEIVE,
+                      style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
+                    )
+                  ],
+                ),
+              )
             ),
           ],
         ),

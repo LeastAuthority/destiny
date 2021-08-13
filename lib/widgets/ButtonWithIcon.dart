@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +38,7 @@ class ButtonWithIcon extends StatelessWidget {
               child: icon,
             ),
             Container(
-              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 8.sp)),
+              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 12.sp)),
             ),
           ],
         );
@@ -45,22 +46,31 @@ class ButtonWithIcon extends StatelessWidget {
         return Row( // Replace with a Row for horizontal icon + text
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              width: 55,
+              height: 55,
+              child: icon,
+            ),
             Container(
               margin: EdgeInsets.only(right: 8.0.w),
-              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 12.sp)),
-            ),
-            SizedBox(
-              width: 35,
-              height: 35,
-              child: icon,
+              child: Text('${label}',
+                  style:TextStyle(
+                      color: Colors.white,
+                      fontSize: 12.sp,
+                      fontFamily: ROBOTO,
+                      fontWeight: FontWeight.w500)
+              ),
             ),
           ],
         );
     }
     BoxDecoration getBorder () {
       var BORDER_COLOR = this.isVertical!? Colors.white : Color(0xffC24DF8);
+      var BACKGEOUND_COLOR = this.isVertical!? Color(0x00ffffff): Color(0xffC24DF8);
+
       return  BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        color: BACKGEOUND_COLOR,
         border: Border(
           top: BorderSide(width: 1.0, color: BORDER_COLOR),
           left: BorderSide(width: 1.0, color: BORDER_COLOR),
