@@ -9,17 +9,18 @@ import 'package:dart_wormhole_gui/widgets/Heading.dart';
 class CodeGeneration extends StatelessWidget {
   String? fileName = '';
   int? fileSize = 0;
-
-  CodeGeneration({Key? key, String? fileName, int? fileSize}):super(key:key) {
+  String code = '';
+  CodeGeneration({Key? key, String? fileName, int? fileSize, String code = ''}):super(key:key) {
     this.fileName = fileName;
     this.fileSize = fileSize;
+    this.code = code;
   }
   @override
   Widget build(BuildContext context) {
     return  Column(
       children: [
         FileInfo(fileSize, fileName),
-        RowGroupButton('Generating Code'),
+        RowGroupButton('Generating Code', code),
         Heading(
             title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
             textAlign:TextAlign.center,

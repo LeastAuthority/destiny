@@ -35,7 +35,7 @@ class CustomBottomBar extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 1.0),
         color: Colors.black,
         child: Container(
-        height: (MediaQuery.of(context).size.height * 0.060).h,
+        height: 55.0.h,
         child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,49 +45,58 @@ class CustomBottomBar extends StatelessWidget {
               child: Container(
                 decoration: getCurrentPath(SEND_ROUTE),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      child: FlatButton(
+                      TextButton(
                           onPressed: () {
                             // isCurrentScreen(context);
                           },
-                          child:  Image.asset(
+                          child:  Column(
+                            children: [
+                            Image.asset(
                             'assets/images/send.png',
                             width: 40.0.w,
-                          )),
+                            height: 20.0.h,
+                          ),
+                              Text(
+                                SEND,
+                                style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
+                              )
+                            ],
+                          )
                     ),
-                    Text(
-                      SEND,
-                      style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
-                    )
                   ],
                 ),
               )
             ),
-            Expanded(
-              flex:1,
-              child: Container(
-                decoration: getCurrentPath(RECEIVE_ROUTE),
-                child: Column (
-                  children: [
-                    SizedBox(
-                      // decoration: getCurrentPath('RECEIVE_SCREEN'),
-                      child: FlatButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/receive');
-                          },
-                          child:  Image.asset(
-                            'assets/images/receive.png',
-                            width: 40.0.w,
-                          )),
-                    ),
-                    Text(
-                      RECEIVE,
-                      style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
-                    )
-                  ],
-                ),
-              )
+            Expanded (
+                flex:1,
+                child: Container(
+                  decoration: getCurrentPath(RECEIVE_ROUTE),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                             TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/receive');
+                              },
+                              child:  Column(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/receive.png',
+                                    width: 40.0.w,
+                                    height: 20.0.h,
+                                  ),
+                                  Text(
+                                    RECEIVE,
+                                    style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
+                                  )
+                                ],
+                              )
+                          ),
+                    ],
+                  ),
+                )
             ),
           ],
         ),

@@ -6,7 +6,8 @@ import 'ButtonWithIcon.dart';
 
 class RowGroupButton extends StatelessWidget {
   final String label;
-  RowGroupButton(this.label);
+  String code = '';
+  RowGroupButton(this.label, this.code);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,13 @@ class RowGroupButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ButtonLinearGradientWithIcon(
-            label:label,
+            label: code,
             handleSelectFile: () {},
             icon: CircularProgressIndicator(
               value: 1,
               semanticsLabel: 'Linear progress indicator',
             ),
-          height:70.0,
+          height: 70.0,
           width: 190.0,
           isVertical: false,
         ),

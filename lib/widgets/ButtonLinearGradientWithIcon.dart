@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:basic_utils/basic_utils.dart';
 
 class ButtonLinearGradientWithIcon extends StatelessWidget {
-  String? label;
+  String label = '';
   Function? handleSelectFile;
   Widget? icon;
   double? width;
@@ -11,12 +12,12 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
   bool? isVertical;
 
   ButtonLinearGradientWithIcon({
-    String? label, Function? handleSelectFile,
+    String label = '', Function? handleSelectFile,
     Widget? icon, double? height,
     double? width, bool? isVertical,
     Key? key}):super(key:key) {
-
-    this.label = label;
+    int middleIndex = (label.length / 2).toInt();
+    this.label = StringUtils.addCharAtPosition(label, "\n", middleIndex);
     this.isVertical = isVertical;
     this.handleSelectFile = handleSelectFile;
     this.icon = icon;
@@ -37,24 +38,32 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
               child: icon,
             ),
             Container(
-              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 8.sp)),
+              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 8.sp, )),
             ),
           ],
         );
       else
-        return Row( // Replace with a Row for horizontal icon + text
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(right: 8.0.w),
-              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 12.sp)),
-            ),
-            SizedBox(
-              width: 25,
-              height: 25,
-              child: icon,
-            ),
-          ],
+        return SizedBox(
+          child:Row( // Replace with a Row for horizontal icon + text
+            children: <Widget>[
+              Expanded(
+                flex: 5,
+               // margin: EdgeInsets.only(right: 8.0.w),
+                child: Text(
+                    '${label}',
+                    textAlign: TextAlign.center,
+                    style:TextStyle(color: Colors.white, fontSize: 12.sp)
+                ),
+              ),
+             Expanded(
+               flex: 1,
+               child:  SizedBox(
+               width: 25,
+               height: 25,
+               child: icon,
+             ),)
+            ],
+          ),
         );
     }
     BoxDecoration getBorder () {

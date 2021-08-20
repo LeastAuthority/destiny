@@ -15,7 +15,6 @@ import '../widgets/custom-bottom-bar.dart';
 import '../widgets/ButtonWithIcon.dart';
 import 'package:path/path.dart';
 import '../constants/api_path.dart';
-
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
   @override
@@ -24,12 +23,12 @@ class SendDefault extends StatefulWidget {
 
 class _SendDefaultState extends State<SendDefault> {
   String _msg = 'test test';
-  String _code = '';
+  String _code = 'sssssssssssssss';
   String fileName = '';
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-   // Client client = Client();
+  //Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -43,8 +42,8 @@ class _SendDefaultState extends State<SendDefault> {
     });
   }
 
-  void _send() {
-    // String code = client.sendFile(_msg);
+  void _send(String name) {
+    // String code = client.sendText(name);
     // _codeTxtCtrl.text = code;
     // setState(() {
     //   _code = code;
@@ -58,6 +57,7 @@ class _SendDefaultState extends State<SendDefault> {
       //FIXME
       //Here we should have a call to a function that generate and returns wormhole code.
       //When we have the code, we set it to the state below so user can see it in the UI.
+      _send(file.name);
       setState(() {
         fileName = file.name;
         fileSize = (file.size/8).toInt(); //bytes to kb
@@ -78,6 +78,7 @@ class _SendDefaultState extends State<SendDefault> {
         return CodeGeneration(
           fileName: fileName,
           fileSize: fileSize,
+          code: _code,
           key: Key(SEND_SCREEN_CODE_GENERATION_UI),
         );
 
@@ -125,7 +126,7 @@ class _SendDefaultState extends State<SendDefault> {
                         textAlign: TextAlign.left,
                         marginTop:0,
                         fontSize: 18.sp,
-                        fontFamily: 'Lato',
+                        fontFamily: LATO,
                         fontWeight: FontWeight.w300,
                         key: Key(SEND_SCREEN_HEADING),
                       ),
