@@ -10,7 +10,7 @@ class ButtonWithIcon extends StatelessWidget {
   double? width;
   double? height;
   bool? isVertical;
-
+  bool _flag = false;
   ButtonWithIcon({
     String? label, Function? handleSelectFile,
     Widget? icon, double? height,
@@ -29,40 +29,60 @@ class ButtonWithIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget getCopyButton() {
       if(this.isVertical!)
-        return Column( // Replace with a Row for horizontal icon + text
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: 35,
-              height: 35,
-              child: icon,
+        return ElevatedButton(
+            onPressed: () {
+              if(handleSelectFile != null) {
+                this.handleSelectFile!();
+              }
+            },
+            // color: Color(0x00353846),
+            style: ElevatedButton.styleFrom(
+              primary: _flag ? Colors.red : Color(0x00353846),
             ),
-            Container(
-              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 12.sp)),
-            ),
-          ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: 35,
+                  height: 35,
+                  child: icon,
+                ),
+                Container(
+                  child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 12.sp)),
+                ),
+              ],
+            )
         );
       else
-        return Row( // Replace with a Row for horizontal icon + text
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: 55,
-              height: 55,
-              child: icon,
-            ),
-            Container(
-              margin: EdgeInsets.only(right: 8.0.w),
-              child: Text('${label}',
-                  style:TextStyle(
-                      color: Colors.white,
-                      fontSize: 12.sp,
-                      fontFamily: ROBOTO,
-                      fontWeight: FontWeight.w500)
-              ),
-            ),
-          ],
+        return FlatButton(
+            onPressed: () {
+              if(handleSelectFile != null) {
+                this.handleSelectFile!();
+              }
+            },
+            color: Color(0x00353846),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  width: 55,
+                  height: 55,
+                  child: icon,
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: 8.0.w),
+                  child: Text('${label}',
+                      style:TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.sp,
+                          fontFamily: ROBOTO,
+                          fontWeight: FontWeight.w500)
+                  ),
+                ),
+              ],
+            )
         );
+
     }
     BoxDecoration getBorder () {
       var BORDER_COLOR = this.isVertical!? Colors.white : Color(0xffC24DF8);
@@ -84,16 +104,7 @@ class ButtonWithIcon extends StatelessWidget {
       width: width,
       height: height,
       margin: const EdgeInsets.only(top: 30.0),
-      child:  FlatButton(
-        onPressed: () {
-          if(handleSelectFile != null) {
-            this.handleSelectFile!();
-          }
-        },
-        color: Color(0x00353846),
-        child: getCopyButton()
-      ),
+      child: getCopyButton()
     );
   }
 }
-

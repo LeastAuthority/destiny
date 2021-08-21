@@ -1,11 +1,7 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/widgets/FileInfo.dart';
-import 'package:dart_wormhole_gui/widgets/RowGroupButtons.dart';
 import 'package:dart_wormhole_gui/widgets/SendingProgress.dart';
-import 'package:dart_wormhole_gui/widgets/SentSuccessfully.dart';
-import '../widgets/Button.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_william/client.dart';
@@ -13,8 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
 import '../widgets/custom-bottom-bar.dart';
 import '../widgets/ButtonWithIcon.dart';
-import 'package:path/path.dart';
 import '../constants/api_path.dart';
+
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
   @override
@@ -28,7 +24,7 @@ class _SendDefaultState extends State<SendDefault> {
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  //Client client = Client();
+  Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -43,11 +39,11 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void _send(String name) {
-    // String code = client.sendText(name);
-    // _codeTxtCtrl.text = code;
-    // setState(() {
-    //   _code = code;
-    // });
+    String code = client.sendText(name);
+    _codeTxtCtrl.text = code;
+    setState(() {
+      _code = code;
+    });
   }
 
   void handleSelectFile () async {

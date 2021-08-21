@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Heading extends StatelessWidget {
-  //this component needs a lot of enhancements
   String? title;
   TextAlign? textAlign;
   double marginTop = 0.0;
@@ -23,7 +22,12 @@ class Heading extends StatelessWidget {
         margin: EdgeInsets.only(top:marginTop),
           child: Text('${title}',
             textAlign: textAlign,
-            style:TextStyle(color: Colors.white, fontSize: fontSize, fontFamily: fontFamily, fontWeight: fontWeight),
+            style:TextStyle(
+                color: Colors.white,
+                fontSize: fontSize,
+                fontFamily: fontFamily,
+                fontWeight: fontWeight
+            ),
           ),
     );
   }

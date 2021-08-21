@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
 import 'ButtonWithIcon.dart';
+import 'package:flutter/services.dart';
 
 class RowGroupButton extends StatelessWidget {
   final String label;
@@ -30,7 +31,12 @@ class RowGroupButton extends StatelessWidget {
         ),
         ButtonWithIcon(
           label:'Copy',
-          handleSelectFile: () {},
+          handleSelectFile: () {
+            Clipboard.setData(ClipboardData(text: code));
+            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //   content: Text("Code Copied"),
+            // ));
+          },
           icon:Image.asset(
             'assets/images/icons/Paste-white.png',
             width: 30.0.w,

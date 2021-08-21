@@ -4,7 +4,6 @@ import 'views/introduction-slider.dart';
 import 'views/splash.dart';
 import 'views/send.dart';
 import 'package:flutter/widgets.dart';
-import 'views/home.dart';
 import 'views/receive.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
