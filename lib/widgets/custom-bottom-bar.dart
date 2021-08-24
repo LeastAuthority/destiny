@@ -49,7 +49,7 @@ class CustomBottomBar extends StatelessWidget {
                   children: [
                       TextButton(
                           onPressed: () {
-                            // isCurrentScreen(context);
+                            Navigator.pushNamed(context, '/send');
                           },
                           child:  Column(
                             children: [

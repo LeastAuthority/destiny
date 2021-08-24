@@ -9,6 +9,8 @@ final String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST = 'Send and receive files s
 final String ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE = 'Enter the code in order to receive the file.';
 final String SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE = 'Share code with recipient & wait until the transfer is complete.';
 final String SELECT_A_FILE = 'Select a File';
+final String NEXT = 'Next';
+final String CANCEL = 'Cancel';
 
 //routes
 final String HOME_ROUTE = '/home';

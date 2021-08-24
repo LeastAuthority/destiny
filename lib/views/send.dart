@@ -24,7 +24,7 @@ class _SendDefaultState extends State<SendDefault> {
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  Client client = Client();
+  // Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -39,11 +39,11 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void _send(String name) {
-    String code = client.sendText(name);
-    _codeTxtCtrl.text = code;
-    setState(() {
-      _code = code;
-    });
+    // String code = client.sendText(name);
+    // _codeTxtCtrl.text = code;
+    // setState(() {
+    //   _code = code;
+    // });
   }
 
   void handleSelectFile () async {
@@ -111,11 +111,13 @@ class _SendDefaultState extends State<SendDefault> {
         ),
         backgroundColor: Color(0xff1A1C2E),
         body: Container(
+          width: double.infinity,
           key: Key(SEND_SCREEN_BODY),
           padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
           child: Column(
                     key: Key(SEND_SCREEN_CONTENT),
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Heading(
                         title: SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST,

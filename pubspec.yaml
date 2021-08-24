@@ -32,7 +32,10 @@ dependencies:
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider
-
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
   flutter:
     sdk: flutter
 
@@ -40,6 +43,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   app_settings: ^4.1.1
+  desktop_window: ^0.4.0
 
 dev_dependencies:
   flutter_test:

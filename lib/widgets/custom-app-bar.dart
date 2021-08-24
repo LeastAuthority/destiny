@@ -51,7 +51,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
                Container(
                   height: 60.0.h,
-                  width: 60.0.w,
+                  width: 70.0.w,
                   alignment: Alignment.centerRight,
                   child:  FlatButton.icon(
                       label: Text(''),

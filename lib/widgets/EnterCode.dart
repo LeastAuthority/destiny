@@ -35,12 +35,12 @@ class EnterCode extends StatelessWidget {
               ),
             ),
           ),
-          Button('', () {
+          Button(NEXT, () {
             //FIXME
             //Here we call a function to start receiving a file. The function takes the generated code as parameter.
             //Note that the UI here is not ready. So maybe we should pass a static code to the fun
           }),
-          Button('Cancel', () {}),
+          Button(CANCEL, () {}),
           // SizedBox(
           //   height: 100.h,
           // ),
