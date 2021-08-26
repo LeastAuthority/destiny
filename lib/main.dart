@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'views/introduction-slider.dart';
+import 'views/settings.dart';
 import 'views/splash.dart';
 import 'views/send.dart';
 import 'package:flutter/widgets.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
                             // HOME_ROUTE: (context) => Home(),
                             SEND_ROUTE: (context) => SendDefault(),
                             RECEIVE_ROUTE: (context) => Receive(),
+                            SETTINGS_ROUTE: (context) => Settings(),
                       },
                 ));
       }

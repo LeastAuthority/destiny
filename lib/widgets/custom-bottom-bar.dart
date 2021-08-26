@@ -49,12 +49,12 @@ class CustomBottomBar extends StatelessWidget {
                   children: [
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/send');
+                            Navigator.pushNamed(context, SEND_ROUTE);
                           },
                           child:  Column(
                             children: [
                             Image.asset(
-                            'assets/images/send.png',
+                            SEND_ICON,
                             width: 40.0.w,
                             height: 20.0.h,
                           ),
@@ -78,12 +78,12 @@ class CustomBottomBar extends StatelessWidget {
                     children: [
                              TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/receive');
+                                Navigator.pushNamed(context, RECEIVE_ROUTE);
                               },
                               child:  Column(
                                 children: [
                                   Image.asset(
-                                    'assets/images/receive.png',
+                                    RECEIVE_ICON,
                                     width: 40.0.w,
                                     height: 20.0.h,
                                   ),

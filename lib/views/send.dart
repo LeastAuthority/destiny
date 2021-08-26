@@ -82,7 +82,7 @@ class _SendDefaultState extends State<SendDefault> {
           label:SELECT_A_FILE,
           handleSelectFile:handleSelectFile,
           icon:Image.asset(
-            'assets/images/send.png',
+            PHONE_ICON,
             width: 30.0.w,
           ),
         height:60.0.h,
@@ -123,7 +123,7 @@ class _SendDefaultState extends State<SendDefault> {
                         title: SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST,
                         textAlign: TextAlign.left,
                         marginTop:0,
-                        fontSize: 18.sp,
+                        fontSize: 14.sp,
                         fontFamily: LATO,
                         fontWeight: FontWeight.w300,
                         key: Key(SEND_SCREEN_HEADING),

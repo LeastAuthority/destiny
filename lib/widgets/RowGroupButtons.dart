@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/widgets/ButtonLinearGradientWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,7 @@ class RowGroupButton extends StatelessWidget {
             // ));
           },
           icon:Image.asset(
-            'assets/images/icons/Paste-white.png',
+            COPY_ICON,
             width: 30.0.w,
           ),
           height:70.0,

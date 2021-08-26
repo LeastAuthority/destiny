@@ -45,7 +45,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   height: 60.0.h,
                   alignment: Alignment.center,
                   child: Image.asset(
-                    'assets/images/logo.png',
+                    LOGO,
                     width: 76.0.w,
                   ),
                 ),
@@ -56,39 +56,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   child:  FlatButton.icon(
                       label: Text(''),
                       onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (_) => new AlertDialog(
-                              content:new Text(
-                                "You are awesome!",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Color(0xff1A1C2E),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16.0),
-                                side: BorderSide(
-                                    width: 1.0,
-                                    color: Colors.grey
-                                ),
-                              ),
-                              actions: <Widget>[
-                                FlatButton(
-                                  child: Text(
-                                      'Open settings',
-                                      style:TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: MONTSERRAT,
-                                          fontWeight: FontWeight.w500
-                                      )),
-                                  onPressed: () {
-                                    AppSettings.openDeviceSettings();
-                                  },
-                                )
-                              ],
-                            ));
+                        if(title != SETTINGS)
+                          Navigator.pushNamed(context, SETTINGS_ROUTE);
                       },
-                      icon: Image.asset(
-                        'assets/images/SETTINGS-WHITE.png',
+                      icon: Image.asset(title == SETTINGS?
+                        SETTINGS_ICON_WITH_CIRCLE:SETTINGS_ICON,
                         width: 25.0.w,
                       )
                   ),

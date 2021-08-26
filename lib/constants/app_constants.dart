@@ -9,8 +9,11 @@ final String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST = 'Send and receive files s
 final String ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE = 'Enter the code in order to receive the file.';
 final String SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE = 'Share code with recipient & wait until the transfer is complete.';
 final String SELECT_A_FILE = 'Select a File';
+final String SELECT_A_FOLDER = 'Select a Folder';
 final String NEXT = 'Next';
 final String CANCEL = 'Cancel';
+final String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE = 'Select default save destination for this device.';
+final String CURRENT_SAVE_DESTINATION = 'Current save destination:';
 
 //routes
 final String HOME_ROUTE = '/home';
@@ -18,6 +21,7 @@ final String INTRO_ROUTE = '/intro';
 final String SEND_ROUTE = '/send';
 final String RECEIVE_ROUTE = '/receive';
 final String SPLASH_ROUTE = '/';
+final String SETTINGS_ROUTE = '/settings';
 
 //keys for tests
 final String HOME_SCAFFOLD = 'HOME_SCAFFOLD';
@@ -55,3 +59,11 @@ final String MONTSERRAT = 'Montserrat';
 final String ROBOTO = 'Roboto';
 final String LATO = 'Lato';
 
+//images
+final String SEND_ICON = 'assets/images/send.png';
+final String RECEIVE_ICON = 'assets/images/receive.png';
+final String SETTINGS_ICON = 'assets/images/SETTINGS-WHITE.png';
+final String SETTINGS_ICON_WITH_CIRCLE = 'assets/images/icons/SETTINGS-WHITE-with-circle.png';
+final String LOGO = 'assets/images/logo.png';
+final String PHONE_ICON = 'assets/images/icons/DEVICEWHITE.png';
+final String COPY_ICON = 'assets/images/icons/Paste-white.png';

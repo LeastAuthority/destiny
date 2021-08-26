@@ -65,16 +65,15 @@ class ButtonWithIcon extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
-                  width: 55,
-                  height: 55,
+                  width: 36,
+                  height: 36,
                   child: icon,
                 ),
                 Container(
-                  margin: EdgeInsets.only(right: 8.0.w),
                   child: Text('${label}',
                       style:TextStyle(
                           color: Colors.white,
-                          fontSize: 12.sp,
+                          fontSize: 20.sp,
                           fontFamily: ROBOTO,
                           fontWeight: FontWeight.w500)
                   ),

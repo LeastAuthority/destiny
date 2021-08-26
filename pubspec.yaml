@@ -80,6 +80,8 @@ flutter:
     - assets/images/file-sent-white.png
     - assets/images/SETTINGS-WHITE.png
     - assets/images/icons/Paste-white.png
+    - assets/images/icons/DEVICEWHITE.png
+    - assets/images/icons/SETTINGS-WHITE-with-circle.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
