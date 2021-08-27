@@ -5,11 +5,11 @@
 // // gestures. You can also use WidgetTester to find child widgets in the widget
 // // tree, read text, and verify that the values of widget properties are correct.
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/receive.dart';
+import 'package:dart_wormhole_gui/views/receive/receive.dart';
 import 'package:dart_wormhole_gui/views/splash.dart';
-import 'package:dart_wormhole_gui/widgets/Button.dart';
+import 'package:dart_wormhole_gui/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/views/send.dart';
+import 'package:dart_wormhole_gui/views/send/send.dart';
 
 import 'package:flutter/material.dart';
  import 'package:flutter_test/flutter_test.dart';

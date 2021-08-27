@@ -63,6 +63,5 @@ class Heading extends StatelessWidget {
         )
       ],
     );
-
   }
 }

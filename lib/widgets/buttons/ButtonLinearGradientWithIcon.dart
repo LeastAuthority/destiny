@@ -27,49 +27,10 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget getCopyButton() {
-      if(this.isVertical!)
-        return Column( // Replace with a Row for horizontal icon + text
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              width: 35,
-              height: 35,
-              child: icon,
-            ),
-            Container(
-              child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 8.sp, )),
-            ),
-          ],
-        );
-      else
-        return SizedBox(
-          child:Row( // Replace with a Row for horizontal icon + text
-            children: <Widget>[
-              Expanded(
-                flex: 5,
-               // margin: EdgeInsets.only(right: 8.0.w),
-                child: Text(
-                    '${label}',
-                    textAlign: TextAlign.center,
-                    style:TextStyle(color: Colors.white, fontSize: 12.sp)
-                ),
-              ),
-             Expanded(
-               flex: 1,
-               child:  SizedBox(
-               width: 25,
-               height: 25,
-               child: icon,
-             ),)
-            ],
-          ),
-        );
-    }
+
     BoxDecoration getBorder () {
       // var BORDER_COLOR = this.isVertical!? Colors.white : Color(0xffC24DF8);
       var BORDER_COLOR = this.isVertical!? Colors.white : Color(0x00C24DF8);
-
       return  BoxDecoration(
        borderRadius: BorderRadius.all(Radius.circular(10.0)),
          color: Colors.black,
@@ -113,7 +74,28 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
               }
             },
             color: Color(0x00353846),
-            child: getCopyButton()
+            child: SizedBox(
+              child:Row( // Replace with a Row for horizontal icon + text
+                children: <Widget>[
+                  Expanded(
+                    flex: 5,
+                    // margin: EdgeInsets.only(right: 8.0.w),
+                    child: Text(
+                        '${label}',
+                        textAlign: TextAlign.center,
+                        style:TextStyle(color: Colors.white, fontSize: 12.sp)
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child:  SizedBox(
+                      width: 25,
+                      height: 25,
+                      child: icon,
+                    ),)
+                ],
+              ),
+            )
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
-import '../views/send.dart';
+import 'send/send.dart';
 
 
 class IntroScreen extends StatefulWidget {

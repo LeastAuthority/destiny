@@ -1,15 +1,16 @@
+import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/widgets/CodeGeneration.dart';
+import 'package:dart_wormhole_gui/views/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/widgets/SendingProgress.dart';
+import 'package:dart_wormhole_gui/views/send/widgets/SendingProgress.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_william/client.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
 import '../widgets/custom-bottom-bar.dart';
-import '../widgets/ButtonWithIcon.dart';
-import '../constants/api_path.dart';
+import '../widgets/buttons/ButtonWithIcon.dart';
+import '../constants/asset_path.dart';
 
 class Settings extends StatelessWidget {
 

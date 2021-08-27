@@ -1,4 +1,5 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +28,7 @@ class ButtonWithIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget getCopyButton() {
+    Widget getButtonContent() {
       if(this.isVertical!)
         return ElevatedButton(
             onPressed: () {
@@ -35,7 +36,6 @@ class ButtonWithIcon extends StatelessWidget {
                 this.handleSelectFile!();
               }
             },
-            // color: Color(0x00353846),
             style: ElevatedButton.styleFrom(
               primary: _flag ? Colors.red : Color(0x00353846),
             ),
@@ -103,7 +103,7 @@ class ButtonWithIcon extends StatelessWidget {
       width: width,
       height: height,
       margin: const EdgeInsets.only(top: 30.0),
-      child: getCopyButton()
+      child: getButtonContent()
     );
   }
 }
