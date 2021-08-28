@@ -12,7 +12,6 @@ import '../../widgets/custom-app-bar.dart';
 import '../../widgets/custom-bottom-bar.dart';
 import '../../widgets/buttons/ButtonWithIcon.dart';
 import '../../constants/api_path.dart';
-
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
   @override
@@ -26,7 +25,7 @@ class _SendDefaultState extends State<SendDefault> {
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  // Client client = Client();
+  //Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -49,7 +48,8 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void handleSelectFile () async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: true);
+
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false);
     if(result != null) {
       PlatformFile file = result.files.first;
       //FIXME
