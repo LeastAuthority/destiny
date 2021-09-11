@@ -23,13 +23,19 @@ environment:
 dependencies:
   flutter_screenutil: ^5.0.0+2
   shared_preferences: ^2.0.6
+  basic_utils:
+    git:
+      url: https://github.com/Ephenodrom/Dart-Basic-Utils
   file_picker: ^3.0.3
   dart_wormhole_william:
     path: ./dart_wormhole_william
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider
-
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
   flutter:
     sdk: flutter
 
@@ -37,6 +43,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   app_settings: ^4.1.1
+  desktop_window: ^0.4.0
+  filepicker_windows: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +81,8 @@ flutter:
     - assets/images/file-sent-white.png
     - assets/images/SETTINGS-WHITE.png
     - assets/images/icons/Paste-white.png
+    - assets/images/icons/DEVICEWHITE.png
+    - assets/images/icons/SETTINGS-WHITE-with-circle.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
