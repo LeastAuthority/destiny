@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:typed_data';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/widgets/CodeGeneration.dart';
@@ -58,7 +59,11 @@ class _SendDefaultState extends State<SendDefault> {
         await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
       const file = "hello world";
-      client.sendFile("foo.txt", file.length, file);
+      const testLen = 256;
+      final list = Uint8List(testLen)..fillRange(0, testLen, 111);
+      client.sendFile("foo.txt", testLen, list);
+      // client.sendFile("foo.txt", file.length, list);
+
       /*PlatformFile file = result.files.first;*/
       /*setState(() {*/
         /*fileName = file.name;*/
