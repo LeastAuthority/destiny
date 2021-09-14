@@ -56,33 +56,41 @@ class _SendDefaultState extends State<SendDefault> {
 
   void handleSelectFile() async {
     //FilePickerResult? result =
-        //await FilePicker.platform.pickFiles(allowMultiple: true);
+    //await FilePicker.platform.pickFiles(allowMultiple: true);
     //if (result != null) {
-      //const file = "hello world";
-      //const testLen = 256;
-      //final list = Uint8List(testLen)..fillRange(0, testLen, 111);
-      client.sendText("hello world").then((value) => debugPrint("Done"),
-          onError: (error) => {throw error});
-      // client.sendFile("foo.txt", testLen, list);
-      // client.sendFile("foo.txt", file.length, list);
+    //const file = "hello world";
+    //const testLen = 256;
+    //final list = Uint8List(testLen)..fillRange(0, testLen, 111);
+    client.sendText("hello world").then(
+        ((value) => {
+          debugPrint("Done" + value.toString()),
+          debugPrint(value.done.toString()),
+          debugPrint(value.code.toString()),
+          value.done.whenComplete(() => {
+            debugPrint("Done2")
+          })
+        }),
+        onError: (error) => {throw error});
+    // client.sendFile("foo.txt", testLen, list);
+    // client.sendFile("foo.txt", file.length, list);
 
-      /*PlatformFile file = result.files.first;*/
-      /*setState(() {*/
-      /*fileName = file.name;*/
-      /*fileSize = (file.size / 8).toInt(); //bytes to kb*/
-      /*});*/
-      /*// client.sendFile(file.name, file.size, file.bytes);*/
-      /*file.readStream?.single*/
-      /*?.then((value) => client.sendFile(file.name, file.size, value));*/
-      // log("Got response: " + client.sendText("hello world"));
-      // print("filenameeeeeee");
-      // print(file.name);
-      // print(file.bytes);
-      // print(file.size);
-      // print(file.extension);
-      // print(file.path);
+    /*PlatformFile file = result.files.first;*/
+    /*setState(() {*/
+    /*fileName = file.name;*/
+    /*fileSize = (file.size / 8).toInt(); //bytes to kb*/
+    /*});*/
+    /*// client.sendFile(file.name, file.size, file.bytes);*/
+    /*file.readStream?.single*/
+    /*?.then((value) => client.sendFile(file.name, file.size, value));*/
+    // log("Got response: " + client.sendText("hello world"));
+    // print("filenameeeeeee");
+    // print(file.name);
+    // print(file.bytes);
+    // print(file.size);
+    // print(file.extension);
+    // print(file.path);
     //} else {
-      // User canceled the picker
+    // User canceled the picker
     //}
   }
 
