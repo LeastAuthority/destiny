@@ -11,7 +11,7 @@ import 'package:dart_wormhole_gui/widgets/SentSuccessfully.dart';
 import '../widgets/Button.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:dart_wormhole_william/client.dart';
+import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
 import '../widgets/custom-bottom-bar.dart';

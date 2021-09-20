@@ -6,7 +6,6 @@ import '../widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
-import 'package:dart_wormhole_william/client.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Receive extends StatefulWidget {
