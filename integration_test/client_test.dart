@@ -9,6 +9,11 @@ import 'package:integration_test/integration_test.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 
 class ClientTestWidget extends StatelessWidget {
+  static const expectedText = 'testing 123';
+
+  String actualText = '';
+  String code = '';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(builder: (BuildContext context, Widget? widget) {
@@ -20,16 +25,20 @@ class ClientTestWidget extends StatelessWidget {
   }
 
   void handlePress() {
+    // expect(2 + 2, equals(5));
+
     final sender = Client();
     final receiver = Client();
 
-    const expected = 'tesing 123';
-    sender.sendText(expected).then((result) {
-      print('sent $expected');
+    sender.sendText(expectedText).then((result) {
+      code = result.code;
+      print('sent $expectedText');
       result.done.then((_) {
         print('send done!');
       });
+
       receiver.recvText(result.code).then((String actual) {
+        actualText = actual;
         print('received $actual');
       });
     });
@@ -37,14 +46,20 @@ class ClientTestWidget extends StatelessWidget {
 }
 
 void main() {
+  // NB: uncomment for manual testing
   // runApp(ClientTestWidget());
 
+  // NB: comment for manual testing
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
+  // NB: comment for manual testing
   testWidgets("failing test example", (WidgetTester tester) async {
-    await tester.pumpWidget(ClientTestWidget());
-    sleep(Duration(seconds: 5));
-    // expect(2 + 2, equals(5));
+    ClientTestWidget testWidget = ClientTestWidget();
+    runApp(testWidget);
+    await tester.pumpAndSettle();
+    // expect(testWidget.actualText, ClientTestWidget.expectedText);
+    sleep(Duration(seconds: 2));
+    expect(testWidget.code, isNotEmpty);
   });
 
 //   group('ClientNative', () {
