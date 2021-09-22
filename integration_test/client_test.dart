@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// import 'package:flutter_test/flutter_test.dart';
-// import 'package:integration_test/integration_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
 
 import 'package:dart_wormhole_william/client/client.dart';
 
@@ -36,13 +36,13 @@ class ClientTestWidget extends StatelessWidget {
 }
 
 void main() {
-  runApp(ClientTestWidget());
+  // runApp(ClientTestWidget());
 
-  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-  //
-  // testWidgets("failing test example", (WidgetTester tester) async {
-  //   expect(2 + 2, equals(5));
-  // });
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets("failing test example", (WidgetTester tester) async {
+    expect(2 + 2, equals(5));
+  });
 
 //   group('ClientNative', () {
 // //    String _dylibDir = path.join(
