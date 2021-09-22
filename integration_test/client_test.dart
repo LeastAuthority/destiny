@@ -25,8 +25,6 @@ class ClientTestWidget extends StatelessWidget {
   }
 
   void handlePress() {
-    // expect(2 + 2, equals(5));
-
     final sender = Client();
     final receiver = Client();
 
@@ -56,6 +54,7 @@ void main() {
   testWidgets("failing test example", (WidgetTester tester) async {
     ClientTestWidget testWidget = ClientTestWidget();
     runApp(testWidget);
+    testWidget.handlePress();
     await tester.pumpAndSettle();
     // expect(testWidget.actualText, ClientTestWidget.expectedText);
     sleep(Duration(seconds: 2));
