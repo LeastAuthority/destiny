@@ -45,6 +45,7 @@ class ClientTestWidget extends StatelessWidget {
 
 void main() {
   // NB: uncomment for manual testing
+  // `flutter run -d linux -v -t integration_test/client.dart`
   // runApp(ClientTestWidget());
 
   // NB: comment for manual testing
@@ -54,11 +55,12 @@ void main() {
   testWidgets("failing test example", (WidgetTester tester) async {
     ClientTestWidget testWidget = ClientTestWidget();
     runApp(testWidget);
-    testWidget.handlePress();
     await tester.pumpAndSettle();
-    // expect(testWidget.actualText, ClientTestWidget.expectedText);
+    testWidget.handlePress();
+    // TODO: something more robust!
     sleep(Duration(seconds: 2));
     expect(testWidget.code, isNotEmpty);
+    expect(testWidget.actualText, ClientTestWidget.expectedText);
   });
 
 //   group('ClientNative', () {
