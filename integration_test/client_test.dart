@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,13 +11,12 @@ import 'package:dart_wormhole_william/client/client.dart';
 class ClientTestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        builder: (BuildContext context, Widget? widget) {
-          return TextButton(
-            child: Text("test button"),
-            onPressed: handlePress,
-          );
-        });
+    return MaterialApp(builder: (BuildContext context, Widget? widget) {
+      return TextButton(
+        child: Text("test button"),
+        onPressed: handlePress,
+      );
+    });
   }
 
   void handlePress() {
@@ -41,7 +42,9 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets("failing test example", (WidgetTester tester) async {
-    expect(2 + 2, equals(5));
+    await tester.pumpWidget(ClientTestWidget());
+    sleep(Duration(seconds: 5));
+    // expect(2 + 2, equals(5));
   });
 
 //   group('ClientNative', () {
