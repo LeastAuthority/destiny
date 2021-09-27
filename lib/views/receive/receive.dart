@@ -56,7 +56,9 @@ class _ReceiveState extends State<Receive> {
         key: Key(CUSTOM_NAV_BAR),
       ),
       backgroundColor: Color(0xff1A1C2E),
-      body: Container(
+      body: WillPopScope(
+        onWillPop: () async => false,
+        child:Container(
         key:Key(RECEIVE_SCREEN_BODY),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: Column (
@@ -75,7 +77,7 @@ class _ReceiveState extends State<Receive> {
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
+      )// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

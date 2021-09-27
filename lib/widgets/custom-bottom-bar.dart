@@ -51,7 +51,9 @@ class CustomBottomBar extends StatelessWidget {
                   children: [
                       TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, SEND_ROUTE);
+                            // String? currentRoute = ModalRoute.of(context)!.settings.name;
+                            // if(currentRoute  != SEND_ROUTE || currentRoute  != RECEIVE_ROUTE)
+                            Navigator.pushReplacementNamed(context, SEND_ROUTE);
                           },
                           child:  Column(
                             children: [
@@ -80,7 +82,9 @@ class CustomBottomBar extends StatelessWidget {
                     children: [
                              TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, RECEIVE_ROUTE);
+                                // String? currentRoute = ModalRoute.of(context)!.settings.name;
+                                // if(currentRoute != SEND_ROUTE || currentRoute  != RECEIVE_ROUTE)
+                                Navigator.pushReplacementNamed(context, RECEIVE_ROUTE);
                               },
                               child:  Column(
                                 children: [

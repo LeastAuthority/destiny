@@ -7,10 +7,7 @@ import 'views/send/send.dart';
 import 'package:flutter/widgets.dart';
 import 'views/receive/receive.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:desktop_window/desktop_window.dart';
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-   DesktopWindow.setWindowSize(Size(360,640));
   runApp(MyApp());
 }
 

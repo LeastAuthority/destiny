@@ -25,7 +25,7 @@ class _SendDefaultState extends State<SendDefault> {
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  //Client client = Client();
+  Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -112,7 +112,9 @@ class _SendDefaultState extends State<SendDefault> {
             key:Key(CUSTOM_NAV_BAR),
         ),
         backgroundColor: Color(0xff1A1C2E),
-        body: Container(
+        body: WillPopScope(
+        onWillPop: () async => false,
+        child:Container(
           width: double.infinity,
           key: Key(SEND_SCREEN_BODY),
           padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
@@ -138,6 +140,6 @@ class _SendDefaultState extends State<SendDefault> {
                     ]
                 ),
 
-    ));
+    )));
   }
 }

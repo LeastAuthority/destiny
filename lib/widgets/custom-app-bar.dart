@@ -31,42 +31,50 @@ class _CustomAppBarState extends State<CustomAppBar> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Container(
-                    alignment: Alignment.centerLeft,
-                    height: 60.0.h,
-                    padding: EdgeInsets.only(left:8.0.w),
-                    child:  Text(
+              Expanded(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  height: 60.0.h,
+                  // width: 70.0.w,
+                  padding: EdgeInsets.only(left:8.0.w),
+                  child:  Text(
                       '$title',
                       style: TextStyle(
                           fontSize: 20.0.sp,
                           color: Colors.white,fontFamily: LATO,
                           fontWeight: FontWeight.w500)
+                  ),
+                ),
+              ),
+              Expanded(
+                  child:  Container(
+                    height: 60.0.h,
+                    // width: 70.0.w,
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      LOGO,
+                      width: 76.0.w,
                     ),
                   ),
-                Container(
-                  height: 60.0.h,
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    LOGO,
-                    width: 76.0.w,
-                  ),
-                ),
-               Container(
-                  height: 60.0.h,
-                  width: 70.0.w,
-                  alignment: Alignment.centerRight,
-                  child:  FlatButton.icon(
-                      label: Text(''),
-                      onPressed: () {
-                        if(title != SETTINGS)
-                          Navigator.pushNamed(context, SETTINGS_ROUTE);
-                      },
-                      icon: Image.asset(title == SETTINGS?
-                        SETTINGS_ICON_WITH_CIRCLE:SETTINGS_ICON,
-                        width: 25.0.w,
-                      )
-                  ),
-                ),
+              ),
+               Expanded(
+                 child: Container(
+                   height: 60.0.h,
+                   // width: 70.0.w,
+                   alignment: Alignment.centerRight,
+                   child:  FlatButton.icon(
+                       label: Text(''),
+                       onPressed: () {
+                         if(title != SETTINGS)
+                           Navigator.pushNamed(context, SETTINGS_ROUTE);
+                       },
+                       icon: Image.asset(title == SETTINGS?
+                       SETTINGS_ICON_WITH_CIRCLE:SETTINGS_ICON,
+                         width: 25.0.w,
+                       )
+                   ),
+                 ),
+               )
             ],
           ),
            Divider(height: 1.0.h, color: Colors.white),
