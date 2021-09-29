@@ -17,14 +17,92 @@ class ClientTestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(builder: (BuildContext context, Widget? widget) {
-      return TextButton(
-        child: Text("test button"),
-        onPressed: handlePress,
-      );
+      return Column(children: [
+        Text("Tests:"),
+        TextButton(
+          child: Text("send/recv text dart-api"),
+          onPressed: testSendRecvTextDartDart,
+        ),
+        TextButton(
+          child: Text("send text dart-api recv text go-cli"),
+          onPressed: testSendRecvTextDartGo,
+        ),
+        TextButton(
+          child: Text("send text go-cli recv text dart-api"),
+          onPressed: testSendRecvTextGoDart,
+        ),
+        // TextButton(
+        //   child: Text("run test"),
+        //   onPressed: testRun,
+        // ),
+      ]);
     });
   }
 
-  void handlePress() {
+  void testRecvTextGo(String code) {
+    final res = Process.runSync('go', [
+      'run',
+      '.',
+      'receive',
+      code,
+    ],
+      // TODO: replace with OS-agnostic path
+      workingDirectory: './dart_wormhole_william/wormhole-william',
+    );
+    print(res.stdout);
+  }
+
+  void testSendRecvTextDartGo() {
+    final sender = Client();
+
+    sender.sendText(expectedText).then((result) {
+      code = result.code;
+      print('sent $expectedText');
+      result.done.then((_) {
+        print('send done!');
+      });
+
+      // use shell to call `go run ...` on wormhole-william submodule
+      testRecvTextGo(code);
+    });
+  }
+
+  String testSendTextGo(String code) {
+    const code = "7-guitarist-revenge";
+
+    final res = Process.run('go', [
+      'run',
+      '.',
+      'send',
+      '--code',
+      code,
+      // TODO: something else?
+      './README.md',
+    ],
+      // TODO: replace with OS-agnostic path
+      workingDirectory: './dart_wormhole_william/wormhole-william',
+    );
+    res.then((_res) {
+      print(_res.stdout);
+    });
+    return code;
+  }
+
+  void testSendRecvTextGoDart() {
+    final sender = Client();
+
+    sender.sendText(expectedText).then((result) {
+      code = result.code;
+      print('sent $expectedText');
+      result.done.then((_) {
+        print('send done!');
+      });
+
+      testRecvTextGo(code);
+    });
+  }
+
+  void testSendRecvTextDartDart() {
     final sender = Client();
     final receiver = Client();
 
@@ -43,25 +121,29 @@ class ClientTestWidget extends StatelessWidget {
   }
 }
 
+// # Manual testing:
+// `flutter run -d linux -v -t ./integration_test/client_test.dart`
+// # Automated testing:
+// `flutter drive --driver=./test_driver/integration_test_driver.dart --target=./integration_test/client_test.dart`
+
 void main() {
   // NB: uncomment for manual testing
-  // `flutter run -d linux -v -t integration_test/client.dart`
-  // runApp(ClientTestWidget());
+  runApp(ClientTestWidget());
 
   // NB: comment for manual testing
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   // NB: comment for manual testing
-  testWidgets("failing test example", (WidgetTester tester) async {
-    ClientTestWidget testWidget = ClientTestWidget();
-    runApp(testWidget);
-    await tester.pumpAndSettle();
-    testWidget.handlePress();
-    // TODO: something more robust!
-    sleep(Duration(seconds: 2));
-    expect(testWidget.code, isNotEmpty);
-    expect(testWidget.actualText, ClientTestWidget.expectedText);
-  });
+  // testWidgets("failing test example", (WidgetTester tester) async {
+  //   ClientTestWidget testWidget = ClientTestWidget();
+  //   runApp(testWidget);
+  //   await tester.pumpAndSettle();
+  //   testWidget.handlePress();
+  //   // TODO: something more robust!
+  //   sleep(Duration(seconds: 2));
+  //   expect(testWidget.code, isNotEmpty);
+  //   expect(testWidget.actualText, ClientTestWidget.expectedText);
+  // });
 
 //   group('ClientNative', () {
 // //    String _dylibDir = path.join(
