@@ -59,7 +59,7 @@ class ClientTestWidget extends StatelessWidget {
       code = result.code;
       print('sent $expectedText');
       result.done.then((_) {
-        print('send done!');
+        print('Dart | client_test:62 send done!');
       });
 
       // use shell to call `go run ...` on wormhole-william submodule
@@ -93,9 +93,9 @@ class ClientTestWidget extends StatelessWidget {
 
     sender.sendText(expectedText).then((result) {
       code = result.code;
-      print('sent $expectedText');
+      print('Dart | client_test:96 sent $expectedText');
       result.done.then((_) {
-        print('send done!');
+        print('Dart | client_test:98 send done!');
       });
 
       testRecvTextGo(code);
@@ -110,12 +110,12 @@ class ClientTestWidget extends StatelessWidget {
       code = result.code;
       print('sent $expectedText');
       result.done.then((_) {
-        print('send done!');
+        print('Dart | client_test:113 send done!');
       });
 
       receiver.recvText(result.code).then((String actual) {
         actualText = actual;
-        print('received $actual');
+        print('Dart | client_test:118 receive done! actual: $actual');
       });
     });
   }
