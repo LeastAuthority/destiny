@@ -102,22 +102,20 @@ class ClientTestWidget extends StatelessWidget {
     });
   }
 
-  void testSendRecvTextDartDart() {
+  Future<void> testSendRecvTextDartDart() async {
     final sender = Client();
     final receiver = Client();
 
-    sender.sendText(expectedText).then((result) {
-      code = result.code;
-      print('sent $expectedText');
-      result.done.then((_) {
-        print('Dart | client_test:113 send done!');
-      });
-
-      receiver.recvText(result.code).then((String actual) {
-        actualText = actual;
-        print('Dart | client_test:118 receive done! actual: $actual');
-      });
+    final result = await sender.sendText(expectedText);
+    code = result.code;
+    print('sent $expectedText');
+    result.done.then((_) {
+      print('Dart | client_test:113 send done!');
     });
+
+    final actual = await receiver.recvText(result.code);
+    actualText = actual;
+    print('Dart | client_test:118 receive done! actual: $actual');
   }
 }
 
@@ -128,22 +126,21 @@ class ClientTestWidget extends StatelessWidget {
 
 void main() {
   // NB: uncomment for manual testing
-  runApp(ClientTestWidget());
+  // runApp(ClientTestWidget());
 
   // NB: comment for manual testing
-  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   // NB: comment for manual testing
-  // testWidgets("failing test example", (WidgetTester tester) async {
-  //   ClientTestWidget testWidget = ClientTestWidget();
-  //   runApp(testWidget);
-  //   await tester.pumpAndSettle();
-  //   testWidget.handlePress();
-  //   // TODO: something more robust!
-  //   sleep(Duration(seconds: 2));
-  //   expect(testWidget.code, isNotEmpty);
-  //   expect(testWidget.actualText, ClientTestWidget.expectedText);
-  // });
+  testWidgets("failing test example", (WidgetTester tester) async {
+    ClientTestWidget testWidget = ClientTestWidget();
+    runApp(testWidget);
+    await tester.pumpAndSettle();
+    await testWidget.testSendRecvTextDartDart();
+    // TODO: something more robust!
+    expect(testWidget.code, isNotEmpty);
+    expect(testWidget.actualText, ClientTestWidget.expectedText);
+  });
 
 //   group('ClientNative', () {
 // //    String _dylibDir = path.join(
