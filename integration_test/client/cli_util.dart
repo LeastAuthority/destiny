@@ -28,7 +28,5 @@ String sendTextGo(String text) {
   res.then((_res) {
     print(_res.stdout);
   });
-  // TODO: something more robust!
-  sleep(Duration(seconds: 3));
   return code;
 }
