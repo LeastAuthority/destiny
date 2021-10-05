@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:dart_wormhole_william/client/client.dart';
-import 'util.dart';
+import './util.dart';
 
 void main() {
   group('Send / receive text', () {
@@ -45,19 +43,4 @@ void main() {
       expect(actual, expectedText);
     });
   });
-
-//   group('Send / receive file', () {
-//     test('dart API -> dart API', () async {
-//       final sender = Client();
-//       final receiver = Client();
-//
-//       final result = await sender.sendFile(testName, testSize, testData);
-//       final code = result.code;
-//       expect(code, isNotEmpty);
-//       expect(result.done, completes);
-//
-//       final actual = await receiver.recvFile(code);
-//       expect(actual, expectedText);
-//     });
-//   });
 }
