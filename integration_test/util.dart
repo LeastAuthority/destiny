@@ -11,7 +11,7 @@ String recvTextGo(String code) {
   ],
     workingDirectory: wormholeWilliamPath,
   );
-  return res.stdout;
+  return res.stdout.toString().trimRight();
 }
 
 String sendTextGo(String text) {
@@ -28,6 +28,7 @@ String sendTextGo(String text) {
   res.then((_res) {
     print(_res.stdout);
   });
-  sleep(Duration(seconds: 5));
+  // TODO: something more robust!
+  sleep(Duration(seconds: 3));
   return code;
 }
