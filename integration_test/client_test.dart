@@ -1,146 +1,65 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
 
 import 'package:dart_wormhole_william/client/client.dart';
-
-class ClientTestWidget extends StatelessWidget {
-  static const expectedText = 'testing 123';
-
-  String actualText = '';
-  String code = '';
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(builder: (BuildContext context, Widget? widget) {
-      return Column(children: [
-        Text("Tests:"),
-        TextButton(
-          child: Text("send/recv text dart-api"),
-          onPressed: testSendRecvTextDartDart,
-        ),
-        TextButton(
-          child: Text("send text dart-api recv text go-cli"),
-          onPressed: testSendRecvTextDartGo,
-        ),
-        TextButton(
-          child: Text("send text go-cli recv text dart-api"),
-          onPressed: testSendRecvTextGoDart,
-        ),
-        // TextButton(
-        //   child: Text("run test"),
-        //   onPressed: testRun,
-        // ),
-      ]);
-    });
-  }
-
-  void testRecvTextGo(String code) {
-    final res = Process.runSync('go', [
-      'run',
-      '.',
-      'receive',
-      code,
-    ],
-      // TODO: replace with OS-agnostic path
-      workingDirectory: './dart_wormhole_william/wormhole-william',
-    );
-    print(res.stdout);
-  }
-
-  void testSendRecvTextDartGo() {
-    final sender = Client();
-
-    sender.sendText(expectedText).then((result) {
-      code = result.code;
-      print('sent $expectedText');
-      result.done.then((_) {
-        print('Dart | client_test:62 send done!');
-      });
-
-      // use shell to call `go run ...` on wormhole-william submodule
-      testRecvTextGo(code);
-    });
-  }
-
-  String testSendTextGo(String code) {
-    const code = "7-guitarist-revenge";
-
-    final res = Process.run('go', [
-      'run',
-      '.',
-      'send',
-      '--code',
-      code,
-      // TODO: something else?
-      './README.md',
-    ],
-      // TODO: replace with OS-agnostic path
-      workingDirectory: './dart_wormhole_william/wormhole-william',
-    );
-    res.then((_res) {
-      print(_res.stdout);
-    });
-    return code;
-  }
-
-  void testSendRecvTextGoDart() {
-    final sender = Client();
-
-    sender.sendText(expectedText).then((result) {
-      code = result.code;
-      print('Dart | client_test:96 sent $expectedText');
-      result.done.then((_) {
-        print('Dart | client_test:98 send done!');
-      });
-
-      testRecvTextGo(code);
-    });
-  }
-
-  Future<void> testSendRecvTextDartDart() async {
-    final sender = Client();
-    final receiver = Client();
-
-    final result = await sender.sendText(expectedText);
-    code = result.code;
-    print('sent $expectedText');
-    result.done.then((_) {
-      print('Dart | client_test:113 send done!');
-    });
-
-    final actual = await receiver.recvText(result.code);
-    actualText = actual;
-    print('Dart | client_test:118 receive done! actual: $actual');
-  }
-}
-
-// # Manual testing:
-// `flutter run -d linux -v -t ./integration_test/client_test.dart`
-// # Automated testing:
-// `flutter drive --driver=./test_driver/integration_test_driver.dart --target=./integration_test/client_test.dart`
+import 'util.dart';
 
 void main() {
-  // NB: uncomment for manual testing
-  // runApp(ClientTestWidget());
+    group('Send / receive text', () {
+      // late FlutterDriver driver;
 
-  // NB: comment for manual testing
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+      const expectedText = 'testing 123';
 
-  // NB: comment for manual testing
-  testWidgets("failing test example", (WidgetTester tester) async {
-    ClientTestWidget testWidget = ClientTestWidget();
-    runApp(testWidget);
-    await tester.pumpAndSettle();
-    await testWidget.testSendRecvTextDartDart();
-    // TODO: something more robust!
-    expect(testWidget.code, isNotEmpty);
-    expect(testWidget.actualText, ClientTestWidget.expectedText);
-  });
+      // setUpAll(() async {
+      //   driver = await FlutterDriver.connect();
+      // });
+      //
+      // tearDownAll(() {
+      //   driver.close();
+      // });
+
+      test('dart API -> dart API', () async {
+        final sender = Client();
+        final receiver = Client();
+
+        final result = await sender.sendText(expectedText);
+        final code = result.code;
+        expect(code, isNotEmpty);
+        expect(result.done, completes);
+
+        final actual = await receiver.recvText(code);
+        print(actual);
+        expect(actual, expectedText);
+      });
+
+      // test('dart API -> go CLI', () async {
+      //   final sender = Client();
+      //
+      //   final result = await sender.sendText(expectedText);
+      //   final code = result.code;
+      //   expect(code, isNotEmpty);
+      //
+      //   final actual = recvTextGo(code);
+      //
+      //   expect(actual, expectedText);
+      //   expect(result.done, completes);
+      // });
+      //
+      // test('go CLI -> dart API', () async {
+      //   final receiver = Client();
+      //
+      //   final code = sendTextGo(expectedText);
+      //   final actual = await receiver.recvText(code);
+      //
+      //   // expect(code, isNotEmpty);
+      //   expect(actual, expectedText);
+      // });
+    });
+
+    // group('Send / receive file', () {
+    //   test('dart API -> dart API', () {
+    //   });
+    // });
+  // });
 
 //   group('ClientNative', () {
 // //    String _dylibDir = path.join(
