@@ -23,7 +23,7 @@ void main() {
       expect(result.done, completes);
 
       final actual = await receiver.recvFile(code);
-      expect(actual, expectedText);
+      expect(String.fromCharCodes(actual), testDataText);
     });
   });
 }
