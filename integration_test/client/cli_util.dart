@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:path/path.dart' as path;
@@ -34,20 +35,29 @@ String recvTextGo(String code) {
   return res.stdout.toString().trimRight();
 }
 
-// Future<Uint8List> recvFileGo(String code) {
-//   // testFileDestPath = path.join()
-//
-//   final res = Process.runSync(goCliPath, [
-//     'run', '.',
-//     'receive',
-//     code,
-//   ],
-//     workingDirectory: wormholeWilliamPath,
-//   );
-//   // return res.stdout.toString().trimRight();
-//
-//   // File(testFileDestPath)
-// }
+Future<File> recvFileGo(String code, String filename) async {
+  final done = Completer<File>();
+  final recvProcess = await Process.start(goCliFromTestFileDestPath, [
+    'receive',
+    code,
+  ],
+    workingDirectory: testFileDestDir,
+  );
+
+  recvProcess.stderr.listen((lineInts) {
+    print(String.fromCharCodes(lineInts));
+  });
+
+  recvProcess.stdout.listen((lineInts) {
+    final lineString = String.fromCharCodes(lineInts);
+    if (lineString.contains('ok? (y/N):')) {
+      recvProcess.stdin.write('y\n');
+    }
+  });
+
+  await recvProcess.exitCode;
+  return File(path.join(testFileDestDir, filename));
+}
 
 Future<ProcessResult> buildGoCli() {
   final buildOutPath = path.relative(goCliPath, from: wormholeWilliamPath);
