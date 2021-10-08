@@ -6,15 +6,17 @@ final wormholeWilliamPath = path.join('.', 'dart_wormhole_william', 'wormhole-wi
 final testFileSrcDir = path.join('.', 'integration_test', 'client', 'test_files');
 final testFileDestDir = path.join(testFileSrcDir, 'test_dest');
 final goCliPath = path.join(testFileDestDir, 'ww_cli.exe');
+final goCliFromTestFileDestPath = path.join('.', path.relative(goCliPath, from: testFileDestDir));
 
 String sendTextGo(String text) {
   // TODO: read code from stdout (?)
   const code = "7-guitarist-revenge";
-  final res = Process.run(goCliPath, [
+  final res = Process.run(goCliFromTestFileDestPath, [
     'send',
     '--code', code,
     '--text', text,
   ],
+    workingDirectory: testFileDestDir,
   );
   res.then((_res) {
     print(_res.stdout);
@@ -23,10 +25,11 @@ String sendTextGo(String text) {
 }
 
 String recvTextGo(String code) {
-  final res = Process.runSync(goCliPath, [
+  final res = Process.runSync(goCliFromTestFileDestPath, [
     'receive',
     code,
   ],
+    workingDirectory: testFileDestDir,
   );
   return res.stdout.toString().trimRight();
 }
