@@ -32,17 +32,35 @@ String recvTextGo(String code) {
 }
 
 // Future<Uint8List> recvFileGo(String code) {
+//   // testFileDestPath = path.join()
+//
+//   final res = Process.runSync(goCliPath, [
+//     'run', '.',
+//     'receive',
+//     code,
+//   ],
+//     workingDirectory: wormholeWilliamPath,
+//   );
+//   // return res.stdout.toString().trimRight();
+//
+//   // File(testFileDestPath)
+// }
+
+Future<ProcessResult> buildGoCli() {
+  final buildOutPath = path.relative(goCliPath, from: wormholeWilliamPath);
   final resFuture = Process.run('go', [
     'build',
-    '-o', path.relative(goCliPath, from: wormholeWilliamPath),
+    '-o', buildOutPath,
     '.',
   ],
     workingDirectory: wormholeWilliamPath,
   );
 
   resFuture.then((res) {
-    print("stdout: ${res.stdout}");
-    print("stderr: ${res.stderr}");
+    if (res.stderr != '') {
+      print("ERROR running `go build -o $buildOutPath .`:");
+      print(res.stderr);
+    }
   });
 
   return resFuture;
