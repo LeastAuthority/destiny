@@ -38,14 +38,18 @@ String recvTextGo(String code) {
 Future<File> recvFileGo(String code, String filename) async {
   final done = Completer<File>();
   final recvProcess = await Process.start(goCliFromTestFileDestPath, [
-    'receive',
-    code,
+    'receive', code,
   ],
     workingDirectory: testFileDestDir,
   );
 
-  recvProcess.stderr.listen((lineInts) {
-    print(String.fromCharCodes(lineInts));
+  recvProcess.exitCode.then((exitCode) {
+    if (exitCode != 0) {
+      print('Error running `ww_client.exe receive $code:');
+      recvProcess.stderr.listen((lineInts) {
+        print(String.fromCharCodes(lineInts));
+      });
+    }
   });
 
   recvProcess.stdout.listen((lineInts) {
@@ -57,6 +61,38 @@ Future<File> recvFileGo(String code, String filename) async {
 
   await recvProcess.exitCode;
   return File(path.join(testFileDestDir, filename));
+}
+
+Future<String> sendFileGo(String filename) async {
+  final filePath = path.join('.', filename);
+  final done = Completer<String>();
+  final sendProcess = await Process.start(
+    path.relative(goCliPath, from: testFileSrcDir), [
+      'send',
+      filePath,
+    ],
+    workingDirectory: testFileSrcDir,
+  );
+
+  sendProcess.exitCode.then((exitCode) {
+    if (exitCode != 0) {
+      print('Error running `ww_client.exe send $filePath:');
+      sendProcess.stderr.listen((lineInts) {
+        print(String.fromCharCodes(lineInts));
+      });
+    }
+  });
+
+  const codePrefix = 'Wormhole code is: ';
+  sendProcess.stdout.listen((lineInts) {
+    final lineString = String.fromCharCodes(lineInts);
+    if (lineString.contains(codePrefix)) {
+      final code = lineString.split(codePrefix)[1].trim();
+      done.complete(code);
+    }
+  });
+
+  return done.future;
 }
 
 Future<ProcessResult> buildGoCli() {

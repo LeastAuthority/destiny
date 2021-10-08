@@ -39,5 +39,30 @@ void main() {
       final testData = smallerFile.readAsBytesSync();
       expect(actual, orderedEquals(testData));
     });
+
+    test('go CLI -> dart API', () async {
+      final receiver = Client();
+
+      final code = await sendFileGo(testFilename);
+      expect(code, isNotEmpty);
+
+      final actualData = await receiver.recvFile(code);
+      final testData = smallerFile.readAsBytesSync();
+      expect(actualData, orderedEquals(testData));
+    });
+
+    test('dart API -> dart API', () async {
+      final sender = Client();
+      final receiver = Client();
+
+      final result = await sender.sendFile(smallerFile);
+      final code = result.code;
+      expect(code, isNotEmpty);
+      expect(result.done, completes);
+
+      final actualData = await receiver.recvFile(code);
+      final testData = smallerFile.readAsBytesSync();
+      expect(actualData, orderedEquals(testData));
+    });
   });
 }
