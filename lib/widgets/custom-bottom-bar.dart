@@ -36,14 +36,17 @@ class CustomBottomBar extends StatelessWidget {
     return Container(
         padding: EdgeInsets.only(bottom: 1.0),
         color: Colors.black,
+        key: Key(BOTTOM_NAV_BAR_CONTAINER),
         child: Container(
+        key: Key(BOTTOM_NAV_BAR_BODY),
         height: 55.0.h,
         child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded (
-              flex:1,
+                key: Key(BOTTOM_NAV_BAR_LEFT_ITEM),
+                flex:1,
               child: Container(
                 decoration: getCurrentPath(SEND_ROUTE),
                 child: Column(
@@ -74,6 +77,7 @@ class CustomBottomBar extends StatelessWidget {
               )
             ),
             Expanded (
+                key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
                 flex:1,
                 child: Container(
                   decoration: getCurrentPath(RECEIVE_ROUTE),

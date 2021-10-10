@@ -26,12 +26,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+        key: Key(CUSTOM_NAV_BAR_CONTAINER),
         child: Column (
+          key: Key(CUSTOM_NAV_BAR_BODY),
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
+                key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
                 child: Container(
                   alignment: Alignment.centerLeft,
                   height: 60.0.h,
@@ -47,7 +50,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
               ),
               Expanded(
-                  child:  Container(
+                key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
+                child:  Container(
                     height: 60.0.h,
                     // width: 70.0.w,
                     alignment: Alignment.center,
@@ -58,6 +62,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ),
               ),
                Expanded(
+                 key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
                  child: Container(
                    height: 60.0.h,
                    // width: 70.0.w,

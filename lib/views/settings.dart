@@ -31,10 +31,10 @@ class Settings extends StatelessWidget {
         backgroundColor: Color(0xff1A1C2E),
         body: Container(
           width: double.infinity,
-          key: Key(SEND_SCREEN_BODY),
+          key: Key(SETTINGS_SCREEN_BODY),
           padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
           child: Column(
-                    key: Key(SEND_SCREEN_CONTENT),
+                    key: Key(SETTINGS_SCREEN_CONTENT),
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -47,7 +47,7 @@ class Settings extends StatelessWidget {
                               fontSize: 14.sp,
                               fontFamily: LATO,
                               fontWeight: FontWeight.w300,
-                              key: Key(SEND_SCREEN_HEADING),
+                              key: Key(SETTINGS_SCREEN_HEADING),
                             ),
                             Heading(
                               title: '${CURRENT_SAVE_DESTINATION}',

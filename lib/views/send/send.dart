@@ -25,7 +25,7 @@ class _SendDefaultState extends State<SendDefault> {
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  Client client = Client();
+  // Client client = Client();
 
   void _msgChanged(String msg) {
     setState(() {
