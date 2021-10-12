@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
 import '../../../widgets/buttons/ButtonWithIcon.dart';
 import 'package:flutter/services.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 class RowGroupButton extends StatelessWidget {
   final String label;
   String code = '';
@@ -35,9 +35,18 @@ class RowGroupButton extends StatelessWidget {
           label:'Copy',
           handleSelectFile: () {
             Clipboard.setData(ClipboardData(text: code));
-            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //   content: Text("Code Copied"),
-            // ));
+            // Fluttertoast.showToast(
+            //     msg: CODE_COPIED,
+            //     toastLength: Toast.LENGTH_LONG,
+            //     gravity: ToastGravity.CENTER,
+            //     timeInSecForIosWeb: 1,
+            //     backgroundColor: Colors.red,
+            //     textColor: Colors.white,
+            //     fontSize: 16.0
+            // );
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(CODE_COPIED),
+            ));
           },
           icon:Image.asset(
             COPY_ICON,

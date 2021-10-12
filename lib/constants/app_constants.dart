@@ -17,7 +17,8 @@ final String CURRENT_SAVE_DESTINATION = 'Current save destination:';
 final String GENERATION_CODE = 'Generating Code';
 final String SEEN= 'seen';
 final String LOADING= 'Loading...';
-
+final String CODE_COPIED = 'Code Copied';
+final String CUSTOM_NAV_BAR_MENU_FANDQ_ITEM = 'F&Q';
 //keys for tests
 //-General tests
 final String BOTTOM_NAV_BAR = 'BOTTOM_NAV_BAR';

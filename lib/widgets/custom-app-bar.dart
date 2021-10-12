@@ -63,22 +63,31 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ),
                Expanded(
                  key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
-                 child: Container(
-                   height: 60.0.h,
-                   // width: 70.0.w,
-                   alignment: Alignment.centerRight,
-                   child:  FlatButton.icon(
-                       label: Text(''),
-                       onPressed: () {
-                         if(title != SETTINGS)
-                           Navigator.pushNamed(context, SETTINGS_ROUTE);
-                       },
-                       icon: Image.asset(title == SETTINGS?
-                       SETTINGS_ICON_WITH_CIRCLE:SETTINGS_ICON,
-                         width: 25.0.w,
+                 child:
+                 PopupMenuButton(
+                   // onSelected: (result) { setState(() { _selection = result; }); },
+                     color: Colors.black,
+                     icon: Image.asset(
+                       LOGO,
+                       width: 76.0.w,
+                     ),
+                     itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                      PopupMenuItem(
+                       value:'WhyFarther.harder',
+                       child: Text(
+                           CUSTOM_NAV_BAR_MENU_FANDQ_ITEM,
+                           style: TextStyle(color: Colors.white)
+                       ),
+                     ),
+                      PopupMenuItem(
+                       value: 'WhyFarther.smarter',
+                       child: Text(
+                           SETTINGS,
+                           style: TextStyle(color: Colors.white)
                        )
-                   ),
-                 ),
+                     ),
+                   ],
+                 )
                )
             ],
           ),
