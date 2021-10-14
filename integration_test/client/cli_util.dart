@@ -14,6 +14,7 @@ String sendTextGo(String text) {
   const code = "7-guitarist-revenge";
   final res = Process.run(goCliFromTestFileDestPath, [
     'send',
+    '--relay-url', 'ws://localhost:4000/v1',
     '--code', code,
     '--text', text,
   ],
@@ -28,6 +29,7 @@ String sendTextGo(String text) {
 String recvTextGo(String code) {
   final res = Process.runSync(goCliFromTestFileDestPath, [
     'receive',
+    '--relay-url', 'ws://localhost:4000/v1',
     code,
   ],
     workingDirectory: testFileDestDir,
@@ -39,6 +41,8 @@ Future<File> recvFileGo(String code, String filename) async {
   final done = Completer<File>();
   final recvProcess = await Process.start(goCliFromTestFileDestPath, [
     'receive', code,
+    '--relay-url', 'ws://localhost:4000/v1',
+    '--transit-helper', 'tcp:localhost:4001',
   ],
     workingDirectory: testFileDestDir,
   );
@@ -69,6 +73,8 @@ Future<String> sendFileGo(String filename) async {
   final sendProcess = await Process.start(
     path.relative(goCliPath, from: testFileSrcDir), [
       'send',
+      '--relay-url', 'ws://localhost:4000/v1',
+      '--transit-helper', 'tcp:localhost:4001',
       filePath,
     ],
     workingDirectory: testFileSrcDir,
