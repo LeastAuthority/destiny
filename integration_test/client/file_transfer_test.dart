@@ -21,9 +21,11 @@ void main() {
     var tempFile = File(path.join(tempDir.path, "${kbs}KB"));
 
     tempFile.createSync();
-    tempFile.writeAsBytesSync(
-        List.generate(1000 * kbs, (index) => random.nextInt(256)),
-        flush: true);
+    for (int i = 0; i < kbs; i++) {
+      tempFile.writeAsBytesSync(
+          List.generate(1000, (index) => random.nextInt(256)),
+          flush: true);
+    }
 
     return tempFile.path;
   }
