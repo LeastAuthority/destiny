@@ -1,0 +1,14 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+magic-wormhole-transit-relay = {editable = true, path = "."}
+
+[packages]
+autobahn = "*"
+twisted = "*"
+
+[requires]
+python_version = "3.9"
