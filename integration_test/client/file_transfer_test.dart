@@ -1,17 +1,18 @@
 import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
-
-import 'package:path/path.dart' as path;
-import 'package:flutter_test/flutter_test.dart';
 
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:path/path.dart' as path;
+
 import './cli_util.dart';
+import '../../../../../../.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/lib/crypto.dart';
 
 void main() {
   final tempDir = Directory.systemTemp.createTempSync("wormhole_test_files");
   final random = Random(9001);
   const fileSizesInKb = [1, 10, 100, 1000, 10000, 300000];
+  const maxKbPerWrite = 1000;
 
   setUpAll(() async {
     await buildGoCli(path.join(tempDir.path, "go_cli"));
@@ -21,10 +22,12 @@ void main() {
     var tempFile = File(path.join(tempDir.path, "${kbs}KB"));
 
     tempFile.createSync();
-    for (int i = 0; i < kbs; i++) {
-      tempFile.writeAsBytesSync(
-          List.generate(1000, (index) => random.nextInt(256)),
-          flush: true);
+    var sink = tempFile.openSync(mode: FileMode.write);
+    for (int i = 0; i < kbs;) {
+      var kbsToWrite = i + maxKbPerWrite < kbs ? maxKbPerWrite : kbs - i;
+      sink.writeFromSync(
+          List.generate(1000 * kbsToWrite, (index) => random.nextInt(256)));
+      i += kbsToWrite;
     }
 
     return tempFile.path;
@@ -41,14 +44,12 @@ void main() {
         final code = result.code;
         expect(code, isNotEmpty);
         expect(result.done, completes);
-        print(
-            "File is ${testFilePath}. File size ${File(testFilePath).lengthSync()}, code was: ${code}");
 
         final actualFile = await recvFileGo(code, path.basename(testFilePath));
 
         final actual = actualFile.readAsBytesSync();
         final testData = File(testFilePath).readAsBytesSync();
-        expect(actual, orderedEquals(testData));
+        expect(sha256.convert(actual), equals(sha256.convert(testData)));
       });
 
       test('go CLI -> dart API', () async {
@@ -59,7 +60,8 @@ void main() {
 
         final actualData = await receiver.recvFile(code);
         final testData = File(testFilePath).readAsBytesSync();
-        expect(actualData, orderedEquals(testData));
+
+        expect(sha256.convert(actualData), equals(sha256.convert(testData)));
       });
 
       test('dart API -> dart API', () async {
@@ -73,14 +75,14 @@ void main() {
 
         final actualData = await receiver.recvFile(code);
         final testData = File(testFilePath).readAsBytesSync();
-        expect(actualData, orderedEquals(testData));
+        expect(sha256.convert(actualData), equals(sha256.convert(testData)));
       });
     });
   }
 
   tearDownAll(() {
     try {
-      // tempDir.deleteSync(recursive: true);
+      tempDir.deleteSync(recursive: true);
     } catch (e) {}
   });
 }

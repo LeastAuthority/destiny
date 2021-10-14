@@ -1,9 +1,7 @@
-import 'dart:io';
-import 'package:path/path.dart' as path;
-
-import 'package:flutter_test/flutter_test.dart';
 
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:flutter_test/flutter_test.dart';
+
 import './cli_util.dart';
 
 void main() {
