@@ -14,7 +14,7 @@ void main() {
   const fileSizesInKb = [1, 10, 100, 1000, 10000, 300000];
 
   setUpAll(() async {
-    await buildGoCli();
+    await buildGoCli(path.join(tempDir.path, "go_cli"));
   });
 
   String createFile(int kbs) {
@@ -39,6 +39,8 @@ void main() {
         final code = result.code;
         expect(code, isNotEmpty);
         expect(result.done, completes);
+        print(
+            "File is ${testFilePath}. File size ${File(testFilePath).lengthSync()}, code was: ${code}");
 
         final actualFile = await recvFileGo(code, path.basename(testFilePath));
 
@@ -76,7 +78,7 @@ void main() {
 
   tearDownAll(() {
     try {
-      tempDir.deleteSync(recursive: true);
+      // tempDir.deleteSync(recursive: true);
     } catch (e) {}
   });
 }

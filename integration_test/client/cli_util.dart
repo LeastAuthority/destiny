@@ -3,21 +3,28 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:path/path.dart' as path;
 
-final wormholeWilliamPath = path.join('.', 'dart_wormhole_william', 'wormhole-william');
-final testFileSrcDir = path.join('.', 'integration_test', 'client', 'test_files');
+final wormholeWilliamPath =
+    path.join('.', 'dart_wormhole_william', 'wormhole-william');
+var testFileSrcDir;
 final testFileDestDir = path.join(testFileSrcDir, 'test_dest');
 final goCliPath = path.join(testFileDestDir, 'ww_cli.exe');
-final goCliFromTestFileDestPath = path.join('.', path.relative(goCliPath, from: testFileDestDir));
+final goCliFromTestFileDestPath =
+    "wormhole-william"; // path.join('.', path.relative(goCliPath, from: testFileDestDir));
 
 String sendTextGo(String text) {
   // TODO: read code from stdout (?)
   const code = "7-guitarist-revenge";
-  final res = Process.run(goCliFromTestFileDestPath, [
-    'send',
-    '--relay-url', 'ws://localhost:4000/v1',
-    '--code', code,
-    '--text', text,
-  ],
+  final res = Process.run(
+    goCliFromTestFileDestPath,
+    [
+      'send',
+      '--relay-url',
+      'ws://localhost:4000/v1',
+      '--code',
+      code,
+      '--text',
+      text,
+    ],
     workingDirectory: testFileDestDir,
   );
   res.then((_res) {
@@ -27,11 +34,14 @@ String sendTextGo(String text) {
 }
 
 String recvTextGo(String code) {
-  final res = Process.runSync(goCliFromTestFileDestPath, [
-    'receive',
-    '--relay-url', 'ws://localhost:4000/v1',
-    code,
-  ],
+  final res = Process.runSync(
+    goCliFromTestFileDestPath,
+    [
+      'receive',
+      '--relay-url',
+      'ws://localhost:4000/v1',
+      code,
+    ],
     workingDirectory: testFileDestDir,
   );
   return res.stdout.toString().trimRight();
@@ -39,11 +49,16 @@ String recvTextGo(String code) {
 
 Future<File> recvFileGo(String code, String filename) async {
   final done = Completer<File>();
-  final recvProcess = await Process.start(goCliFromTestFileDestPath, [
-    'receive', code,
-    '--relay-url', 'ws://localhost:4000/v1',
-    '--transit-helper', 'tcp:localhost:4001',
-  ],
+  final recvProcess = await Process.start(
+    goCliFromTestFileDestPath,
+    [
+      'receive',
+      code,
+      '--relay-url',
+      'ws://localhost:4000/v1',
+      '--transit-helper',
+      'tcp:localhost:4001',
+    ],
     workingDirectory: testFileDestDir,
   );
 
@@ -71,10 +86,13 @@ Future<String> sendFileGo(String filename) async {
   final filePath = path.join('.', filename);
   final done = Completer<String>();
   final sendProcess = await Process.start(
-    path.relative(goCliPath, from: testFileSrcDir), [
+    path.relative(goCliPath, from: testFileSrcDir),
+    [
       'send',
-      '--relay-url', 'ws://localhost:4000/v1',
-      '--transit-helper', 'tcp:localhost:4001',
+      '--relay-url',
+      'ws://localhost:4000/v1',
+      '--transit-helper',
+      'tcp:localhost:4001',
       filePath,
     ],
     workingDirectory: testFileSrcDir,
@@ -101,13 +119,17 @@ Future<String> sendFileGo(String filename) async {
   return done.future;
 }
 
-Future<ProcessResult> buildGoCli() {
+Future<ProcessResult> buildGoCli(String goCliFilesDir) {
+  testFileSrcDir = goCliFilesDir;
   final buildOutPath = path.relative(goCliPath, from: wormholeWilliamPath);
-  final resFuture = Process.run('go', [
-    'build',
-    '-o', buildOutPath,
-    '.',
-  ],
+  final resFuture = Process.run(
+    'go',
+    [
+      'build',
+      '-o',
+      buildOutPath,
+      '.',
+    ],
     workingDirectory: wormholeWilliamPath,
   );
 
