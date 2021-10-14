@@ -9,7 +9,7 @@ var testFileSrcDir;
 final testFileDestDir = path.join(testFileSrcDir, 'test_dest');
 final goCliPath = path.join(testFileDestDir, 'ww_cli.exe');
 final goCliFromTestFileDestPath =
-    "wormhole-william"; // path.join('.', path.relative(goCliPath, from: testFileDestDir));
+    path.join('.', path.relative(goCliPath, from: testFileDestDir));
 
 String sendTextGo(String text) {
   // TODO: read code from stdout (?)
