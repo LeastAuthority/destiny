@@ -117,7 +117,7 @@ class _SendDefaultState extends State<SendDefault> {
         child:Container(
           width: double.infinity,
           key: Key(SEND_SCREEN_BODY),
-          padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
+          padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
           child: Column(
                     key: Key(SEND_SCREEN_CONTENT),
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

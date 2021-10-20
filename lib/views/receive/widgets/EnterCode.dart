@@ -1,4 +1,5 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/widgets/FileInfo.dart';
@@ -25,6 +26,12 @@ class EnterCode extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 100.0,
             height: 150.0.h,
             child: TextField(
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17.sp,
+                fontFamily: MONTSERRAT,
+                fontWeight: FontWeight.w300,
+              ),
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 hintStyle: TextStyle(fontSize: 14.0, color: Colors.white, ),

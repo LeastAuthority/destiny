@@ -35,7 +35,7 @@ class CustomBottomBar extends StatelessWidget {
     }
     return Container(
         padding: EdgeInsets.only(bottom: 1.0),
-        color: Colors.black,
+        color: Color(0x363837),
         key: Key(BOTTOM_NAV_BAR_CONTAINER),
         child: Container(
         key: Key(BOTTOM_NAV_BAR_BODY),
@@ -88,7 +88,10 @@ class CustomBottomBar extends StatelessWidget {
                               onPressed: () {
                                 // String? currentRoute = ModalRoute.of(context)!.settings.name;
                                 // if(currentRoute != SEND_ROUTE || currentRoute  != RECEIVE_ROUTE)
-                                Navigator.pushReplacementNamed(context, RECEIVE_ROUTE);
+                                Navigator.pushReplacementNamed(
+                                    context,
+                                    RECEIVE_ROUTE,
+                                );
                               },
                               child:  Column(
                                 children: [

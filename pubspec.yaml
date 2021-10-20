@@ -41,6 +41,7 @@ dependencies:
   app_settings: ^4.1.1
   filepicker_windows: ^2.0.0
   fluttertoast: ^8.0.8
+  page_transition: ^2.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
