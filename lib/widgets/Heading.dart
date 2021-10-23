@@ -6,17 +6,20 @@ class Heading extends StatelessWidget {
   String? subTitle;
   TextAlign? textAlign;
   double marginTop = 0.0;
-  double? fontSize;
-  String? fontFamily;
-  FontWeight? fontWeight;
-  Heading({Key? key, String? title, String? subTitle, TextAlign? textAlign, double marginTop=0, double? fontSize, String? fontFamily, FontWeight? fontWeight}):super(key:key) {
+  TextStyle? textStyle;
+  Heading({
+    Key? key,
+    String? title,
+    String? subTitle,
+    TextAlign? textAlign,
+    double marginTop=0,
+    TextStyle? textStyle
+  }):super(key:key) {
     this.title = title;
     this.subTitle = subTitle;
     this.textAlign = textAlign;
     this.marginTop = marginTop;
-    this.fontSize = fontSize;
-    this.fontFamily = fontFamily;
-    this.fontWeight = fontWeight;
+    this.textStyle = textStyle;
   }
   @override
   Widget build(BuildContext context) {
@@ -26,12 +29,7 @@ class Heading extends StatelessWidget {
         margin: EdgeInsets.only(top:marginTop),
         child: Text('${title}',
           textAlign: textAlign,
-          style:TextStyle(
-              color: Color(0xFFFDFCFC),
-              fontSize: fontSize,
-              fontFamily: fontFamily,
-              fontWeight: fontWeight
-          ),
+            style: textStyle
         ),
       );
 
@@ -41,26 +39,21 @@ class Heading extends StatelessWidget {
           margin: EdgeInsets.only(top:marginTop),
           child: Text('${title}',
             textAlign: textAlign,
-            style:TextStyle(
-                color: Color(0xFFFDFCFC),
-                fontSize: fontSize,
-                fontFamily: fontFamily,
-                fontWeight: fontWeight
-            ),
+            style: textStyle
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top:marginTop),
-          child: Text('${subTitle}',
-            textAlign: textAlign,
-            style:TextStyle(
-                color: Colors.white,
-                fontSize: fontSize,
-                fontFamily: fontFamily,
-                fontWeight: FontWeight.bold
-            ),
-          ),
-        )
+        // Container(
+        //   margin: EdgeInsets.only(top:marginTop),
+        //   child: Text('${subTitle}',
+        //     textAlign: textAlign,
+        //     style:TextStyle(
+        //         color: Colors.white,
+        //         // fontSize: fontSize,
+        //         // fontFamily: fontFamily,
+        //         fontWeight: FontWeight.bold
+        //     ),
+        //   ),
+        // )
       ],
     );
   }

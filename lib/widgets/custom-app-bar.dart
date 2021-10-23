@@ -33,42 +33,40 @@ class _CustomAppBarState extends State<CustomAppBar> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
-                child: Container(
+               Container(
+                  key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
                   alignment: Alignment.centerLeft,
                   height: 60.0.h,
-                  // width: 70.0.w,
                   padding: EdgeInsets.only(left:8.0.w),
-                  child:  Text(
+                  child: Text(
                       '$title',
-                      style: TextStyle(
-                          fontSize: 20.0.sp,
-                          color: Colors.white,fontFamily: LATO,
-                          fontWeight: FontWeight.w500)
+                      style: Theme.of(context).textTheme.headline2,
                   ),
                 ),
-              ),
-              Expanded(
-                key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
-                child:  Container(
-                    height: 60.0.h,
-                    // width: 70.0.w,
+                Container(
+                  key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
+                  height: 60.0.h,
                     alignment: Alignment.center,
-                    child: Image.asset(
+                    child: GestureDetector(
+                     onTap: () {
+                       Navigator.pushNamed(context, SEND_ROUTE);
+                     },
+                     child: Image.asset(
                       LOGO,
                       width: 76.0.w,
                     ),
-                  ),
-              ),
-               Expanded(
+                  )
+                ),
+               Container(
                  key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
                  child:
                  PopupMenuButton(
-                   // onSelected: (result) { setState(() { _selection = result; }); },
-                     color: Colors.black,
+                    onSelected: (result) {
+                      Navigator.pushNamed(context, SETTINGS_ROUTE);
+                    },
+                     color: Theme.of(context).scaffoldBackgroundColor,
                      icon: Image.asset(
-                       LOGO,
+                       BURGER_ICON,
                        width: 76.0.w,
                      ),
                      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
@@ -76,14 +74,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
                        value:'WhyFarther.harder',
                        child: Text(
                            CUSTOM_NAV_BAR_MENU_FANDQ_ITEM,
-                           style: TextStyle(color: Colors.white)
+                           style: TextStyle(color: Theme.of(context).colorScheme.secondary)
                        ),
                      ),
                       PopupMenuItem(
-                       value: 'WhyFarther.smarter',
+                       value: 'settings',
                        child: Text(
                            SETTINGS,
-                           style: TextStyle(color: Colors.white)
+                           style: TextStyle(color: Theme.of(context).colorScheme.secondary)
                        )
                      ),
                    ],
@@ -91,7 +89,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                )
             ],
           ),
-           Divider(height: 1.0.h, color: Colors.white),
+           Divider(
+               height: 1.0.h,
+               color: Theme.of(context).colorScheme.secondary
+           ),
           ],
         )
     );

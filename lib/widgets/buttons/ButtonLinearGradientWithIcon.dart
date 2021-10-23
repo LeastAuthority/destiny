@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,11 +30,12 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
   Widget build(BuildContext context) {
 
     BoxDecoration getBorder () {
-      // var BORDER_COLOR = this.isVertical!? Colors.white : Color(0xffC24DF8);
-      var BORDER_COLOR = this.isVertical!? Colors.white : Color(0x00C24DF8);
+      var BORDER_COLOR = this.isVertical!?
+        Theme.of(context).colorScheme.secondary :
+         Theme.of(context).primaryColor;
       return  BoxDecoration(
        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-         color: Colors.black,
+        color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
           top: BorderSide(width: 2.0, color: BORDER_COLOR),
           left: BorderSide(width: 2.0, color: BORDER_COLOR),
@@ -57,8 +59,8 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
          gradient: LinearGradient(
            begin: Alignment.centerLeft,
            colors: <Color>[
-             Color(0xffC24DF8),
-             Color(0xff33B6FF)
+             Theme.of(context).primaryColor,
+             CustomColors.lightBlue
            ], // red to yellow
            tileMode: TileMode.repeated, // repeats the gradient over the canvas
          ),
@@ -73,17 +75,16 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
                 this.handleSelectFile!();
               }
             },
-            color: Color(0x00353846),
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: SizedBox(
               child:Row( // Replace with a Row for horizontal icon + text
                 children: <Widget>[
                   Expanded(
                     flex: 5,
-                    // margin: EdgeInsets.only(right: 8.0.w),
                     child: Text(
                         '${label}',
                         textAlign: TextAlign.center,
-                        style:TextStyle(color: Colors.white, fontSize: 12.sp)
+                        style:Theme.of(context).textTheme.bodyText2
                     ),
                   ),
                   Expanded(

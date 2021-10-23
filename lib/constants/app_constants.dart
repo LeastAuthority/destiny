@@ -12,6 +12,7 @@ final String SELECT_A_FILE = 'Select a File';
 final String SELECT_A_FOLDER = 'Select a Folder';
 final String NEXT = 'Next';
 final String CANCEL = 'Cancel';
+final String BACK = 'Back';
 final String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE = 'Select default save destination for this device.';
 final String CURRENT_SAVE_DESTINATION = 'Current save destination:';
 final String GENERATION_CODE = 'Generating Code';
@@ -57,5 +58,7 @@ final String SPLASH_SCREEN_LOADING= 'SPLASH_SCREEN_LOADING';
 final String SETTINGS_SCREEN_BODY = 'SETTINGS_SCREEN_BODY';
 final String SETTINGS_SCREEN_CONTENT = 'SETTINGS_SCREEN_CONTENT';
 final String SETTINGS_SCREEN_HEADING = 'SETTINGS_SCREEN_HEADING';
+final String SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON = 'SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON';
+final String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER = 'SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER';
 
 

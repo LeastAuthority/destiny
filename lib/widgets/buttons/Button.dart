@@ -21,11 +21,10 @@ class _CustomAppBarState extends State<Button> {
 
   @override
   Widget build(BuildContext context) {
-    //0xff808080
     return Container(
       margin: EdgeInsets.only(top:22.0.h),
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border(
           top: BorderSide(width: 1.0, color: Colors.white),
           left: BorderSide(width: 1.0, color:  Colors.white),
@@ -38,8 +37,10 @@ class _CustomAppBarState extends State<Button> {
       // margin: const EdgeInsets.all(8.0),
       child:  FlatButton(
         onPressed: () => handleSelectFile(),
-        color: Color(0x00353846),
-        child:Text('${title}', style:TextStyle(color: Colors.white, fontSize: 12.sp, fontFamily: MONTSERRAT)),
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child:Text('${title}',
+            style: Theme.of(context).textTheme.bodyText2
+        ),
       ),
     );
   }

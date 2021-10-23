@@ -37,7 +37,7 @@ class ButtonWithIcon extends StatelessWidget {
               }
             },
             style: ElevatedButton.styleFrom(
-              primary: _flag ? Colors.red : Color(0x00353846),
+              primary: Theme.of(context).scaffoldBackgroundColor,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +48,10 @@ class ButtonWithIcon extends StatelessWidget {
                   child: icon,
                 ),
                 Container(
-                  child: Text('${label}', style:TextStyle(color: Colors.white, fontSize: 12.sp)),
+                  child: Text(
+                      '${label}',
+                      style: Theme.of(context).textTheme.bodyText2
+                  ),
                 ),
               ],
             )
@@ -60,7 +63,7 @@ class ButtonWithIcon extends StatelessWidget {
                 this.handleSelectFile!();
               }
             },
-            color: Color(0x00353846),
+            color: Theme.of(context).primaryColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -71,11 +74,7 @@ class ButtonWithIcon extends StatelessWidget {
                 ),
                 Container(
                   child: Text('${label}',
-                      style:TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.sp,
-                          fontFamily: ROBOTO,
-                          fontWeight: FontWeight.w500)
+                      style: Theme.of(context).textTheme.headline1
                   ),
                 ),
               ],
@@ -84,11 +83,16 @@ class ButtonWithIcon extends StatelessWidget {
 
     }
     BoxDecoration getBorder () {
-      var BORDER_COLOR = this.isVertical!? Colors.white : Color(0xffC24DF8);
-      var BACKGEOUND_COLOR = this.isVertical!? Color(0x00ffffff): Color(0xffC24DF8);
+      var BORDER_COLOR = this.isVertical!?
+       Theme.of(context).colorScheme.secondary :
+        Theme.of(context).primaryColor;
+
+      var BACKGEOUND_COLOR = this.isVertical!?
+       Theme.of(context).colorScheme.secondary :
+         Theme.of(context).primaryColor;
 
       return  BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderRadius: BorderRadius.all(Radius.circular(5.0)),
         color: BACKGEOUND_COLOR,
         border: Border(
           top: BorderSide(width: 1.0, color: BORDER_COLOR),

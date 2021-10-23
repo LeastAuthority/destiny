@@ -35,7 +35,7 @@ class CustomBottomBar extends StatelessWidget {
     }
     return Container(
         padding: EdgeInsets.only(bottom: 1.0),
-        color: Color(0x363837),
+        color: Theme.of(context).scaffoldBackgroundColor,
         key: Key(BOTTOM_NAV_BAR_CONTAINER),
         child: Container(
         key: Key(BOTTOM_NAV_BAR_BODY),
@@ -67,7 +67,7 @@ class CustomBottomBar extends StatelessWidget {
                           ),
                               Text(
                                 SEND,
-                                style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
+                                style: Theme.of(context).textTheme.headline4
                               )
                             ],
                           )
@@ -102,7 +102,7 @@ class CustomBottomBar extends StatelessWidget {
                                   ),
                                   Text(
                                     RECEIVE,
-                                    style: TextStyle(color: Colors.white, fontFamily: LATO, fontSize: 12.sp),
+                                    style: Theme.of(context).textTheme.headline4,
                                   )
                                 ],
                               )

@@ -19,7 +19,12 @@ class FileInfo extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text('${fileName}',
-              style:TextStyle(color: Colors.white, fontSize: 17.sp, fontFamily: ROBOTO ,fontWeight: FontWeight.bold),
+              style:TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontSize: 17.sp,
+                  fontFamily: ROBOTO,
+                  fontWeight: FontWeight.bold
+              ),
             ),
           ),
         ),
@@ -27,7 +32,7 @@ class FileInfo extends StatelessWidget {
           title: '(${fileSize} kb)',
           textAlign: TextAlign.center,
           marginTop:0,
-          fontSize:12.sp,
+          textStyle: Theme.of(context).textTheme.bodyText2,
           key: Key('File_Info_Description'),
         ),
       ],

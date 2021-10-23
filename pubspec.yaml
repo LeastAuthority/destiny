@@ -79,6 +79,7 @@ flutter:
     - assets/images/icons/Paste-white.png
     - assets/images/icons/DEVICEWHITE.png
     - assets/images/icons/SETTINGS-WHITE-with-circle.png
+    - assets/images/icons/Hamburger-Menu-White.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

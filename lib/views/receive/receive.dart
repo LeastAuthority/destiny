@@ -55,7 +55,6 @@ class _ReceiveState extends State<Receive> {
         title: RECEIVE,
         key: Key(CUSTOM_NAV_BAR),
       ),
-      backgroundColor: Color(0xff1A1C2E),
       body: WillPopScope(
         onWillPop: () async => false,
         child:Container(
@@ -70,7 +69,7 @@ class _ReceiveState extends State<Receive> {
               title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
               textAlign: TextAlign.left,
               marginTop:0,
-              fontSize: 14.sp,
+              textStyle: Theme.of(context).textTheme.bodyText1,
               key:  Key(RECEIVE_SCREEN_HEADING),
             ),
             EnterCode(key: Key(RECEIVE_SCREEN_ENTER_CODE),),

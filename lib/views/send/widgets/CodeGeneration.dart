@@ -26,10 +26,8 @@ class CodeGeneration extends StatelessWidget {
             title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
             textAlign:TextAlign.center,
             marginTop: 16.0.h,
-            fontSize: 12.sp,
-            key:Key(GENERATION_DESCRIPTION),
-            fontFamily: MONTSERRAT,
-            fontWeight: FontWeight.w300,
+            textStyle: Theme.of(context).textTheme.bodyText2,
+          key:Key(GENERATION_DESCRIPTION),
         ),
         Button(CANCEL, () {
         })

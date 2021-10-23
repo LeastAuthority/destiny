@@ -81,16 +81,16 @@ class _SendDefaultState extends State<SendDefault> {
         );
 
       return ButtonWithIcon(
-          label:SELECT_A_FILE,
-          handleSelectFile:handleSelectFile,
+          label: SELECT_A_FILE,
+          handleSelectFile: handleSelectFile,
           icon:Image.asset(
             PHONE_ICON,
             width: 30.0.w,
           ),
-        height:60.0.h,
-        width: 200.0.w,
-        isVertical: false,
-        key:Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)
+          height:60.0.h,
+          width: 200.0.w,
+          isVertical: false,
+          key:Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)
       );
 
       //Warning!! Don't delete next 2 comment
@@ -99,9 +99,6 @@ class _SendDefaultState extends State<SendDefault> {
   }
   @override
   Widget build(BuildContext context) {
-    void test () {
-      print(ModalRoute.of(context));
-    }
     return Scaffold(
         bottomNavigationBar:  CustomBottomBar(
              path: SEND_ROUTE,
@@ -111,7 +108,6 @@ class _SendDefaultState extends State<SendDefault> {
             title:SEND,
             key:Key(CUSTOM_NAV_BAR),
         ),
-        backgroundColor: Color(0xff1A1C2E),
         body: WillPopScope(
         onWillPop: () async => false,
         child:Container(
@@ -126,10 +122,8 @@ class _SendDefaultState extends State<SendDefault> {
                       Heading(
                         title: SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST,
                         textAlign: TextAlign.left,
-                        marginTop:0,
-                        fontSize: 14.sp,
-                        fontFamily: LATO,
-                        fontWeight: FontWeight.w300,
+                        marginTop: 0,
+                        textStyle: Theme.of(context).textTheme.bodyText1,
                         key: Key(SEND_SCREEN_HEADING),
                       ),
                       getCodeGenerationUI(),

@@ -93,23 +93,26 @@ class IntroScreenState extends State<IntroScreen> {
     return new IntroSlider(
       // List slides
       slides: this.slides,
+      showSkipBtn: false,
+      showNextBtn: false,
+      showPrevBtn: false,
+      //showDoneBtn: false,
 
       // Skip button
-      renderSkipBtn: this.renderSkipBtn(),
-      skipButtonStyle: myButtonStyle(),
+      // renderSkipBtn: this.renderSkipBtn(),
+      // skipButtonStyle: myButtonStyle(),
 
       // Next button
-      renderNextBtn: this.renderNextBtn(),
-      nextButtonStyle: myButtonStyle(),
+      // renderNextBtn: this.renderNextBtn(),
+      // nextButtonStyle: myButtonStyle(),
 
       // Done button
       renderDoneBtn: this.renderDoneBtn(),
       onDonePress: this.onDonePress,
       doneButtonStyle: myButtonStyle(),
-
       // Dot indicator
-      colorDot: Color(0x33FFA8B0),
-      colorActiveDot: Color(0xffFFA8B0),
+      colorDot: Theme.of(context).scaffoldBackgroundColor,
+      colorActiveDot: Theme.of(context).colorScheme.secondary,
       sizeDot: 13.0,
 
       // Show or hide status bar

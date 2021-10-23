@@ -10,9 +10,7 @@ import '../../../widgets/FileInfo.dart';
 class SendingProgress extends StatelessWidget {
   final int fileSize;
   final String fileName;
-
   SendingProgress(this.fileSize, this.fileName);
-
   @override
   Widget build(BuildContext context) {
     return   Column(
@@ -28,18 +26,14 @@ class SendingProgress extends StatelessWidget {
           title: '2 Seconds',
           textAlign: TextAlign.left,
           marginTop:16.0.h,
-          fontSize:12.sp,
-          fontFamily: MONTSERRAT,
-          fontWeight: FontWeight.w300,
+          textStyle: Theme.of(context).textTheme.bodyText2,
           key: Key('Timing_Progress'),
         ),
         Heading(
           title: 'App must remain open until the transfer is complete.',
           textAlign: TextAlign.center,
           marginTop:16.0.h,
-          fontSize:18.sp,
-          fontFamily: MONTSERRAT,
-          fontWeight: FontWeight.w300,
+          textStyle: Theme.of(context).textTheme.bodyText1,
           key: Key('APP_MUST_REMAIN_OPEN'),
         ),
         Button('Cancel', () {})
