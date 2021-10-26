@@ -28,6 +28,10 @@ class MyApp extends StatelessWidget {
                            return PageRouteBuilder(pageBuilder: (_, __, ___) => Splash());
                          }
                          break;
+                         case INTRO_ROUTE: {
+                           return PageRouteBuilder(pageBuilder: (_, __, ___) => IntroScreen());
+                         }
+                         break;
                        }
                         return null;
                       },
