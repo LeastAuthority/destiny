@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'config/routes/routes.dart';
-import 'config/theme/custom_theme.dart';
-import 'views/introduction-slider.dart';
-import 'views/settings.dart';
-import 'views/splash.dart';
-import 'views/send/send.dart';
 import 'package:flutter/widgets.dart';
-import 'views/receive/receive.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:dart_wormhole_gui/config/routes/routes.dart';
+import 'package:dart_wormhole_gui/config/theme/custom_theme.dart';
+import 'package:dart_wormhole_gui/views/introduction-slider.dart';
+import 'package:dart_wormhole_gui/views/settings.dart';
+import 'package:dart_wormhole_gui/views/splash.dart';
+import 'package:dart_wormhole_gui/views/send/send.dart';
+import 'package:dart_wormhole_gui/views/receive/receive.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
