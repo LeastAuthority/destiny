@@ -21,7 +21,9 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  flutter_screenutil: ^5.0.0+2
   shared_preferences: ^2.0.6
+  file_picker: ^3.0.3
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider
@@ -32,6 +34,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   app_settings: ^4.1.1
+  filepicker_windows: ^2.0.0
   page_transition: ^2.0.4
 dev_dependencies:
   flutter_test:
