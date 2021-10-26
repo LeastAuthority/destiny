@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/views/settings.dart';
 import 'package:dart_wormhole_gui/views/splash.dart';
 
  void main() {
@@ -21,4 +22,15 @@ import 'package:dart_wormhole_gui/views/splash.dart';
    });
 
 
+   testWidgets('Settings screen', (WidgetTester tester) async {
+     await tester.pumpWidget(
+       MaterialApp(
+         home: ScreenUtilInit(
+             designSize: Size(375,590), builder: () => Settings()),
+       ),
+     );
+     final settingsScreenBody = find.byKey(Key(SETTINGS_SCREEN_BODY));
+
+     expect(settingsScreenBody, findsOneWidget);
+   });
 }
