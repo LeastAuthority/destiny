@@ -32,6 +32,10 @@ class MyApp extends StatelessWidget {
                            return PageRouteBuilder(pageBuilder: (_, __, ___) => IntroScreen());
                          }
                          break;
+                         case SETTINGS_ROUTE: {
+                           return PageRouteBuilder(pageBuilder: (_, __, ___) => Settings());
+                         }
+                         break;
                        }
                         return null;
                       },
