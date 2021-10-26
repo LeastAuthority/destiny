@@ -6,6 +6,7 @@ import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/settings.dart';
 import 'package:dart_wormhole_gui/views/splash.dart';
+import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
 
  void main() {
@@ -34,6 +35,29 @@ import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
      final settingsScreenBody = find.byKey(Key(SETTINGS_SCREEN_BODY));
 
      expect(settingsScreenBody, findsOneWidget);
+   });
+
+   testWidgets('Custom App Bar', (WidgetTester tester) async {
+     await tester.pumpWidget(
+         MaterialApp(
+             home: Scaffold(
+                appBar:  CustomAppBar(
+                 key: Key(CUSTOM_NAV_BAR),
+                 title: SETTINGS
+               ),
+         ))
+     );
+     final customNavbarBody = find.byKey(Key(CUSTOM_NAV_BAR_BODY));
+     final customNavbarContainer = find.byKey(Key(CUSTOM_NAV_BAR_CONTAINER));
+     final customNavbarLeftItem = find.byKey(Key(CUSTOM_NAV_BAR_LEFT_ITEM));
+     final customNavbarRightItem = find.byKey(Key(CUSTOM_NAV_BAR_RIGHT_ITEM));
+     final customNavbarMiddleItem = find.byKey(Key(CUSTOM_NAV_BAR_MIDDLE_ITEM));
+
+     expect(customNavbarBody, findsOneWidget);
+     expect(customNavbarContainer, findsOneWidget);
+     expect(customNavbarLeftItem, findsOneWidget);
+     expect(customNavbarRightItem, findsOneWidget);
+     expect(customNavbarMiddleItem, findsOneWidget);
    });
 
    testWidgets('Custom BottomBar', (WidgetTester tester) async {
