@@ -6,6 +6,7 @@ import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/settings.dart';
 import 'package:dart_wormhole_gui/views/splash.dart';
+import 'package:dart_wormhole_gui/views/send/send.dart';
 import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
 
@@ -24,6 +25,32 @@ import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
      expect(splashScreenLoading, findsOneWidget);
    });
 
+   testWidgets('Send screen', (WidgetTester tester) async {
+     await tester.pumpWidget(
+       MaterialApp(
+         home: ScreenUtilInit(
+             designSize: Size(375,590), builder: () => SendDefault()),
+       ),
+     );
+
+     // Create the Finders.
+     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
+     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
+     final sendScreenContent = find.byKey(Key(SEND_SCREEN_CONTENT));
+     final sendScreenHeading = find.byKey(Key(SEND_SCREEN_HEADING));
+     final sendScreenBottomPlaceholder = find.byKey(Key(SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER));
+     final sendScreenSelectAFileButton = find.byKey(Key(SEND_SCREEN_SELECT_A_FILE_BUTTON));
+     // final sendScreenCodeGenerationUI = find.byKey(Key(SEND_SCREEN_CODE_GENERATION_UI));
+
+
+     expect(navbar, findsOneWidget);
+     expect(bottomNav, findsOneWidget);
+     expect(sendScreenContent, findsOneWidget);
+     expect(sendScreenHeading, findsOneWidget);
+     expect(sendScreenBottomPlaceholder, findsOneWidget);
+     expect(sendScreenSelectAFileButton, findsOneWidget);
+     // expect(sendScreenCodeGenerationUI, findsOneWidget);
+   });
 
    testWidgets('Settings screen', (WidgetTester tester) async {
      await tester.pumpWidget(
