@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/views/receive/receive.dart';
 import 'package:dart_wormhole_gui/views/settings.dart';
 import 'package:dart_wormhole_gui/views/splash.dart';
 import 'package:dart_wormhole_gui/views/send/send.dart';
@@ -50,6 +51,31 @@ import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
      expect(sendScreenBottomPlaceholder, findsOneWidget);
      expect(sendScreenSelectAFileButton, findsOneWidget);
      // expect(sendScreenCodeGenerationUI, findsOneWidget);
+   });
+
+   testWidgets('Receive screen', (WidgetTester tester) async {
+     await tester.pumpWidget(
+       MaterialApp(
+         home: ScreenUtilInit(
+             designSize: Size(375,590), builder: () => Receive()),
+       ),
+     );
+
+     // Create the Finders.
+     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
+     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
+
+     final receiveScreenBody = find.byKey(Key(RECEIVE_SCREEN_BODY));
+     final receiveScreenContent = find.byKey(Key(RECEIVE_SCREEN_CONTENT));
+     final receiveScreenHeading = find.byKey(Key(RECEIVE_SCREEN_HEADING));
+     final receiveScreenEnterCode = find.byKey(Key(RECEIVE_SCREEN_ENTER_CODE));
+
+     expect(navbar, findsOneWidget);
+     expect(bottomNav, findsOneWidget);
+     expect(receiveScreenBody, findsOneWidget);
+     expect(receiveScreenContent, findsOneWidget);
+     expect(receiveScreenHeading, findsOneWidget);
+     expect(receiveScreenEnterCode, findsOneWidget);
    });
 
    testWidgets('Settings screen', (WidgetTester tester) async {
