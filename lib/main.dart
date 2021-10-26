@@ -5,6 +5,7 @@ import 'config/theme/custom_theme.dart';
 import 'views/introduction-slider.dart';
 import 'views/settings.dart';
 import 'views/splash.dart';
+import 'views/send/send.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() {
@@ -30,6 +31,10 @@ class MyApp extends StatelessWidget {
                          break;
                          case INTRO_ROUTE: {
                            return PageRouteBuilder(pageBuilder: (_, __, ___) => IntroScreen());
+                         }
+                         break;
+                         case SEND_ROUTE: {
+                           return PageRouteBuilder(pageBuilder: (_, __, ___) => SendDefault());
                          }
                          break;
                          case SETTINGS_ROUTE: {
