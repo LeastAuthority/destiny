@@ -7,6 +7,7 @@ import 'views/settings.dart';
 import 'views/splash.dart';
 import 'views/send/send.dart';
 import 'package:flutter/widgets.dart';
+import 'views/receive/receive.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,10 @@ class MyApp extends StatelessWidget {
                          break;
                          case SEND_ROUTE: {
                            return PageRouteBuilder(pageBuilder: (_, __, ___) => SendDefault());
+                         }
+                         break;
+                         case RECEIVE_ROUTE: {
+                           return PageRouteBuilder(pageBuilder: (_, __, ___) => Receive());
                          }
                          break;
                          case SETTINGS_ROUTE: {
