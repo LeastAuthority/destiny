@@ -1,30 +1,24 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:dart_wormhole_gui/main.dart';
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/views/splash.dart';
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+ void main() {
+   testWidgets('Splash screen', (WidgetTester tester) async {
+     await tester.pumpWidget(
+       MaterialApp(
+         home: ScreenUtilInit(
+             designSize: Size(375,590), builder: () => Splash()),
+       ),
+     );
+     final splashScreenBody = find.byKey(Key(SPLASH_SCREEN_BODY));
+     final splashScreenLoading = find.byKey(Key(SPLASH_SCREEN_LOADING));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+     expect(splashScreenBody, findsOneWidget);
+     expect(splashScreenLoading, findsOneWidget);
+   });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
 }
