@@ -5,5 +5,5 @@ class CustomColors {
   static const Color purple = Color(0xffC24DF8);
   static const Color lightPurple = Color(0xffc98ae6);
   static const Color lightBlue = Color(0xff33B6FF);
-  static const Color babyPowder = Color(0xFFFFFFFC);
+  static const Color babyPowder = Color(0xFFFDFAFA);
 }
