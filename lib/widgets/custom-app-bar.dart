@@ -20,7 +20,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  String? title;
+   String? title;
   _CustomAppBarState(this.title);
 
   @override
@@ -32,29 +32,30 @@ class _CustomAppBarState extends State<CustomAppBar> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
+            children: [
+               Container(
                   key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    height: 60.0.h,
-                    padding: EdgeInsets.only(left:8.0.w),
-                    child:  Text(
-                        '$title',
+                  alignment: Alignment.centerLeft,
+                  height: 60.0.h,
+                  padding: EdgeInsets.only(left:8.0.w),
+                  child: Text(
+                      '$title',
                       style: Theme.of(context).textTheme.headline2,
-                    ),
                   ),
                 ),
-                Expanded(
+                Container(
                   key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
-                  child:  Container(
-                    height: 60.0.h,
+                  height: 60.0.h,
                     alignment: Alignment.center,
-                    child: Image.asset(
+                    child: GestureDetector(
+                     onTap: () {
+                       Navigator.pushNamed(context, SEND_ROUTE);
+                     },
+                     child: Image.asset(
                       LOGO,
                       width: 76.0.w,
                     ),
-                  ),
+                  )
                 ),
                 Expanded(
                   key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
