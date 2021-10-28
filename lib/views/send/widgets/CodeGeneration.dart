@@ -19,18 +19,37 @@ class CodeGeneration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        FileInfo(fileSize, fileName),
-        RowGroupButton(GENERATION_CODE, code),
         Heading(
-            title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
-            textAlign:TextAlign.center,
-            marginTop: 16.0.h,
-            textStyle: Theme.of(context).textTheme.bodyText2,
-          key:Key(GENERATION_DESCRIPTION),
+          title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
+          textAlign: TextAlign.left,
+          marginTop: 0,
+          textStyle: Theme.of(context).textTheme.bodyText1,
+          key: Key(SEND_SCREEN_HEADING),
         ),
-        Button(CANCEL, () {
-        })
+        Column(
+          children: [
+            FileInfo(fileSize, fileName),
+            RowGroupButton(GENERATION_CODE, code),
+            Heading(
+              title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
+              textAlign:TextAlign.center,
+              marginTop: 16.0.h,
+              textStyle: Theme.of(context).textTheme.bodyText2,
+              key:Key(GENERATION_DESCRIPTION),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Button(CANCEL, () {
+            }),
+            SizedBox(
+              height: 37.0.h,
+            )
+          ],
+        )
       ],
     );
   }

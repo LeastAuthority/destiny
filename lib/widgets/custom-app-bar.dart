@@ -20,7 +20,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-   String? title;
+  String? title;
   _CustomAppBarState(this.title);
 
   @override
@@ -32,67 +32,54 @@ class _CustomAppBarState extends State<CustomAppBar> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-               Container(
+              children: [
+                Expanded(
                   key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
-                  alignment: Alignment.centerLeft,
-                  height: 60.0.h,
-                  padding: EdgeInsets.only(left:8.0.w),
-                  child: Text(
-                      '$title',
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    height: 60.0.h,
+                    // width: 70.0.w,
+                    padding: EdgeInsets.only(left:8.0.w),
+                    child:  Text(
+                        '$title',
                       style: Theme.of(context).textTheme.headline2,
+                    ),
                   ),
                 ),
-                Container(
+                Expanded(
                   key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
-                  height: 60.0.h,
+                  child:  Container(
+                    height: 60.0.h,
+                    // width: 70.0.w,
                     alignment: Alignment.center,
-                    child: GestureDetector(
-                     onTap: () {
-                       Navigator.pushNamed(context, SEND_ROUTE);
-                     },
-                     child: Image.asset(
+                    child: Image.asset(
                       LOGO,
                       width: 76.0.w,
                     ),
-                  )
+                  ),
                 ),
-               Container(
-                 key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
-                 child:
-                 PopupMenuButton(
-                    onSelected: (result) {
-                      Navigator.pushNamed(context, SETTINGS_ROUTE);
-                    },
-                     color: Theme.of(context).scaffoldBackgroundColor,
-                     icon: Image.asset(
-                       BURGER_ICON,
-                       width: 76.0.w,
-                     ),
-                     itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                      PopupMenuItem(
-                       value:'WhyFarther.harder',
-                       child: Text(
-                           CUSTOM_NAV_BAR_MENU_FANDQ_ITEM,
-                           style: TextStyle(color: Theme.of(context).colorScheme.secondary)
-                       ),
-                     ),
-                      PopupMenuItem(
-                       value: 'settings',
-                       child: Text(
-                           SETTINGS,
-                           style: TextStyle(color: Theme.of(context).colorScheme.secondary)
-                       )
-                     ),
-                   ],
-                 )
-               )
-            ],
-          ),
-           Divider(
-               height: 1.0.h,
-               color: Theme.of(context).colorScheme.secondary
-           ),
+                Expanded(
+                  key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
+                  child: Container(
+                    height: 60.0.h,
+                    // width: 70.0.w,
+                    alignment: Alignment.centerRight,
+                    child:  FlatButton.icon(
+                        label: Text(''),
+                        onPressed: () {
+                          if(title != SETTINGS)
+                            Navigator.pushNamed(context, SETTINGS_ROUTE);
+                        },
+                        icon: Image.asset(title == SETTINGS?
+                        SETTINGS_ICON_WITH_CIRCLE:SETTINGS_ICON,
+                          width: 25.0.w,
+                        )
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Divider(height: 1.0.h, color: Colors.white),
           ],
         )
     );

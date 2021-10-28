@@ -35,7 +35,8 @@ class CustomBottomBar extends StatelessWidget {
     }
     return Container(
         padding: EdgeInsets.only(bottom: 1.0),
-        color: Theme.of(context).scaffoldBackgroundColor,
+        // color: Theme.of(context).scaffoldBackgroundColor,
+        color: Color(0xff363847),
         key: Key(BOTTOM_NAV_BAR_CONTAINER),
         child: Container(
         key: Key(BOTTOM_NAV_BAR_BODY),

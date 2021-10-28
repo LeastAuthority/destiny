@@ -26,10 +26,10 @@ class _CustomAppBarState extends State<Button> {
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border(
-          top: BorderSide(width: 1.0, color: Colors.white),
-          left: BorderSide(width: 1.0, color:  Colors.white),
-          right: BorderSide(width: 1.0, color:  Colors.white),
-          bottom: BorderSide(width: 1.0, color:  Colors.white),
+          top: BorderSide(width: 1.0, color: Color(0xFFFDFAFA)),
+          left: BorderSide(width: 1.0, color: Color(0xFFFDFAFA)),
+          right: BorderSide(width: 1.0, color:  Color(0xFFFDFAFA)),
+          bottom: BorderSide(width: 1.0, color:  Color(0xFFFDFAFA)),
         ),
       ),
       width: 120.0.w,
