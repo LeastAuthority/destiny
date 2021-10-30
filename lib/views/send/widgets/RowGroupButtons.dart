@@ -24,8 +24,8 @@ class RowGroupButton extends StatelessWidget {
               value: 1,
               semanticsLabel: 'Linear progress indicator',
             ),
-          height: 70.0,
-          width: 190.0,
+          height: 70.0.h,
+          width: 190.0.w,
           isVertical: false,
         ),
         SizedBox(
@@ -42,9 +42,10 @@ class RowGroupButton extends StatelessWidget {
           icon:Image.asset(
             COPY_ICON,
             width: 30.0.w,
+            height: 30.0.h,
           ),
-          height:70.0,
-          width: 70.0,
+          height: 70.0.h,
+          width: 64.0.w,
           isVertical: true,
         ),
       ],

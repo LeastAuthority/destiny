@@ -21,6 +21,11 @@ final String SEEN= 'seen';
 final String LOADING= 'Loading...';
 final String CODE_COPIED = 'Code Copied';
 final String CUSTOM_NAV_BAR_MENU_FANDQ_ITEM = 'F&Q';
+
+//Slider UI strings
+final String GET_STARTED= 'Get Started';
+final String START_HERE= 'Start Here';
+
 //keys for tests
 //-General tests
 final String BOTTOM_NAV_BAR = 'BOTTOM_NAV_BAR';

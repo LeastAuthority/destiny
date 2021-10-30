@@ -80,18 +80,18 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
               child:Row( // Replace with a Row for horizontal icon + text
                 children: <Widget>[
                   Expanded(
-                    flex: 5,
+                    flex: 11,
                     child: Text(
                         '${label}',
                         textAlign: TextAlign.center,
-                        style:Theme.of(context).textTheme.bodyText2
+                        style:Theme.of(context).textTheme.headline3
                     ),
                   ),
                   Expanded(
-                    flex: 1,
+                    flex: 3,
                     child:  SizedBox(
-                      width: 25,
-                      height: 25,
+                      width: 25.0.w,
+                      height: 25.0.h,
                       child: icon,
                     ),)
                 ],

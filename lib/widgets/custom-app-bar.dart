@@ -38,7 +38,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 60.0.h,
-                    // width: 70.0.w,
                     padding: EdgeInsets.only(left:8.0.w),
                     child:  Text(
                         '$title',
@@ -50,7 +49,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
                   child:  Container(
                     height: 60.0.h,
-                    // width: 70.0.w,
                     alignment: Alignment.center,
                     child: Image.asset(
                       LOGO,
@@ -62,7 +60,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
                   child: Container(
                     height: 60.0.h,
-                    // width: 70.0.w,
                     alignment: Alignment.centerRight,
                     child:  FlatButton.icon(
                         label: Text(''),

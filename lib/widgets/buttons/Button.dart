@@ -27,11 +27,11 @@ class _CustomAppBarState extends State<Button> {
           top: BorderSide(width: 1.0, color: Color(0xFFFDFAFA)),
           left: BorderSide(width: 1.0, color: Color(0xFFFDFAFA)),
           right: BorderSide(width: 1.0, color:  Color(0xFFFDFAFA)),
-          bottom: BorderSide(width: 1.0, color:  Color(0xFFFDFAFA)),
+          bottom: BorderSide(width: 1.0, color:  Color(0xFFFfDFAFA)),
         ),
       ),
       width: 120.0.w,
-      height: 50.0.w,
+      height: 50.0.h,
       child:  FlatButton(
         onPressed: () => handleSelectFile(),
         color: Theme.of(context).scaffoldBackgroundColor,

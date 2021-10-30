@@ -13,39 +13,32 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar:  CustomBottomBar(
-             path: SEND_ROUTE,
+             path: SETTINGS_ROUTE,
              key: Key(BOTTOM_NAV_BAR),
         ),
         appBar: CustomAppBar(
-            title:SETTINGS,
+            title: SETTINGS,
             key:Key(CUSTOM_NAV_BAR),
         ),
         body: Container(
           width: double.infinity,
           key: Key(SETTINGS_SCREEN_BODY),
-          padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w),
+          padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, bottom: 50.0.h),
           child: Column(
                     key: Key(SETTINGS_SCREEN_CONTENT),
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                         Column(
                           children: [
                             Heading(
-                              title: SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE,
+                              title: '${SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE} ${CURRENT_SAVE_DESTINATION}',
                               textAlign: TextAlign.left,
                               marginTop:0,
+                              path: 'Destiny/Received',
                               textStyle: Theme.of(context).textTheme.bodyText1,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
-                            Heading(
-                              title: '${CURRENT_SAVE_DESTINATION}',
-                              subTitle: ' Destiny Received',
-                              textAlign: TextAlign.left,
-                              marginTop:14.0.w,
-                              textStyle: Theme.of(context).textTheme.bodyText1,
-                               key: Key(SEND_SCREEN_HEADING),
-                            )
                           ],
                         ),
                         ButtonWithBackground(
