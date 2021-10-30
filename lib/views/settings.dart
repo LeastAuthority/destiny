@@ -32,9 +32,11 @@ class Settings extends StatelessWidget {
                         Column(
                           children: [
                             Heading(
-                              title: '${SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE} ${CURRENT_SAVE_DESTINATION}',
+                              title:
+                              '${SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE} '
+                                  '${CURRENT_SAVE_DESTINATION}',
                               textAlign: TextAlign.left,
-                              marginTop:0,
+                              marginTop: 0,
                               path: 'Destiny/Received',
                               textStyle: Theme.of(context).textTheme.bodyText1,
                               key: Key(SETTINGS_SCREEN_HEADING),
