@@ -1,8 +1,10 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
 import 'send/send.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class IntroScreen extends StatefulWidget {
@@ -17,14 +19,13 @@ class IntroScreenState extends State<IntroScreen> {
   @override
   void initState() {
     super.initState();
-
     slides.add(
       new Slide(
         title: "End-to-End Encryption",
         description: "Send & receive files securely with simplicity & speed.",
-        pathImage: "assets/images/intro-logo.png",
+         btnTitle: GET_STARTED,
+         pathImage: "assets/images/intro-logo.png",
         backgroundColor: Colors.black,
-        // widthImage: 300.0,
         heightImage: 300.0
       ),
     );
@@ -34,7 +35,7 @@ class IntroScreenState extends State<IntroScreen> {
         description: "Send & receive files with no need to sign up.",
         pathImage: "assets/images/privacy.png",
         backgroundColor: Colors.black,
-        // widthImage: 300.0,
+          btnTitle: NEXT,
         heightImage: 300.0
       ),
     );
@@ -42,9 +43,9 @@ class IntroScreenState extends State<IntroScreen> {
       new Slide(
         title: "Device to Device",
         description: "Send & receive from & to your device without storing data in the cloud.",
-        pathImage: "assets/images/device-device.png",
+          btnTitle: START_HERE,
+          pathImage: "assets/images/device-device.png",
         backgroundColor: Colors.black,
-        // widthImage: 300.0,
         heightImage: 300.0
       ),
     );
@@ -96,7 +97,7 @@ class IntroScreenState extends State<IntroScreen> {
       showSkipBtn: false,
       showNextBtn: false,
       showPrevBtn: false,
-      //showDoneBtn: false,
+      showDoneBtn: false,
 
       // Skip button
       // renderSkipBtn: this.renderSkipBtn(),
@@ -107,9 +108,9 @@ class IntroScreenState extends State<IntroScreen> {
       // nextButtonStyle: myButtonStyle(),
 
       // Done button
-      renderDoneBtn: this.renderDoneBtn(),
+      // renderDoneBtn: this.renderDoneBtn(),
       onDonePress: this.onDonePress,
-      doneButtonStyle: myButtonStyle(),
+      // doneButtonStyle: myButtonStyle(),
       // Dot indicator
       colorDot: Theme.of(context).scaffoldBackgroundColor,
       colorActiveDot: Theme.of(context).colorScheme.secondary,

@@ -37,13 +37,13 @@ class CustomTheme {
           ),
           bodyText1: TextStyle(
               color: CustomColors.babyPowder,
-              fontSize: 14,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w300,
               fontFamily: MONTSERRAT,
           ),
           bodyText2: TextStyle(
               color: CustomColors.babyPowder,
-              fontSize: 12,
+              fontSize: 12.sp,
               fontWeight: FontWeight.w300,
               fontFamily: MONTSERRAT,
           ),
