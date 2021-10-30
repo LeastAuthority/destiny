@@ -3,7 +3,6 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/widgets/buttons/ButtonWithBackground.dart';
-import 'package:dart_wormhole_gui/widgets/buttons/ButtonWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/custom-app-bar.dart';
@@ -32,9 +31,11 @@ class Settings extends StatelessWidget {
                         Column(
                           children: [
                             Heading(
-                              title: '${SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE} ${CURRENT_SAVE_DESTINATION}',
+                              title:
+                              '${SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE} '
+                                  '${CURRENT_SAVE_DESTINATION}',
                               textAlign: TextAlign.left,
-                              marginTop:0,
+                              marginTop: 0,
                               path: 'Destiny/Received',
                               textStyle: Theme.of(context).textTheme.bodyText1,
                               // fontSize: 14.sp,
