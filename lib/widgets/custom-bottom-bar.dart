@@ -55,8 +55,10 @@ class CustomBottomBar extends StatelessWidget {
                   children: [
                       TextButton(
                           onPressed: () {
-                            // String? currentRoute = ModalRoute.of(context)!.settings.name;
-                          },
+                            Navigator.pushReplacementNamed(
+                              context,
+                              SEND_ROUTE,
+                            );                          },
                           child:  Column(
                             children: [
                             Image.asset(
