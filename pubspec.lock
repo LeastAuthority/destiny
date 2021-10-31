@@ -73,13 +73,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  dart_wormhole_william:
-    dependency: "direct main"
-    description:
-      path: dart_wormhole_william
-      relative: true
-    source: path
-    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -144,13 +137,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  fluttertoast:
-    dependency: "direct main"
-    description:
-      name: fluttertoast
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.0.8"
   http:
     dependency: transitive
     description:
