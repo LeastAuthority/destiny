@@ -1,12 +1,13 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:dart_wormhole_william/client/client.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as path;
 
+import 'package:dart_wormhole_william/client/client.dart';
+
 import './cli_util.dart';
-import '../../../../../../.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/lib/crypto.dart';
 
 void main() {
   final tempDir = Directory.systemTemp.createTempSync("wormhole_test_files");
