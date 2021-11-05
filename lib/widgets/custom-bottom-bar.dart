@@ -68,7 +68,7 @@ class CustomBottomBar extends StatelessWidget {
                           ),
                               Text(
                                 SEND,
-                                style: Theme.of(context).textTheme.headline4
+                                style: Theme.of(context).textTheme.headline5
                               )
                             ],
                           )
