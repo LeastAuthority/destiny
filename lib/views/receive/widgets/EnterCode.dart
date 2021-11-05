@@ -17,7 +17,7 @@ class EnterCode extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 100.0,
             height: 150.0.h,
             child: TextField(
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 hintStyle: Theme.of(context).textTheme.bodyText1,

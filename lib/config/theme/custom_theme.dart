@@ -20,16 +20,22 @@ class CustomTheme {
           headline2: TextStyle(
               fontSize: 17.0.sp,
               color: CustomColors.babyPowder,
+              fontFamily: ROBOTO,
+              fontWeight: FontWeight.bold
+          ),
+          headline3: TextStyle(
+              fontSize: 17.0.sp,
+              color: CustomColors.babyPowder,
               fontFamily: LATO,
               fontWeight: FontWeight.w500
           ),
-          headline3: TextStyle(
+          headline4: TextStyle(
               fontSize: 17.0.sp,
               color: CustomColors.babyPowder,
               fontFamily: MONTSERRAT,
               fontWeight: FontWeight.w300
           ),
-          headline4: TextStyle(
+          headline5: TextStyle(
               fontSize: 12.0.sp,
               color: CustomColors.babyPowder,
               fontFamily: MONTSERRAT,

@@ -42,7 +42,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     padding: EdgeInsets.only(left:8.0.w),
                     child:  Text(
                         '$title',
-                      style: Theme.of(context).textTheme.headline2,
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                 ),

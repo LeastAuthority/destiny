@@ -101,7 +101,7 @@ class CustomBottomBar extends StatelessWidget {
                                   ),
                                   Text(
                                     RECEIVE,
-                                    style: Theme.of(context).textTheme.headline4,
+                                    style: Theme.of(context).textTheme.headline5,
                                   )
                                 ],
                               )

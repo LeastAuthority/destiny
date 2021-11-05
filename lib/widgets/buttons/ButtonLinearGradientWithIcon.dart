@@ -84,7 +84,7 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
                     child: Text(
                         '${label}',
                         textAlign: TextAlign.center,
-                        style:Theme.of(context).textTheme.headline3
+                        style:Theme.of(context).textTheme.headline4
                     ),
                   ),
                   Expanded(

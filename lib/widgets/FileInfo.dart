@@ -18,12 +18,7 @@ class FileInfo extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text('${fileName}',
-              style:TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 17.sp,
-                  fontFamily: ROBOTO,
-                  fontWeight: FontWeight.bold
-              ),
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
         ),
