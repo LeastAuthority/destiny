@@ -1,10 +1,10 @@
+import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/Heading.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/receive/widgets/EnterCode.dart';
-import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
-import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 class Receive extends StatefulWidget {
   Receive({Key? key}) : super(key: key);

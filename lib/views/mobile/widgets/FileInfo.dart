@@ -1,7 +1,6 @@
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 class FileInfo extends StatelessWidget {
   final int? fileSize;

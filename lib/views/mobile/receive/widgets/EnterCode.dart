@@ -1,9 +1,7 @@
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
-import 'package:dart_wormhole_gui/widgets/buttons/Button.dart';
 
 class EnterCode extends StatelessWidget {
   EnterCode({Key? key}):super(key:key);

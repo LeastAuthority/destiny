@@ -1,11 +1,9 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
-import 'send/send.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 
 class IntroScreen extends StatefulWidget {
   @override

@@ -1,12 +1,12 @@
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/widgets/buttons/Button.dart';
-import 'package:dart_wormhole_gui/widgets/buttons/ButtonWithBackground.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/Heading.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../widgets/custom-app-bar.dart';
-import '../widgets/custom-bottom-bar.dart';
 
 class Settings extends StatelessWidget {
   @override

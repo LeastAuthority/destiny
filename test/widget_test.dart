@@ -1,15 +1,15 @@
+import 'package:dart_wormhole_gui/views/mobile/receive/receive.dart';
+import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/receive/receive.dart';
-import 'package:dart_wormhole_gui/views/settings.dart';
-import 'package:dart_wormhole_gui/views/splash.dart';
-import 'package:dart_wormhole_gui/views/send/send.dart';
-import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
+import 'package:dart_wormhole_gui/views/mobile/settings.dart';
+import 'package:dart_wormhole_gui/views/mobile/splash.dart';
 
  void main() {
    testWidgets('Splash screen', (WidgetTester tester) async {
