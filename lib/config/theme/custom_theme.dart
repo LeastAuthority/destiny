@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'colors.dart';
 
 class CustomTheme {
-  static ThemeData get darkTheme {
+  static ThemeData get darkThemeMobile {
     return ThemeData(
         primaryColor: CustomColors.purple,
         primaryColorLight: CustomColors.lightPurple,
@@ -54,6 +54,20 @@ class CustomTheme {
               fontFamily: MONTSERRAT,
           ),
         ),
+    );
+  }
+
+  static ThemeData get darkThemeDesktop {
+    return ThemeData(
+      primaryColor: CustomColors.purple,
+      primaryColorDark: CustomColors.darkPurple,
+      primaryColorLight: CustomColors.mediumPurple,
+      scaffoldBackgroundColor: CustomColors.darkPurple,
+      backgroundColor:  CustomColors.darkBlue,
+      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
+      textTheme: TextTheme(
+
+      ),
     );
   }
 }
