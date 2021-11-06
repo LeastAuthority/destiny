@@ -62,7 +62,7 @@ class CustomTheme {
       primaryColor: CustomColors.purple,
       primaryColorDark: CustomColors.darkPurple,
       primaryColorLight: CustomColors.mediumPurple,
-      scaffoldBackgroundColor: CustomColors.darkPurple,
+      scaffoldBackgroundColor: CustomColors.darkBlue,
       backgroundColor:  CustomColors.darkBlue,
       colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
       textTheme: TextTheme(

@@ -1,4 +1,5 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
+import 'package:dart_wormhole_gui/views/desktop/widgets/NavbarTap.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,8 +8,8 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  String? path;
-  CustomAppBar({String? path, Key? key}):super(key: key){
+  String path = '';
+  CustomAppBar({String path = '', Key? key}):super(key: key){
     this.path = path;
   }
 
@@ -20,19 +21,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  String? path ;
+  String path ;
   _CustomAppBarState(this.path);
-
-  Widget getBorderLine (String screen) {
-    if(path == screen)
-      return  Container(
-          height: 2.0.h,
-          width: 30.0.w,
-          margin: EdgeInsets.only(top: 4.0.h),
-          color: Theme.of(context).colorScheme.secondary
-      );
-    return  Container(width: 30.0.w,);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +44,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
               ),
             Container (
-              margin: EdgeInsets.fromLTRB( 48.0.w, 0.0, 48.0.w, 0.0.h),
+              margin: EdgeInsets.fromLTRB(48.0.w, 0.0, 48.0.w, 0.0.h),
               padding: EdgeInsets.fromLTRB(0, 8.0.h, 0, 4.0.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -73,103 +63,26 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded (
-                      key: Key(BOTTOM_NAV_BAR_LEFT_ITEM),
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    SEND_ROUTE,
-                                  );
-                                },
-                                child:  Column(
-                                  children: [
-                                    Image.asset(
-                                      SEND_ICON,
-                                      width: 40.0.w,
-                                      height: 20.0.h,
-                                    ),
-                                    Text(
-                                        SEND,
-                                        style: Theme.of(context).textTheme.headline5
-                                    ),
-                                    getBorderLine(SEND_ROUTE)
-                                  ],
-                                )
-                            ),
-                          ],
-                        ),
-                      )
-                  ),
-                  Expanded (
+                  NavbarTap(
                     // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    RECEIVE_ROUTE,
-                                  );
-                                },
-                                child:  Column(
-                                  children: [
-                                    Image.asset(
-                                      RECEIVE_ICON,
-                                      width: 40.0.w,
-                                      height: 20.0.h,
-                                    ),
-                                    Text(
-                                      RECEIVE,
-                                      style: Theme.of(context).textTheme.headline5,
-                                    ),
-                                    getBorderLine(RECEIVE_ROUTE)
-                                  ],
-                                )
-                            ),
-                          ],
-                        ),
-                      )
+                    route: SEND_ROUTE,
+                    currentRoute: path,
+                    title: SEND,
+                    icon: SEND_ICON,
+                    alignment: CrossAxisAlignment.start,
                   ),
-                  Expanded (
-                      key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
-                      child: Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    RECEIVE_ROUTE,
-                                  );
-                                },
-                                child:  Column(
-                                  children: [
-                                    Image.asset(
-                                      SETTINGS_ICON,
-                                      width: 40.0.w,
-                                      height: 20.0.h,
-                                    ),
-                                    Text(
-                                      SETTINGS,
-                                      style: Theme.of(context).textTheme.headline5,
-                                    ),
-                                    getBorderLine(SETTINGS_ROUTE)
-                                  ],
-                                )
-                            ),
-                          ],
-                        ),
-                      )
+                  NavbarTap(
+                    // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
+                      route: RECEIVE_ROUTE,
+                      title: RECEIVE,
+                      icon: RECEIVE_ICON,
+                  ),
+                  NavbarTap(
+                    // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
+                      route: SETTINGS_ROUTE,
+                      title: SETTINGS,
+                      icon: SETTINGS_ICON,
+                      alignment: CrossAxisAlignment.end,
                   ),
                 ],
               ),
