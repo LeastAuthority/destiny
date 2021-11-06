@@ -1,3 +1,5 @@
+import 'package:dart_wormhole_gui/config/theme/colors.dart';
+import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:file_picker/file_picker.dart';
@@ -58,21 +60,29 @@ class _SendDefaultState extends State<Send> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // bottomNavigationBar:  CustomBottomBar(
-        //      path: SEND_ROUTE,
-        //      key: Key(BOTTOM_NAV_BAR),
-        // ),
-        // appBar: CustomAppBar(
-        //     title:SEND,
-        //     key:Key(CUSTOM_NAV_BAR),
-        // ),
+        appBar: CustomAppBar(
+            key:Key(CUSTOM_NAV_BAR),
+            path: SEND_ROUTE
+        ),
         body: WillPopScope(
         onWillPop: () async => false,
         child:Container(
           width: double.infinity,
           key: Key(SEND_SCREEN_BODY),
           padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-          child: Text('ddd')
+          child: Container (
+            height:  double.infinity,
+            margin: EdgeInsets.fromLTRB(16.0.w, 0.0, 16.0.w, 4.0.w),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.0, color: CustomColors.purple),
+                  top: BorderSide(width: 2.0, color: CustomColors.purple),
+                  left: BorderSide(width: 2.0, color: CustomColors.purple),
+                  right: BorderSide(width: 2.0, color: CustomColors.purple),
+                ),
+              ),
+            child: Text('dddddsdasdddd'),
+          )
         )
         )
     );

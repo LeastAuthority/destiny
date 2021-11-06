@@ -56,7 +56,11 @@ class NavbarTap extends StatelessWidget {
                           width: 30.0.w,
                           margin: EdgeInsets.only(top: 4.0.h),
                           color: Theme.of(context).colorScheme.secondary
-                        ): Container(width: 30.0.w,)
+                        ): Container(
+                              width: 30.0.w,
+                              height: 2.0.h,
+                              margin: EdgeInsets.only(top: 4.0.h),
+                           )
                     ],
                   )
               ),
