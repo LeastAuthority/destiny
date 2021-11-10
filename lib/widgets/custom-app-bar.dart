@@ -34,7 +34,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
                   child: Container(
                     alignment: Alignment.centerLeft,
@@ -47,7 +47,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ),
                 ),
                 Expanded(
-                  flex: 8,
+                  flex: 6,
                   key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
                   child:  Container(
                     height: 60.0.h,
@@ -59,7 +59,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
                   child:  GestureDetector(
                       onTap: () {
