@@ -34,11 +34,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
+                  flex: 2,
                   key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 60.0.h,
-                    // width: 70.0.w,
                     padding: EdgeInsets.only(left:8.0.w),
                     child:  Text(
                         '$title',
@@ -47,10 +47,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ),
                 ),
                 Expanded(
+                  flex: 8,
                   key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
                   child:  Container(
                     height: 60.0.h,
-                    // width: 70.0.w,
                     alignment: Alignment.center,
                     child: Image.asset(
                       LOGO,
@@ -59,24 +59,24 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ),
                 ),
                 Expanded(
+                  flex: 2,
                   key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
-                  child: Container(
-                    height: 60.0.h,
-                    // width: 70.0.w,
-                    alignment: Alignment.centerRight,
-                    child:  FlatButton.icon(
-                        label: Text(''),
-                        onPressed: () {
-                          if(title != SETTINGS)
-                            Navigator.pushNamed(context, SETTINGS_ROUTE);
-                        },
-                        icon: Image.asset(title == SETTINGS?
-                        SETTINGS_ICON_WITH_CIRCLE:SETTINGS_ICON,
+                  child:  GestureDetector(
+                      onTap: () {
+                        if(title != SETTINGS)
+                          Navigator.pushNamed(context, SETTINGS_ROUTE);
+                      },
+                      child:Container(
+                        padding: EdgeInsets.only(right:8.0.w),
+                        height: 60.0.h,
+                        alignment: Alignment.centerRight,
+                        child: Image.asset(
+                          SETTINGS_ICON,
                           width: 25.0.w,
-                        )
-                    ),
+                        ),
+                      )
                   ),
-                )
+                ),
               ],
             ),
             Divider(height: 1.0.h, color: Colors.white),
