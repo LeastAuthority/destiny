@@ -12,10 +12,6 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar:  CustomBottomBar(
-             path: SETTINGS_ROUTE,
-             key: Key(BOTTOM_NAV_BAR),
-        ),
         appBar: CustomAppBar(
             title: SETTINGS,
             key:Key(CUSTOM_NAV_BAR),
@@ -48,6 +44,7 @@ class Settings extends StatelessWidget {
                             key:Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)
                         ),
                       Button(BACK, () {
+                        Navigator.pop(context);
                       })
                     ]
                 ),
