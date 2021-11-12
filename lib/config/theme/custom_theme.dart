@@ -42,13 +42,13 @@ class CustomTheme {
               fontWeight: FontWeight.w400
           ),
           bodyText1: TextStyle(
-              color: CustomColors.babyPowder,
+              color: CustomColors.babyPowderLight,
               fontSize: 14.sp,
               fontWeight: FontWeight.w300,
               fontFamily: MONTSERRAT,
           ),
           bodyText2: TextStyle(
-              color: CustomColors.babyPowder,
+              color: CustomColors.babyPowderLight,
               fontSize: 12.sp,
               fontWeight: FontWeight.w300,
               fontFamily: MONTSERRAT,

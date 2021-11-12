@@ -12,31 +12,30 @@ class EnterCode extends StatelessWidget {
     return  Container(
       alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width - 100.0,
-            height: 150.0.h,
-            child: TextField(
-              style: Theme.of(context).textTheme.headline4,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                hintStyle: Theme.of(context).textTheme.bodyText1,
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(
-                      color: Colors.white,
-                      width: 1.0
-                  ),
+          TextField(
+            style: Theme.of(context).textTheme.headline4,
+            textAlign: TextAlign.center,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: 30.0),
+              hintStyle: Theme.of(context).textTheme.bodyText1,
+              enabledBorder: const OutlineInputBorder(
+                borderSide: const BorderSide(
+                    color: Color(0xffC24DF8),
+                    width: 1.0
                 ),
-                hintText: 'Enter Code',
               ),
+              hintText: 'Enter Code',
             ),
           ),
+          SizedBox(height:25.0.h),
           Button(NEXT, () {
             //FIXME
             //Here we call a function to start receiving a file. The function takes the generated code as parameter.
             //Note that the UI here is not ready. So maybe we should pass a static code to the fun
           }),
-          Button(CANCEL, () {}),
+          // Button(CANCEL, () {}),
         ],
       ),
     );

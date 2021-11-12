@@ -51,17 +51,22 @@ class _ReceiveState extends State<Receive> {
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: Column (
           key:Key(RECEIVE_SCREEN_CONTENT),
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Heading(
-              title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
-              textAlign: TextAlign.left,
-              marginTop:0,
-              textStyle: Theme.of(context).textTheme.bodyText1,
-              key:  Key(RECEIVE_SCREEN_HEADING),
+            Expanded (
+              flex: 1,
+              child: Heading(
+                title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+                textAlign: TextAlign.left,
+                marginTop: 0,
+                textStyle: Theme.of(context).textTheme.bodyText1,
+                key:  Key(RECEIVE_SCREEN_HEADING),
+              ),
             ),
-            EnterCode(key: Key(RECEIVE_SCREEN_ENTER_CODE),),
+          Expanded (
+            flex: 4,
+            child: EnterCode(key: Key(RECEIVE_SCREEN_ENTER_CODE)),
+          )
           ],
         ),
       ),
