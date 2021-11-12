@@ -44,7 +44,7 @@ class RowGroupButton extends StatelessWidget {
             height: 30.0.h,
           ),
           height: 70.0.h,
-          width: 64.0.w,
+          width: 70.0.w,
           isVertical: true,
         ),
       ],
