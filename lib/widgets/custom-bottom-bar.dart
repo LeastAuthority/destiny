@@ -29,7 +29,7 @@ class CustomBottomBar extends StatelessWidget {
       }
       return  BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 0.0, color: Color(0xff353846)),
+          bottom: BorderSide(width: 4.0, color: Color(0xff353846)),
         ),
       );
     }
@@ -58,14 +58,15 @@ class CustomBottomBar extends StatelessWidget {
                             Navigator.pushReplacementNamed(
                               context,
                               SEND_ROUTE,
-                            );                          },
+                            );
+                          },
                           child:  Column(
                             children: [
                             Image.asset(
-                            SEND_ICON,
-                            width: 40.0.w,
-                            height: 20.0.h,
-                          ),
+                              SEND_ICON,
+                              width: 40.0.w,
+                              height: 20.0.h,
+                           ),
                               Text(
                                 SEND,
                                 style: Theme.of(context).textTheme.headline5
