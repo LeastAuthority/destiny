@@ -5,20 +5,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Button extends StatefulWidget {
   final String title;
   Function handleSelectFile;
-  Button(this.title, this.handleSelectFile);
-
+  bool? disabled;
+  Button(this.title, this.handleSelectFile, this.disabled);
   @override
-  _CustomAppBarState createState() => _CustomAppBarState(title, handleSelectFile);
+  _CustomAppBarState createState() => _CustomAppBarState(title, handleSelectFile, disabled);
 }
 
 class _CustomAppBarState extends State<Button> {
   final String title;
   Function handleSelectFile;
   Widget? icon;
-  _CustomAppBarState(this.title, this.handleSelectFile);
+  bool? disabled;
+  _CustomAppBarState(this.title, this.handleSelectFile, this.disabled);
 
   @override
   Widget build(BuildContext context) {
+     Color? color = disabled == true ?
+      Theme.of(context).primaryColor :
+        Theme.of(context).textTheme.bodyText2!.color;
     return Container(
       margin: EdgeInsets.only(top:22.0.h),
       decoration: const BoxDecoration(
@@ -36,7 +40,12 @@ class _CustomAppBarState extends State<Button> {
         onPressed: () => handleSelectFile(),
         color: Theme.of(context).scaffoldBackgroundColor,
         child:Text('${title}',
-            style: Theme.of(context).textTheme.bodyText2
+            style: TextStyle (
+              color: color,
+              fontWeight: Theme.of(context).textTheme.bodyText2!.fontWeight,
+              fontSize: Theme.of(context).textTheme.bodyText2!.fontSize,
+              fontFamily: Theme.of(context).textTheme.bodyText2!.fontFamily,
+            )
         ),
       ),
     );

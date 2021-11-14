@@ -7,9 +7,9 @@ import 'package:dart_wormhole_gui/widgets/buttons/ButtonLinearGradientWithIcon.d
 import 'package:dart_wormhole_gui/widgets/buttons/ButtonWithIcon.dart';
 
 class RowGroupButton extends StatelessWidget {
-  final String label;
   String code = '';
-  RowGroupButton(this.label, this.code);
+  bool isCodeGenerating = false;
+  RowGroupButton(this.code, this.isCodeGenerating);
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +17,21 @@ class RowGroupButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ButtonLinearGradientWithIcon(
-            label: code,
+            label: !isCodeGenerating ? code: 'Generating code',
+            isCodeGenerating: isCodeGenerating,
             handleSelectFile: () {},
-            icon: CircularProgressIndicator(
+            icon: isCodeGenerating ? CircularProgressIndicator(
               value: 1,
               semanticsLabel: 'Linear progress indicator',
-            ),
+            ): null,
           height: 70.0.h,
-          width: 190.0.w,
+          width: !isCodeGenerating?190.0.w:260.0.w,
           isVertical: false,
         ),
         SizedBox(
           width: 8.0.w,
         ),
-        ButtonWithIcon(
+        !isCodeGenerating ? ButtonWithIcon(
           label:'Copy',
           handleSelectFile: () {
             Clipboard.setData(ClipboardData(text: code));
@@ -38,7 +39,7 @@ class RowGroupButton extends StatelessWidget {
               content: Text(CODE_COPIED),
             ));
           },
-          icon:Image.asset(
+          icon: Image.asset(
             COPY_ICON,
             width: 30.0.w,
             height: 30.0.h,
@@ -46,7 +47,7 @@ class RowGroupButton extends StatelessWidget {
           height: 70.0.h,
           width: 70.0.w,
           isVertical: true,
-        ),
+        ): Container(),
       ],
     );
   }

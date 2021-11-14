@@ -8,6 +8,11 @@ class CustomTheme {
     return ThemeData(
         primaryColor: CustomColors.purple,
         primaryColorLight: CustomColors.lightPurple,
+        progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: CustomColors.purple,
+          linearTrackColor: CustomColors.superLightPurple
+        ),
+        disabledColor: CustomColors.babyPowderLight,
         scaffoldBackgroundColor: CustomColors.darkBlue,
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
         textTheme:  TextTheme(

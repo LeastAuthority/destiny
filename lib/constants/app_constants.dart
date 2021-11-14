@@ -8,6 +8,7 @@ final String SETTINGS = "Settings";
 final String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST = 'Send and receive files securely and fast';
 final String ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE = 'Enter the code in order to receive the file.';
 final String SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE = 'Share code with recipient & wait until the transfer is complete.';
+final String THE_TRANSFER_WILL_AUTO = 'The transfer will automatically begin once the receiver enters the code.';
 final String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT = 'Send the selected file by sharing the code with the recipient:';
 final String SELECT_A_FILE = 'Select a File';
 final String SELECT_A_FOLDER = 'Select a Folder';

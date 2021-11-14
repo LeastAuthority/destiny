@@ -45,7 +45,7 @@ class Settings extends StatelessWidget {
                         ),
                       Button(BACK, () {
                         Navigator.pop(context);
-                      })
+                      }, false)
                     ]
                 ),
 

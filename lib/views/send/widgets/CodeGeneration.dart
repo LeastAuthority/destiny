@@ -11,13 +11,24 @@ class CodeGeneration extends StatelessWidget {
   String? fileName = '';
   int? fileSize = 0;
   String code = '';
-  CodeGeneration({Key? key, String? fileName, int? fileSize, String code = ''}):super(key:key) {
+  bool? isCodeGenerating = false;
+  CodeGeneration({
+    Key? key,
+    String? fileName,
+    int? fileSize,
+    String code = '',
+    bool? isCodeGenerating
+  }):super(key:key) {
     this.fileName = fileName;
     this.fileSize = fileSize;
     this.code = code;
+    this.isCodeGenerating = isCodeGenerating;
   }
   @override
   Widget build(BuildContext context) {
+    print('isCodeGenerating');
+
+    print(isCodeGenerating);
     return  Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -31,9 +42,17 @@ class CodeGeneration extends StatelessWidget {
         Column(
           children: [
             FileInfo(fileSize, fileName),
-            RowGroupButton(GENERATION_CODE, code),
+            RowGroupButton(code, isCodeGenerating!),
+            isCodeGenerating! ?
             Heading(
               title: SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
+              textAlign:TextAlign.center,
+              marginTop: 16.0.h,
+              textStyle: Theme.of(context).textTheme.bodyText2,
+              key:Key(GENERATION_DESCRIPTION),
+            ):
+            Heading(
+              title: THE_TRANSFER_WILL_AUTO,
               textAlign:TextAlign.center,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText2,
@@ -43,8 +62,12 @@ class CodeGeneration extends StatelessWidget {
         ),
         Column(
           children: [
-            Button(CANCEL, () {
-            }),
+            isCodeGenerating! ?
+              Button(CANCEL, () {
+              }, false)
+                :
+              Button(CANCEL, () {
+              }, true),
             SizedBox(
               height: 37.0.h,
             )

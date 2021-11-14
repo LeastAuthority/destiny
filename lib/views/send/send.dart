@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,11 +23,15 @@ class SendDefault extends StatefulWidget {
 
 class _SendDefaultState extends State<SendDefault> {
   String _msg = 'test test';
-  String _code = 'sssssssssssssss';
+  String _code = '';
   String fileName = '';
+  bool isCodeGenerating = true;
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
+  _SendDefaultState(){
+
+  }
   // Client client = Client();
 
   void _msgChanged(String msg) {
@@ -44,7 +50,6 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void handleSelectFile () async {
-
     FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false);
     if(result != null) {
       PlatformFile file = result.files.first;
@@ -55,6 +60,14 @@ class _SendDefaultState extends State<SendDefault> {
       setState(() {
         fileName = file.name;
         fileSize = (file.size/8).toInt(); //bytes to kb
+        isCodeGenerating =  true;
+      });
+      var timer = Timer.periodic(Duration(seconds: 10), (timer) {
+        setState(() {
+          _code = 'wdf-ddw-f';
+          isCodeGenerating =  false;
+        });
+        timer.cancel();
       });
     } else {
       // User canceled the picker
@@ -63,6 +76,8 @@ class _SendDefaultState extends State<SendDefault> {
 
   @override
   Widget build(BuildContext context) {
+    print(_code);
+
     return Scaffold(
         bottomNavigationBar:  CustomBottomBar(
              path: SEND_ROUTE,
@@ -80,6 +95,7 @@ class _SendDefaultState extends State<SendDefault> {
           padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
           child: fileSize > 0 ?
             CodeGeneration(
+              isCodeGenerating: isCodeGenerating,
               fileName: fileName,
               fileSize: fileSize,
               code: _code,
