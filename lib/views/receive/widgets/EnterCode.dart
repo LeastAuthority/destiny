@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/widgets/buttons/Button.dart';
-
+late final TextEditingController controller = new TextEditingController();
 class EnterCode extends StatelessWidget {
   EnterCode({Key? key}):super(key:key);
   @override
@@ -15,6 +15,7 @@ class EnterCode extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextField(
+            controller: controller,
             style: Theme.of(context).textTheme.headline4,
             textAlign: TextAlign.center,
             decoration: InputDecoration(
@@ -34,7 +35,7 @@ class EnterCode extends StatelessWidget {
             //FIXME
             //Here we call a function to start receiving a file. The function takes the generated code as parameter.
             //Note that the UI here is not ready. So maybe we should pass a static code to the fun
-          }),
+          }, false),
           // Button(CANCEL, () {}),
         ],
       ),

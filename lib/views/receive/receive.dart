@@ -48,7 +48,7 @@ class _ReceiveState extends State<Receive> {
         onWillPop: () async => false,
         child:Container(
         key:Key(RECEIVE_SCREEN_BODY),
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: Column (
           key:Key(RECEIVE_SCREEN_CONTENT),
           crossAxisAlignment: CrossAxisAlignment.start,
