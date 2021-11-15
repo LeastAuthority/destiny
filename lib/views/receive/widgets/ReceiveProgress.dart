@@ -25,6 +25,7 @@ class ReceiveProgress extends StatelessWidget {
         Column (children: [
           FileInfo(fileSize, fileName),
           Container(
+            width: 284.0.w,
             margin: EdgeInsets.only(top: 32.0.h),
             child: LinearProgressIndicator(
               value: 0.5,
