@@ -39,6 +39,7 @@ dependencies:
   app_settings: ^4.1.1
   filepicker_windows: ^2.0.0
   page_transition: ^2.0.4
+  dotted_border: ^2.0.0+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,6 +76,7 @@ flutter:
     - assets/images/icons/SETTINGS-WHITE.png
     - assets/images/icons/Paste-white.png
     - assets/images/icons/DEVICEWHITE.png
+    - assets/images/icons/Plus-Button-Large.png
     - assets/images/icons/SETTINGS-WHITE-with-circle.png
     - assets/images/icons/Hamburger-Menu-White.png
   # An image asset can refer to one or more resolution-specific "variants", see
