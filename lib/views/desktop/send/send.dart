@@ -1,13 +1,15 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/Heading.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-
+import 'package:dotted_border/dotted_border.dart';
 
 class Send extends StatefulWidget {
   Send({Key? key}) : super(key: key);
@@ -69,19 +71,40 @@ class _SendDefaultState extends State<Send> {
         child:Container(
           width: double.infinity,
           key: Key(SEND_SCREEN_BODY),
-          padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+          padding: EdgeInsets.only(left: 125.0.w, right: 125.0.w),
           child: Container (
             height:  double.infinity,
-            margin: EdgeInsets.fromLTRB(16.0.w, 0.0, 16.0.w, 4.0.w),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: 2.0, color: CustomColors.purple),
-                  top: BorderSide(width: 2.0, color: CustomColors.purple),
-                  left: BorderSide(width: 2.0, color: CustomColors.purple),
-                  right: BorderSide(width: 2.0, color: CustomColors.purple),
+            margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
+            child: DottedBorder(
+              dashPattern: [8, 4],
+              strokeWidth: 2.0.h,
+              color: CustomColors.purple,
+              child: Column (
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Heading(
+                  title: SEND_FILES_SIMPLE_SECURE_FAST,
+                  textStyle: Theme.of(context).textTheme.headline1,
                 ),
-              ),
-            child: Text('dddddsdasdddd'),
+                Column(
+                  children: [
+                    Heading(
+                      title: DROP_A_FILE,
+                      textStyle: Theme.of(context).textTheme.headline5,
+                    ),
+                    Heading(
+                      title: OR,
+                      textStyle: Theme.of(context).textTheme.headline4,
+                      marginTop: 26.0.h,
+                    ),
+                  ],
+                ),
+                Image.asset(
+                  PLUS_ICON,
+                  width: 250.0.w,
+                ),
+              ],
+            )),
           )
         )
         )
