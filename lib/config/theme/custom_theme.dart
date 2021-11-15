@@ -66,7 +66,54 @@ class CustomTheme {
       backgroundColor:  CustomColors.darkBlue,
       colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
       textTheme: TextTheme(
-
+        headline1: TextStyle(
+          color: CustomColors.babyPowder,
+          fontSize: 25.sp,
+          fontWeight: FontWeight.w100,
+          fontFamily: MONTSERRAT,
+        ),
+        headline2: TextStyle(
+          color: CustomColors.babyPowder,
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w500,
+          fontFamily: MONTSERRAT,
+        ),
+        headline3: TextStyle(
+          color: CustomColors.babyPowder,
+          fontSize: 17.sp,
+          fontWeight: FontWeight.w900,
+          fontFamily: ROBOTO,
+        ),
+        headline4: TextStyle(
+          color: CustomColors.babyPowder,
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w600,
+          fontFamily: MONTSERRAT,
+        ),
+        headline5: TextStyle(
+          color: CustomColors.babyPowderLight,
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w300,
+          fontFamily: MONTSERRAT,
+        ),
+        bodyText1:  TextStyle(
+          color: CustomColors.superLightPurple,
+          fontSize: 22.sp,
+          fontWeight: FontWeight.w300,
+          fontFamily: MONTSERRAT,
+        ),
+        subtitle1: TextStyle(
+          color: CustomColors.babyPowderLight,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w300,
+          fontFamily: MONTSERRAT,
+        ),
+        subtitle2: TextStyle(
+          color: CustomColors.babyPowderLight,
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w300,
+          fontFamily: ROBOTO,
+         ),
       ),
     );
   }
