@@ -1,5 +1,5 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/Heading.dart';
+import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

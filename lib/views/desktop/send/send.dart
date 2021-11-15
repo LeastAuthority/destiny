@@ -3,7 +3,7 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/Heading.dart';
+import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
