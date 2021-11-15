@@ -76,8 +76,6 @@ class _SendDefaultState extends State<SendDefault> {
 
   @override
   Widget build(BuildContext context) {
-    print(_code);
-
     return Scaffold(
         bottomNavigationBar:  CustomBottomBar(
              path: SEND_ROUTE,

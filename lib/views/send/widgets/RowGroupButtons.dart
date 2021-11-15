@@ -21,7 +21,8 @@ class RowGroupButton extends StatelessWidget {
             isCodeGenerating: isCodeGenerating,
             handleSelectFile: () {},
             icon: isCodeGenerating ? CircularProgressIndicator(
-              value: 1,
+              color: Theme.of(context).colorScheme.secondary,
+              value: 0.75,
               semanticsLabel: 'Linear progress indicator',
             ): null,
           height: 70.0.h,

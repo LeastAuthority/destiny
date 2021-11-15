@@ -11,9 +11,7 @@ class SelectAFileUI extends StatelessWidget {
   final String fileName;
   final String _code;
   final Function handleSelectFile;
-
   SelectAFileUI(this.fileSize, this.fileName,  this._code, this.handleSelectFile);
-
   @override
   Widget build(BuildContext context) {
     return Column(
