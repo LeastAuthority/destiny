@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/views/receive/widgets/ReceiveProgress.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
@@ -7,6 +8,7 @@ import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/widgets/Heading.dart';
 
 class Receive extends StatefulWidget {
+  bool isReceiving = false;
   Receive({Key? key}) : super(key: key);
   @override
   _ReceiveState createState() => _ReceiveState();
@@ -15,6 +17,7 @@ class Receive extends StatefulWidget {
 class _ReceiveState extends State<Receive> {
   String _msg = '';
   String _code = '';
+  bool isReceiving = false;
   TextEditingController _msgTxtCtrl = TextEditingController();
 
   void _msgChanged(String msg) {
@@ -24,6 +27,7 @@ class _ReceiveState extends State<Receive> {
   }
 
   void _codeChanged(String code) {
+    print(code);
     setState(() {
       _code = code;
     });
@@ -49,7 +53,8 @@ class _ReceiveState extends State<Receive> {
         child:Container(
         key:Key(RECEIVE_SCREEN_BODY),
         padding: EdgeInsets.symmetric(horizontal: 8.0),
-        child: Column (
+        child: isReceiving ?
+        ReceiveProgress(22, 'my picture.png'):Column (
           key:Key(RECEIVE_SCREEN_CONTENT),
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -64,13 +69,21 @@ class _ReceiveState extends State<Receive> {
               ),
             ),
           Expanded (
-            flex: 4,
-            child: EnterCode(key: Key(RECEIVE_SCREEN_ENTER_CODE)),
+            flex: 9,
+            child: EnterCode(
+                key: Key(RECEIVE_SCREEN_ENTER_CODE),
+                codeChanged: _codeChanged,
+                handleNextClicked: () {
+                  this.setState(() {
+                    isReceiving = true;
+                  });
+                }
+            ),
           )
           ],
         ),
       ),
-      )// This trailing comma makes auto-formatting nicer for build methods.
+      )
     );
   }
 }
