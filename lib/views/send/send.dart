@@ -62,7 +62,7 @@ class _SendDefaultState extends State<SendDefault> {
         fileSize = (file.size/8).toInt(); //bytes to kb
         isCodeGenerating =  true;
       });
-      var timer = Timer.periodic(Duration(seconds: 10), (timer) {
+      var timer = Timer.periodic(Duration(seconds: 3), (timer) {
         setState(() {
           _code = 'wdf-ddw-f';
           isCodeGenerating =  false;
