@@ -26,7 +26,7 @@ dependencies:
   basic_utils:
     git:
       url: https://github.com/Ephenodrom/Dart-Basic-Utils
-  file_picker: ^3.0.3
+  file_picker: ^4.2.1
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider
@@ -40,6 +40,7 @@ dependencies:
   filepicker_windows: ^2.0.0
   page_transition: ^2.0.4
   dotted_border: ^2.0.0+1
+  desktop_drop: ^0.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
