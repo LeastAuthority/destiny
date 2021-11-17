@@ -1,32 +1,45 @@
+import 'dart:io';
 
-import 'package:dart_wormhole_william/client/client.dart';
+import 'package:path/path.dart' as path;
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/config.dart';
 import './cli_util.dart';
 
 void main() {
+  final tempDir = Directory.systemTemp.createTempSync("wormhole_test_files");
+  final testConfig = Config(
+    rendezvousUrl: 'ws://localhost:4000/v1',
+    transitRelayUrl: 'tcp:localhost:4001',
+  );
+
   setUpAll(() async {
-    await buildGoCli();
+    await buildGoCli(path.join(tempDir.path, "go_cli"));
   });
 
   group('Send / receive text', () {
     const expectedText = 'testing 123';
 
     test('dart API -> dart API', () async {
-      final sender = Client();
-      final receiver = Client();
+      final sender = Client(config: testConfig);
+      final receiver = Client(config: testConfig);
 
+      print("Sending text...");
       final result = await sender.sendText(expectedText);
       final code = result.code;
+      print("got code $code");
       expect(code, isNotEmpty);
       expect(result.done, completes);
 
+      print("Receiving text...");
       final actual = await receiver.recvText(code);
+      print("got actual $actual");
       expect(actual, expectedText);
     });
 
     test('dart API -> go CLI', () async {
-      final sender = Client();
+      final sender = Client(config: testConfig);
 
       final result = await sender.sendText(expectedText);
       final code = result.code;

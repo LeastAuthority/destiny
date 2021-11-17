@@ -6,14 +6,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/config.dart';
 
 import './cli_util.dart';
 
 void main() {
   final tempDir = Directory.systemTemp.createTempSync("wormhole_test_files");
   final random = Random(9001);
-  const fileSizesInKb = [1, 10, 100, 1000, 10000, 300000];
+  const fileSizesInKb = [1]; //, 10, 100, 1000, 10000, 300000];
   const maxKbPerWrite = 1000;
+  final testConfig = Config(
+    rendezvousUrl: 'ws://localhost:4000/v1',
+    transitRelayUrl: 'tcp:localhost:4001',
+  );
 
   setUpAll(() async {
     await buildGoCli(path.join(tempDir.path, "go_cli"));
@@ -36,47 +41,57 @@ void main() {
 
   for (int size in fileSizesInKb) {
     group('Send / receive file ${size}KB', () {
+      print('creating test file');
       final testFilePath = createFile(size);
 
-      test('dart API -> go CLI', () async {
-        final sender = Client();
-
-        final result = await sender.sendFile(File(testFilePath));
-        final code = result.code;
-        expect(code, isNotEmpty);
-        expect(result.done, completes);
-
-        final actualFile = await recvFileGo(code, path.basename(testFilePath));
-
-        final actual = actualFile.readAsBytesSync();
-        final testData = File(testFilePath).readAsBytesSync();
-        expect(sha256.convert(actual), equals(sha256.convert(testData)));
-      });
-
-      test('go CLI -> dart API', () async {
-        final receiver = Client();
-
-        final code = await sendFileGo(testFilePath);
-        expect(code, isNotEmpty);
-
-        final actualData = await receiver.recvFile(code);
-        final testData = File(testFilePath).readAsBytesSync();
-
-        expect(sha256.convert(actualData), equals(sha256.convert(testData)));
-      });
+      // test('dart API -> go CLI', () async {
+      //   final sender = Client();
+      //
+      //   final result = await sender.sendFile(File(testFilePath));
+      //   final code = result.code;
+      //   expect(code, isNotEmpty);
+      //   expect(result.done, completes);
+      //
+      //   final actualFile = await recvFileGo(code, path.basename(testFilePath));
+      //
+      //   final actual = actualFile.readAsBytesSync();
+      //   final testData = File(testFilePath).readAsBytesSync();
+      //   expect(sha256.convert(actual), equals(sha256.convert(testData)));
+      // });
+      //
+      // test('go CLI -> dart API', () async {
+      //   final receiver = Client();
+      //
+      //   final code = await sendFileGo(testFilePath);
+      //   expect(code, isNotEmpty);
+      //
+      //   final actualData = await receiver.recvFile(code);
+      //   final testData = File(testFilePath).readAsBytesSync();
+      //
+      //   expect(sha256.convert(actualData), equals(sha256.convert(testData)));
+      // });
 
       test('dart API -> dart API', () async {
-        final sender = Client();
-        final receiver = Client();
+        final sender = Client(config: testConfig);
+        final receiver = Client(config: testConfig);
 
+        print('sending file');
         final result = await sender.sendFile(File(testFilePath));
         final code = result.code;
         expect(code, isNotEmpty);
         expect(result.done, completes);
 
+        print('receiving file');
         final actualData = await receiver.recvFile(code);
+        print('actualData: omitted');
         final testData = File(testFilePath).readAsBytesSync();
-        expect(sha256.convert(actualData), equals(sha256.convert(testData)));
+        print('testData: omitted');
+        Digest actualSha = sha256.convert(actualData);
+        print('actualSha: $actualSha');
+        Digest testSha = sha256.convert(testData);
+        print('testSha: $testSha');
+        expect(actualSha, equals(testSha));
+        print('expectation made');
       });
     });
   }
