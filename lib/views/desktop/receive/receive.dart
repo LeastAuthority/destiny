@@ -1,5 +1,8 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
+import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
@@ -22,23 +25,55 @@ class _ReceiveState extends State<Receive> {
         ),
         body: WillPopScope(
         onWillPop: () async => false,
-        child:Container(
+        child: Container (
           width: double.infinity,
-          key: Key(SEND_SCREEN_BODY),
-          padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-          child: Container (
-            height:  double.infinity,
-            margin: EdgeInsets.fromLTRB(16.0.w, 0.0, 16.0.w, 4.0.w),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: 2.0, color: CustomColors.purple),
-                  top: BorderSide(width: 2.0, color: CustomColors.purple),
-                  left: BorderSide(width: 2.0, color: CustomColors.purple),
-                  right: BorderSide(width: 2.0, color: CustomColors.purple),
-                ),
+          padding: EdgeInsets.only(left: 125.0.w, right: 125.0.w),
+          child: Container(
+            margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
+            decoration: BoxDecoration (
+              borderRadius: BorderRadius.all(Radius.circular(4.0)),
+              border: Border(
+                top: BorderSide(width: 2.0, color: CustomColors.purple),
+                left: BorderSide(width: 2.0, color: CustomColors.purple),
+                right: BorderSide(width: 2.0, color:  CustomColors.purple),
+                bottom: BorderSide(width: 2.0, color: CustomColors.purple),
               ),
-            child: Text('RECEIVE_ROUTE'),
-          )
+            ),
+            width: double.infinity,
+            key: Key(SEND_SCREEN_BODY),
+            padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+            child: Container (
+                height:  double.infinity,
+                margin: EdgeInsets.fromLTRB(16.0.w, 0.0, 16.0.w, 4.0.w),
+                child: Column (
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Heading(
+                      title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+                      textStyle: Theme.of(context).textTheme.headline1,
+                    ),
+                    SizedBox(
+                      width: 400.0.w,
+                      height: 60.0.h,
+                      child: TextField(
+                        style: Theme.of(context).textTheme.headline4,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          hintStyle: Theme.of(context).textTheme.bodyText1,
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: CustomColors.purple,
+                                width: 1.0
+                            ),
+                          ),
+                          hintText: 'Enter Code',
+                        ),
+                      ),
+                    ),
+                    DTButton(NEXT, () {})
+                  ],
+                )),
+          ),
         )
         )
     );

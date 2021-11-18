@@ -8,7 +8,7 @@ class CustomTheme {
     return ThemeData(
         primaryColor: CustomColors.purple,
         primaryColorLight: CustomColors.lightPurple,
-        scaffoldBackgroundColor: CustomColors.darkBlue,
+        scaffoldBackgroundColor: CustomColors.black,
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
         textTheme:  TextTheme(
           headline1: TextStyle(
