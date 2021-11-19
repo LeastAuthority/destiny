@@ -71,7 +71,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         height: 60.0.h,
                         alignment: Alignment.centerRight,
                         child: Image.asset(
-                          SETTINGS_ICON,
+                          title == SETTINGS ? SETTINGS_ICON_WITH_CIRCLE : SETTINGS_ICON,
                           width: 25.0.w,
                         ),
                       )
