@@ -57,6 +57,7 @@ class _ReceiveState extends State<Receive> {
         ReceiveProgress(22, 'my picture.png'):Column (
           key:Key(RECEIVE_SCREEN_CONTENT),
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Expanded (
               flex: 1,
@@ -69,7 +70,7 @@ class _ReceiveState extends State<Receive> {
               ),
             ),
           Expanded (
-            flex: 9,
+            flex: 2,
             child: EnterCode(
                 key: Key(RECEIVE_SCREEN_ENTER_CODE),
                 codeChanged: _codeChanged,

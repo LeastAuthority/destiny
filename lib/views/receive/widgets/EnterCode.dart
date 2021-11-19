@@ -21,7 +21,7 @@ class EnterCode extends StatelessWidget {
     return  Container(
       alignment: Alignment.center,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             width: 270.0.w,
