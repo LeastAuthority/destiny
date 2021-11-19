@@ -14,7 +14,6 @@ class CustomTheme {
           linearTrackColor: CustomColors.superLightPurple
         ),
         disabledColor: CustomColors.babyPowderLight,
-        scaffoldBackgroundColor: CustomColors.darkBlue,
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
         textTheme:  TextTheme(
           headline1: TextStyle(
