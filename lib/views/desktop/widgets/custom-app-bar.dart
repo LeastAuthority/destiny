@@ -35,7 +35,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
               Container(
                 key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
                 height: 60.0.h,
-                // width: 70.0.w,
                 margin: EdgeInsets.only(bottom: 8.0.h),
                 alignment: Alignment.center,
                 child: Image.asset(
@@ -44,8 +43,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
               ),
             Container (
-              margin: EdgeInsets.fromLTRB(48.0.w, 0.0, 48.0.w, 0.0.h),
-              padding: EdgeInsets.fromLTRB(0, 8.0.h, 0, 4.0.h),
+              margin: EdgeInsets.fromLTRB(270.0.w, 0.0, 270.0.w, 0.0.h),
+              padding: EdgeInsets.fromLTRB(16.0.w, 8.0.h, 16.0.w, 4.0.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 gradient: LinearGradient(
@@ -60,12 +59,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   NavbarTap(
                     // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
-                    route: SEND_ROUTE,
+                    route: DESKTOP_SEND_ROUTE,
                     currentRoute: path,
                     title: SEND,
                     icon: SEND_ICON,

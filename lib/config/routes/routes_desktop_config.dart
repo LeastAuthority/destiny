@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 PageRouteBuilder? getDesktopRoutes (RouteSettings settings) {
   switch (settings.name) {
-    case '/': {
+    case DESKTOP_SEND_ROUTE: {
       return PageRouteBuilder(pageBuilder: (_, __, ___) => Send());
     }
     break;

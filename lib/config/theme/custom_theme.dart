@@ -86,7 +86,7 @@ class CustomTheme {
         ),
         headline4: TextStyle(
           color: CustomColors.babyPowder,
-          fontSize: 14.sp,
+          fontSize: 12.sp,
           fontWeight: FontWeight.w600,
           fontFamily: MONTSERRAT,
         ),

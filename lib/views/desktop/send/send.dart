@@ -64,7 +64,7 @@ class _SendDefaultState extends State<Send> {
     return Scaffold(
         appBar: CustomAppBar(
             key:Key(CUSTOM_NAV_BAR),
-            path: SEND_ROUTE
+            path: DESKTOP_SEND_ROUTE
         ),
         body: WillPopScope(
         onWillPop: () async => false,

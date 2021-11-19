@@ -48,16 +48,16 @@ class NavbarTap extends StatelessWidget {
                       ),
                       Text(
                           title,
-                          // style: Theme.of(context).textTheme.headline5
+                          style: Theme.of(context).textTheme.headline4
                       ),
                       route == currentRoute?
                         Container(
                           height: 2.0.h,
-                          width: 30.0.w,
+                          width: 50.0.w,
                           margin: EdgeInsets.only(top: 4.0.h),
                           color: Theme.of(context).colorScheme.secondary
                         ): Container(
-                              width: 30.0.w,
+                              width: 50.0.w,
                               height: 2.0.h,
                               margin: EdgeInsets.only(top: 4.0.h),
                            )
