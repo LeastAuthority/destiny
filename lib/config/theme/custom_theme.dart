@@ -9,6 +9,12 @@ class CustomTheme {
         primaryColor: CustomColors.purple,
         primaryColorLight: CustomColors.lightPurple,
         scaffoldBackgroundColor: CustomColors.black,
+        progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: CustomColors.purple,
+          linearTrackColor: CustomColors.superLightPurple
+        ),
+        disabledColor: CustomColors.babyPowderLight,
+        scaffoldBackgroundColor: CustomColors.darkBlue,
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
         textTheme:  TextTheme(
           headline1: TextStyle(
@@ -42,13 +48,13 @@ class CustomTheme {
               fontWeight: FontWeight.w400
           ),
           bodyText1: TextStyle(
-              color: CustomColors.babyPowder,
+              color: CustomColors.babyPowderLight,
               fontSize: 14.sp,
               fontWeight: FontWeight.w300,
               fontFamily: MONTSERRAT,
           ),
           bodyText2: TextStyle(
-              color: CustomColors.babyPowder,
+              color: CustomColors.babyPowderLight,
               fontSize: 12.sp,
               fontWeight: FontWeight.w300,
               fontFamily: MONTSERRAT,

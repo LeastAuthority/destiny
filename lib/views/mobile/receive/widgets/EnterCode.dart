@@ -2,26 +2,41 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+late final TextEditingController controller = new TextEditingController();
 
 class EnterCode extends StatelessWidget {
-  EnterCode({Key? key}):super(key:key);
+  Function codeChanged = (String txt) {};
+  Function handleNextClicked = (String txt) {};
+  EnterCode({
+    Key? key,
+    required Function codeChanged,
+    required Function handleNextClicked,
+  }):super(key:key){
+    this.codeChanged = codeChanged;
+    this.handleNextClicked = handleNextClicked;
+  }
   @override
   Widget build(BuildContext context) {
     return  Container(
       alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width - 100.0,
-            height: 150.0.h,
+          Container(
+            width: 270.0.w,
             child: TextField(
+              controller: controller,
+              onChanged: (txt) {
+                codeChanged(controller.text);
+              },
               style: Theme.of(context).textTheme.headline4,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: 30.0),
                 hintStyle: Theme.of(context).textTheme.bodyText1,
                 enabledBorder: const OutlineInputBorder(
                   borderSide: const BorderSide(
-                      color: Colors.white,
+                      color: Color(0xffC24DF8),
                       width: 1.0
                   ),
                 ),
@@ -29,12 +44,9 @@ class EnterCode extends StatelessWidget {
               ),
             ),
           ),
-          Button(NEXT, () {
-            //FIXME
-            //Here we call a function to start receiving a file. The function takes the generated code as parameter.
-            //Note that the UI here is not ready. So maybe we should pass a static code to the fun
-          }),
-          Button(CANCEL, () {}),
+          SizedBox(height:25.0.h),
+          controller.text.length > 0 ? Button(NEXT, handleNextClicked, false): Container()
+          // Button(CANCEL, () {}),
         ],
       ),
     );
