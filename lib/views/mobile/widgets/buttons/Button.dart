@@ -5,27 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Button extends StatelessWidget {
   String title = '';
   Function handleSelectFile = () {};
-  bool? disabled;
-  double opacity = 1.0;
+  bool disabled = false;
   Button({
     Key? key,
     required Function handleSelectFile,
-    bool? disabled,
+    required bool disabled,
     required String title,
-    required double opacity,
   }):super(key:key){
     this.handleSelectFile = handleSelectFile;
     this.title = title;
     this.disabled = disabled;
-    this.opacity = opacity;
   }
   @override
   Widget build(BuildContext context) {
-     Color? color = disabled == true ?
-      Theme.of(context).primaryColor :
-        Theme.of(context).textTheme.bodyText2!.color;
     return  Opacity (
-      opacity: opacity,
+      opacity: disabled? 0.75: 1.00,
       child: Container(
         margin: EdgeInsets.only(top:22.0.h),
         decoration: const BoxDecoration(
@@ -43,12 +37,7 @@ class Button extends StatelessWidget {
           onPressed: () => handleSelectFile(),
           color: Theme.of(context).scaffoldBackgroundColor,
           child:Text('${title}',
-              style: TextStyle (
-                color: color,
-                fontWeight: Theme.of(context).textTheme.bodyText2!.fontWeight,
-                fontSize: Theme.of(context).textTheme.bodyText2!.fontSize,
-                fontFamily: Theme.of(context).textTheme.bodyText2!.fontFamily,
-              )
+              style: Theme.of(context).textTheme.bodyText2
           ),
         ),
       )

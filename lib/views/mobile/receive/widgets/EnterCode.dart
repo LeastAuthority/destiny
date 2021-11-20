@@ -52,14 +52,12 @@ class EnterCode extends StatelessWidget {
                  title: NEXT,
                  handleSelectFile: () {},
                  disabled: false,
-                 opacity: 1.0,
                  key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
              ) :
                 Button(
                     title: NEXT,
                     handleSelectFile: () {},
-                    disabled: false,
-                    opacity: 0.75,
+                    disabled: true,
                     key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
                 )
           // Button(CANCEL, () {}),

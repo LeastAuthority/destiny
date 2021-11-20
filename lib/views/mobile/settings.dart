@@ -81,7 +81,6 @@ class _SettingsState extends State<Settings> {
                           title: BACK,
                           handleSelectFile: () {Navigator.pop(context);},
                           disabled: false,
-                          opacity: 1.0
                       )
                     ]
                 ),
