@@ -74,14 +74,13 @@ class _SettingsState extends State<Settings> {
                           ],
                         ),
                         ButtonWithBackground(
-                            handleSelectFolder: handleSelectFile,
+                            handleSelectFolder: (){},
                             key:Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)
                         ),
                       Button(
                           title: BACK,
                           handleSelectFile: () {Navigator.pop(context);},
                           disabled: false,
-                          opacity: 1.0
                       )
                     ]
                 ),

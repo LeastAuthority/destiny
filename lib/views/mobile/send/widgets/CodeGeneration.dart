@@ -63,14 +63,12 @@ class CodeGeneration extends StatelessWidget {
                   title: CANCEL,
                   handleSelectFile: () {},
                   disabled: false,
-                  opacity: 1.0
               )
                 :
             Button(
                 title: CANCEL,
                 handleSelectFile: () {},
                 disabled: true,
-                opacity: 1.0
             ),
             SizedBox(
               height: 37.0.h,
