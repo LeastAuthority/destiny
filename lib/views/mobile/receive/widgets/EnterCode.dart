@@ -7,6 +7,8 @@ late final TextEditingController controller = new TextEditingController();
 class EnterCode extends StatelessWidget {
   Function codeChanged = (String txt) {};
   Function handleNextClicked = (String txt) {};
+  String _code = '';
+
   EnterCode({
     Key? key,
     required Function codeChanged,
@@ -44,8 +46,22 @@ class EnterCode extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height:25.0.h),
-          controller.text.length > 0 ? Button(NEXT, handleNextClicked, false): Container()
+          SizedBox(height: 25.0.h),
+          controller.text.length > 0 ?
+             Button(
+                 title: NEXT,
+                 handleSelectFile: () {},
+                 disabled: false,
+                 opacity: 1.0,
+                 key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
+             ) :
+                Button(
+                    title: NEXT,
+                    handleSelectFile: () {},
+                    disabled: false,
+                    opacity: 0.75,
+                    key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
+                )
           // Button(CANCEL, () {}),
         ],
       ),

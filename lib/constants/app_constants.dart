@@ -23,6 +23,7 @@ final String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE = 'Select default s
 final String CURRENT_SAVE_DESTINATION = 'Current save destination:';
 final String GENERATION_CODE = 'Generating Code';
 final String SEEN= 'seen';
+final String PATH= 'path';
 final String LOADING= 'Loading...';
 final String CODE_COPIED = 'Code Copied';
 final String CUSTOM_NAV_BAR_MENU_FANDQ_ITEM = 'F&Q';
@@ -60,6 +61,8 @@ final String RECEIVE_SCREEN_BODY = 'RECEIVE_SCREEN_BODY';
 final String RECEIVE_SCREEN_CONTENT = 'RECEIVE_SCREEN_CONTENT';
 final String RECEIVE_SCREEN_HEADING = 'RECEIVE_SCREEN_HEADING';
 final String RECEIVE_SCREEN_ENTER_CODE= 'RECEIVE_SCREEN_ENTER_CODE';
+final String RECEIVE_SCREEN_NEXT_BTN_DISABLED = 'RECEIVE_SCREEN_NEXT_BTN_DISABLED';
+final String RECEIVE_SCREEN_NEXT_BTN_ENABLED = 'RECEIVE_SCREEN_NEXT_BTN_DISABLED';
 
 //-Splash screen
 final String SPLASH_SCREEN_BODY= 'SPLASH_SCREEN_BODY';

@@ -25,9 +25,6 @@ class CodeGeneration extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    print('isCodeGenerating');
-
-    print(isCodeGenerating);
     return  Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -62,11 +59,19 @@ class CodeGeneration extends StatelessWidget {
         Column(
           children: [
             isCodeGenerating! ?
-              Button(CANCEL, () {
-              }, false)
+              Button(
+                  title: CANCEL,
+                  handleSelectFile: () {},
+                  disabled: false,
+                  opacity: 1.0
+              )
                 :
-              Button(CANCEL, () {
-              }, true),
+            Button(
+                title: CANCEL,
+                handleSelectFile: () {},
+                disabled: true,
+                opacity: 1.0
+            ),
             SizedBox(
               height: 37.0.h,
             )
