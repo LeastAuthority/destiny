@@ -32,7 +32,7 @@ class SendingProgress extends StatelessWidget {
           textStyle: Theme.of(context).textTheme.bodyText1,
           key: Key('APP_MUST_REMAIN_OPEN'),
         ),
-        Button('Cancel', () {})
+        Button(title: 'Cancel', handleSelectFile: () {}, disabled: false, opacity: 1.0)
       ],
     );
   }
