@@ -25,9 +25,6 @@ class CodeGeneration extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    print('isCodeGenerating');
-
-    print(isCodeGenerating);
     return  Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
