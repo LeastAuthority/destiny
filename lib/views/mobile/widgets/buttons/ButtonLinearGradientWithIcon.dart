@@ -1,4 +1,5 @@
 import 'package:basic_utils/basic_utils.dart';
+import 'package:dart_wormhole_gui/views/widgets/GradientBorder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
@@ -30,21 +31,18 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     BoxDecoration getBorder () {
-      var BORDER_COLOR = this.isVertical!?
-        Theme.of(context).colorScheme.secondary :
-         Theme.of(context).primaryColor;
       return  BoxDecoration(
-       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        color: Theme.of(context).scaffoldBackgroundColor,
-        border: Border(
-          top: BorderSide(width: 2.0, color: BORDER_COLOR),
-          left: BorderSide(width: 2.0, color: BORDER_COLOR),
-          right: BorderSide(width: 2.0, color: BORDER_COLOR),
-          bottom: BorderSide(width: 2.0, color: BORDER_COLOR),
-        ),
+          border: GradientBorder.uniform(
+              width: 3.0,
+              gradient: LinearGradient(
+                  colors: <Color>[Colors.deepOrange, Colors.grey],
+                  stops: [0.3, 0.5]
+            )
+          ),
+        borderRadius:  BorderRadius.all(Radius.circular(1.0)),
       );
+
     }
     return Container(
       width: width,
@@ -53,10 +51,10 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
        decoration:  BoxDecoration(
          borderRadius: BorderRadius.all(Radius.circular(10.0)),
          border: Border(
-           top: BorderSide(width: 2.0, color:  Color(0x00C24DF8)),
-           left: BorderSide(width: 2.0, color:  Color(0x00C24DF8)),
-           right: BorderSide(width: 2.0, color:  Color(0x00C24DF8)),
-           bottom: BorderSide(width: 2.0, color:  Color(0x00C24DF8)),
+           top: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
+           left: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
+           right: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
+           bottom: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
          ),
          gradient: LinearGradient(
            begin: Alignment.centerLeft,
