@@ -46,7 +46,7 @@ class ReceiveProgress extends StatelessWidget {
             key: Key('APP_MUST_REMAIN_OPEN'),
           ),
         ],),
-        Button('Cancel', () {}, false),
+        // Button('Cancel', () {}, false),
         SizedBox(
           height: 37.0.h,
         )
