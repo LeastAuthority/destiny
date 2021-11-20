@@ -5,17 +5,47 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  String _path = '';
+  SharedPreferences? prefs;
+  _SettingsState () {
+    initializePrefs();
+  }
+  void initializePrefs() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+  Future storePath(String path) async {
+    return prefs?.setString(PATH, path);
+  }
+  Future<String> getPath () async {
+    String prefPath = await prefs?.getString(PATH) ?? '';
+    return prefPath;
+  }
+  void handleSelectFile () async {
+    String? result = await FilePicker.platform.getDirectoryPath();
+    if(result != null) {
+      storePath(result);
+      setState(() {
+        _path = result;
+      });
+    } else {
+      // User canceled the picker
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar:  CustomBottomBar(
-             path: SETTINGS_ROUTE,
-             key: Key(BOTTOM_NAV_BAR),
-        ),
         appBar: CustomAppBar(
             title: SETTINGS,
             key:Key(CUSTOM_NAV_BAR),
@@ -34,21 +64,25 @@ class Settings extends StatelessWidget {
                             Heading(
                               title:
                               '${SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE} '
-                                  '${CURRENT_SAVE_DESTINATION}',
+                                  '${CURRENT_SAVE_DESTINATION} ',
                               textAlign: TextAlign.left,
                               marginTop: 0,
-                              path: 'Destiny/Received',
+                              path: getPath().toString(),
                               textStyle: Theme.of(context).textTheme.bodyText1,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
                           ],
                         ),
                         ButtonWithBackground(
-                            handleSelectFolder: (){},
+                            handleSelectFolder: handleSelectFile,
                             key:Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)
                         ),
-                      Button(BACK, () {
-                      })
+                      Button(
+                          title: BACK,
+                          handleSelectFile: () {Navigator.pop(context);},
+                          disabled: false,
+                          opacity: 1.0
+                      )
                     ]
                 ),
 

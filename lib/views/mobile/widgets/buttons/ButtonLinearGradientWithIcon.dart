@@ -11,17 +11,19 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
   double? width;
   double? height;
   bool? isVertical;
+  bool isCodeGenerating = false;
 
   ButtonLinearGradientWithIcon({
     String label = '', Function? handleSelectFile,
     Widget? icon, double? height,
     double? width, bool? isVertical,
+    bool isCodeGenerating = false,
     Key? key}):super(key:key) {
-    int middleIndex = (label.length / 2).toInt();
-    this.label = StringUtils.addCharAtPosition(label, "\n", middleIndex);
+    this.label = label;
     this.isVertical = isVertical;
     this.handleSelectFile = handleSelectFile;
     this.icon = icon;
+    this.isCodeGenerating = isCodeGenerating;
     this.height = height;
     this.width = width;
   }
@@ -76,24 +78,24 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
               }
             },
             color: Theme.of(context).scaffoldBackgroundColor,
-            child: SizedBox(
-              child:Row( // Replace with a Row for horizontal icon + text
+            child: Container(
+              child: Row( // Replace with a Row for horizontal icon + text
                 children: <Widget>[
                   Expanded(
                     flex: 11,
                     child: Text(
-                        '${label}',
+                        label,
                         textAlign: TextAlign.center,
                         style:Theme.of(context).textTheme.headline4
                     ),
                   ),
-                  Expanded(
-                    flex: 3,
-                    child:  SizedBox(
-                      width: 25.0.w,
+                  isCodeGenerating ? Expanded(
+                    flex: 2,
+                    child: SizedBox(
+                      // width: 25.0.w,
                       height: 25.0.h,
                       child: icon,
-                    ),)
+                    ),): Container()
                 ],
               ),
             )
