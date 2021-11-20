@@ -28,12 +28,15 @@ class CodeGeneration extends StatelessWidget {
     return  Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Heading(
-          title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
-          textAlign: TextAlign.left,
-          marginTop: 0,
-          textStyle: Theme.of(context).textTheme.bodyText1,
-          key: Key(SEND_SCREEN_HEADING),
+        Container (
+          padding: EdgeInsets.only(right: 40.0.w),
+          child: Heading(
+            title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
+            textAlign: TextAlign.left,
+            marginTop: 0,
+            textStyle: Theme.of(context).textTheme.bodyText1,
+            key: Key(SEND_SCREEN_HEADING),
+          ),
         ),
         Column(
           children: [
