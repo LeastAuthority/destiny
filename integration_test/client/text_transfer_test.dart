@@ -25,16 +25,12 @@ void main() {
       final sender = Client(config: testConfig);
       final receiver = Client(config: testConfig);
 
-      print("Sending text...");
       final result = await sender.sendText(expectedText);
       final code = result.code;
-      print("got code $code");
       expect(code, isNotEmpty);
       expect(result.done, completes);
 
-      print("Receiving text...");
       final actual = await receiver.recvText(code);
-      print("got actual $actual");
       expect(actual, expectedText);
     });
 
