@@ -47,16 +47,16 @@ void main() {
       expect(result.done, completes);
     });
 
-    // test('go CLI -> dart API', () async {
-    //   final receiver = Client();
-    //
-    //   final code = sendTextGo(expectedText);
-    //   // TODO: something more robust!
-    //   sleep(Duration(seconds: 5));
-    //   final actual = await receiver.recvText(code);
-    //
-    //   // expect(code, isNotEmpty);
-    //   expect(actual, expectedText);
-    // });
+    test('go CLI -> dart API', () async {
+      final receiver = Client();
+
+      final code = sendTextGo(expectedText);
+      // TODO: something more robust!
+      sleep(Duration(seconds: 5));
+      final actual = await receiver.recvText(code);
+
+      expect(code, isNotEmpty);
+      expect(actual, expectedText);
+    });
   });
 }
