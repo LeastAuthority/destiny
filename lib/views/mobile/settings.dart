@@ -21,26 +21,29 @@ class _SettingsState extends State<Settings> {
   _SettingsState () {
     initializePrefs();
   }
+
   void initializePrefs() async {
     prefs = await SharedPreferences.getInstance();
   }
+
   Future storePath(String path) async {
     return prefs?.setString(PATH, path);
   }
-  Future<String> getPath () async {
-    String prefPath = await prefs?.getString(PATH) ?? '';
-    return prefPath;
+
+  String getPath ()   {
+    String prefPath = prefs?.getString(PATH) ?? '';
+    return  prefPath;
   }
+
   void handleSelectFile () async {
     String? result = await FilePicker.platform.getDirectoryPath();
-    if(result != null) {
-      storePath(result);
-      setState(() {
-        _path = result;
-      });
-    } else {
-      // User canceled the picker
+    if(result == null) {
+      return;
     }
+     // setState(() {
+     //   _path = result;
+     // });
+    await storePath(result);
   }
 
   @override
@@ -64,17 +67,17 @@ class _SettingsState extends State<Settings> {
                             Heading(
                               title:
                               '${SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE} '
-                                  '${CURRENT_SAVE_DESTINATION}',
+                                  '${CURRENT_SAVE_DESTINATION} ',
                               textAlign: TextAlign.left,
                               marginTop: 0,
-                              path: 'Destiny/Received',
+                              path: getPath(),
                               textStyle: Theme.of(context).textTheme.bodyText1,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
                           ],
                         ),
                         ButtonWithBackground(
-                            handleSelectFolder: (){},
+                            handleSelectFolder: handleSelectFile,
                             key:Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)
                         ),
                       Button(
