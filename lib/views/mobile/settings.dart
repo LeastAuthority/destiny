@@ -1,10 +1,8 @@
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,26 +19,23 @@ class _SettingsState extends State<Settings> {
   _SettingsState () {
     initializePrefs();
   }
+
   void initializePrefs() async {
     prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _path = prefs?.getString(PATH) ?? '';
+    });
   }
-  Future storePath(String path) async {
-    return prefs?.setString(PATH, path);
-  }
-  Future<String> getPath () async {
-    String prefPath = await prefs?.getString(PATH) ?? '';
-    return prefPath;
-  }
+
   void handleSelectFile () async {
     String? result = await FilePicker.platform.getDirectoryPath();
-    if(result != null) {
-      storePath(result);
-      setState(() {
-        _path = result;
-      });
-    } else {
-      // User canceled the picker
+    if(result == null) {
+      return;
     }
+     setState(() {
+       _path = result;
+     });
+    prefs?.setString(PATH, result);
   }
 
   @override
@@ -67,19 +62,21 @@ class _SettingsState extends State<Settings> {
                                   '${CURRENT_SAVE_DESTINATION} ',
                               textAlign: TextAlign.left,
                               marginTop: 0,
-                              path: getPath().toString(),
+                              path: _path,
                               textStyle: Theme.of(context).textTheme.bodyText1,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
                           ],
                         ),
                         ButtonWithBackground(
-                            handleSelectFolder: (){},
+                            handleSelectFolder: handleSelectFile,
                             key:Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)
                         ),
                       Button(
                           title: BACK,
-                          handleSelectFile: () {Navigator.pop(context);},
+                          handleSelectFile: () {
+                            Navigator.pop(context);
+                            },
                           disabled: false,
                       )
                     ]
