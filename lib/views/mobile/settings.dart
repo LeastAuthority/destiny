@@ -1,10 +1,8 @@
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,15 +22,9 @@ class _SettingsState extends State<Settings> {
 
   void initializePrefs() async {
     prefs = await SharedPreferences.getInstance();
-  }
-
-  Future storePath(String path) async {
-    return prefs?.setString(PATH, path);
-  }
-
-  String getPath ()   {
-    String prefPath = prefs?.getString(PATH) ?? '';
-    return  prefPath;
+    setState(() {
+      _path = prefs?.getString(PATH) ?? '';
+    });
   }
 
   void handleSelectFile () async {
@@ -40,10 +32,10 @@ class _SettingsState extends State<Settings> {
     if(result == null) {
       return;
     }
-     // setState(() {
-     //   _path = result;
-     // });
-    await storePath(result);
+     setState(() {
+       _path = result;
+     });
+    prefs?.setString(PATH, result);
   }
 
   @override
@@ -70,7 +62,7 @@ class _SettingsState extends State<Settings> {
                                   '${CURRENT_SAVE_DESTINATION} ',
                               textAlign: TextAlign.left,
                               marginTop: 0,
-                              path: getPath(),
+                              path: _path,
                               textStyle: Theme.of(context).textTheme.bodyText1,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
@@ -82,7 +74,9 @@ class _SettingsState extends State<Settings> {
                         ),
                       Button(
                           title: BACK,
-                          handleSelectFile: () {Navigator.pop(context);},
+                          handleSelectFile: () {
+                            Navigator.pop(context);
+                            },
                           disabled: false,
                       )
                     ]
