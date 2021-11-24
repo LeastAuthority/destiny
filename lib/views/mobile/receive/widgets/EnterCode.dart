@@ -7,6 +7,8 @@ late final TextEditingController controller = new TextEditingController();
 class EnterCode extends StatelessWidget {
   Function codeChanged = (String txt) {};
   Function handleNextClicked = (String txt) {};
+  String _code = '';
+
   EnterCode({
     Key? key,
     required Function codeChanged,

@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:lib/views/mobile/receive/widgets/ReceiveProgress.dart
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
@@ -59,3 +60,5 @@ class ReceiveProgress extends StatelessWidget {
     );
   }
 }
+========
+>>>>>>>> main:lib/views/receive/widgets/ReceiveProgress.dart
