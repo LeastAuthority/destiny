@@ -21,7 +21,7 @@ class Send extends StatefulWidget {
 
 class _SendDefaultState extends State<Send> {
   String _msg = 'test test';
-  String _code = 'sssssssssssssss';
+  String _code = 'wnm-d-djm';
   String fileName = '';
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
@@ -88,8 +88,8 @@ class _SendDefaultState extends State<Send> {
                 child: DTCodeGeneration(
                     fileName:  'ddddd.mp3',
                     fileSize: 22,
-                    code: '',
-                    isCodeGenerating: true,
+                    code: _code,
+                    isCodeGenerating: false,
                   )
               ) :
               DTSelectAFile(
