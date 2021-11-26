@@ -11,17 +11,16 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
   Widget? icon;
   double? width;
   double? height;
-  bool? isVertical;
   bool isCodeGenerating = false;
 
   DTButtonLinearGradientWithIcon({
-    String label = '', Function? handleSelectFile,
+    required String label,
+    Function? handleSelectFile,
     Widget? icon, double? height,
-    double? width, bool? isVertical,
+    double? width,
     bool isCodeGenerating = false,
     Key? key}):super(key:key) {
     this.label = label;
-    this.isVertical = isVertical;
     this.handleSelectFile = handleSelectFile;
     this.icon = icon;
     this.isCodeGenerating = isCodeGenerating;
@@ -31,43 +30,36 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BoxDecoration getBorder () {
-      return  BoxDecoration(
-          border: GradientBorder.uniform(
-              width: 3.0,
-              gradient: LinearGradient(
-                  colors: <Color>[Colors.deepOrange, Colors.grey],
-                  stops: [0.3, 0.5]
-            )
-          ),
-        borderRadius:  BorderRadius.all(Radius.circular(1.0)),
-      );
-
-    }
     return Container(
       width: width,
       height: height,
       margin: const EdgeInsets.only(top: 30.0),
        decoration:  BoxDecoration(
-         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-         border: Border(
-           top: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
-           left: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
-           right: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
-           bottom: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
-         ),
-         gradient: LinearGradient(
-           begin: Alignment.topCenter,
-           end: Alignment.bottomCenter,
-           colors: <Color>[
-             Theme.of(context).cardColor.withOpacity(0.4),
-             Theme.of(context).primaryColor.withOpacity(0.4),
-           ], // red to yellow
-           tileMode: TileMode.repeated, // repeats the gradient over the canvas
-         ),
+         borderRadius: BorderRadius.all(Radius.circular(4.0)),
+         border: !isCodeGenerating ?
+           Border(
+             top: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+             left: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+             right: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+             bottom: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+           ): Border(
+             top: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
+             left: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
+             right: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
+             bottom: BorderSide(width: 3.0, color:  Color(0x00C24DF8)),
+           ),
+         gradient: isCodeGenerating ?
+           LinearGradient(
+             begin: Alignment.topCenter,
+             end: Alignment.bottomCenter,
+             colors: <Color>[
+               Theme.of(context).cardColor.withOpacity(0.4),
+               Theme.of(context).primaryColor.withOpacity(0.4),
+             ], // red to yellow
+             tileMode: TileMode.repeated, // repeats the gradient over the canvas
+           ): null,
        ),
       child: Container(
-        decoration: getBorder(),
         width: width,
         height: height,
         child:  FlatButton(
@@ -96,7 +88,13 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
                         child: icon,
                       ),
                   ],
-              ): Container(),
+              ): Container(
+                child:Text(
+                    label,
+                    textAlign: TextAlign.center,
+                    style:Theme.of(context).textTheme.headline2
+                ),
+              ),
             )
         ),
       ),
