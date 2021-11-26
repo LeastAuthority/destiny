@@ -65,11 +65,12 @@ class CustomTheme {
   static ThemeData get darkThemeDesktop {
     return ThemeData(
       primaryColor: CustomColors.purple,
+      cardColor: CustomColors.lightBlue,
       primaryColorDark: CustomColors.darkPurple,
       primaryColorLight: CustomColors.mediumPurple,
       scaffoldBackgroundColor: CustomColors.darkBlue,
       backgroundColor:  CustomColors.darkBlue,
-      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
+      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder,),
       textTheme: TextTheme(
         headline1: TextStyle(
           color: CustomColors.babyPowder,
