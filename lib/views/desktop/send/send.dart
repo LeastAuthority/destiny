@@ -1,5 +1,7 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widget/DTCodeGeneration.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSelectAFile.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
@@ -75,61 +77,29 @@ class _SendDefaultState extends State<Send> {
           child: Container (
             height:  double.infinity,
             margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
-              child: DropTarget(
-                onDragDone: (detail) {
-                  setState(() {
-                    // _list.addAll(detail.urls);
-                  });
-                },
-                onDragEntered: (detail) {
-                  print(detail);
-                  setState(() {
-                    // _dragging = true;
-                  });
-                },
-                onDragExited: (detail) {
-                  setState(() {
-                    // _dragging = false;
-                  });
-                },
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  // color: _dragging ? Colors.blue.withOpacity(0.4) : Colors.black26,
-                  child:  DottedBorder(
-                      dashPattern: [8, 4],
-                      strokeWidth: 2.0.h,
-                      color: CustomColors.purple,
-                      child: Column (
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Heading(
-                            title: SEND_FILES_SIMPLE_SECURE_FAST,
-                            textStyle: Theme.of(context).textTheme.headline1,
-                          ),
-                          Column(
-                            children: [
-                              Heading(
-                                title: DROP_A_FILE,
-                                textStyle: Theme.of(context).textTheme.headline5,
-                              ),
-                              Heading(
-                                title: OR,
-                                textStyle: Theme.of(context).textTheme.headline4,
-                                marginTop: 26.0.h,
-                              ),
-                            ],
-                          ),
-                          FlatButton(
-                            onPressed: handleSelectFile,
-                            child: Image.asset(
-                              PLUS_ICON,
-                              width: 250.0.w,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
+              child:  DottedBorder(
+              dashPattern: [8, 4],
+              strokeWidth: 2.0.h,
+              color: CustomColors.purple,
+              child: fileName.length > 0 ?
+               Container (
+                height:  double.infinity,
+                margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
+                child: DTCodeGeneration(
+                    fileName:  'ddddd.mp3',
+                    fileSize: 22,
+                    code: '',
+                    isCodeGenerating: true,
+                  )
+              ) :
+              DTSelectAFile(
+                  handleSelectFile: handleSelectFile,
+                  handleFileDroped: (path) {
+                      setState(() {
+                        fileName = 'path';
+                      });
+                 }
+              )
               )
           )
         )
