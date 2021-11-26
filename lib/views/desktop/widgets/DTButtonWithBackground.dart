@@ -3,20 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DTButton extends StatefulWidget {
-  final String title;
-  Function handleSelectFile;
-  DTButton(this.title, this.handleSelectFile);
-
-  @override
-  _CustomAppBarState createState() => _CustomAppBarState(title, handleSelectFile);
-}
-
-class _CustomAppBarState extends State<DTButton> {
-  final String title;
-  Function handleSelectFile;
+class DTButtonWithBackground extends StatelessWidget {
+  String title = '';
+  Function handleSelectFile = () {};
   Widget? icon;
-  _CustomAppBarState(this.title, this.handleSelectFile);
+  DTButtonWithBackground({
+    String title = '',
+    required Function handleSelectFile,
+    Widget? icon,
+  }) {
+    this.title = title;
+    this.icon = icon;
+    this.handleSelectFile = handleSelectFile;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class _CustomAppBarState extends State<DTButton> {
       height: 30.0.h,
       child:  FlatButton(
         onPressed: () => handleSelectFile(),
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: Theme.of(context).primaryColor,
         child:Text('${title}',
             style: Theme.of(context).textTheme.subtitle1
         ),
