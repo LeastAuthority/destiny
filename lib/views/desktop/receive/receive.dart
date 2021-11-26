@@ -1,5 +1,6 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
+import 'package:dart_wormhole_gui/views/desktop/widgets/DTButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 
+final TextEditingController controller = new TextEditingController();
 
 class Receive extends StatefulWidget {
   Receive({Key? key}) : super(key: key);
@@ -56,6 +58,12 @@ class _ReceiveState extends State<Receive> {
                       width: 400.0.w,
                       height: 60.0.h,
                       child: TextField(
+                        controller: controller,
+                        onChanged: (text) {
+                          this.setState(() {
+
+                          });
+                        },
                         style: Theme.of(context).textTheme.headline4,
                         textAlign: TextAlign.center,
                         decoration: InputDecoration(
@@ -70,7 +78,19 @@ class _ReceiveState extends State<Receive> {
                         ),
                       ),
                     ),
-                    DTButton(NEXT, () {})
+                    controller.text.length >0 ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DTButtonWithBackground(
+                          title: NEXT,
+                          handleSelectFile: () {},
+                        ),
+                        SizedBox(
+                          width: 15.0.w,
+                        ),
+                        DTButton(CANCEL, () {}),
+                      ],
+                    ): Container (height: 30.0.h,)
                   ],
                 )),
           ),
