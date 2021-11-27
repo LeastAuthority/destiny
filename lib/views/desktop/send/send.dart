@@ -2,6 +2,7 @@ import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widget/DTCodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSelectAFile.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSendingProgress.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
@@ -81,25 +82,34 @@ class _SendDefaultState extends State<Send> {
               dashPattern: [8, 4],
               strokeWidth: 2.0.h,
               color: CustomColors.purple,
-              child: fileName.length > 0 ?
-               Container (
-                height:  double.infinity,
-                margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
-                child: DTCodeGeneration(
-                    fileName:  'ddddd.mp3',
-                    fileSize: 22,
-                    code: _code,
-                    isCodeGenerating: false,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DTSendingProgress(
+                      0,
+                      'aaaa'
                   )
-              ) :
-              DTSelectAFile(
-                  handleSelectFile: handleSelectFile,
-                  handleFileDroped: (path) {
-                      setState(() {
-                        fileName = 'path';
-                      });
-                 }
+                ],
               )
+              // child: fileName.length > 0 ?
+              //  Container (
+              //   height:  double.infinity,
+              //   margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
+              //   child: DTCodeGeneration(
+              //       fileName:  'ddddd.mp3',
+              //       fileSize: 22,
+              //       code: _code,
+              //       isCodeGenerating: false,
+              //     )
+              // ) :
+              // DTSelectAFile(
+              //     handleSelectFile: handleSelectFile,
+              //     handleFileDroped: (path) {
+              //         setState(() {
+              //           fileName = 'path';
+              //         });
+              //    }
+              // )
               )
           )
         )

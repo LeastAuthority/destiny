@@ -102,7 +102,7 @@ class CustomTheme {
         headline5: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 14.sp,
-          fontWeight: FontWeight.w300,
+          fontWeight: FontWeight.w400,
           fontFamily: MONTSERRAT,
         ),
         bodyText1:  TextStyle(

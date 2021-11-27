@@ -17,7 +17,7 @@ class DTFileInfo extends StatelessWidget {
           child: Align(
             alignment: Alignment.center,
             child: Text('${fileName}',
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.headline1,
             ),
           ),
         ),

@@ -36,7 +36,7 @@ class _CustomAppBarState extends State<DTButton> {
         onPressed: () => handleSelectFile(),
         color: Theme.of(context).scaffoldBackgroundColor,
         child:Text('${title}',
-            style: Theme.of(context).textTheme.subtitle1
+            style: Theme.of(context).textTheme.headline5
         ),
       ),
     );

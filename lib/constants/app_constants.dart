@@ -7,6 +7,7 @@ final String SETTINGS = "Settings";
 //ui strings
 final String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST = 'Send and receive files securely and fast';
 final String SEND_FILES_SIMPLE_SECURE_FAST = 'Send files simply, securely, and fast.';
+final String SENDING_IN_PROGRESS = 'Sending in progress...';
 final String DROP_A_FILE = 'Drop a file';
 final String OR = 'OR';
 final String PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED = 'Please keep the app open until the file is downloaded.';
