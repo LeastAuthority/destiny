@@ -14,6 +14,9 @@ class CustomTheme {
           linearTrackColor: CustomColors.superLightPurple
         ),
         disabledColor: CustomColors.babyPowderLight,
+        appBarTheme: AppBarTheme(
+          backgroundColor: CustomColors.veryDarkPurple
+        ),
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
         textTheme:  TextTheme(
           headline1: TextStyle(

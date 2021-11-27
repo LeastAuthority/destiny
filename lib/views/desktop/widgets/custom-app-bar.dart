@@ -48,12 +48,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 gradient: LinearGradient(
-                  stops: [0.0, 1.0],
+                  stops: [0.0, 0.4],
                   begin: FractionalOffset.topCenter,
                   end: FractionalOffset.bottomCenter,
                   colors: <Color>[
-                    Theme.of(context).primaryColorLight,
-                    Theme.of(context).primaryColor
+                    Theme.of(context).primaryColorLight.withOpacity(0.5),
+                    CustomColors.veryDarkPurple.withOpacity(0.5)
                   ],
                   tileMode: TileMode.clamp, // repeats the gradient over the canvas
                 ),
