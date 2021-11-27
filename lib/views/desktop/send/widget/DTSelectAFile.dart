@@ -38,7 +38,7 @@ class DTSelectAFile extends StatelessWidget {
       },
       child: Container(
         child: Column (
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Heading(
               title: SEND_FILES_SIMPLE_SECURE_FAST,
