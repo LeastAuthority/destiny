@@ -48,7 +48,7 @@ class _ReceiveState extends State<Receive> {
                 height:  double.infinity,
                 margin: EdgeInsets.fromLTRB(16.0.w, 0.0, 16.0.w, 4.0.w),
                 child: Column (
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Heading(
                       title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
