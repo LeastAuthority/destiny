@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,16 +21,19 @@ class SendDefault extends StatefulWidget {
 
 class _SendDefaultState extends State<SendDefault> {
   String _msg = 'test test';
-  String _code = '';
+  String? _code = null;
   String fileName = '';
   bool isCodeGenerating = true;
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  _SendDefaultState(){
+  Client client = Client(
+      config: Config(
+    rendezvousUrl: 'ws://192.168.1.107:4000/v1',
+    transitRelayUrl: 'tcp:192.168.1.107:4001',
+  ));
 
-  }
-  // Client client = Client();
+  _SendDefaultState() {}
 
   void _msgChanged(String msg) {
     setState(() {
@@ -35,34 +41,34 @@ class _SendDefaultState extends State<SendDefault> {
     });
   }
 
-  void _codeChanged(String code) {
+  void _codeChanged(String? code) {
     setState(() {
       _code = code;
     });
   }
 
-  void _send(String name) {
+  void _send(PlatformFile file) {
+    // TODO cleanup these prints
+    print("Sending a file ${file.name}");
+    client.sendFile(File(file.path.toString())).then((result) {
+      print("Got code ${result.code}");
+      _codeChanged(result.code);
+      result.done.then((value) {
+        _msgChanged("File transfer successful");
+        _codeChanged(null);
+      });
+    });
   }
 
-  void handleSelectFile () async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false);
-    if(result != null) {
+  void handleSelectFile() async {
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowMultiple: false);
+    if (result != null) {
       PlatformFile file = result.files.first;
-      //FIXME
-      //Here we should have a call to a function that generate and returns wormhole code.
-      //When we have the code, we set it to the state below so user can see it in the UI.
-      _send(file.name);
+      _send(file);
       setState(() {
         fileName = file.name;
-        fileSize = (file.size/8).toInt(); //bytes to kb
-        isCodeGenerating =  true;
-      });
-      var timer = Timer.periodic(Duration(seconds: 3), (timer) {
-        setState(() {
-          _code = 'wdf-ddw-f';
-          isCodeGenerating =  false;
-        });
-        timer.cancel();
+        fileSize = file.size ~/ 8;
       });
     } else {
       // User canceled the picker
@@ -72,31 +78,29 @@ class _SendDefaultState extends State<SendDefault> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar:  CustomBottomBar(
-             path: SEND_ROUTE,
-             key: Key(BOTTOM_NAV_BAR),
+        bottomNavigationBar: CustomBottomBar(
+          path: SEND_ROUTE,
+          key: Key(BOTTOM_NAV_BAR),
         ),
         appBar: CustomAppBar(
-            title:SEND,
-            key:Key(CUSTOM_NAV_BAR),
+          title: SEND,
+          key: Key(CUSTOM_NAV_BAR),
         ),
         body: WillPopScope(
-        onWillPop: () async => false,
-        child:Container(
-          width: double.infinity,
-          key: Key(SEND_SCREEN_BODY),
-          padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-          child: fileSize > 0 ?
-            CodeGeneration(
-              isCodeGenerating: isCodeGenerating,
-              fileName: fileName,
-              fileSize: fileSize,
-              code: _code,
-              key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-            ):
-            SelectAFileUI(fileSize, fileName,  _code, handleSelectFile)
-        )
-        )
-    );
+            onWillPop: () async => false,
+            child: Container(
+                width: double.infinity,
+                key: Key(SEND_SCREEN_BODY),
+                padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+                child: fileSize > 0
+                    ? CodeGeneration(
+                        isCodeGenerating: isCodeGenerating,
+                        fileName: fileName,
+                        fileSize: fileSize,
+                        code: _code ?? '',
+                        key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+                      )
+                    : SelectAFileUI(
+                        fileSize, fileName, _code ?? '', handleSelectFile))));
   }
 }
