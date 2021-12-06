@@ -1,11 +1,15 @@
+import 'dart:io';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
+import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:math';
 
 class Receive extends StatefulWidget {
   bool isReceiving = false;
@@ -19,6 +23,13 @@ class _ReceiveState extends State<Receive> {
   String _code = '';
   bool isReceiving = false;
   TextEditingController _msgTxtCtrl = TextEditingController();
+  Client client = Client();
+  SharedPreferences? prefs;
+  final _chars = ROW_RANDOM_STRING;
+  Random _rnd = Random();
+
+  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
   void _msgChanged(String msg) {
     setState(() {
@@ -26,13 +37,29 @@ class _ReceiveState extends State<Receive> {
     });
   }
 
+  Future gePath() async {
+    prefs = await SharedPreferences.getInstance();
+    return prefs?.getString(PATH) ;
+  }
+
   void _codeChanged(String code) {
+    print(code);
     setState(() {
       _code = code;
     });
   }
+  Future<String> getFilePath() async {
+    String path = await gePath();
+    String randomName = getRandomString(10);
+    String filePath = '$path/$randomName.png'; // 3
+    return filePath;
+  }
 
-  void _receive() {
+  void _receive() async {
+    client.recvFile(_code).then((result) async {
+      File file = File(await getFilePath());
+      file.writeAsBytes(result); // 2
+    });
   }
 
   @override
@@ -74,9 +101,10 @@ class _ReceiveState extends State<Receive> {
                 key: Key(RECEIVE_SCREEN_ENTER_CODE),
                 codeChanged: _codeChanged,
                 handleNextClicked: () {
-                  this.setState(() {
-                    isReceiving = true;
-                  });
+                  _receive();
+                  // this.setState(() {
+                  //   isReceiving = true;
+                  // });
                 }
             ),
           )

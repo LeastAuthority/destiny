@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
+import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_william/client/client.dart';
@@ -21,7 +22,7 @@ class SendDefault extends StatefulWidget {
 
 class _SendDefaultState extends State<SendDefault> {
   String _msg = 'test test';
-  String? _code = null;
+  String? _code = '';
   String fileName = '';
   bool isCodeGenerating = true;
   int fileSize = 0;
@@ -39,6 +40,7 @@ class _SendDefaultState extends State<SendDefault> {
 
   void _codeChanged(String? code) {
     setState(() {
+      isCodeGenerating = false;
       _code = code;
     });
   }
@@ -88,15 +90,20 @@ class _SendDefaultState extends State<SendDefault> {
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
                 padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-                child: fileSize > 0
-                    ? CodeGeneration(
-                        isCodeGenerating: isCodeGenerating,
-                        fileName: fileName,
-                        fileSize: fileSize,
-                        code: _code ?? '',
-                        key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-                      )
-                    : SelectAFileUI(
-                        fileSize, fileName, _code ?? '', handleSelectFile))));
+                child: _code != null ? Container (
+                    child: fileSize > 0
+                        ? CodeGeneration(
+                      isCodeGenerating: isCodeGenerating,
+                      fileName: fileName,
+                      fileSize: fileSize,
+                      code: _code ?? '',
+                      key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+                    )
+                        : SelectAFileUI(
+                        fileSize, fileName, _code ?? '', handleSelectFile)
+                ): SendingDone(fileSize, fileName)
+            )
+        )
+              );
   }
 }
