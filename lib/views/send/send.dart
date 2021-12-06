@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
-import 'package:dart_wormhole_gui/views/send/widgets/CodeGeneration.dart';
-import 'package:dart_wormhole_gui/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/widgets/buttons/ButtonWithIcon.dart';
-import 'package:dart_wormhole_gui/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/widgets/custom-bottom-bar.dart';
+import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithIcon.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:file_picker/file_picker.dart';
@@ -27,11 +27,7 @@ class _SendDefaultState extends State<SendDefault> {
   String? _msg = null;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  Client client = Client(
-      config: Config(
-    rendezvousUrl: 'ws://192.168.1.107:4000/v1',
-    transitRelayUrl: 'tcp:192.168.1.107:4001',
-  ));
+  Client client = Client();
 
   void _msgChanged(String? msg) {
     setState(() {
@@ -104,7 +100,7 @@ class _SendDefaultState extends State<SendDefault> {
           key: Key(BOTTOM_NAV_BAR),
         ),
         appBar: CustomAppBar(
-          title: SEND,
+          path: SEND,
           key: Key(CUSTOM_NAV_BAR),
         ),
         body: WillPopScope(
