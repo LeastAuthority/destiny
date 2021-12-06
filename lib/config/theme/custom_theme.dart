@@ -52,7 +52,7 @@ class CustomTheme {
           bodyText1: TextStyle(
               color: CustomColors.babyPowderLight,
               fontSize: 14.sp,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w400,
               fontFamily: MONTSERRAT,
           ),
           bodyText2: TextStyle(
