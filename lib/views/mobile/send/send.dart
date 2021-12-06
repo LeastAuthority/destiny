@@ -27,11 +27,7 @@ class _SendDefaultState extends State<SendDefault> {
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
-  Client client = Client(
-      config: Config(
-    rendezvousUrl: 'ws://192.168.1.107:4000/v1',
-    transitRelayUrl: 'tcp:192.168.1.107:4001',
-  ));
+  Client client = Client();
 
   _SendDefaultState() {}
 
