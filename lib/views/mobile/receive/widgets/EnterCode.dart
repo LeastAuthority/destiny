@@ -50,13 +50,13 @@ class EnterCode extends StatelessWidget {
           controller.text.length > 0 ?
              Button(
                  title: NEXT,
-                 handleSelectFile: () {},
+                 handleSelectFile: handleNextClicked,
                  disabled: false,
                  key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
              ) :
                 Button(
                     title: NEXT,
-                    handleSelectFile: () {},
+                    handleSelectFile: (){},
                     disabled: true,
                     key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
                 )

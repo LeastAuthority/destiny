@@ -46,6 +46,7 @@ dependencies:
   desktop_window: ^0.4.0
   filepicker_windows: ^2.0.0
   page_transition: ^2.0.4
+  path_provider: ^2.0.0
   dotted_border: ^2.0.0+1
   desktop_drop: ^0.1.2
 dev_dependencies:
@@ -81,6 +82,7 @@ flutter:
   assets:
     - assets/images/privacy.png
     - assets/images/logo.png
+    - assets/images/icons/CHECK.png
     - assets/images/icons/send.png
     - assets/images/icons/receive.png
     - assets/images/device-device.png
