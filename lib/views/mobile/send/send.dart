@@ -1,17 +1,15 @@
-import 'dart:async';
 import 'dart:io';
 
+import 'package:dart_wormhole_gui/config/routes/routes.dart';
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_william/client/client.dart';
-import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
 
 class SendDefault extends StatefulWidget {
   SendDefault({Key? key}) : super(key: key);
