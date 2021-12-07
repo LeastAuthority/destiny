@@ -2,11 +2,10 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as path;
-
-import 'package:dart_wormhole_william/client/client.dart';
-import 'package:dart_wormhole_william/client/config.dart';
 
 import './cli_util.dart';
 
@@ -44,7 +43,7 @@ void main() {
       final testFilePath = createFile(size);
 
       test('dart API -> go CLI', () async {
-        final sender = Client();
+        final sender = Client(config: testConfig);
 
         final result = await sender.sendFile(File(testFilePath));
         final code = result.code;
@@ -59,7 +58,7 @@ void main() {
       });
 
       test('go CLI -> dart API', () async {
-        final receiver = Client();
+        final receiver = Client(config: testConfig);
 
         final code = await sendFileGo(testFilePath);
         expect(code, isNotEmpty);
