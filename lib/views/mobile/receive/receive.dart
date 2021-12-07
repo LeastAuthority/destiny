@@ -52,29 +52,28 @@ class _ReceiveState extends State<Receive> {
     });
   }
   Future<String> getFilePath() async {
-    String path = '';
-    try {
-      path = await gePath();
-    }
-    catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
-      ));
-      return '';
-    }
+    String path = await gePath();
     String randomName = getRandomString(10);
     String filePath = '$path/$randomName.png';
-    this.setState(() {
-      received = true;
-    });
     return filePath;
   }
 
   void _receive() async {
-    client.recvFile(_code).then((result) async {
-      File file = File(await getFilePath());
-      file.writeAsBytes(result);
-    });
+    String? path =  await gePath();
+    print(path);
+    if(path != null) {
+      client.recvFile(_code).then((result) async {
+        File file = File(path);
+        file.writeAsBytes(result);
+        this.setState(() {
+          received = true;
+        });
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
+      ));
+    }
   }
 
   @override
