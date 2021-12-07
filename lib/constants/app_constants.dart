@@ -22,6 +22,7 @@ final String CANCEL = 'Cancel';
 final String BACK = 'Back';
 final String FILE_RECEIVED = 'File received';
 final String ROW_RANDOM_STRING = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+final String MUST_CHOOSE_PATH_TO_SAVE_THE_FILE = 'Must choose a path to save the file';
 final String FILE_DOWNLOADED_SUCCESSFULLY = 'File download successful.';
 final String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE = 'Select default save destination for this device.';
 final String CURRENT_SAVE_DESTINATION = 'Current save destination:';
