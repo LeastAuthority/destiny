@@ -9,7 +9,8 @@ class DTButton extends StatefulWidget {
   DTButton(this.title, this.handleSelectFile);
 
   @override
-  _CustomAppBarState createState() => _CustomAppBarState(title, handleSelectFile);
+  _CustomAppBarState createState() =>
+      _CustomAppBarState(title, handleSelectFile);
 }
 
 class _CustomAppBarState extends State<DTButton> {
@@ -32,14 +33,12 @@ class _CustomAppBarState extends State<DTButton> {
       ),
       width: 100.0.w,
       height: 30.0.h,
-      child:  FlatButton(
+      child: FlatButton(
         onPressed: () => handleSelectFile(),
         color: Theme.of(context).scaffoldBackgroundColor,
-        child:Text('${title}',
-            style: Theme.of(context).textTheme.headline5
-        ),
+        // ignore: unnecessary_brace_in_string_interps
+        child: Text('${title}', style: Theme.of(context).textTheme.headline5),
       ),
     );
   }
 }
-

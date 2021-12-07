@@ -10,21 +10,22 @@ class FileInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         Container(
           margin: EdgeInsets.only(top: 32.0.h),
           child: Align(
             alignment: Alignment.center,
-            child: Text('${fileName}',
+            child: Text(
+              '$fileName',
               style: Theme.of(context).textTheme.headline2,
             ),
           ),
         ),
         Heading(
-          title: '(${fileSize} kb)',
+          title: '($fileSize kb)',
           textAlign: TextAlign.center,
-          marginTop:0,
+          marginTop: 0,
           textStyle: Theme.of(context).textTheme.bodyText2,
           key: Key('File_Info_Description'),
         ),

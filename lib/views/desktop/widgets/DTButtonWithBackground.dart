@@ -31,14 +31,11 @@ class DTButtonWithBackground extends StatelessWidget {
       ),
       width: 100.0.w,
       height: 30.0.h,
-      child:  FlatButton(
+      child: FlatButton(
         onPressed: () => handleSelectFile(),
         color: Theme.of(context).primaryColor,
-        child:Text('${title}',
-            style: Theme.of(context).textTheme.subtitle1
-        ),
+        child: Text('$title', style: Theme.of(context).textTheme.subtitle1),
       ),
     );
   }
 }
-
