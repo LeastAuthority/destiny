@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
+import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
@@ -22,6 +24,7 @@ class _ReceiveState extends State<Receive> {
   String _msg = '';
   String _code = '';
   bool isReceiving = false;
+  bool received = false;
   TextEditingController _msgTxtCtrl = TextEditingController();
   Client client = Client();
   SharedPreferences? prefs;
@@ -49,16 +52,28 @@ class _ReceiveState extends State<Receive> {
     });
   }
   Future<String> getFilePath() async {
-    String path = await gePath();
+    String path = '';
+    try {
+      path = await gePath();
+    }
+    catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
+      ));
+      return '';
+    }
     String randomName = getRandomString(10);
-    String filePath = '$path/$randomName.png'; // 3
+    String filePath = '$path/$randomName.png';
+    this.setState(() {
+      received = true;
+    });
     return filePath;
   }
 
   void _receive() async {
     client.recvFile(_code).then((result) async {
       File file = File(await getFilePath());
-      file.writeAsBytes(result); // 2
+      file.writeAsBytes(result);
     });
   }
 
@@ -76,41 +91,45 @@ class _ReceiveState extends State<Receive> {
       ),
       body: WillPopScope(
         onWillPop: () async => false,
-        child:Container(
+        child: Container(
         key:Key(RECEIVE_SCREEN_BODY),
         padding: EdgeInsets.symmetric(horizontal: 8.0),
-        child: isReceiving ?
-        ReceiveProgress(22, 'my picture.png'):Column (
-          key:Key(RECEIVE_SCREEN_CONTENT),
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Expanded (
-              flex: 1,
-              child: Heading(
-                title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
-                textAlign: TextAlign.left,
-                marginTop: 0,
-                textStyle: Theme.of(context).textTheme.bodyText1,
-                key:  Key(RECEIVE_SCREEN_HEADING),
+        child: received == true ?
+          ReceivingDone(2, 'fileName'):
+          Container (
+          child : isReceiving ?
+          ReceiveProgress(22, 'my picture.png'):Column (
+            key:Key(RECEIVE_SCREEN_CONTENT),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Expanded (
+                flex: 1,
+                child: Heading(
+                  title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+                  textAlign: TextAlign.left,
+                  marginTop: 0,
+                  textStyle: Theme.of(context).textTheme.bodyText1,
+                  key:  Key(RECEIVE_SCREEN_HEADING),
+                ),
               ),
-            ),
-          Expanded (
-            flex: 2,
-            child: EnterCode(
-                key: Key(RECEIVE_SCREEN_ENTER_CODE),
-                codeChanged: _codeChanged,
-                handleNextClicked: () {
-                  _receive();
-                  // this.setState(() {
-                  //   isReceiving = true;
-                  // });
-                }
-            ),
-          )
-          ],
+            Expanded (
+              flex: 2,
+              child: EnterCode(
+                  key: Key(RECEIVE_SCREEN_ENTER_CODE),
+                  codeChanged: _codeChanged,
+                  handleNextClicked: () {
+                    _receive();
+                    // this.setState(() {
+                    //   isReceiving = true;
+                    // });
+                  }
+              )
+
+            )
+            ],
+          )),
         ),
-      ),
       )
     );
   }
