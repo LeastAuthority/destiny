@@ -28,7 +28,7 @@ class _SendDefaultState extends State<SendDefault> {
 
   Client client = Client();
 
-  _SendDefaultState() {}
+  _SendDefaultState();
 
   void _msgChanged(String msg) {
     setState(() {
@@ -88,20 +88,18 @@ class _SendDefaultState extends State<SendDefault> {
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
                 padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-                child: _code != null ? Container (
-                    child: fileSize > 0
-                        ? CodeGeneration(
-                      isCodeGenerating: isCodeGenerating,
-                      fileName: fileName,
-                      fileSize: fileSize,
-                      code: _code ?? '',
-                      key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-                    )
-                        : SelectAFileUI(
-                        fileSize, fileName, _code ?? '', handleSelectFile)
-                ): SendingDone(fileSize, fileName)
-            )
-        )
-              );
+                child: _code != null
+                    ? Container(
+                        child: fileSize > 0
+                            ? CodeGeneration(
+                                isCodeGenerating: isCodeGenerating,
+                                fileName: fileName,
+                                fileSize: fileSize,
+                                code: _code ?? '',
+                                key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+                              )
+                            : SelectAFileUI(fileSize, fileName, _code ?? '',
+                                handleSelectFile))
+                    : SendingDone(fileSize, fileName))));
   }
 }

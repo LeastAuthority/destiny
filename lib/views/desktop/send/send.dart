@@ -3,9 +3,8 @@ import 'dart:io';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSendingProgress.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
@@ -22,7 +21,6 @@ class _SendDefaultState extends State<Send> {
   String _msg = 'test test';
   String? _code = null;
   String fileName = '';
-  bool isCodeGenerating = true;
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
 
@@ -86,15 +84,29 @@ class _SendDefaultState extends State<Send> {
                         dashPattern: [8, 4],
                         strokeWidth: 2.0.h,
                         color: CustomColors.purple,
-                        child: fileSize > 0
-                            ? CodeGeneration(
-                                isCodeGenerating: isCodeGenerating,
-                                fileName: fileName,
-                                fileSize: fileSize,
-                                code: _code ?? '',
-                                key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-                              )
-                            : SelectAFileUI(fileSize, fileName, _code ?? '',
-                                handleSelectFile))))));
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [DTSendingProgress(0, 'aaaa')],
+                        )
+                        // child: fileName.length > 0 ?
+                        //  Container (
+                        //   height:  double.infinity,
+                        //   margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
+                        //   child: DTCodeGeneration(
+                        //       fileName:  'ddddd.mp3',
+                        //       fileSize: 22,
+                        //       code: _code,
+                        //       isCodeGenerating: false,
+                        //     )
+                        // ) :
+                        // DTSelectAFile(
+                        //     handleSelectFile: handleSelectFile,
+                        //     handleFileDroped: (path) {
+                        //         setState(() {
+                        //           fileName = 'path';
+                        //         });
+                        //    }
+                        // )
+                        )))));
   }
 }

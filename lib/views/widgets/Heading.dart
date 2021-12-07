@@ -48,8 +48,7 @@ class Heading extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: marginTop),
-          // ignore: unnecessary_brace_in_string_interps
-          child: Text('${title}', textAlign: textAlign, style: textStyle),
+          child: Text('$title', textAlign: textAlign, style: textStyle),
         ),
       ],
     );
