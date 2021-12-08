@@ -7,6 +7,7 @@ set(APPLICATION_ID "com.example.dart_wormhole_gui")
 cmake_policy(SET CMP0063 NEW)
 
 set(CMAKE_INSTALL_RPATH "$ORIGIN/lib")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Root filesystem for cross-building.
 if(FLUTTER_TARGET_PLATFORM_SYSROOT)
