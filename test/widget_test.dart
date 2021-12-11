@@ -21,7 +21,6 @@ import 'package:dart_wormhole_gui/views/mobile/splash.dart';
      );
      final splashScreenBody = find.byKey(Key(SPLASH_SCREEN_BODY));
      final splashScreenLoading = find.byKey(Key(SPLASH_SCREEN_LOADING));
-
      expect(splashScreenBody, findsOneWidget);
      expect(splashScreenLoading, findsOneWidget);
    });

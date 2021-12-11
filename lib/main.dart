@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/config/theme/custom_theme.dart';
+
 import 'config/routes/routes_handler.dart';
 
 void main() {
@@ -13,8 +12,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-      @override
-      Widget build(BuildContext context) {
-            return onGenerateRoute();
-      }
+  @override
+  Widget build(BuildContext context) {
+    return onGenerateRoute();
+  }
 }

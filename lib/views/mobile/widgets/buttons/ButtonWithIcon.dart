@@ -8,12 +8,15 @@ class ButtonWithIcon extends StatelessWidget {
   double? width;
   double? height;
   bool? isVertical;
-  ButtonWithIcon({
-    String? label, Function? handleSelectFile,
-    Widget? icon, double? height,
-    double? width, bool? isVertical,
-    Key? key}):super(key:key) {
-
+  ButtonWithIcon(
+      {String? label,
+      Function? handleSelectFile,
+      Widget? icon,
+      double? height,
+      double? width,
+      bool? isVertical,
+      Key? key})
+      : super(key: key) {
     this.label = label;
     this.isVertical = isVertical;
     this.handleSelectFile = handleSelectFile;
@@ -25,10 +28,10 @@ class ButtonWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget getButtonContent() {
-      if(this.isVertical!)
+      if (this.isVertical!)
         return ElevatedButton(
             onPressed: () {
-              if(handleSelectFile != null) {
+              if (handleSelectFile != null) {
                 this.handleSelectFile!();
               }
             },
@@ -44,18 +47,15 @@ class ButtonWithIcon extends StatelessWidget {
                   child: icon,
                 ),
                 Container(
-                  child: Text(
-                      '${label}',
-                      style: Theme.of(context).textTheme.bodyText2
-                  ),
+                  child: Text('$label',
+                      style: Theme.of(context).textTheme.bodyText2),
                 ),
               ],
-            )
-        );
+            ));
       else
         return FlatButton(
             onPressed: () {
-              if(handleSelectFile != null) {
+              if (handleSelectFile != null) {
                 this.handleSelectFile!();
               }
             },
@@ -69,41 +69,39 @@ class ButtonWithIcon extends StatelessWidget {
                   child: icon,
                 ),
                 Container(
-                  child: Text('${label}',
-                      style: Theme.of(context).textTheme.headline1
-                  ),
+                  child: Text('$label',
+                      style: Theme.of(context).textTheme.headline1),
                 ),
               ],
-            )
-        );
-
+            ));
     }
-    BoxDecoration getBorder () {
-      var BORDER_COLOR = this.isVertical!?
-       Theme.of(context).colorScheme.secondary :
-        Theme.of(context).primaryColor;
 
-      var BACKGEOUND_COLOR = this.isVertical!?
-       Theme.of(context).colorScheme.secondary :
-         Theme.of(context).primaryColor;
+    BoxDecoration getBorder() {
+      var borderColor = this.isVertical!
+          ? Theme.of(context).colorScheme.secondary
+          : Theme.of(context).primaryColor;
 
-      return  BoxDecoration(
+      var backgroundColor = this.isVertical!
+          ? Theme.of(context).colorScheme.secondary
+          : Theme.of(context).primaryColor;
+
+      return BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        color: BACKGEOUND_COLOR,
+        color: backgroundColor,
         border: Border(
-          top: BorderSide(width: 1.0, color: BORDER_COLOR),
-          left: BorderSide(width: 1.0, color: BORDER_COLOR),
-          right: BorderSide(width: 1.0, color: BORDER_COLOR),
-          bottom: BorderSide(width: 1.0, color: BORDER_COLOR),
+          top: BorderSide(width: 1.0, color: borderColor),
+          left: BorderSide(width: 1.0, color: borderColor),
+          right: BorderSide(width: 1.0, color: borderColor),
+          bottom: BorderSide(width: 1.0, color: borderColor),
         ),
       );
     }
+
     return Container(
-      decoration: getBorder(),
-      width: width,
-      height: height,
-      margin: const EdgeInsets.only(top: 30.0),
-      child: getButtonContent()
-    );
+        decoration: getBorder(),
+        width: width,
+        height: height,
+        margin: const EdgeInsets.only(top: 30.0),
+        child: getButtonContent());
   }
 }

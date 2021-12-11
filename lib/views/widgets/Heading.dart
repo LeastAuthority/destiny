@@ -7,15 +7,15 @@ class Heading extends StatelessWidget {
   TextAlign textAlign = TextAlign.center;
   double marginTop = 0.0;
   TextStyle? textStyle;
-  Heading({
-    Key? key,
-    String? title,
-    String? subTitle,
-    String? path = '',
-    TextAlign textAlign =  TextAlign.center,
-    double marginTop=0,
-    TextStyle? textStyle
-  }):super(key:key) {
+  Heading(
+      {Key? key,
+      String? title,
+      String? subTitle,
+      String? path = '',
+      TextAlign textAlign = TextAlign.center,
+      double marginTop = 0,
+      TextStyle? textStyle})
+      : super(key: key) {
     this.title = title;
     this.subTitle = subTitle;
     this.path = path;
@@ -25,10 +25,10 @@ class Heading extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    if(subTitle == null)
-      return  Container(
+    if (subTitle == null)
+      return Container(
           width: double.infinity,
-          margin: EdgeInsets.only(top:marginTop),
+          margin: EdgeInsets.only(top: marginTop),
           child: new RichText(
             textAlign: textAlign,
             text: new TextSpan(
@@ -37,20 +37,19 @@ class Heading extends StatelessWidget {
               style: textStyle,
               children: <TextSpan>[
                 new TextSpan(text: title),
-                new TextSpan(text: path, style: new TextStyle(fontWeight: FontWeight.bold)),
+                new TextSpan(
+                    text: path,
+                    style: new TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
-          )
-      );
+          ));
 
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.only(top:marginTop),
-          child: Text('${title}',
-              textAlign: textAlign,
-              style: textStyle
-          ),
+          margin: EdgeInsets.only(top: marginTop),
+          // ignore: unnecessary_brace_in_string_interps
+          child: Text('${title}', textAlign: textAlign, style: textStyle),
         ),
       ],
     );

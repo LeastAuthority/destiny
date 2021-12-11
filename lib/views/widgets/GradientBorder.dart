@@ -1,28 +1,22 @@
 import 'package:flutter/painting.dart';
-import 'package:meta/meta.dart';
 
 class GradientBorder extends Border {
   final Gradient borderGradient;
   final double width;
 
   const GradientBorder({this.width = 0.0, required this.borderGradient})
-      : assert(borderGradient != null),
-        super();
+      : super();
 
   @override
-  void paint(
-      Canvas canvas,
-      Rect rect,
-      {
-          TextDirection? textDirection,
-         shape = BoxShape.rectangle,
-         BorderRadius? borderRadius
-      }) {
+  void paint(Canvas canvas, Rect rect,
+      {TextDirection? textDirection,
+      shape = BoxShape.rectangle,
+      BorderRadius? borderRadius}) {
     if (isUniform) {
       switch (shape) {
         case BoxShape.circle:
           assert(borderRadius == null,
-          'A borderRadius can only be given for rectangular boxes.');
+              'A borderRadius can only be given for rectangular boxes.');
           this._paintGradientBorderWithCircle(canvas, rect);
           break;
         case BoxShape.rectangle:
@@ -85,8 +79,7 @@ class GradientBorder extends Border {
   }
 
   const GradientBorder._fromUniform(Gradient gradient, double width)
-      : assert(gradient != null),
-        assert(width >= 0.0),
+      : assert(width >= 0.0),
         borderGradient = gradient,
         width = width;
 }

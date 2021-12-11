@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  mailbox:
+    build:
+      context: ./mailbox
+    ports:
+      - "4000:4000" # WebSocket
+
+  relay:
+    build:
+      context: ./relay
+    ports:
+      - "4001:4001" # TCP
+      - "4002:4002" # WebSocket
+    volumes:
+      - "../magic-wormhole-transit-relay:/app"
