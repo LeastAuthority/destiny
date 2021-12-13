@@ -55,6 +55,8 @@ void main() {
         final actual = actualFile.readAsBytesSync();
         final testData = File(testFilePath).readAsBytesSync();
         expect(sha256.convert(actual), equals(sha256.convert(testData)));
+        expect(path.basename(actualFile.path),
+            equals(path.basename(testFilePath)));
       });
 
       test('go CLI -> dart API', () async {
@@ -66,7 +68,9 @@ void main() {
         final actualData = await receiver.recvFile(code);
         final testData = File(testFilePath).readAsBytesSync();
 
-        expect(sha256.convert(actualData), equals(sha256.convert(testData)));
+        expect(
+            sha256.convert(actualData.data), equals(sha256.convert(testData)));
+        expect(actualData.fileName, equals(path.basename(testFilePath)));
       });
 
       test('dart API -> dart API', () async {
@@ -80,7 +84,9 @@ void main() {
 
         final actualData = await receiver.recvFile(code);
         final testData = File(testFilePath).readAsBytesSync();
-        expect(sha256.convert(actualData), sha256.convert(testData));
+        expect(
+            sha256.convert(actualData.data), equals(sha256.convert(testData)));
+        expect(actualData.fileName, equals(path.basename(testFilePath)));
       });
     });
   }
