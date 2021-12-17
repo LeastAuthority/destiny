@@ -22,6 +22,7 @@ class _SendDefaultState extends State<SendDefault> {
   String _msg = 'test test';
   String? _code = '';
   String fileName = '';
+  Null file;
   bool isCodeGenerating = true;
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
