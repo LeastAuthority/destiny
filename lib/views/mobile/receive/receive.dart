@@ -73,7 +73,7 @@ class _ReceiveState extends State<Receive> {
   void _receive() async {
     client.recvFile(_code).then((result) async {
       File file = File(await getFilePath());
-      file.writeAsBytes(result);
+      file.writeAsBytes(result.data);
     });
   }
 
