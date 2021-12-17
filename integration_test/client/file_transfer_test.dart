@@ -2,11 +2,10 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as path;
-
-import 'package:dart_wormhole_william/client/client.dart';
-import 'package:dart_wormhole_william/client/config.dart';
 
 import './cli_util.dart';
 
@@ -44,7 +43,7 @@ void main() {
       final testFilePath = createFile(size);
 
       test('dart API -> go CLI', () async {
-        final sender = Client();
+        final sender = Client(config: testConfig);
 
         final result = await sender.sendFile(File(testFilePath));
         final code = result.code;
@@ -56,10 +55,12 @@ void main() {
         final actual = actualFile.readAsBytesSync();
         final testData = File(testFilePath).readAsBytesSync();
         expect(sha256.convert(actual), equals(sha256.convert(testData)));
+        expect(path.basename(actualFile.path),
+            equals(path.basename(testFilePath)));
       });
 
       test('go CLI -> dart API', () async {
-        final receiver = Client();
+        final receiver = Client(config: testConfig);
 
         final code = await sendFileGo(testFilePath);
         expect(code, isNotEmpty);
@@ -67,7 +68,9 @@ void main() {
         final actualData = await receiver.recvFile(code);
         final testData = File(testFilePath).readAsBytesSync();
 
-        expect(sha256.convert(actualData), equals(sha256.convert(testData)));
+        expect(
+            sha256.convert(actualData.data), equals(sha256.convert(testData)));
+        expect(actualData.fileName, equals(path.basename(testFilePath)));
       });
 
       test('dart API -> dart API', () async {
@@ -81,7 +84,9 @@ void main() {
 
         final actualData = await receiver.recvFile(code);
         final testData = File(testFilePath).readAsBytesSync();
-        expect(sha256.convert(actualData), sha256.convert(testData));
+        expect(
+            sha256.convert(actualData.data), equals(sha256.convert(testData)));
+        expect(actualData.fileName, equals(path.basename(testFilePath)));
       });
     });
   }
