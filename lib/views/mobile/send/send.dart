@@ -25,7 +25,6 @@ class _SendDefaultState extends State<SendDefault> {
   bool haveFile = false;
   bool isCodeGenerating = true;
   int fileSize = 0;
-  TextEditingController _codeTxtCtrl = TextEditingController();
 
   Client client = Client();
 

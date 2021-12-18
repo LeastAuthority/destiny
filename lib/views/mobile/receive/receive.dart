@@ -34,7 +34,6 @@ class _ReceiveState extends State<Receive> {
   }
 
   void _codeChanged(String code) {
-    print(code);
     setState(() {
       _code = code;
     });
