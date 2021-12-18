@@ -22,7 +22,7 @@ class _SendDefaultState extends State<SendDefault> {
   String _msg = 'test test';
   String? _code = '';
   String fileName = '';
-  Null file;
+  bool haveFile = false;
   bool isCodeGenerating = true;
   int fileSize = 0;
   TextEditingController _codeTxtCtrl = TextEditingController();
@@ -45,10 +45,7 @@ class _SendDefaultState extends State<SendDefault> {
   }
 
   void _send(PlatformFile file) {
-    // TODO cleanup these prints
-    print("Sending a file ${file.name}");
     client.sendFile(File(file.path.toString())).then((result) {
-      print("Got code ${result.code}");
       _codeChanged(result.code);
       result.done.then((value) {
         _msgChanged("File transfer successful");
@@ -66,6 +63,7 @@ class _SendDefaultState extends State<SendDefault> {
       setState(() {
         fileName = file.name;
         fileSize = file.size ~/ 8;
+        haveFile = true;
       });
     } else {
       // User canceled the picker
@@ -90,7 +88,7 @@ class _SendDefaultState extends State<SendDefault> {
                 key: Key(SEND_SCREEN_BODY),
                 padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
                 child: _code != null ? Container (
-                    child: fileSize > 0
+                    child: haveFile
                         ? CodeGeneration(
                       isCodeGenerating: isCodeGenerating,
                       fileName: fileName,
