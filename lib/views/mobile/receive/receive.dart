@@ -21,24 +21,12 @@ class Receive extends StatefulWidget {
 }
 
 class _ReceiveState extends State<Receive> {
-  String _msg = '';
   String _code = '';
+  String fileName = '';
   bool isReceiving = false;
   bool received = false;
-  TextEditingController _msgTxtCtrl = TextEditingController();
   Client client = Client();
   SharedPreferences? prefs;
-  final _chars = ROW_RANDOM_STRING;
-  Random _rnd = Random();
-
-  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
-
-  void _msgChanged(String msg) {
-    setState(() {
-      _msg = msg;
-    });
-  }
 
   Future gePath() async {
     prefs = await SharedPreferences.getInstance();
@@ -51,30 +39,29 @@ class _ReceiveState extends State<Receive> {
       _code = code;
     });
   }
-  Future<String> getFilePath() async {
-    String path = '';
-    try {
-      path = await gePath();
-    }
-    catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
-      ));
-      return '';
-    }
-    String randomName = getRandomString(10);
-    String filePath = '$path/$randomName.png';
-    this.setState(() {
-      received = true;
-    });
-    return filePath;
+
+  Future<String> getPathWithFileName(String path, String filename) async {
+    String filePathWithName = '$path/$filename.png';
+    return filePathWithName;
   }
 
   void _receive() async {
-    client.recvFile(_code).then((result) async {
-      File file = File(await getFilePath());
-      file.writeAsBytes(result.data);
-    });
+    String? path =  await gePath();
+    if(path != null) {
+      client.recvFile(_code).then((result) async {
+        String filePathWithName = await getPathWithFileName(path, result.fileName);
+        File file = File(filePathWithName);
+        file.writeAsBytes(result.data);
+        this.setState(() {
+          received = true;
+          fileName = result.fileName;
+        });
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
+      ));
+    }
   }
 
   @override
@@ -95,10 +82,10 @@ class _ReceiveState extends State<Receive> {
         key:Key(RECEIVE_SCREEN_BODY),
         padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: received == true ?
-          ReceivingDone(2, 'fileName'):
+          ReceivingDone(2, fileName):
           Container (
           child : isReceiving ?
-          ReceiveProgress(22, 'my picture.png'):Column (
+          ReceiveProgress(22, fileName):Column (
             key:Key(RECEIVE_SCREEN_CONTENT),
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
