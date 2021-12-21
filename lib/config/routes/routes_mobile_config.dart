@@ -16,7 +16,7 @@ PageRouteBuilder? getMobileRoutes (RouteSettings settings) {
     }
     break;
     case SEND_ROUTE: {
-      return PageRouteBuilder(pageBuilder: (_, __, ___) => SendDefault());
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => Send());
     }
     break;
     case RECEIVE_ROUTE: {
