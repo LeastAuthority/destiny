@@ -1,73 +1,43 @@
-import 'dart:io';
-
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
+import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
-import 'package:dart_wormhole_william/client/client.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:dart_wormhole_gui/views/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SendDefault extends StatefulWidget {
-  SendDefault({Key? key}) : super(key: key);
+class Send extends SendState {
+  Send({Key? key}) : super(key: key);
+
   @override
-  _SendDefaultState createState() => _SendDefaultState();
+  SendScreen createState() => SendScreen();
 }
 
-class _SendDefaultState extends State<SendDefault> {
-  String _msg = 'test test';
-  String? _code = '';
-  String fileName = '';
-  bool haveFile = false;
-  bool isCodeGenerating = true;
-  int fileSize = 0;
-  TextEditingController _codeTxtCtrl = TextEditingController();
-
-  Client client = Client();
-
-  _SendDefaultState() {}
-
-  void _msgChanged(String msg) {
-    setState(() {
-      _msg = msg;
-    });
+class SendScreen extends SendShared<Send> {
+  Widget generateCodeUI() {
+    return CodeGeneration(
+      isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
+      fileName: fileName,
+      fileSize: fileSize,
+      code: code ?? "",
+      key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+    );
   }
 
-  void _codeChanged(String? code) {
-    setState(() {
-      isCodeGenerating = false;
-      _code = code;
-    });
+  Widget selectAFileUI() {
+    return SelectAFileUI(fileSize, fileName, code ?? "", handleSelectFile);
   }
 
-  void _send(PlatformFile file) {
-    client.sendFile(File(file.path.toString())).then((result) {
-      _codeChanged(result.code);
-      result.done.then((value) {
-        _msgChanged("File transfer successful");
-        _codeChanged(null);
-      });
-    });
+  Widget sendingProgress() {
+    return SendingProgress(fileSize, fileName);
   }
 
-  void handleSelectFile() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      _send(file);
-      setState(() {
-        fileName = file.name;
-        fileSize = file.size ~/ 8;
-        haveFile = true;
-      });
-    } else {
-      // User canceled the picker
-    }
+  Widget sendingDone() {
+    return SendingDone(fileSize, fileName);
   }
 
   @override
@@ -87,20 +57,8 @@ class _SendDefaultState extends State<SendDefault> {
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
                 padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
-                child: _code != null ? Container (
-                    child: haveFile
-                        ? CodeGeneration(
-                      isCodeGenerating: isCodeGenerating,
-                      fileName: fileName,
-                      fileSize: fileSize,
-                      code: _code ?? '',
-                      key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-                    )
-                        : SelectAFileUI(
-                        fileSize, fileName, _code ?? '', handleSelectFile)
-                ): SendingDone(fileSize, fileName)
-            )
-        )
-              );
+                child: Container(
+                    child: widgetByState(generateCodeUI, selectAFileUI,
+                        sendingDone, sendingProgress)))));
   }
 }

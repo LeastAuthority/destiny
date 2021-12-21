@@ -1,75 +1,60 @@
-import 'dart:io';
-
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
-import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
+import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
+import 'package:dart_wormhole_gui/views/shared/shared.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Send extends StatefulWidget {
-  Send({Key? key}) : super(key: key);
-  @override
-  _SendDefaultState createState() => _SendDefaultState();
+extension WidgetWrappers on Widget {
+  Widget dottedParent() {
+    return DottedBorder(
+        dashPattern: [8, 4],
+        strokeWidth: 2.0.h,
+        color: CustomColors.purple,
+        child: this);
+  }
 }
 
-class _SendDefaultState extends State<Send> {
-  String _msg = 'test test';
-  String? _code = null;
-  String fileName = '';
-  bool isCodeGenerating = true;
-  int fileSize = 0;
-  TextEditingController _codeTxtCtrl = TextEditingController();
+class Send extends SendState {
+  Send({Key? key}) : super(key: key);
 
-  Client client = Client();
+  @override
+  SendScreen createState() => SendScreen();
+}
 
-  void _msgChanged(String msg) {
-    setState(() {
-      _msg = msg;
-    });
+class SendScreen extends SendShared<Send> {
+  Widget generateCodeUI() {
+    return CodeGeneration(
+      isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
+      fileName: fileName,
+      fileSize: fileSize,
+      code: code ?? '',
+      key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+    ).dottedParent();
   }
 
-  void _codeChanged(String? code) {
-    setState(() {
-      _code = code;
-    });
+  Widget sendingDone() {
+    return SendingDone(fileSize, fileName);
   }
 
-  void _send(PlatformFile file) {
-    // TODO cleanup these prints
-    print("Sending a file ${file.name}");
-    client.sendFile(File(file.path.toString())).then((result) {
-      print("Got code ${result.code}");
-      _codeChanged(result.code);
-      result.done.then((value) {
-        _msgChanged("File transfer successful");
-        _codeChanged(null);
-      });
-    });
+  Widget selectAFileUI() {
+    return SelectAFileUI(fileSize, fileName, code ?? '', handleSelectFile);
   }
 
-  void handleSelectFile() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      _send(file);
-      setState(() {
-        fileName = file.name;
-        fileSize = file.size ~/ 8;
-      });
-    } else {
-      // User canceled the picker
-    }
+  Widget sendingProgress() {
+    return SendingProgress(fileSize, fileName);
   }
 
   @override
   Widget build(BuildContext context) {
+    print("Current state is: $currentState");
     return Scaffold(
         appBar:
             CustomAppBar(key: Key(CUSTOM_NAV_BAR), path: DESKTOP_SEND_ROUTE),
@@ -82,19 +67,7 @@ class _SendDefaultState extends State<Send> {
                 child: Container(
                     height: double.infinity,
                     margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
-                    child: DottedBorder(
-                        dashPattern: [8, 4],
-                        strokeWidth: 2.0.h,
-                        color: CustomColors.purple,
-                        child: fileSize > 0
-                            ? CodeGeneration(
-                                isCodeGenerating: isCodeGenerating,
-                                fileName: fileName,
-                                fileSize: fileSize,
-                                code: _code ?? '',
-                                key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-                              )
-                            : SelectAFileUI(fileSize, fileName, _code ?? '',
-                                handleSelectFile))))));
+                    child: widgetByState(generateCodeUI, selectAFileUI,
+                        sendingDone, sendingProgress)))));
   }
 }
