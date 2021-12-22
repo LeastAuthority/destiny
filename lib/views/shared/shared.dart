@@ -1,6 +1,8 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dart_wormhole_william/client/c_structs.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,8 @@ extension KBSize on Uint8List {
 abstract class SendShared<T extends SendState> extends State<T> {
   String? code = null;
   PlatformFile? sendingFile;
+  int totalSent = 0;
+  int totalSize = 0;
   SendScreenStates currentState = SendScreenStates.Initial;
 
   int get fileSize => sendingFile?.bytes?.sizeInKb() ?? 0;
@@ -33,6 +37,20 @@ abstract class SendShared<T extends SendState> extends State<T> {
   Client client = Client();
 
   SendShared();
+
+  void progressHandler(dynamic progress) {
+    if (progress is int) {
+      var progressC = Pointer<Progress>.fromAddress(progress);
+      setState(() {
+        totalSent = progressC.ref.sentBytes;
+        totalSize = progressC.ref.totalBytes;
+        currentState = SendScreenStates.FileSending;
+      });
+    } else {
+      print(
+          "Wrong type for progress. Expected int got ${progress.runtimeType}");
+    }
+  }
 
   void send(PlatformFile file) {
     setState(() {
