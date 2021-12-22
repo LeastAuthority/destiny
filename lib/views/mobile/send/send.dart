@@ -33,7 +33,7 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return SendingProgress(fileSize, fileName);
+    return SendingProgress(fileSize, fileName, totalSent, totalSize);
   }
 
   Widget sendingDone() {

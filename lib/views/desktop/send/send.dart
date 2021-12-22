@@ -8,7 +8,6 @@ import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
 import 'package:dart_wormhole_gui/views/shared/shared.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -49,7 +48,7 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return SendingProgress(fileSize, fileName);
+    return SendingProgress(fileSize, fileName, totalSent, totalSize);
   }
 
   @override
