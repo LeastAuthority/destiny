@@ -6,7 +6,7 @@ import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart'
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
-import 'package:dart_wormhole_gui/views/shared/shared.dart';
+import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,10 +31,10 @@ class Send extends SendState {
 class SendScreen extends SendShared<Send> {
   Widget generateCodeUI() {
     return CodeGeneration(
-      isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
-      fileName: fileName,
-      fileSize: fileSize,
-      code: code ?? '',
+      fileName,
+      fileSize,
+      code,
+      currentState == SendScreenStates.CodeGenerating,
       key: Key(SEND_SCREEN_CODE_GENERATION_UI),
     ).dottedParent();
   }
@@ -53,7 +53,6 @@ class SendScreen extends SendShared<Send> {
 
   @override
   Widget build(BuildContext context) {
-    print("Current state is: $currentState");
     return Scaffold(
         appBar:
             CustomAppBar(key: Key(CUSTOM_NAV_BAR), path: DESKTOP_SEND_ROUTE),

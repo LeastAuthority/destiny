@@ -6,7 +6,7 @@ import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
-import 'package:dart_wormhole_gui/views/shared/shared.dart';
+import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,10 +20,10 @@ class Send extends SendState {
 class SendScreen extends SendShared<Send> {
   Widget generateCodeUI() {
     return CodeGeneration(
-      isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
-      fileName: fileName,
-      fileSize: fileSize,
-      code: code ?? "",
+      fileName,
+      fileSize,
+      code,
+      currentState == SendScreenStates.CodeGenerating,
       key: Key(SEND_SCREEN_CODE_GENERATION_UI),
     );
   }

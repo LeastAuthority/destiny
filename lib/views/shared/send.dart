@@ -1,6 +1,5 @@
 import 'dart:ffi';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:dart_wormhole_william/client/c_structs.dart';
 import 'package:dart_wormhole_william/client/client.dart';
@@ -17,12 +16,6 @@ enum SendScreenStates {
   Initial,
 }
 
-extension KBSize on Uint8List {
-  int sizeInKb() {
-    return (this.length / 1000).round();
-  }
-}
-
 abstract class SendShared<T extends SendState> extends State<T> {
   String? code = null;
   PlatformFile? sendingFile;
@@ -30,7 +23,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
   int totalSize = 0;
   SendScreenStates currentState = SendScreenStates.Initial;
 
-  int get fileSize => sendingFile?.bytes?.sizeInKb() ?? 0;
+  int get fileSize => sendingFile?.size ?? 0;
 
   String get fileName => sendingFile?.name ?? "";
 
