@@ -1,10 +1,11 @@
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FileInfo extends StatelessWidget {
-  final int? fileSize;
-  final String? fileName;
+  final int fileSize;
+  final String fileName;
 
   FileInfo(this.fileSize, this.fileName);
 
@@ -23,7 +24,7 @@ class FileInfo extends StatelessWidget {
           ),
         ),
         Heading(
-          title: '($fileSize kb)',
+          title: '(${fileSize.readableSize})',
           textAlign: TextAlign.center,
           marginTop: 0,
           textStyle: Theme.of(context).textTheme.bodyText2,

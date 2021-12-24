@@ -1,6 +1,7 @@
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
+import 'package:dart_wormhole_gui/views/shared/util.dart';
+import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +16,7 @@ class SendingProgress extends StatelessWidget {
     return Column(
       children: [
         FileInfo(fileSize, fileName),
-        Heading(title: "Progress ${totalSent / 1000}/${totalSize / 1000}"),
+        Heading(title: "Progress ${totalSent.readableSize}"),
         Container(
           margin: EdgeInsets.only(top: 32.0.h),
           child: LinearProgressIndicator(
