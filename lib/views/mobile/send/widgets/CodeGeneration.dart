@@ -57,7 +57,7 @@ class CodeGeneration extends StatelessWidget {
           children: [
             Button(
               title: CANCEL,
-              handleSelectFile: cancelSend,
+              handleClicked: cancelSend,
               disabled: true,
             ),
             SizedBox(
