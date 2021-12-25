@@ -12,8 +12,8 @@ class CodeGeneration extends StatelessWidget {
   final int fileSize;
   final String? code;
   final bool isCodeGenerating;
-
-  CodeGeneration(this.fileName, this.fileSize, this.code, this.isCodeGenerating,
+  Function cancelSend;
+  CodeGeneration(this.fileName, this.fileSize, this.code, this.isCodeGenerating, this.cancelSend,
       {Key? key})
       : super(key: key);
   @override
@@ -57,7 +57,7 @@ class CodeGeneration extends StatelessWidget {
           children: [
             Button(
               title: CANCEL,
-              handleSelectFile: () {},
+              handleSelectFile: cancelSend,
               disabled: true,
             ),
             SizedBox(

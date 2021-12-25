@@ -35,6 +35,7 @@ class SendScreen extends SendShared<Send> {
       fileSize,
       code,
       currentState == SendScreenStates.CodeGenerating,
+      cancelSend,
       key: Key(SEND_SCREEN_CODE_GENERATION_UI),
     ).dottedParent();
   }
