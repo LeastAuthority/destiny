@@ -72,7 +72,7 @@ class _SettingsState extends State<Settings> {
                     key: Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)),
                 Button(
                   title: BACK,
-                  handleSelectFile: () {
+                  handleClicked: () {
                     Navigator.pop(context);
                   },
                   disabled: false,

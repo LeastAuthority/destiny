@@ -52,14 +52,13 @@ class EnterCode extends StatelessWidget {
                children: [
                  Button(
                      title: NEXT,
-                     handleSelectFile: handleNextClicked,
+                     handleClicked: handleNextClicked,
                      disabled: false,
                      key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
                  ),
                  Button(
                    title: CANCEL,
-                   handleSelectFile: (){
-                     print('dddddd');
+                   handleClicked: (){
                      codeChanged('');
                      controller.text = "";
                    },
@@ -72,13 +71,13 @@ class EnterCode extends StatelessWidget {
             children: [
               Button(
                   title: NEXT,
-                  handleSelectFile: handleNextClicked,
+                  handleClicked: handleNextClicked,
                   disabled: true,
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
               ),
               Button(
                   title: CANCEL,
-                  handleSelectFile: (){},
+                  handleClicked: (){},
                   disabled: true,
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
               ),

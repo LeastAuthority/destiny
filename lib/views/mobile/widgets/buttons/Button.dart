@@ -4,15 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Button extends StatelessWidget {
   String title = '';
-  Function handleSelectFile = () {};
+  Function handleClicked = () {};
   bool disabled = false;
   Button({
     Key? key,
-    required Function handleSelectFile,
+    required Function handleClicked,
     required bool disabled,
     required String title,
   }) : super(key: key) {
-    this.handleSelectFile = handleSelectFile;
+    this.handleClicked = handleClicked;
     this.title = title;
     this.disabled = disabled;
   }
@@ -34,7 +34,7 @@ class Button extends StatelessWidget {
           width: 120.0.w,
           height: 50.0.h,
           child: FlatButton(
-            onPressed: () => handleSelectFile(),
+            onPressed: () => handleClicked(),
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Text('$title', style: Theme.of(context).textTheme.bodyText2),
           ),
