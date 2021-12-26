@@ -16,7 +16,6 @@ class SendingProgress extends StatelessWidget {
     return Column(
       children: [
         FileInfo(fileSize, fileName),
-        Heading(title: "Progress ${totalSent.readableSize}"),
         Container(
           margin: EdgeInsets.only(top: 32.0.h),
           child: LinearProgressIndicator(
