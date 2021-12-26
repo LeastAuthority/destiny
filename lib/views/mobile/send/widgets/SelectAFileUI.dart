@@ -4,7 +4,6 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithIcon.da
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
-// import 'package:dart_wormhole_william/client.dart';
 
 class SelectAFileUI extends StatelessWidget {
   final int fileSize;
@@ -35,7 +34,7 @@ class SelectAFileUI extends StatelessWidget {
                 width: 30.0.w,
               ),
               height: 60.0.h,
-              width: 200.0.w,
+              width: 205.0.w,
               isVertical: false,
               key: Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)),
           SizedBox(
