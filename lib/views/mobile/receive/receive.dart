@@ -23,6 +23,7 @@ class Receive extends StatefulWidget {
 class _ReceiveState extends State<Receive> {
   String _code = '';
   String fileName = '';
+  int fileSize = 0;
   bool isReceiving = false;
   bool received = false;
   Client client = Client();
@@ -55,6 +56,7 @@ class _ReceiveState extends State<Receive> {
         this.setState(() {
           received = true;
           fileName = result.fileName;
+          fileSize = result.data.length;
         });
       });
     } else {
@@ -82,10 +84,10 @@ class _ReceiveState extends State<Receive> {
         key:Key(RECEIVE_SCREEN_BODY),
         padding: EdgeInsets.symmetric(horizontal: 8.0),
         child: received == true ?
-          ReceivingDone(2, fileName):
+          ReceivingDone(fileSize, fileName):
           Container (
           child : isReceiving ?
-          ReceiveProgress(22, fileName):Column (
+          ReceiveProgress(fileSize, fileName):Column (
             key:Key(RECEIVE_SCREEN_CONTENT),
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,

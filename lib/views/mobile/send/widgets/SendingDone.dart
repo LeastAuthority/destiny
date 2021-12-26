@@ -15,7 +15,7 @@ class SendingDone extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Heading(
-          title: FILE_DOWNLOADED_SUCCESSFULLY,
+          title: FILE_UPLOADED_SUCCESSFULLY,
           textAlign: TextAlign.left,
           marginTop: 0.h,
           textStyle: Theme.of(context).textTheme.bodyText1,
@@ -23,7 +23,7 @@ class SendingDone extends StatelessWidget {
         ),
         FileInfo(fileSize, fileName),
         Heading(
-          title: FILE_RECEIVED,
+          title: FILE_SENT,
           textAlign: TextAlign.center,
           marginTop: 16.0.h,
           textStyle: TextStyle(

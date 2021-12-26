@@ -48,19 +48,41 @@ class EnterCode extends StatelessWidget {
           ),
           SizedBox(height: 25.0.h),
           controller.text.length > 0 ?
-             Button(
-                 title: NEXT,
-                 handleSelectFile: handleNextClicked,
-                 disabled: false,
-                 key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
-             ) :
-                Button(
-                    title: NEXT,
-                    handleSelectFile: (){},
-                    disabled: true,
-                    key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
-                )
-          // Button(CANCEL, () {}),
+             Column(
+               children: [
+                 Button(
+                     title: NEXT,
+                     handleClicked: handleNextClicked,
+                     disabled: false,
+                     key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
+                 ),
+                 Button(
+                   title: CANCEL,
+                   handleClicked: (){
+                     codeChanged('');
+                     controller.text = "";
+                   },
+                   disabled: false,
+                   // key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
+                 )
+               ],
+             ):
+          Column(
+            children: [
+              Button(
+                  title: NEXT,
+                  handleClicked: handleNextClicked,
+                  disabled: true,
+                  key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
+              ),
+              Button(
+                  title: CANCEL,
+                  handleClicked: (){},
+                  disabled: true,
+                  key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
+              ),
+            ],
+          )
         ],
       ),
     );

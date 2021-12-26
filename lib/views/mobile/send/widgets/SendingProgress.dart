@@ -16,7 +16,6 @@ class SendingProgress extends StatelessWidget {
     return Column(
       children: [
         FileInfo(fileSize, fileName),
-        Heading(title: "Progress ${totalSent.readableSize}"),
         Container(
           margin: EdgeInsets.only(top: 32.0.h),
           child: LinearProgressIndicator(
@@ -37,7 +36,7 @@ class SendingProgress extends StatelessWidget {
           textStyle: Theme.of(context).textTheme.bodyText1,
           key: Key('APP_MUST_REMAIN_OPEN'),
         ),
-        Button(title: 'Cancel', handleSelectFile: () {}, disabled: false)
+        Button(title: 'Cancel', handleClicked: () {}, disabled: false)
       ],
     );
   }

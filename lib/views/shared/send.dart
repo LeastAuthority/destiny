@@ -104,6 +104,12 @@ abstract class SendShared<T extends SendState> extends State<T> {
     }
   }
 
+  void cancelSend() {
+    setState(() {
+      currentState = SendScreenStates.FileSelecting;
+    });
+  }
+
   Widget build(BuildContext context);
 }
 

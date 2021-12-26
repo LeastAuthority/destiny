@@ -49,7 +49,7 @@ class ReceiveProgress extends StatelessWidget {
         ),
         Button(
             title:'Cancel',
-            handleSelectFile: () {},
+            handleClicked: () {},
             disabled: false
         ),
         SizedBox(
