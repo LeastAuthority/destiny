@@ -9,7 +9,7 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   String path = '';
-  CustomAppBar({String path = '', Key? key}):super(key: key){
+  CustomAppBar({String path = '', Key? key}) : super(key: key) {
     this.path = path;
   }
 
@@ -21,7 +21,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  String path ;
+  String path;
   _CustomAppBarState(this.path);
 
   @override
@@ -29,7 +29,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return SafeArea(
         key: Key(CUSTOM_NAV_BAR_CONTAINER),
         child: Container(
-          child: Column (
+          child: Column(
             key: Key(CUSTOM_NAV_BAR_BODY),
             children: [
               Container(
@@ -42,55 +42,55 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   width: 76.0.w,
                 ),
               ),
-            Container (
-              margin: EdgeInsets.fromLTRB(270.0.w, 0.0, 270.0.w, 0.0.h),
-              padding: EdgeInsets.fromLTRB(16.0.w, 8.0.h, 16.0.w, 4.0.h),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                gradient: LinearGradient(
-                  stops: [0.0, 0.4],
-                  begin: FractionalOffset.topCenter,
-                  end: FractionalOffset.bottomCenter,
-                  colors: <Color>[
-                    Theme.of(context).primaryColorLight.withOpacity(0.5),
-                    CustomColors.veryDarkPurple.withOpacity(0.5)
-                  ],
-                  tileMode: TileMode.clamp, // repeats the gradient over the canvas
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  NavbarTap(
-                    // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
-                    route: DESKTOP_SEND_ROUTE,
-                    currentRoute: path,
-                    title: SEND,
-                    icon: SEND_ICON,
-                    alignment: CrossAxisAlignment.start,
+              Container(
+                margin: EdgeInsets.fromLTRB(270.0.w, 0.0, 270.0.w, 0.0.h),
+                padding: EdgeInsets.fromLTRB(16.0.w, 8.0.h, 16.0.w, 4.0.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  gradient: LinearGradient(
+                    stops: [0.0, 0.4],
+                    begin: FractionalOffset.topCenter,
+                    end: FractionalOffset.bottomCenter,
+                    colors: <Color>[
+                      Theme.of(context).primaryColorLight.withOpacity(0.5),
+                      CustomColors.veryDarkPurple.withOpacity(0.5)
+                    ],
+                    tileMode:
+                        TileMode.clamp, // repeats the gradient over the canvas
                   ),
-                  NavbarTap(
-                    // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    NavbarTap(
+                      // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
+                      route: DESKTOP_SEND_ROUTE,
+                      currentRoute: path,
+                      title: SEND,
+                      icon: SEND_ICON,
+                      alignment: CrossAxisAlignment.start,
+                    ),
+                    NavbarTap(
+                      // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
                       route: RECEIVE_ROUTE,
                       title: RECEIVE,
                       currentRoute: path,
                       icon: RECEIVE_ICON,
-                  ),
-                  NavbarTap(
-                    // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
+                    ),
+                    NavbarTap(
+                      // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
                       route: SETTINGS_ROUTE,
                       title: SETTINGS,
                       currentRoute: path,
                       icon: SETTINGS_ICON,
                       alignment: CrossAxisAlignment.end,
-                  ),
-                ],
-              ),
-            )
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-        )
-    );
+        ));
   }
 }

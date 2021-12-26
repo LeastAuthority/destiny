@@ -11,7 +11,8 @@ class SelectAFileUI extends StatelessWidget {
   final String fileName;
   final String _code;
   final Function handleSelectFile;
-  SelectAFileUI(this.fileSize, this.fileName,  this._code, this.handleSelectFile);
+  SelectAFileUI(
+      this.fileSize, this.fileName, this._code, this.handleSelectFile);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,22 +28,20 @@ class SelectAFileUI extends StatelessWidget {
             key: Key(SEND_SCREEN_HEADING),
           ),
           ButtonWithIcon(
-            label: SELECT_A_FILE,
-            handleSelectFile: handleSelectFile,
-            icon:Image.asset(
-            PHONE_ICON,
-            width: 30.0.w,
-            ),
-            height:60.0.h,
-            width: 200.0.w,
-            isVertical: false,
-            key:Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)
-          ),
+              label: SELECT_A_FILE,
+              handleSelectFile: handleSelectFile,
+              icon: Image.asset(
+                PHONE_ICON,
+                width: 30.0.w,
+              ),
+              height: 60.0.h,
+              width: 200.0.w,
+              isVertical: false,
+              key: Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)),
           SizedBox(
-            key:Key(SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER),
+            key: Key(SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER),
             height: 100.h,
           ),
-        ]
-    );
+        ]);
   }
 }

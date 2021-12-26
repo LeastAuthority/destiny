@@ -19,33 +19,31 @@ class IntroScreenState extends State<IntroScreen> {
     super.initState();
     slides.add(
       new Slide(
-        title: "End-to-End Encryption",
-        description: "Send & receive files securely with simplicity & speed.",
-         btnTitle: GET_STARTED,
-         pathImage: "assets/images/intro-logo.png",
-        backgroundColor: Colors.black,
-        heightImage: 300.0
-      ),
+          title: "End-to-End Encryption",
+          description: "Send & receive files securely with simplicity & speed.",
+          btnTitle: GET_STARTED,
+          pathImage: "assets/images/intro-logo.png",
+          backgroundColor: Colors.black,
+          heightImage: 300.0),
     );
     slides.add(
       new Slide(
-        title: "No Sign-Up",
-        description: "Send & receive files with no need to sign up.",
-        pathImage: "assets/images/privacy.png",
-        backgroundColor: Colors.black,
-        btnTitle: NEXT,
-        heightImage: 300.0
-      ),
+          title: "No Sign-Up",
+          description: "Send & receive files with no need to sign up.",
+          pathImage: "assets/images/privacy.png",
+          backgroundColor: Colors.black,
+          btnTitle: NEXT,
+          heightImage: 300.0),
     );
     slides.add(
       new Slide(
-        title: "Device to Device",
-        description: "Send & receive from & to your device without storing data in the cloud.",
+          title: "Device to Device",
+          description:
+              "Send & receive from & to your device without storing data in the cloud.",
           btnTitle: START_HERE,
           pathImage: "assets/images/device-device.png",
-        backgroundColor: Colors.black,
-        heightImage: 300.0
-      ),
+          backgroundColor: Colors.black,
+          heightImage: 300.0),
     );
   }
 
