@@ -25,14 +25,16 @@ class SendingProgress extends StatelessWidget {
         ),
         FileInfo(fileSize, fileName),
         Padding(
-          padding: EdgeInsets.fromLTRB(30.0.w, 0, 30.0.w, 0),
+            padding: EdgeInsets.fromLTRB(30.0.w, 0, 30.0.w, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 32.0.h),
                   child: LinearProgressIndicator(
-                    backgroundColor: Theme.of(context).progressIndicatorTheme.linearTrackColor,
+                    backgroundColor: Theme.of(context)
+                        .progressIndicatorTheme
+                        .linearTrackColor,
                     color: Theme.of(context).progressIndicatorTheme.color,
                     value: totalSent / totalSize,
                   ),
