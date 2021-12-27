@@ -22,6 +22,8 @@ const String THE_TRANSFER_WILL_AUTO =
     'The transfer will automatically begin once the receiver enters the code.';
 const String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT =
     'Send the selected file by sharing the code with the recipient.';
+const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
+    'App must remain open until the transfer is complete.';
 const String SELECT_A_FILE = 'Select a File';
 const String SELECT_A_FOLDER = 'Select a Folder';
 const String NEXT = 'Next';
@@ -29,6 +31,8 @@ const String CANCEL = 'Cancel';
 const String BACK = 'Back';
 const String FILE_RECEIVED = 'File received';
 const String FILE_SENT = 'File sent';
+const String SECONDS = 'Seconds';
+
 const String FILE_UPLOADED_SUCCESSFULLY = 'File uploaded successfully';
 const String ROW_RANDOM_STRING =
     'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
