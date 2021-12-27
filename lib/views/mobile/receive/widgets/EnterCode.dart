@@ -2,6 +2,7 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+
 late final TextEditingController controller = new TextEditingController();
 
 class EnterCode extends StatelessWidget {
@@ -13,13 +14,13 @@ class EnterCode extends StatelessWidget {
     Key? key,
     required Function codeChanged,
     required Function handleNextClicked,
-  }):super(key:key){
+  }) : super(key: key) {
     this.codeChanged = codeChanged;
     this.handleNextClicked = handleNextClicked;
   }
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -37,52 +38,47 @@ class EnterCode extends StatelessWidget {
                 contentPadding: const EdgeInsets.symmetric(vertical: 30.0),
                 hintStyle: Theme.of(context).textTheme.bodyText1,
                 enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(
-                      color: Color(0xffC24DF8),
-                      width: 1.0
-                  ),
+                  borderSide:
+                      const BorderSide(color: Color(0xffC24DF8), width: 1.0),
                 ),
                 hintText: 'Enter Code',
               ),
             ),
           ),
           SizedBox(height: 25.0.h),
-          controller.text.length > 0 ?
-             Column(
-               children: [
-                 Button(
-                     title: NEXT,
-                     handleClicked: handleNextClicked,
-                     disabled: false,
-                     key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
-                 ),
-                 Button(
-                   title: CANCEL,
-                   handleClicked: (){
-                     codeChanged('');
-                     controller.text = "";
-                   },
-                   disabled: false,
-                   // key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
-                 )
-               ],
-             ):
-          Column(
-            children: [
-              Button(
-                  title: NEXT,
-                  handleClicked: handleNextClicked,
-                  disabled: true,
-                  key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)
-              ),
-              Button(
-                  title: CANCEL,
-                  handleClicked: (){},
-                  disabled: true,
-                  key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
-              ),
-            ],
-          )
+          controller.text.length > 0
+              ? Column(
+                  children: [
+                    Button(
+                        title: NEXT,
+                        handleClicked: handleNextClicked,
+                        disabled: false,
+                        key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)),
+                    Button(
+                      title: CANCEL,
+                      handleClicked: () {
+                        codeChanged('');
+                        controller.text = "";
+                      },
+                      disabled: false,
+                      // key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)
+                    )
+                  ],
+                )
+              : Column(
+                  children: [
+                    Button(
+                        title: NEXT,
+                        handleClicked: handleNextClicked,
+                        disabled: true,
+                        key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)),
+                    Button(
+                        title: CANCEL,
+                        handleClicked: () {},
+                        disabled: true,
+                        key: Key(RECEIVE_SCREEN_NEXT_BTN_DISABLED)),
+                  ],
+                )
         ],
       ),
     );

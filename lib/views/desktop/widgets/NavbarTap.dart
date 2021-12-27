@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NavbarTap extends StatelessWidget {
-  String route  = '';
-  String currentRoute  = '';
-  String title  = '';
-  String icon  = '';
+  String route = '';
+  String currentRoute = '';
+  String title = '';
+  String icon = '';
   CrossAxisAlignment alignment = CrossAxisAlignment.center;
-  NavbarTap({
-    Key? key,
-    String route = '',
-    String currentRoute = '',
-    String title = '',
-    String icon = '',
-    CrossAxisAlignment alignment = CrossAxisAlignment.center
-  }):super(key:key) {
+  NavbarTap(
+      {Key? key,
+      String route = '',
+      String currentRoute = '',
+      String title = '',
+      String icon = '',
+      CrossAxisAlignment alignment = CrossAxisAlignment.center})
+      : super(key: key) {
     this.route = route;
     this.currentRoute = currentRoute;
     this.title = title;
@@ -25,7 +25,7 @@ class NavbarTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded (
+    return Expanded(
         key: Key(BOTTOM_NAV_BAR_LEFT_ITEM),
         child: Container(
           child: Column(
@@ -39,34 +39,29 @@ class NavbarTap extends StatelessWidget {
                       route,
                     );
                   },
-                  child:  Column(
+                  child: Column(
                     children: [
                       Image.asset(
                         icon,
                         width: 40.0.w,
                         height: 20.0.h,
                       ),
-                      Text(
-                          title,
-                          style: Theme.of(context).textTheme.headline4
-                      ),
-                      route == currentRoute?
-                        Container(
-                          height: 2.0.h,
-                          width: 50.0.w,
-                          margin: EdgeInsets.only(top: 4.0.h),
-                          color: Theme.of(context).colorScheme.secondary
-                        ): Container(
+                      Text(title, style: Theme.of(context).textTheme.headline4),
+                      route == currentRoute
+                          ? Container(
+                              height: 2.0.h,
+                              width: 50.0.w,
+                              margin: EdgeInsets.only(top: 4.0.h),
+                              color: Theme.of(context).colorScheme.secondary)
+                          : Container(
                               width: 50.0.w,
                               height: 2.0.h,
                               margin: EdgeInsets.only(top: 4.0.h),
-                           )
+                            )
                     ],
-                  )
-              ),
+                  )),
             ],
           ),
-        )
-    );
+        ));
   }
 }

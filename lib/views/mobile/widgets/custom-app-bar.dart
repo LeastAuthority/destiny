@@ -8,7 +8,7 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   String? title;
-  CustomAppBar({String? title, Key? key}):super(key: key){
+  CustomAppBar({String? title, Key? key}) : super(key: key) {
     this.title = title;
   }
 
@@ -27,7 +27,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return SafeArea(
         key: Key(CUSTOM_NAV_BAR_CONTAINER),
-        child: Column (
+        child: Column(
           key: Key(CUSTOM_NAV_BAR_BODY),
           children: [
             Row(
@@ -39,9 +39,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 60.0.h,
-                    padding: EdgeInsets.only(left:8.0.w),
-                    child:  Text(
-                        '$title',
+                    padding: EdgeInsets.only(left: 8.0.w),
+                    child: Text(
+                      '$title',
                       style: Theme.of(context).textTheme.headline2,
                     ),
                   ),
@@ -49,7 +49,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 Expanded(
                   flex: 6,
                   key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
-                  child:  Container(
+                  child: Container(
                     height: 60.0.h,
                     alignment: Alignment.center,
                     child: Image.asset(
@@ -61,27 +61,27 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 Expanded(
                   flex: 3,
                   key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
-                  child:  GestureDetector(
+                  child: GestureDetector(
                       onTap: () {
-                        if(title != SETTINGS)
+                        if (title != SETTINGS)
                           Navigator.pushNamed(context, SETTINGS_ROUTE);
                       },
-                      child:Container(
-                        padding: EdgeInsets.only(right:8.0.w),
+                      child: Container(
+                        padding: EdgeInsets.only(right: 8.0.w),
                         height: 60.0.h,
                         alignment: Alignment.centerRight,
                         child: Image.asset(
-                          title == SETTINGS ? SETTINGS_ICON_WITH_CIRCLE : SETTINGS_ICON,
+                          title == SETTINGS
+                              ? SETTINGS_ICON_WITH_CIRCLE
+                              : SETTINGS_ICON,
                           width: 25.0.w,
                         ),
-                      )
-                  ),
+                      )),
                 ),
               ],
             ),
             Divider(height: 1.0.h, color: Colors.white),
           ],
-        )
-    );
+        ));
   }
 }
