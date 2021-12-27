@@ -5,22 +5,21 @@ import 'package:dart_wormhole_gui/config/theme/custom_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 Widget onGenerateRoute() {
-  if(Platform.isAndroid) {
+  if (Platform.isAndroid) {
     return ScreenUtilInit(
-      designSize: Size(375,590),
-      builder: ()=>  MaterialApp(
-        theme: CustomTheme.darkThemeMobile,
-        onGenerateRoute: getMobileRoutes,
-      )
-    );
+        designSize: Size(375, 590),
+        builder: () => MaterialApp(
+              theme: CustomTheme.darkThemeMobile,
+              onGenerateRoute: getMobileRoutes,
+            ));
   }
 
   return ScreenUtilInit(
-      designSize: Size(1280,800),
-      builder: ()=>  MaterialApp(
-        theme: CustomTheme.darkThemeDesktop,
-        onGenerateRoute: getDesktopRoutes,
-      )
-  );
+      designSize: Size(1280, 800),
+      builder: () => MaterialApp(
+            theme: CustomTheme.darkThemeDesktop,
+            onGenerateRoute: getDesktopRoutes,
+          ));
 }

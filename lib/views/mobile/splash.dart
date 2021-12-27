@@ -15,12 +15,14 @@ class SplashState extends State<Splash> {
     bool _seen = (prefs?.getBool(SEEN) ?? false);
     return _seen;
   }
+
   Future setSeenToTrue() async {
     return prefs?.setBool(SEEN, true);
   }
+
   Future checkFirstSeen() async {
     bool isItFirstLunch = await isItAppFirstLunch();
-  // Navigator.pushNamed(context, INTRO_ROUTE);
+    // Navigator.pushNamed(context, INTRO_ROUTE);
     if (isItFirstLunch) {
       Navigator.pushNamed(context, SEND_ROUTE);
     } else {
@@ -28,13 +30,14 @@ class SplashState extends State<Splash> {
       Navigator.pushNamed(context, INTRO_ROUTE);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     checkFirstSeen();
-    return  Scaffold(
-      body:  Center(
+    return Scaffold(
+      body: Center(
         key: Key(SPLASH_SCREEN_BODY),
-        child:  Text(
+        child: Text(
           LOADING,
           key: Key(SPLASH_SCREEN_LOADING),
         ),
