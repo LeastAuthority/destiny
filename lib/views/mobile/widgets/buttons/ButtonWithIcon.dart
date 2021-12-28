@@ -65,11 +65,11 @@ class ButtonWithIcon extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                      margin: EdgeInsets.only(right: 4.0.w),
-                      width: 20.0.w,
-                      height: 25.0.h,
-                      child: icon,
-                    ),
+                  margin: EdgeInsets.only(right: 4.0.w),
+                  width: 20.0.w,
+                  height: 25.0.h,
+                  child: icon,
+                ),
                 Container(
                   child: Text('$label',
                       style: Theme.of(context).textTheme.headline1),
