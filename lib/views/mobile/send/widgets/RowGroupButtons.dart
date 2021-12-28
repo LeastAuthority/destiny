@@ -36,7 +36,7 @@ class RowGroupButton extends StatelessWidget {
         ),
         !isCodeGenerating
             ? ButtonWithIcon(
-                label: 'Copy',
+                label: COPY,
                 handleSelectFile: () {
                   Clipboard.setData(ClipboardData(text: code));
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
