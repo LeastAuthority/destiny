@@ -28,6 +28,7 @@ const String SELECT_A_FILE = 'Select a File';
 const String SELECT_A_FOLDER = 'Select a Folder';
 const String NEXT = 'Next';
 const String CANCEL = 'Cancel';
+const String COPY = 'Copy';
 const String BACK = 'Back';
 const String FILE_RECEIVED = 'File received';
 const String FILE_SENT = 'File sent';

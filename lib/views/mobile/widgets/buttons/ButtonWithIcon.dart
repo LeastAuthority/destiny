@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWithIcon extends StatelessWidget {
   String? label;
@@ -63,11 +64,12 @@ class ButtonWithIcon extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
-                  width: 36,
-                  height: 36,
-                  child: icon,
-                ),
+                Container(
+                      margin: EdgeInsets.only(right: 4.0.w),
+                      width: 20.0.w,
+                      height: 25.0.h,
+                      child: icon,
+                    ),
                 Container(
                   child: Text('$label',
                       style: Theme.of(context).textTheme.headline1),
