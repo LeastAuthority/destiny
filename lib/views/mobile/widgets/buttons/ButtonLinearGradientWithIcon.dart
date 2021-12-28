@@ -79,7 +79,6 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
             color: Theme.of(context).scaffoldBackgroundColor,
             child: Container(
               child: Row(
-                // Replace with a Row for horizontal icon + text
                 children: <Widget>[
                   Expanded(
                     flex: 11,
