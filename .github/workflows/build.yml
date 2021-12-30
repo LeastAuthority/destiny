@@ -1,0 +1,45 @@
+name: "android-build"
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+env:
+  FLUTTER_HOME: "/opt/hostedtoolcache/flutter/2.8.1-stable/x64"
+
+jobs:
+  build-apk:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          submodules: "recursive"
+
+      - name: "Setup flutter"
+        uses: "subosito/flutter-action@v1.5.3"
+
+      - name: "Fetch flutter dependencies"
+        run: "flutter pub get"
+
+      - name: "Build release apk"
+        run: "flutter build apk -v"
+
+      # TODO remove the || true when this should be enforced
+      # Right now it is just informational
+      - name: "Lint"
+        run: "flutter analyze || true"
+
+      - name: "Style check"
+        run: "flutter format --set-exit-if-changed lib"
+
+      - name: "Copy apk"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-android-${{ github.head_ref }}"
+          path: "./build/app/outputs/flutter-apk/app-release.apk"
+          if-no-files-found: "error"
