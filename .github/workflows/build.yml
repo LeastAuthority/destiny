@@ -35,11 +35,11 @@ jobs:
         run: "flutter analyze || true"
 
       - name: "Style check"
-        run: "flutter format --set-exit-if-changed lib"
+        run: "flutter format --set-exit-if-changed lib test"
 
       - name: "Copy apk"
         uses: "actions/upload-artifact@v2"
         with:
-          name: "destiny-android-${{ github.head_ref }}"
+          name: "destiny-android-${{ github.head_ref }}-unsigned"
           path: "./build/app/outputs/flutter-apk/app-release.apk"
           if-no-files-found: "error"
