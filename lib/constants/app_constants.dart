@@ -35,8 +35,8 @@ const String FILE_SENT = 'File sent';
 const String SECONDS = 'Seconds';
 
 const String FILE_UPLOADED_SUCCESSFULLY = 'File uploaded successfully';
-const String ROW_RANDOM_STRING =
-    'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+const String WRONG_TYPE_FOR_PROGRESS =
+    'Wrong type for progress. Expected int got';
 const String MUST_CHOOSE_PATH_TO_SAVE_THE_FILE =
     'Must choose a path to save the file';
 const String FILE_DOWNLOADED_SUCCESSFULLY = 'File download successful.';

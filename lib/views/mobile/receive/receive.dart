@@ -6,66 +6,20 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:math';
+import '../../shared/receive.dart';
 
-class Receive extends StatefulWidget {
-  bool isReceiving = false;
+class Receive extends ReceiveState {
   Receive({Key? key}) : super(key: key);
+
   @override
-  _ReceiveState createState() => _ReceiveState();
+  ReceiveScreen createState() => ReceiveScreen();
 }
 
-class _ReceiveState extends State<Receive> {
-  String _code = '';
-  String fileName = '';
-  int fileSize = 0;
-  bool isReceiving = false;
-  bool received = false;
+class ReceiveScreen extends ReceiveShared<Receive> {
   Client client = Client();
-  SharedPreferences? prefs;
-
-  Future gePath() async {
-    prefs = await SharedPreferences.getInstance();
-    return prefs?.getString(PATH);
-  }
-
-  void _codeChanged(String code) {
-    print(code);
-    setState(() {
-      _code = code;
-    });
-  }
-
-  Future<String> getPathWithFileName(String path, String filename) async {
-    String filePathWithName = '$path/$filename.png';
-    return filePathWithName;
-  }
-
-  void _receive() async {
-    String? path = await gePath();
-    if (path != null) {
-      client.recvFile(_code).then((result) async {
-        String filePathWithName =
-            await getPathWithFileName(path, result.fileName);
-        File file = File(filePathWithName);
-        file.writeAsBytes(result.data);
-        this.setState(() {
-          received = true;
-          fileName = result.fileName;
-          fileSize = result.data.length;
-        });
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
-      ));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +37,12 @@ class _ReceiveState extends State<Receive> {
           child: Container(
             key: Key(RECEIVE_SCREEN_BODY),
             padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: received == true
+            child: currentState == ReceiveScreenStates.FileReceived
                 ? ReceivingDone(fileSize, fileName)
                 : Container(
-                    child: isReceiving
-                        ? ReceiveProgress(fileSize, fileName)
+                    child: currentState == ReceiveScreenStates.FileReceiving
+                        ? ReceiveProgress(
+                            fileSize, fileName, totalReceived, totalSize)
                         : Column(
                             key: Key(RECEIVE_SCREEN_CONTENT),
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,12 +64,9 @@ class _ReceiveState extends State<Receive> {
                                   flex: 2,
                                   child: EnterCode(
                                       key: Key(RECEIVE_SCREEN_ENTER_CODE),
-                                      codeChanged: _codeChanged,
+                                      codeChanged: codeChanged,
                                       handleNextClicked: () {
-                                        _receive();
-                                        // this.setState(() {
-                                        //   isReceiving = true;
-                                        // });
+                                        receive();
                                       }))
                             ],
                           )),

@@ -8,7 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ReceiveProgress extends StatelessWidget {
   final int fileSize;
   final String fileName;
-  ReceiveProgress(this.fileSize, this.fileName);
+  final int totalSent;
+  final int totalSize;
+  ReceiveProgress(this.fileSize, this.fileName, this.totalSent, this.totalSize);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,12 +25,15 @@ class ReceiveProgress extends StatelessWidget {
         ),
         Column(
           children: [
-            FileInfo(fileSize, fileName),
+            FileInfo(totalSize, fileName),
             Container(
               width: 284.0.w,
               margin: EdgeInsets.only(top: 32.0.h),
               child: LinearProgressIndicator(
-                value: 0.5,
+                backgroundColor:
+                    Theme.of(context).progressIndicatorTheme.linearTrackColor,
+                color: Theme.of(context).progressIndicatorTheme.color,
+                value: totalSent / totalSize,
               ),
             ),
             Heading(
