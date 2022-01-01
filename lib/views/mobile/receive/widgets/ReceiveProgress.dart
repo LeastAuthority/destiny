@@ -10,8 +10,7 @@ class ReceiveProgress extends StatelessWidget {
   final String fileName;
   final int totalReceived;
   final int totalSize;
-  ReceiveProgress(
-      this.fileSize, this.fileName, this.totalReceived, this.totalSize);
+  ReceiveProgress(this.fileSize, this.fileName, this.totalReceived, this.totalSize);
   @override
   Widget build(BuildContext context) {
     return Column(
