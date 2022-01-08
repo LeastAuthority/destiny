@@ -35,7 +35,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
     if (progress is int) {
       var progressC = Pointer<Progress>.fromAddress(progress);
       setState(() {
-        totalSent = progressC.ref.sentBytes;
+        totalSent = progressC.ref.transferredBytes;
         totalSize = progressC.ref.totalBytes;
         currentState = SendScreenStates.FileSending;
       });
