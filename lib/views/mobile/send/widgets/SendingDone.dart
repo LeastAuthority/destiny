@@ -15,7 +15,7 @@ class SendingDone extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Heading(
-          title: FILE_UPLOADED_SUCCESSFULLY,
+          title: FILE_SENT_SUCCESSFULLY,
           textAlign: TextAlign.left,
           marginTop: 0.h,
           textStyle: Theme.of(context).textTheme.bodyText1,
@@ -30,15 +30,12 @@ class SendingDone extends StatelessWidget {
               fontSize: 25.sp, fontFamily: LATO, fontWeight: FontWeight.bold),
           key: Key('Timing_Progress'),
         ),
-        SizedBox(
-          height: 25.0.h,
-        ),
         Image.asset(
           CHECK_ICON,
           width: 64.0.w,
         ),
         SizedBox(
-          height: 240.0.h,
+          height: 150.0.h,
         )
       ],
     );

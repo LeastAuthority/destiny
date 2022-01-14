@@ -58,6 +58,13 @@ const String RECEIVING = 'Receiving…';
 //Slider UI strings
 const String GET_STARTED = 'Get Started';
 const String START_HERE = 'Start Here';
+const String END_TO_END_ENCRYPTION = 'End-to-End Encryption';
+const String NO_SIGN_UP = 'No Sign-Up';
+const String DEVICE_TO_DEVICE = 'Device to Device';
+const String SEND_AND_RECEIVE_FROM_AND_TO_YOUR_DEVICE_WITHOUT_STORING = 'Send & receive from & to your device without storing data in the cloud.';
+const String SEND_AND_RECEIVE_FILES_WITH_NO_NEED_TO_SIGN_UP = 'Send & receive files with no need to sign up.';
+const String SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED =
+    'Send & receive files securely with simplicity & speed.';
 
 //keys for tests
 //-General tests

@@ -166,7 +166,7 @@ packages:
       name: flutter_screenutil
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.1+3"
+    version: "5.0.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -206,7 +206,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "357560436c0d237bf7970a969c2f2d5675a98a97"
+      resolved-ref: "6358787cfbddd28fbf8ee90a43de5bbda8a5e91a"
       url: "https://github.com/shareef-dweikat/flutter-intro-slider"
     source: git
     version: "3.0.2"
@@ -314,7 +314,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   path_provider_windows:
     dependency: transitive
     description:
@@ -335,14 +335,14 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.2"
   pointycastle:
     dependency: transitive
     description:
       name: pointycastle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.0"
+    version: "3.5.0"
   process:
     dependency: transitive
     description:

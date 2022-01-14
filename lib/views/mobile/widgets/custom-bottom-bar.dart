@@ -17,19 +17,19 @@ class CustomBottomBar extends StatelessWidget {
       if (path == screen)
         return BoxDecoration(
           border: Border(
-            bottom: BorderSide(width: 4.0, color: Color(0xffC24DF8)),
+            bottom: BorderSide(width: 6.0, color: Color(0xffC24DF8)),
           ),
         );
       else if (path == screen) {
         return BoxDecoration(
           border: Border(
-            bottom: BorderSide(width: 4.0, color: Color(0xffC24DF8)),
+            bottom: BorderSide(width: 6.0, color: Color(0xffC24DF8)),
           ),
         );
       }
       return BoxDecoration(
         border: Border(
-          bottom: BorderSide(width: 4.0, color: Color(0xff353846)),
+          bottom: BorderSide(width: 6.0, color: Color(0xff353846)),
         ),
       );
     }

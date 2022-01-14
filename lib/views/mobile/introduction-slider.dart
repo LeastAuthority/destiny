@@ -1,4 +1,5 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
@@ -19,29 +20,29 @@ class IntroScreenState extends State<IntroScreen> {
     super.initState();
     slides.add(
       new Slide(
-          title: "End-to-End Encryption",
-          description: "Send & receive files securely with simplicity & speed.",
+          title: END_TO_END_ENCRYPTION,
+          description: SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
           btnTitle: GET_STARTED,
-          pathImage: "assets/images/intro-logo.png",
+          pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
           heightImage: 300.0),
     );
     slides.add(
       new Slide(
-          title: "No Sign-Up",
-          description: "Send & receive files with no need to sign up.",
-          pathImage: "assets/images/privacy.png",
+          title: NO_SIGN_UP,
+          description: SEND_AND_RECEIVE_FILES_WITH_NO_NEED_TO_SIGN_UP,
+          pathImage: PRIVACY_IMG,
           backgroundColor: Colors.black,
           btnTitle: NEXT,
           heightImage: 300.0),
     );
     slides.add(
       new Slide(
-          title: "Device to Device",
-          description:
-              "Send & receive from & to your device without storing data in the cloud.",
+          title: DEVICE_TO_DEVICE,
+          description: SEND_AND_RECEIVE_FROM_AND_TO_YOUR_DEVICE_WITHOUT_STORING,
           btnTitle: START_HERE,
-          pathImage: "assets/images/device-device.png",
+          maxLineTextDescription: 3,
+          pathImage: DEVICE_TO_DEVICE_IMG,
           backgroundColor: Colors.black,
           heightImage: 300.0),
     );
