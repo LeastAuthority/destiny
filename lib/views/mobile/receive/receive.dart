@@ -71,7 +71,8 @@ class ReceiveScreen extends ReceiveShared<Receive> {
           child: Container(
               key: Key(RECEIVE_SCREEN_BODY),
               padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: widgetByState(receivingDone, receiveProgress, enterCodeUI)),
-    ));
+              child:
+                  widgetByState(receivingDone, receiveProgress, enterCodeUI)),
+        ));
   }
 }

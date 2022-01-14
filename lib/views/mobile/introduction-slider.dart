@@ -21,7 +21,8 @@ class IntroScreenState extends State<IntroScreen> {
     slides.add(
       new Slide(
           title: END_TO_END_ENCRYPTION,
-          description: SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
+          description:
+              SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
           btnTitle: GET_STARTED,
           pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
