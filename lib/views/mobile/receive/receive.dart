@@ -21,6 +21,40 @@ class Receive extends ReceiveState {
 class ReceiveScreen extends ReceiveShared<Receive> {
   Client client = Client();
 
+  Widget receivingDone() {
+    return ReceivingDone(fileSize, fileName);
+  }
+
+  Widget receiveProgress() {
+    return ReceiveProgress(fileSize, fileName, totalReceived, totalSize);
+  }
+
+  Widget enterCodeUI() {
+    return Column(
+      key: Key(RECEIVE_SCREEN_CONTENT),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Expanded(
+          flex: 1,
+          child: Heading(
+            title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+            textAlign: TextAlign.left,
+            marginTop: 0,
+            textStyle: Theme.of(context).textTheme.bodyText1,
+            key: Key(RECEIVE_SCREEN_HEADING),
+          ),
+        ),
+        Expanded(
+            flex: 2,
+            child: EnterCode(
+                key: Key(RECEIVE_SCREEN_ENTER_CODE),
+                codeChanged: codeChanged,
+                handleNextClicked: receive))
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,42 +69,10 @@ class ReceiveScreen extends ReceiveShared<Receive> {
         body: WillPopScope(
           onWillPop: () async => false,
           child: Container(
-            key: Key(RECEIVE_SCREEN_BODY),
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: currentState == ReceiveScreenStates.FileReceived
-                ? ReceivingDone(fileSize, fileName)
-                : Container(
-                    child: currentState == ReceiveScreenStates.FileReceiving
-                        ? ReceiveProgress(
-                            fileSize, fileName, totalReceived, totalSize)
-                        : Column(
-                            key: Key(RECEIVE_SCREEN_CONTENT),
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Heading(
-                                  title:
-                                      ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
-                                  textAlign: TextAlign.left,
-                                  marginTop: 0,
-                                  textStyle:
-                                      Theme.of(context).textTheme.bodyText1,
-                                  key: Key(RECEIVE_SCREEN_HEADING),
-                                ),
-                              ),
-                              Expanded(
-                                  flex: 2,
-                                  child: EnterCode(
-                                      key: Key(RECEIVE_SCREEN_ENTER_CODE),
-                                      codeChanged: codeChanged,
-                                      handleNextClicked: () {
-                                        receive();
-                                      }))
-                            ],
-                          )),
-          ),
+              key: Key(RECEIVE_SCREEN_BODY),
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child:
+                  widgetByState(receivingDone, receiveProgress, enterCodeUI)),
         ));
   }
 }

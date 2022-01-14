@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum ReceiveScreenStates {
-  CodeGenerating,
   FileReceived,
   ReceiveError,
   FileReceiving,
@@ -75,6 +74,19 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
       ));
+    }
+  }
+
+  Widget widgetByState(Widget Function() receivingDone,
+      Widget Function() receiveProgress, Widget Function() enterCodeUI) {
+    switch (currentState) {
+      case ReceiveScreenStates.Initial:
+        return enterCodeUI();
+      case ReceiveScreenStates.ReceiveError:
+      case ReceiveScreenStates.FileReceived:
+        return receivingDone();
+      case ReceiveScreenStates.FileReceiving:
+        return receiveProgress();
     }
   }
 

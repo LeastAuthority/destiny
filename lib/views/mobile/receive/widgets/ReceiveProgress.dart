@@ -8,9 +8,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ReceiveProgress extends StatelessWidget {
   final int fileSize;
   final String fileName;
-  final int totalSent;
+  final int totalReceived;
   final int totalSize;
-  ReceiveProgress(this.fileSize, this.fileName, this.totalSent, this.totalSize);
+  ReceiveProgress(
+      this.fileSize, this.fileName, this.totalReceived, this.totalSize);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +34,7 @@ class ReceiveProgress extends StatelessWidget {
                 backgroundColor:
                     Theme.of(context).progressIndicatorTheme.linearTrackColor,
                 color: Theme.of(context).progressIndicatorTheme.color,
-                value: totalSent / totalSize,
+                value: totalReceived / totalSize,
               ),
             ),
             Heading(
@@ -41,18 +42,18 @@ class ReceiveProgress extends StatelessWidget {
               textAlign: TextAlign.center,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText2,
-              key: Key('Timing_Progress'),
+              key: Key(TIMING_PROGRESS),
             ),
             Heading(
               title: PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED,
               textAlign: TextAlign.center,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText1,
-              key: Key('APP_MUST_REMAIN_OPEN'),
+              key: Key(APP_MUST_REMAIN_OPEN),
             ),
           ],
         ),
-        Button(title: 'Cancel', handleClicked: () {}, disabled: false),
+        Button(title: CANCEL, handleClicked: () {}, disabled: false),
         SizedBox(
           height: 37.0.h,
         )
