@@ -37,6 +37,7 @@ const String SECONDS = 'Seconds';
 const String FILE_UPLOADED_SUCCESSFULLY = 'File uploaded successfully';
 const String WRONG_TYPE_FOR_PROGRESS =
     'Wrong type for progress. Expected int got';
+const String FILE_SENT_SUCCESSFULLY = 'File Sent successfully';
 const String WRONG_TYPE_FOR_PROGRESS =
     'Wrong type for progress. Expected int got';
 const String FILE_SENT_SUCCESSFULLY = 'File Sent successfully';
