@@ -47,17 +47,24 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   ),
                 ),
                 Expanded(
-                  flex: 6,
-                  key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
-                  child: Container(
-                    height: 60.0.h,
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      LOGO,
-                      width: 76.0.w,
-                    ),
-                  ),
-                ),
+                    flex: 6,
+                    key: Key(CUSTOM_NAV_BAR_MIDDLE_ITEM),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          SEND_ROUTE,
+                        );
+                      },
+                      child: Container(
+                        height: 60.0.h,
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          LOGO,
+                          width: 76.0.w,
+                        ),
+                      ),
+                    )),
                 Expanded(
                   flex: 3,
                   key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),

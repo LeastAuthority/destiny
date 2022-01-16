@@ -5,6 +5,9 @@ const String LATO = 'Lato';
 
 //images
 const String LOGO = 'assets/images/logo.png';
+const String DEVICE_TO_DEVICE_IMG = 'assets/images/device-device.png';
+const String PRIVACY_IMG = 'assets/images/privacy.png';
+const String INTRO_LOGO = 'assets/images/intro-logo.png';
 
 //Icons
 const String SEND_ICON = 'assets/images/icons/send.png';

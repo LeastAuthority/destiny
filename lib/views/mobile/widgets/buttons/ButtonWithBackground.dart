@@ -13,13 +13,12 @@ class ButtonWithBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget getButtonContent() {
-      return FlatButton(
-          onPressed: () {
+      return GestureDetector(
+          onTap: () {
             if (handleSelectFolder != null) {
               this.handleSelectFolder!();
             }
           },
-          color: Theme.of(context).primaryColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -51,7 +50,7 @@ class ButtonWithBackground extends StatelessWidget {
         decoration: getBorder(),
         height: 60.0.h,
         width: 200.0.w,
-        margin: const EdgeInsets.only(top: 30.0),
+        margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
         child: getButtonContent());
   }
 }
