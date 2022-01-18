@@ -5,6 +5,7 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_william/client/c_structs.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum ReceiveScreenStates {
@@ -51,30 +52,32 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return prefs?.getString(PATH);
   }
 
-  Future<String> getPathWithFileName(String path, String filename) async {
-    String filePathWithName = '$path/$filename';
-    return filePathWithName;
-  }
-
   void receive() async {
     String? path = await gePath();
-    if (path != null) {
-      client.recvFile(_code!, progressHandler).then((result) async {
-        String filePathWithName =
-            await getPathWithFileName(path, result.fileName);
-        File file = File(filePathWithName);
-        file.writeAsBytes(result.data);
-        this.setState(() {
-          currentState = ReceiveScreenStates.FileReceived;
-          fileName = result.fileName;
-          fileSize = result.data.length;
-        });
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
-      ));
-    }
+    await Permission.storage.request().then((permissionStatus) {
+      if (permissionStatus == PermissionStatus.granted) {
+        if (path != null) {
+          client.recvFile(_code!, progressHandler).then((result) async {
+            File file = File("$path/${result.fileName}");
+            await file.create(recursive: true).then((file) {
+              return file.writeAsBytes(result.data.toList());
+            });
+            this.setState(() {
+              currentState = ReceiveScreenStates.FileReceived;
+              fileName = result.fileName;
+              fileSize = result.data.length;
+            });
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
+          ));
+        }
+      } else {
+        // TODO implement permission denied UI
+        print("Permission denied");
+      }
+    });
   }
 
   Widget widgetByState(Widget Function() receivingDone,
