@@ -52,9 +52,20 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return prefs?.getString(PATH);
   }
 
+  Future<PermissionStatus> canWriteToFile() async {
+    if (Platform.isAndroid) {
+      return await Permission.storage.request();
+    } else if (Platform.isLinux) {
+      return PermissionStatus.granted;
+    } else {
+      print("Implement write checks for ${Platform()}");
+      return PermissionStatus.permanentlyDenied;
+    }
+  }
+
   void receive() async {
     String? path = await gePath();
-    await Permission.storage.request().then((permissionStatus) {
+    await canWriteToFile().then((permissionStatus) {
       if (permissionStatus == PermissionStatus.granted) {
         if (path != null) {
           client.recvFile(_code!, progressHandler).then((result) async {
