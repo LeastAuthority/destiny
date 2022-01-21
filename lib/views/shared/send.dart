@@ -45,22 +45,23 @@ abstract class SendShared<T extends SendState> extends State<T> {
     }
   }
 
-  void send(PlatformFile file) {
+  void send(PlatformFile file) async {
     setState(() {
       sendingFile = file;
       currentState = SendScreenStates.CodeGenerating;
-      client
-          .sendFile(File(file.path.toString()), progressHandler)
-          .then((result) {
-        setState(() {
-          code = result.code;
-          currentState = SendScreenStates.CodeGenerated;
-        });
+    });
 
-        result.done.then((result) {
-          setState(() {
-            currentState = SendScreenStates.FileSent;
-          });
+    await client
+        .sendFile(File(file.path!), progressHandler)
+        .then((result) async {
+      setState(() {
+        code = result.code;
+        currentState = SendScreenStates.CodeGenerated;
+      });
+
+      await result.done.then((result) {
+        setState(() {
+          currentState = SendScreenStates.FileSent;
         });
       });
     });

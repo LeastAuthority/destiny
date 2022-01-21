@@ -68,11 +68,14 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     await canWriteToFile().then((permissionStatus) {
       if (permissionStatus == PermissionStatus.granted) {
         if (path != null) {
-          client.recvFile(_code!, progressHandler).then((result) async {
+          client.recvFile(_code!, progressHandler).then((result) {
             File file = File("$path/${result.fileName}");
-            await file.create(recursive: true).then((file) {
-              return file.writeAsBytes(result.data.toList());
-            });
+            if (file.existsSync()) {
+              file.deleteSync();
+            }
+            file.createSync(recursive: true);
+            file.writeAsBytesSync(result.data.toList());
+
             this.setState(() {
               currentState = ReceiveScreenStates.FileReceived;
               fileName = result.fileName;
