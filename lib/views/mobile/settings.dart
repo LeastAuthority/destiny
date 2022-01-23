@@ -34,8 +34,8 @@ class _SettingsState extends State<Settings> {
     }
     setState(() {
       _path = result;
+      prefs?.setString(PATH, result);
     });
-    prefs?.setString(PATH, result);
   }
 
   @override

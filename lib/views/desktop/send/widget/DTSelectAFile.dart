@@ -22,7 +22,7 @@ class DTSelectAFile extends StatelessWidget {
     return Container(
       child: DropTarget(
         onDragDone: (detail) {
-          handleFileDroped(detail.urls[0].toString());
+          /*handleFileDroped(detail.urls[0].toString());*/
         },
         onDragEntered: (detail) {
           // print(detail);
