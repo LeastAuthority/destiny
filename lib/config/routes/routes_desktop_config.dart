@@ -1,7 +1,9 @@
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/views/desktop/receive/receive.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/send.dart';
-import 'package:dart_wormhole_gui/views/desktop/settings.dart';
+
+// TODO temporarily using mobile screens for desktop
+import 'package:dart_wormhole_gui/views/mobile/receive/receive.dart';
+import 'package:dart_wormhole_gui/views/mobile/settings.dart';
 import 'package:flutter/cupertino.dart';
 
 PageRouteBuilder? getDesktopRoutes(RouteSettings settings) {
