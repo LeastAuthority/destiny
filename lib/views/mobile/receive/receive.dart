@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
+import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
@@ -9,6 +10,7 @@ import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../shared/receive.dart';
 
 class Receive extends ReceiveState {
@@ -19,14 +21,25 @@ class Receive extends ReceiveState {
 }
 
 class ReceiveScreen extends ReceiveShared<Receive> {
+  ReceiveScreen() {
+    initializePrefs();
+  }
+
   Client client = Client();
 
   Widget receivingDone() {
-    return ReceivingDone(fileSize, fileName);
+    return ReceivingDone(fileSize, fileName, path);
   }
 
   Widget receiveProgress() {
-    return ReceiveProgress(fileSize, fileName, totalReceived, totalSize);
+    return ReceiveProgress(
+        fileSize, fileName, totalReceived, totalSize, currentTime);
+  }
+
+  Widget receiveConfirmation() {
+    return ReceiveConfirmation(
+      receive,
+    );
   }
 
   Widget enterCodeUI() {
@@ -50,7 +63,11 @@ class ReceiveScreen extends ReceiveShared<Receive> {
             child: EnterCode(
                 key: Key(RECEIVE_SCREEN_ENTER_CODE),
                 codeChanged: codeChanged,
-                handleNextClicked: receive))
+                handleNextClicked: () {
+                  this.setState(() {
+                    currentState = ReceiveScreenStates.ReceiveConfirmation;
+                  });
+                }))
       ],
     );
   }
@@ -71,8 +88,8 @@ class ReceiveScreen extends ReceiveShared<Receive> {
           child: Container(
               key: Key(RECEIVE_SCREEN_BODY),
               padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child:
-                  widgetByState(receivingDone, receiveProgress, enterCodeUI)),
+              child: widgetByState(receivingDone, receiveProgress, enterCodeUI,
+                  receiveConfirmation)),
         ));
   }
 }

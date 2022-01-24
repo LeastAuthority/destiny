@@ -8,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ReceivingDone extends StatelessWidget {
   final int fileSize;
   final String fileName;
-  ReceivingDone(this.fileSize, this.fileName);
+  final String path;
+  ReceivingDone(this.fileSize, this.fileName, this.path);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,8 +35,16 @@ class ReceivingDone extends StatelessWidget {
           CHECK_ICON,
           width: 64.0.w,
         ),
+        Heading(
+          title: DOWNLOADED_TO + '\n',
+          textAlign: TextAlign.center,
+          marginTop: 0,
+          path: path,
+          textStyle: Theme.of(context).textTheme.bodyText1,
+          key: Key(SETTINGS_SCREEN_HEADING),
+        ),
         SizedBox(
-          height: 150.0.h,
+          height: 37.0.h,
         )
       ],
     );

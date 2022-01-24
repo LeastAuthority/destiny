@@ -21,6 +21,8 @@ abstract class SendShared<T extends SendState> extends State<T> {
   PlatformFile? sendingFile;
   int totalSent = 0;
   int totalSize = 0;
+  dynamic currentTime;
+
   SendScreenStates currentState = SendScreenStates.Initial;
 
   int get fileSize => sendingFile?.size ?? 0;
@@ -38,6 +40,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
         totalSent = progressC.ref.transferredBytes;
         totalSize = progressC.ref.totalBytes;
         currentState = SendScreenStates.FileSending;
+        currentTime = DateTime.now();
       });
     } else {
       print(

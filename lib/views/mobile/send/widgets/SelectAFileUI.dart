@@ -8,10 +8,8 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 class SelectAFileUI extends StatelessWidget {
   final int fileSize;
   final String fileName;
-  final String _code;
   final Function handleSelectFile;
-  SelectAFileUI(
-      this.fileSize, this.fileName, this._code, this.handleSelectFile);
+  SelectAFileUI(this.fileSize, this.fileName, this.handleSelectFile);
   @override
   Widget build(BuildContext context) {
     return Column(

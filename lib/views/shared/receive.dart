@@ -1,7 +1,9 @@
 import 'dart:ffi';
+import 'dart:html';
 import 'dart:io';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_william/client/c_structs.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ enum ReceiveScreenStates {
   FileReceived,
   ReceiveError,
   FileReceiving,
+  ReceiveConfirmation,
   Initial,
 }
 
@@ -21,12 +24,19 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   int totalSize = 0;
   int fileSize = 0;
   String fileName = '';
+  dynamic currentTime;
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
-
   Client client = Client();
-
   ReceiveShared();
+  String path = '';
+
+  void initializePrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      path = prefs?.getString(PATH) ?? '';
+    });
+  }
 
   void progressHandler(dynamic progress) {
     if (progress is int) {
@@ -35,6 +45,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
         totalReceived = progressC.ref.transferredBytes;
         totalSize = progressC.ref.totalBytes;
         currentState = ReceiveScreenStates.FileReceiving;
+        currentTime = DateTime.now();
       });
     } else {
       print('$WRONG_TYPE_FOR_PROGRESS ${progress.runtimeType}');
@@ -48,8 +59,12 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   }
 
   Future gePath() async {
-    prefs = await SharedPreferences.getInstance();
     return prefs?.getString(PATH);
+  }
+
+  Future<String> getPathWithFileName(String path, String filename) async {
+    String filePathWithName = '$path/$filename';
+    return filePathWithName;
   }
 
   Future<PermissionStatus> canWriteToFile() async {
@@ -64,42 +79,40 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   }
 
   void receive() async {
-    String? path = await gePath();
-    await canWriteToFile().then((permissionStatus) {
-      if (permissionStatus == PermissionStatus.granted) {
-        if (path != null) {
-          client.recvFile(_code!, progressHandler).then((result) {
-            File file = File("$path/${result.fileName}");
-            if (file.existsSync()) {
-              file.deleteSync();
-            }
-            file.createSync(recursive: true);
-            file.writeAsBytesSync(result.data.toList());
-
-            this.setState(() {
-              currentState = ReceiveScreenStates.FileReceived;
-              fileName = result.fileName;
-              fileSize = result.data.length;
-            });
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(MUST_CHOOSE_PATH_TO_SAVE_THE_FILE),
-          ));
-        }
-      } else {
-        // TODO implement permission denied UI
-        print("Permission denied");
-      }
+    String? _path = await gePath();
+    if (_path == null) {
+      this.setState(() {
+        path = DOWNLOADS_FOLDER_PATH;
+      });
+      _path = DOWNLOADS_FOLDER_PATH;
+      prefs?.setString(PATH, _path);
+    } else {
+      _path = path;
+    }
+    client.recvFile(_code!, progressHandler).then((result) async {
+      String filePathWithName =
+          await getPathWithFileName(_path!, result.fileName);
+      File file = File(filePathWithName);
+      file.writeAsBytes(result.data);
+      this.setState(() {
+        currentState = ReceiveScreenStates.FileReceived;
+        fileName = result.fileName;
+        fileSize = result.data.length;
+      });
     });
   }
 
-  Widget widgetByState(Widget Function() receivingDone,
-      Widget Function() receiveProgress, Widget Function() enterCodeUI) {
+  Widget widgetByState(
+      Widget Function() receivingDone,
+      Widget Function() receiveProgress,
+      Widget Function() enterCodeUI,
+      Widget Function() receiveConfirmation) {
     switch (currentState) {
       case ReceiveScreenStates.Initial:
         return enterCodeUI();
       case ReceiveScreenStates.ReceiveError:
+      case ReceiveScreenStates.ReceiveConfirmation:
+        return receiveConfirmation();
       case ReceiveScreenStates.FileReceived:
         return receivingDone();
       case ReceiveScreenStates.FileReceiving:

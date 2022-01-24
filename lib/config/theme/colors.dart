@@ -12,4 +12,5 @@ class CustomColors {
   static const Color lightBlue = Color(0xff33B6FF);
   static const Color babyPowder = Color(0xFFFDFAFA);
   static const Color babyPowderLight = Color(0xFFbfbfbf);
+  static const Color transparent = Color(0xFFbfbfbf);
 }

@@ -30,11 +30,12 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget selectAFileUI() {
-    return SelectAFileUI(fileSize, fileName, code ?? "", handleSelectFile);
+    return SelectAFileUI(fileSize, fileName, handleSelectFile);
   }
 
   Widget sendingProgress() {
-    return SendingProgress(fileSize, fileName, totalSent, totalSize);
+    return SendingProgress(
+        fileSize, fileName, totalSent, totalSize, currentTime);
   }
 
   Widget sendingDone() {
