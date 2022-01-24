@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
@@ -7,6 +8,7 @@ import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
@@ -28,14 +30,29 @@ class _SettingsState extends State<Settings> {
     });
   }
 
-  void handleSelectFile() async {
-    String? result = await FilePicker.platform.getDirectoryPath();
-    if (result == null) {
-      return;
+  Future<PermissionStatus> canWriteToFile() async {
+    if (Platform.isAndroid) {
+      return await Permission.storage.request();
+    } else if (Platform.isLinux) {
+      return PermissionStatus.granted;
+    } else {
+      print("Implement write checks for ${Platform()}");
+      return PermissionStatus.permanentlyDenied;
     }
-    setState(() {
-      _path = result;
-      prefs?.setString(PATH, result);
+  }
+
+  void handleSelectFile() async {
+    await canWriteToFile().then((permissionStatus) async {
+      if (permissionStatus == PermissionStatus.granted) {
+        String? result = await FilePicker.platform.getDirectoryPath();
+        if (result == null) {
+          return;
+        }
+        setState(() {
+          _path = result;
+          prefs?.setString(PATH, result);
+        });
+      }
     });
   }
 

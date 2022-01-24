@@ -1,9 +1,7 @@
 import 'dart:ffi';
-import 'dart:html';
 import 'dart:io';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_william/client/c_structs.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
@@ -62,11 +60,6 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return prefs?.getString(PATH);
   }
 
-  Future<String> getPathWithFileName(String path, String filename) async {
-    String filePathWithName = '$path/$filename';
-    return filePathWithName;
-  }
-
   Future<PermissionStatus> canWriteToFile() async {
     if (Platform.isAndroid) {
       return await Permission.storage.request();
@@ -86,19 +79,27 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
       });
       _path = DOWNLOADS_FOLDER_PATH;
       prefs?.setString(PATH, _path);
-    } else {
-      _path = path;
     }
-    client.recvFile(_code!, progressHandler).then((result) async {
-      String filePathWithName =
-          await getPathWithFileName(_path!, result.fileName);
-      File file = File(filePathWithName);
-      file.writeAsBytes(result.data);
-      this.setState(() {
-        currentState = ReceiveScreenStates.FileReceived;
-        fileName = result.fileName;
-        fileSize = result.data.length;
-      });
+    await canWriteToFile().then((permissionStatus) {
+      if (permissionStatus == PermissionStatus.granted) {
+        client.recvFile(_code!, progressHandler).then((result) {
+          File file = File("$_path/${result.fileName}");
+          if (file.existsSync()) {
+            file.deleteSync();
+          }
+          file.createSync(recursive: true);
+          file.writeAsBytesSync(result.data.toList());
+
+          this.setState(() {
+            currentState = ReceiveScreenStates.FileReceived;
+            fileName = result.fileName;
+            fileSize = result.data.length;
+          });
+        });
+      } else {
+        // TODO implement permission denied UI
+        print("Permission denied");
+      }
     });
   }
 

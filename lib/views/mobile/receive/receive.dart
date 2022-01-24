@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
