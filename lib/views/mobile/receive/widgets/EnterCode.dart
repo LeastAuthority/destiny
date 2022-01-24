@@ -90,7 +90,7 @@ class EnterCode extends StatelessWidget {
               : Button(
                   title: NEXT,
                   handleClicked: handleNextClicked,
-                  disabled: false,
+                  disabled: true,
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)),
           SizedBox(height: 8.0.h),
         ],
