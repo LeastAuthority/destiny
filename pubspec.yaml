@@ -44,7 +44,7 @@ dependencies:
   path_provider: ^2.0.0
   dotted_border: ^2.0.0+1
   desktop_drop: ^0.3.0
-  permission_handler: ^8.3.0
+  permission_handler: ^7.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,6 +63,12 @@ flutter:
     - family: Montserrat
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+    - family: MontserratThin
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-Thin.ttf
+    - family: MontserratSemiBold
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
     - family: Roboto
       fonts:
           - asset: assets/fonts/Roboto/Roboto-Regular.ttf
