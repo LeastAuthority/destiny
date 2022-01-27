@@ -1,9 +1,11 @@
-To build a production version for Android
+Build a production version for Android
+```CODE
 flutter build apk -v
-
-To build a production version for Android but sill see logs to debug
+```
+To build a production version for Android but sill see logs to in terminal
+```CODE
 flutter run -d android --release
-
+```
 # Project structure
 - assets folder
     - fonts
@@ -34,9 +36,7 @@ flutter run -d android --release
         - widgets
 
           Mobile-Desktop shared UI widgets.
-
 - test
-
 - pubspec.yaml
 
   Contains packages and metadata about the project that the Dart and Flutter tooling needs to know. 
