@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dart_wormhole_gui/views/shared/util.dart';
+
 class Settings extends StatefulWidget {
   @override
   State<Settings> createState() => _SettingsState();

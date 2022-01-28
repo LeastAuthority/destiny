@@ -29,12 +29,12 @@ extension BytesToReadableSize on int {
 }
 
 Future<PermissionStatus> canWriteToFile() async {
-    if (Platform.isAndroid) {
-      return await Permission.storage.request();
-    } else if (Platform.isLinux) {
-      return PermissionStatus.granted;
-    } else {
-      print("Implement write checks for ${Platform()}");
-      return PermissionStatus.permanentlyDenied;
-    }
+  if (Platform.isAndroid) {
+    return await Permission.storage.request();
+  } else if (Platform.isLinux) {
+    return PermissionStatus.granted;
+  } else {
+    print("Implement write checks for ${Platform()}");
+    return PermissionStatus.permanentlyDenied;
   }
+}
