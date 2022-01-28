@@ -7,6 +7,7 @@ import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 
 enum ReceiveScreenStates {
   FileReceived,
@@ -58,17 +59,6 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
 
   Future gePath() async {
     return prefs?.getString(PATH);
-  }
-
-  Future<PermissionStatus> canWriteToFile() async {
-    if (Platform.isAndroid) {
-      return await Permission.storage.request();
-    } else if (Platform.isLinux) {
-      return PermissionStatus.granted;
-    } else {
-      print("Implement write checks for ${Platform()}");
-      return PermissionStatus.permanentlyDenied;
-    }
   }
 
   void receive() async {

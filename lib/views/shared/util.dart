@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
+
 const int KB = 1000;
 const int MB = 1000 * KB;
 const int GB = 1000 * MB;
@@ -24,3 +27,14 @@ extension BytesToReadableSize on int {
     }
   }
 }
+
+Future<PermissionStatus> canWriteToFile() async {
+    if (Platform.isAndroid) {
+      return await Permission.storage.request();
+    } else if (Platform.isLinux) {
+      return PermissionStatus.granted;
+    } else {
+      print("Implement write checks for ${Platform()}");
+      return PermissionStatus.permanentlyDenied;
+    }
+  }

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 class Settings extends StatefulWidget {
   @override
   State<Settings> createState() => _SettingsState();
@@ -28,17 +28,6 @@ class _SettingsState extends State<Settings> {
     setState(() {
       _path = prefs?.getString(PATH) ?? '';
     });
-  }
-
-  Future<PermissionStatus> canWriteToFile() async {
-    if (Platform.isAndroid) {
-      return await Permission.storage.request();
-    } else if (Platform.isLinux) {
-      return PermissionStatus.granted;
-    } else {
-      print("Implement write checks for ${Platform()}");
-      return PermissionStatus.permanentlyDenied;
-    }
   }
 
   void handleSelectFile() async {
@@ -66,7 +55,7 @@ class _SettingsState extends State<Settings> {
         body: Container(
           width: double.infinity,
           key: Key(SETTINGS_SCREEN_BODY),
-          padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, bottom: 50.0.h),
+          padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, bottom: 50.0.h),
           child: Column(
               key: Key(SETTINGS_SCREEN_CONTENT),
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
