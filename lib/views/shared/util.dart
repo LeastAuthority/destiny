@@ -49,7 +49,7 @@ extension TimeRemaining on int {
     } else if (time < 1) {
       return "${this} $SECONDS";
     } else {
-      return "${this~/MINUTE_IN_SECONDS} $MINUTES";
+      return "${(this/MINUTE_IN_SECONDS).toStringAsFixed(1)} $MINUTES";
     }
   }
 }
