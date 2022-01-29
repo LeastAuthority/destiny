@@ -31,7 +31,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
     startingTime = DateTime.now();
   }
 
-  String getRemainingTime () {
+  String getRemainingTime() {
     Duration duration = widget.currentTime.difference(startingTime);
     if ((widget.totalReceived - previousSent) > 0 && duration.inSeconds >= 1)
       this.setState(() {
@@ -39,7 +39,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
         previousSent = widget.totalReceived;
       });
     int remainingTimeInSeconds =
-    ((widget.totalSize - widget.totalReceived) ~/  sentPerSecond);
+        ((widget.totalSize - widget.totalReceived) ~/ sentPerSecond);
     return remainingTimeInSeconds.timeRemainingInProperUnit;
   }
 

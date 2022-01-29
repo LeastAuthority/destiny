@@ -7,6 +7,7 @@ import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/views/shared/util.dart';
+
 class SendingProgress extends StatefulWidget {
   final int fileSize;
   final String fileName;
@@ -30,7 +31,7 @@ class _SendingProgressState extends State<SendingProgress> {
     startingTime = DateTime.now();
   }
 
-  String getRemainingTime () {
+  String getRemainingTime() {
     Duration duration = widget.currentTime.difference(startingTime);
     if ((widget.totalSent - previousSent) > 0 && duration.inSeconds >= 1)
       this.setState(() {
@@ -38,7 +39,7 @@ class _SendingProgressState extends State<SendingProgress> {
         previousSent = widget.totalSent;
       });
     int remainingTimeInSeconds =
-    ((widget.totalSize - widget.totalSent) ~/  sentPerSecond);
+        ((widget.totalSize - widget.totalSent) ~/ sentPerSecond);
     return remainingTimeInSeconds.timeRemainingInProperUnit;
   }
 

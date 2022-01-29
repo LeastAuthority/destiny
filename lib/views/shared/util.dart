@@ -43,14 +43,13 @@ Future<PermissionStatus> canWriteToFile() async {
 
 extension TimeRemaining on int {
   String get timeRemainingInProperUnit {
-    double time = this/MINUTE_IN_SECONDS;
-    if(time == 1) {
+    double time = this / MINUTE_IN_SECONDS;
+    if (time == 1) {
       return "1 $MINUTE";
     } else if (time < 1) {
       return "${this} $SECONDS";
     } else {
-      return "${(this/MINUTE_IN_SECONDS).toStringAsFixed(1)} $MINUTES";
+      return "${(this / MINUTE_IN_SECONDS).toStringAsFixed(1)} $MINUTES";
     }
   }
 }
-
