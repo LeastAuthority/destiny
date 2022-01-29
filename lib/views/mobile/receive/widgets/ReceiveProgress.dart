@@ -1,6 +1,7 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +21,9 @@ class ReceiveProgress extends StatefulWidget {
 
 class _ReceiveProgressState extends State<ReceiveProgress> {
   late final DateTime startingTime;
+  int previousSent = 0;
+  int sentPerSecond = 1;
+
   @protected
   @mustCallSuper
   void initState() {
@@ -27,12 +31,21 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
     startingTime = DateTime.now();
   }
 
+  String getRemainingTime () {
+    Duration duration = widget.currentTime.difference(startingTime);
+    if ((widget.totalReceived - previousSent) > 0 && duration.inSeconds >= 1)
+      this.setState(() {
+        sentPerSecond = widget.totalReceived - previousSent;
+        previousSent = widget.totalReceived;
+      });
+    int remainingTimeInSeconds =
+    ((widget.totalSize - widget.totalReceived) ~/  sentPerSecond);
+    return remainingTimeInSeconds.timeRemainingInProperUnit;
+  }
+
   @override
   Widget build(BuildContext context) {
-    Duration duration = widget.currentTime.difference(startingTime);
-    double bytesPerSecond = widget.totalReceived / duration.inSeconds;
-    int remainingTime =
-        ((widget.totalSize - widget.totalReceived) / bytesPerSecond).ceil();
+    String remainingTime = getRemainingTime();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -57,7 +70,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
               ),
             ),
             Heading(
-              title: '$remainingTime $SECONDS',
+              title: '$remainingTime',
               textAlign: TextAlign.center,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText2,

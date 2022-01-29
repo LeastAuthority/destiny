@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 const int KB = 1000;
@@ -7,6 +8,7 @@ const int GB = 1000 * MB;
 const int TB = 1000 * GB;
 const int PB = 1000 * TB;
 const int EB = 1000 * PB;
+const int MINUTE_IN_SECONDS = 60;
 
 extension BytesToReadableSize on int {
   String get readableSize {
@@ -38,3 +40,17 @@ Future<PermissionStatus> canWriteToFile() async {
     return PermissionStatus.permanentlyDenied;
   }
 }
+
+extension TimeRemaining on int {
+  String get timeRemainingInProperUnit {
+    double time = this/MINUTE_IN_SECONDS;
+    if(time == 1) {
+      return "1 $MINUTE";
+    } else if (time < 1) {
+      return "${this} $SECONDS";
+    } else {
+      return "${this~/MINUTE_IN_SECONDS} $MINUTES";
+    }
+  }
+}
+
