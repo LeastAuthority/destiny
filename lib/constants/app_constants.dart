@@ -10,7 +10,7 @@ const String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST =
 const String SEND_FILES_SIMPLE_SECURE_FAST =
     'Send files simply, securely, and fast.';
 const String SENDING_IN_PROGRESS = 'Sending in progress...';
-const String DROP_A_FILE = 'Drop a file';
+const String DROP_A_FILE = 'Drag and drop a file';
 const String OR = 'OR';
 const String PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED =
     'Please keep the app open until the file is downloaded.';
@@ -36,6 +36,8 @@ const String BACK = 'Back';
 const String FILE_RECEIVED = 'File received';
 const String FILE_SENT = 'File sent';
 const String SECONDS = 'Seconds';
+const String MINUTES = 'Minutes';
+const String MINUTE = 'Minute';
 
 const String FILE_UPLOADED_SUCCESSFULLY = 'File uploaded successfully';
 const String WRONG_TYPE_FOR_PROGRESS =
@@ -98,6 +100,7 @@ const String RECEIVE_SCREEN_BODY = 'RECEIVE_SCREEN_BODY';
 const String RECEIVE_SCREEN_CONTENT = 'RECEIVE_SCREEN_CONTENT';
 const String RECEIVE_SCREEN_HEADING = 'RECEIVE_SCREEN_HEADING';
 const String RECEIVE_SCREEN_ENTER_CODE = 'RECEIVE_SCREEN_ENTER_CODE';
+const String ENTER_CODE = 'Enter Code Here';
 const String RECEIVE_SCREEN_NEXT_BTN_DISABLED =
     'RECEIVE_SCREEN_NEXT_BTN_DISABLED';
 const String RECEIVE_SCREEN_CANCEL_BTN_DISABLED =
