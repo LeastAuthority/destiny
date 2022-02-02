@@ -107,7 +107,7 @@ packages:
       name: desktop_drop
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.3.2"
   dotted_border:
     dependency: "direct main"
     description:
@@ -142,7 +142,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2"
+    version: "4.3.3"
   filepicker_windows:
     dependency: "direct main"
     description:
@@ -173,7 +173,7 @@ packages:
       name: flutter_screenutil
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "5.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -252,13 +252,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
   page_transition:
     dependency: "direct main"
     description:
       name: page_transition
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   path:
     dependency: transitive
     description:
