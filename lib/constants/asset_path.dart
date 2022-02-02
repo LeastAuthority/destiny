@@ -2,11 +2,13 @@
 const String MONTSERRAT = 'Montserrat';
 const String ROBOTO = 'Roboto';
 const String LATO = 'Lato';
+const String MONTSERRAT_THIN = 'MontserratThin';
+const String MONTSERRAT_SEMI_BOLD = 'MontserratSemiBold';
 
 //images
 const String LOGO = 'assets/images/logo.png';
-const String DEVICE_TO_DEVICE_IMG = 'assets/images/device-device.png';
-const String PRIVACY_IMG = 'assets/images/privacy.png';
+const String DEVICE_TO_DEVICE_IMG = 'assets/images/Device2Device.png';
+const String PRIVACY_IMG = 'assets/images/No-Sign-Up.png';
 const String INTRO_LOGO = 'assets/images/intro-logo.png';
 
 //Icons
@@ -16,7 +18,7 @@ const String CHECK_ICON = 'assets/images/icons/CHECK.png';
 const String SETTINGS_ICON = 'assets/images/icons/SETTINGS-WHITE.png';
 const String SETTINGS_ICON_WITH_CIRCLE =
     'assets/images/icons/SETTINGS-WHITE-with-circle.png';
-const String PHONE_ICON = 'assets/images/icons/DEVICEWHITE.png';
+const String PHONE_ICON = 'assets/images/icons/Phone-Icon.png';
 const String PLUS_ICON = 'assets/images/icons/Plus-Button-Large.png';
 const String COPY_ICON = 'assets/images/icons/Paste-white.png';
 const String BURGER_ICON = 'assets/images/icons/Hamburger-Menu-White.png';
