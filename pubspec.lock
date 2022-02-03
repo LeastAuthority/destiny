@@ -27,10 +27,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "6bff62959abd7e5268ba69c4c7a73cad99eb7cc0"
+      resolved-ref: "2c4e9969a478f0135e176480b835c1bee1436ab6"
       url: "https://github.com/Ephenodrom/Dart-Basic-Utils"
     source: git
-    version: "3.9.4"
+    version: "4.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -107,7 +107,7 @@ packages:
       name: desktop_drop
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.3.2"
   dotted_border:
     dependency: "direct main"
     description:
@@ -142,7 +142,7 @@ packages:
       name: file_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2"
+    version: "4.3.3"
   filepicker_windows:
     dependency: "direct main"
     description:
@@ -252,13 +252,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
   page_transition:
     dependency: "direct main"
     description:
       name: page_transition
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   path:
     dependency: transitive
     description:

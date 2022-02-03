@@ -24,7 +24,14 @@ class ButtonWithBackground extends StatelessWidget {
             children: <Widget>[
               Container(
                 child: Text('$SELECT_A_FOLDER',
-                    style: Theme.of(context).textTheme.headline1),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: Theme.of(context).textTheme.headline1!.fontSize,
+                      fontWeight:
+                          Theme.of(context).textTheme.headline1!.fontWeight,
+                      fontFamily:
+                          Theme.of(context).textTheme.headline1!.fontFamily,
+                    )),
               ),
             ],
           ));

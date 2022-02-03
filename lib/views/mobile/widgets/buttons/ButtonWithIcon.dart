@@ -72,7 +72,15 @@ class ButtonWithIcon extends StatelessWidget {
                 ),
                 Container(
                   child: Text('$label',
-                      style: Theme.of(context).textTheme.headline1),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize:
+                            Theme.of(context).textTheme.headline1!.fontSize,
+                        fontWeight:
+                            Theme.of(context).textTheme.headline1!.fontWeight,
+                        fontFamily:
+                            Theme.of(context).textTheme.headline1!.fontFamily,
+                      )),
                 ),
               ],
             ));
