@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
@@ -6,7 +8,9 @@ import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -28,13 +32,17 @@ class _SettingsState extends State<Settings> {
   }
 
   void handleSelectFile() async {
-    String? result = await FilePicker.platform.getDirectoryPath();
-    if (result == null) {
-      return;
-    }
-    setState(() {
-      _path = result;
-      prefs?.setString(PATH, result);
+    await canWriteToFile().then((permissionStatus) async {
+      if (permissionStatus == PermissionStatus.granted) {
+        String? result = await FilePicker.platform.getDirectoryPath();
+        if (result == null) {
+          return;
+        }
+        setState(() {
+          _path = result;
+          prefs?.setString(PATH, result);
+        });
+      }
     });
   }
 
@@ -48,7 +56,7 @@ class _SettingsState extends State<Settings> {
         body: Container(
           width: double.infinity,
           key: Key(SETTINGS_SCREEN_BODY),
-          padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, bottom: 50.0.h),
+          padding: EdgeInsets.only(left: 16.0.w, right: 16.0.w, bottom: 50.0.h),
           child: Column(
               key: Key(SETTINGS_SCREEN_CONTENT),
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
