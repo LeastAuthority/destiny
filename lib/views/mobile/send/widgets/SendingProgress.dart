@@ -29,21 +29,24 @@ class _SendingProgressState extends State<SendingProgress> {
     startingTime = DateTime.now();
   }
 
-  String getRemainingTime() {
-    Duration duration = widget.currentTimeGetter.difference(startingTime);
-    if ((widget.totalSent - previousSent) > 0 && duration.inSeconds >= 1)
-      this.setState(() {
-        sentPerSecond = widget.totalSent - previousSent;
-        previousSent = widget.totalSent;
-      });
-    int remainingTimeInSeconds =
-        ((widget.totalSize - widget.totalSent) ~/ sentPerSecond);
-    return remainingTimeInSeconds.timeRemainingInProperUnit;
+  void updateState () {
+        this.setState(() {
+          sentPerSecond = widget.totalSent - previousSent;
+          previousSent = widget.totalSent;
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    String remainingTime = getRemainingTime();
+    String remainingTime = getRemainingTime(
+        widget.currentTimeGetter,
+        startingTime,
+        widget.totalSent,
+        previousSent,
+        widget.totalSize,
+        sentPerSecond,
+        updateState
+    );
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

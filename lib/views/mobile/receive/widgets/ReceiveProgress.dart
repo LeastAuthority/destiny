@@ -31,21 +31,25 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
     startingTime = DateTime.now();
   }
 
-  String getRemainingTime() {
-    Duration duration = widget.currentTimeGetter.difference(startingTime);
-    if ((widget.totalReceived - previousSent) > 0 && duration.inSeconds >= 1)
-      this.setState(() {
-        sentPerSecond = widget.totalReceived - previousSent;
-        previousSent = widget.totalReceived;
-      });
-    int remainingTimeInSeconds =
-        ((widget.totalSize - widget.totalReceived) ~/ sentPerSecond);
-    return remainingTimeInSeconds.timeRemainingInProperUnit;
+  void updateState () {
+    this.setState(() {
+      sentPerSecond = widget.totalReceived - previousSent;
+      previousSent = widget.totalReceived;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    String remainingTime = getRemainingTime();
+    String remainingTime = getRemainingTime(
+        widget.currentTimeGetter,
+        startingTime,
+        widget.totalReceived,
+        previousSent,
+        widget.totalSize,
+        sentPerSecond,
+        updateState
+    );
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
