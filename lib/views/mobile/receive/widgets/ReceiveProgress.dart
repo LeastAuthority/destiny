@@ -31,7 +31,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
     startingTime = DateTime.now();
   }
 
-  void updateState () {
+  void updateState() {
     this.setState(() {
       sentPerSecond = widget.totalReceived - previousSent;
       previousSent = widget.totalReceived;
@@ -47,8 +47,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
         previousSent,
         widget.totalSize,
         sentPerSecond,
-        updateState
-    );
+        updateState);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWithBackground extends StatelessWidget {
-
   Function handleClicked = () {};
   String title = '';
   bool? disabled = false;
