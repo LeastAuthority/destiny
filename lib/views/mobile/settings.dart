@@ -1,6 +1,4 @@
-import 'dart:io';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
@@ -76,7 +74,10 @@ class _SettingsState extends State<Settings> {
                   ],
                 ),
                 ButtonWithBackground(
-                    handleSelectFolder: handleSelectFile,
+                    title: SELECT_A_FOLDER,
+                    handleClicked: handleSelectFile,
+                    height: 60.0.h,
+                    width: 200.0.w,
                     key: Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)),
                 Button(
                   title: BACK,
