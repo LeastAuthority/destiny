@@ -61,15 +61,12 @@ String getRemainingTime(
     int previousProcessed,
     int totalSize,
     int processedPerSecond,
-    Function updateState
-    ) {
+    Function updateState) {
   Duration duration = currentTimeGetter.difference(startingTime);
   if ((totalProcessed - previousProcessed) > 0 && duration.inSeconds >= 1) {
     updateState();
   }
   int remainingTimeInSeconds =
-  ((totalSize - totalProcessed) ~/ processedPerSecond);
+      ((totalSize - totalProcessed) ~/ processedPerSecond);
   return remainingTimeInSeconds.timeRemainingInProperUnit;
 }
-
-

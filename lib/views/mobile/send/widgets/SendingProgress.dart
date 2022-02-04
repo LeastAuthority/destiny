@@ -29,11 +29,11 @@ class _SendingProgressState extends State<SendingProgress> {
     startingTime = DateTime.now();
   }
 
-  void updateState () {
-        this.setState(() {
-          sentPerSecond = widget.totalSent - previousSent;
-          previousSent = widget.totalSent;
-        });
+  void updateState() {
+    this.setState(() {
+      sentPerSecond = widget.totalSent - previousSent;
+      previousSent = widget.totalSent;
+    });
   }
 
   @override
@@ -45,8 +45,7 @@ class _SendingProgressState extends State<SendingProgress> {
         previousSent,
         widget.totalSize,
         sentPerSecond,
-        updateState
-    );
+        updateState);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

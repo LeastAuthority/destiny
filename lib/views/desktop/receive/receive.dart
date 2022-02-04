@@ -66,7 +66,6 @@ class _ReceiveState extends State<Receive> {
                                 borderSide: const BorderSide(
                                     color: CustomColors.purple, width: 1.0),
                               ),
-
                               hintText: ENTER_CODE,
                             ),
                           ),
