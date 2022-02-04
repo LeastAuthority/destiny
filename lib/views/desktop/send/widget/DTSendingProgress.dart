@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTFileInfo.dart';
@@ -12,6 +13,15 @@ class DTSendingProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(4.0)),
+          border: Border(
+            top: BorderSide(width: 2.0, color: CustomColors.purple),
+            left: BorderSide(width: 2.0, color: CustomColors.purple),
+            right: BorderSide(width: 2.0, color: CustomColors.purple),
+            bottom: BorderSide(width: 2.0, color: CustomColors.purple),
+          ),
+        ),
         width: 300.0.w,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
