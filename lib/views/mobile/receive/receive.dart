@@ -9,7 +9,6 @@ import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../shared/receive.dart';
 
 class Receive extends ReceiveState {
@@ -32,7 +31,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
 
   Widget receiveProgress() {
     return ReceiveProgress(
-        fileSize, fileName, totalReceived, totalSize, currentTime);
+        fileSize, fileName, totalReceived, totalSize, currentTimeGetter);
   }
 
   Widget receiveConfirmation() {
@@ -86,7 +85,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
           onWillPop: () async => false,
           child: Container(
               key: Key(RECEIVE_SCREEN_BODY),
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: widgetByState(receivingDone, receiveProgress, enterCodeUI,
                   receiveConfirmation)),
         ));

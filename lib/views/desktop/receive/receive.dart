@@ -3,7 +3,6 @@ import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
@@ -67,7 +66,8 @@ class _ReceiveState extends State<Receive> {
                                 borderSide: const BorderSide(
                                     color: CustomColors.purple, width: 1.0),
                               ),
-                              hintText: 'Enter Code',
+
+                              hintText: ENTER_CODE,
                             ),
                           ),
                         ),

@@ -33,13 +33,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(width: 16.0.w),
                 Expanded(
                   flex: 3,
                   key: Key(CUSTOM_NAV_BAR_LEFT_ITEM),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 60.0.h,
-                    padding: EdgeInsets.only(left: 8.0.w),
                     child: Text(
                       '$title',
                       style: Theme.of(context).textTheme.headline2,
@@ -74,7 +74,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           Navigator.pushNamed(context, SETTINGS_ROUTE);
                       },
                       child: Container(
-                        padding: EdgeInsets.only(right: 8.0.w),
                         height: 60.0.h,
                         alignment: Alignment.centerRight,
                         child: Image.asset(
@@ -85,6 +84,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         ),
                       )),
                 ),
+                SizedBox(width: 16.0.w),
               ],
             ),
             Divider(height: 1.0.h, color: Colors.white),

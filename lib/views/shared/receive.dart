@@ -23,7 +23,8 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   int totalSize = 0;
   int fileSize = 0;
   String fileName = '';
-  dynamic currentTime;
+  late DateTime currentTime;
+  DateTime get currentTimeGetter => currentTime;
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
   Client client = Client();
