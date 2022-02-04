@@ -11,9 +11,9 @@ class ReceiveProgress extends StatefulWidget {
   final String fileName;
   final int totalReceived;
   final int totalSize;
-  final DateTime currentTime;
+  final DateTime currentTimeGetter;
   ReceiveProgress(this.fileSize, this.fileName, this.totalReceived,
-      this.totalSize, this.currentTime);
+      this.totalSize, this.currentTimeGetter);
 
   @override
   State<ReceiveProgress> createState() => _ReceiveProgressState();
@@ -32,7 +32,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
   }
 
   String getRemainingTime() {
-    Duration duration = widget.currentTime.difference(startingTime);
+    Duration duration = widget.currentTimeGetter.difference(startingTime);
     if ((widget.totalReceived - previousSent) > 0 && duration.inSeconds >= 1)
       this.setState(() {
         sentPerSecond = widget.totalReceived - previousSent;
