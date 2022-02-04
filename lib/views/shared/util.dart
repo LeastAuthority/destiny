@@ -30,17 +30,6 @@ extension BytesToReadableSize on int {
   }
 }
 
-Future<PermissionStatus> canWriteToFile() async {
-  if (Platform.isAndroid) {
-    return await Permission.storage.request();
-  } else if (Platform.isLinux) {
-    return PermissionStatus.granted;
-  } else {
-    print("Implement write checks for ${Platform()}");
-    return PermissionStatus.permanentlyDenied;
-  }
-}
-
 extension TimeRemaining on int {
   String get timeRemainingInProperUnit {
     double time = this / MINUTE_IN_SECONDS;
@@ -53,3 +42,34 @@ extension TimeRemaining on int {
     }
   }
 }
+
+Future<PermissionStatus> canWriteToFile() async {
+  if (Platform.isAndroid) {
+    return await Permission.storage.request();
+  } else if (Platform.isLinux) {
+    return PermissionStatus.granted;
+  } else {
+    print("Implement write checks for ${Platform()}");
+    return PermissionStatus.permanentlyDenied;
+  }
+}
+
+String getRemainingTime(
+    DateTime currentTimeGetter,
+    DateTime startingTime,
+    int totalProcessed,
+    int previousProcessed,
+    int totalSize,
+    int processedPerSecond,
+    Function updateState
+    ) {
+  Duration duration = currentTimeGetter.difference(startingTime);
+  if ((totalProcessed - previousProcessed) > 0 && duration.inSeconds >= 1) {
+    updateState();
+  }
+  int remainingTimeInSeconds =
+  ((totalSize - totalProcessed) ~/ processedPerSecond);
+  return remainingTimeInSeconds.timeRemainingInProperUnit;
+}
+
+
