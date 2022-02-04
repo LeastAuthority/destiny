@@ -84,12 +84,12 @@ class EnterCode extends StatelessWidget {
             ),
           ),
           controller.text.length > 0
-              ? Button(
+              ? ButtonWithBackground(
                   title: NEXT,
                   handleClicked: handleNextClicked,
                   disabled: false,
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED))
-              : Button(
+              : ButtonWithBackground(
                   title: NEXT,
                   handleClicked: handleNextClicked,
                   disabled: true,
