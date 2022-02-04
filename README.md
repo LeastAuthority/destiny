@@ -1,3 +1,11 @@
+# A cross platform file transferring app
+
+Supported platforms
+- Linux
+- Windows
+- Android
+- MacOS
+
 Build a production version for Android
 ```CODE
 flutter build apk -v

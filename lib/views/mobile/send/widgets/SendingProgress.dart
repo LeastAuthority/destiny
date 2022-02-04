@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
@@ -13,9 +11,9 @@ class SendingProgress extends StatefulWidget {
   final String fileName;
   final int totalSent;
   final int totalSize;
-  final DateTime currentTime;
+  final DateTime currentTimeGetter;
   SendingProgress(this.fileSize, this.fileName, this.totalSent, this.totalSize,
-      this.currentTime);
+      this.currentTimeGetter);
   @override
   State<SendingProgress> createState() => _SendingProgressState();
 }
@@ -32,7 +30,7 @@ class _SendingProgressState extends State<SendingProgress> {
   }
 
   String getRemainingTime() {
-    Duration duration = widget.currentTime.difference(startingTime);
+    Duration duration = widget.currentTimeGetter.difference(startingTime);
     if ((widget.totalSent - previousSent) > 0 && duration.inSeconds >= 1)
       this.setState(() {
         sentPerSecond = widget.totalSent - previousSent;
