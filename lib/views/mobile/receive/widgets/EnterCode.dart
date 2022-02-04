@@ -1,5 +1,5 @@
-import 'package:dart_wormhole_gui/config/theme/colors.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
+
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
@@ -27,7 +27,7 @@ class EnterCode extends StatelessWidget {
           Container(
             width: 300.0.w,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(1.0)),
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 border: Border(
                     top: BorderSide(
                         color: Theme.of(context).primaryColor, width: 1.0),
@@ -40,21 +40,6 @@ class EnterCode extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    codeChanged('');
-                    controller.text = "";
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text('X', style: TextStyle(fontSize: 22.0.sp)),
-                      SizedBox(
-                        height: 37.0.h,
-                      )
-                    ],
-                  ),
-                ),
                 Container(
                   width: 270.0.w,
                   child: TextField(
@@ -68,14 +53,31 @@ class EnterCode extends StatelessWidget {
                       contentPadding:
                           const EdgeInsets.symmetric(vertical: 30.0),
                       hintStyle: Theme.of(context).textTheme.bodyText1,
-                      hintText: 'Enter Code',
+                      hintText: ENTER_CODE,
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: CustomColors.transparent),
+                        borderSide:
+                            BorderSide(color: Color(0x000000), width: 0.0),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: CustomColors.transparent),
+                        borderSide:
+                            BorderSide(color: Color(0x000000), width: 0.0),
                       ),
                     ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    codeChanged('');
+                    controller.text = "";
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('X', style: TextStyle(fontSize: 22.0.sp)),
+                      SizedBox(
+                        height: 37.0.h,
+                      )
+                    ],
                   ),
                 ),
               ],
