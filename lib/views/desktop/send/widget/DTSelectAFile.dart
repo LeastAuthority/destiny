@@ -21,8 +21,8 @@ class DTSelectAFile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: DropTarget(
-        onDragDone: (detail) {
-          /*handleFileDroped(detail.urls[0].toString());*/
+        onDragDone: (detail) async {
+          handleFileDroped(detail.files.first);
         },
         onDragEntered: (detail) {
           // print(detail);
@@ -51,7 +51,7 @@ class DTSelectAFile extends StatelessWidget {
                   ),
                   Heading(
                     title: OR,
-                    textStyle: Theme.of(context).textTheme.headline4,
+                    textStyle: Theme.of(context).textTheme.headline5,
                     marginTop: 26.0.h,
                   ),
                 ],

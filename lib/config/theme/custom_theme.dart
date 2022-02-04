@@ -8,6 +8,7 @@ class CustomTheme {
     return ThemeData(
       primaryColor: CustomColors.purple,
       primaryColorLight: CustomColors.lightPurple,
+      primaryColorDark: CustomColors.darkPurple,
       scaffoldBackgroundColor: CustomColors.black,
       progressIndicatorTheme: ProgressIndicatorThemeData(
           color: CustomColors.purple,
@@ -73,8 +74,7 @@ class CustomTheme {
         headline1: TextStyle(
           color: CustomColors.babyPowder,
           fontSize: 25.sp,
-          fontWeight: FontWeight.w100,
-          fontFamily: MONTSERRAT,
+          fontFamily: MONTSERRAT_THIN,
         ),
         headline2: TextStyle(
           color: CustomColors.babyPowder,
@@ -91,20 +91,18 @@ class CustomTheme {
         headline4: TextStyle(
           color: CustomColors.babyPowder,
           fontSize: 12.sp,
-          fontWeight: FontWeight.w600,
-          fontFamily: MONTSERRAT,
+          fontFamily: MONTSERRAT_SEMI_BOLD,
         ),
         headline5: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 14.sp,
-          fontWeight: FontWeight.w400,
-          fontFamily: MONTSERRAT,
+          fontFamily: MONTSERRAT_SEMI_BOLD,
         ),
         bodyText1: TextStyle(
-          color: CustomColors.superLightPurple,
+          color: CustomColors.babyPowderLight,
           fontSize: 22.sp,
           fontWeight: FontWeight.w300,
-          fontFamily: MONTSERRAT,
+          fontFamily: MONTSERRAT_THIN,
         ),
         subtitle1: TextStyle(
           color: CustomColors.babyPowderLight,
