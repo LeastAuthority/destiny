@@ -29,6 +29,7 @@ class DTCodeGeneration extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: Theme.of(context).dialogBackgroundColor,
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border(
           top: BorderSide(width: 2.0, color: CustomColors.purple),
@@ -38,14 +39,17 @@ class DTCodeGeneration extends StatelessWidget {
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
             padding: EdgeInsets.only(right: 40.0.w),
-            child: Heading(
-              title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
-              textStyle: Theme.of(context).textTheme.headline1,
-            ),
+            child: SizedBox(
+              width: 500.0.w,
+              child: Heading(
+                title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
+                textStyle: Theme.of(context).textTheme.headline1,
+              ),
+            )
           ),
           DTFileInfo(fileSize, fileName),
           DTRowGroupButton(code, isCodeGenerating!),

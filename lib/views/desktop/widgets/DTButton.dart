@@ -36,7 +36,6 @@ class _CustomAppBarState extends State<DTButton> {
       child: FlatButton(
         onPressed: () => handleSelectFile(),
         color: Theme.of(context).scaffoldBackgroundColor,
-        // ignore: unnecessary_brace_in_string_interps
         child: Text('${title}', style: Theme.of(context).textTheme.headline5),
       ),
     );

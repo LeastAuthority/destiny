@@ -6,14 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DTButtonWithBackground extends StatelessWidget {
   String title = '';
   Function handleSelectFile = () {};
+  double width = 0.0;
   Widget? icon;
   DTButtonWithBackground({
     String title = '',
     required Function handleSelectFile,
+    required double width,
     Widget? icon,
   }) {
     this.title = title;
     this.icon = icon;
+    this.width = width;
     this.handleSelectFile = handleSelectFile;
   }
 
@@ -29,7 +32,7 @@ class DTButtonWithBackground extends StatelessWidget {
           bottom: BorderSide(width: 1.0, color: CustomColors.purple),
         ),
       ),
-      width: 100.0.w,
+      width: width,
       height: 30.0.h,
       child: FlatButton(
         onPressed: () => handleSelectFile(),
