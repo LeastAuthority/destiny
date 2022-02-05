@@ -9,11 +9,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DTSendingProgress extends StatelessWidget {
   final int fileSize;
   final String fileName;
-  DTSendingProgress(this.fileSize, this.fileName);
+  final int totalSent;
+  final int totalSize;
+  final String currentTimeGetter;
+  DTSendingProgress(this.fileSize, this.fileName, this.totalSent, this.totalSize,
+      this.currentTimeGetter);
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
+          color: Theme.of(context).dialogBackgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(4.0)),
           border: Border(
             top: BorderSide(width: 2.0, color: CustomColors.purple),
@@ -40,9 +45,15 @@ class DTSendingProgress extends StatelessWidget {
                 ),
                 DTFileInfo(fileSize, fileName),
                 Container(
-                  margin: EdgeInsets.only(top: 40.0.h),
+                  margin: EdgeInsets.only(top: 32.0.h),
+                  width: 280.0.w,
+                  height: 5.0.h,
                   child: LinearProgressIndicator(
-                    value: 0.5,
+                    backgroundColor: Theme.of(context)
+                        .progressIndicatorTheme
+                        .linearTrackColor,
+                    color: Theme.of(context).progressIndicatorTheme.color,
+                    value: totalSent / totalSize,
                   ),
                 ),
                 Heading(
