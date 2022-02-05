@@ -12,7 +12,8 @@ class CustomTheme {
       scaffoldBackgroundColor: CustomColors.black,
       progressIndicatorTheme: ProgressIndicatorThemeData(
           color: CustomColors.purple,
-          linearTrackColor: CustomColors.superLightPurple),
+          linearTrackColor: CustomColors.superLightPurple
+      ),
       disabledColor: CustomColors.babyPowderLight,
       appBarTheme: AppBarTheme(backgroundColor: CustomColors.veryDarkPurple),
       colorScheme:
@@ -66,7 +67,12 @@ class CustomTheme {
       primaryColorDark: CustomColors.darkPurple,
       primaryColorLight: CustomColors.mediumPurple,
       scaffoldBackgroundColor: CustomColors.darkBlue,
+      dialogBackgroundColor: CustomColors.lightBlack,
       backgroundColor: CustomColors.darkBlue,
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: CustomColors.purple,
+          linearTrackColor: CustomColors.superLightPurple
+      ),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: CustomColors.babyPowder,
       ),
@@ -79,13 +85,11 @@ class CustomTheme {
         headline2: TextStyle(
           color: CustomColors.babyPowder,
           fontSize: 22.sp,
-          fontWeight: FontWeight.w500,
-          fontFamily: MONTSERRAT,
+          fontFamily: MONTSERRAT_MEDIUM,
         ),
         headline3: TextStyle(
           color: CustomColors.babyPowder,
           fontSize: 17.sp,
-          fontWeight: FontWeight.w900,
           fontFamily: ROBOTO,
         ),
         headline4: TextStyle(
@@ -95,25 +99,22 @@ class CustomTheme {
         ),
         headline5: TextStyle(
           color: CustomColors.babyPowderLight,
-          fontSize: 14.sp,
-          fontFamily: MONTSERRAT_SEMI_BOLD,
+          fontSize: 17.sp,
+          fontFamily: MONTSERRAT,
         ),
         bodyText1: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 22.sp,
-          fontWeight: FontWeight.w300,
           fontFamily: MONTSERRAT_THIN,
         ),
         subtitle1: TextStyle(
-          color: CustomColors.babyPowderLight,
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w300,
+          color: CustomColors.black,
+          fontSize: 17.sp,
           fontFamily: MONTSERRAT,
         ),
         subtitle2: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 12.sp,
-          fontWeight: FontWeight.w300,
           fontFamily: ROBOTO,
         ),
       ),

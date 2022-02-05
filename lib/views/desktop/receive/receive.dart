@@ -29,6 +29,7 @@ class _ReceiveState extends State<Receive> {
               child: Container(
                 margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
                 decoration: BoxDecoration(
+                  color:  Theme.of(context).dialogBackgroundColor,
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   border: Border(
                     top: BorderSide(width: 2.0, color: CustomColors.purple),
@@ -50,9 +51,9 @@ class _ReceiveState extends State<Receive> {
                           title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
                           textStyle: Theme.of(context).textTheme.headline1,
                         ),
-                        SizedBox(
+                        Container(
                           width: 400.0.w,
-                          height: 60.0.h,
+                          color:  Theme.of(context).scaffoldBackgroundColor,
                           child: TextField(
                             controller: controller,
                             onChanged: (text) {
@@ -77,6 +78,7 @@ class _ReceiveState extends State<Receive> {
                                   DTButtonWithBackground(
                                     title: NEXT,
                                     handleSelectFile: () {},
+                                    width: 100.0.w,
                                   ),
                                   SizedBox(
                                     width: 15.0.w,
