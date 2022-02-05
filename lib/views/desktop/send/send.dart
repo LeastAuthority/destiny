@@ -32,7 +32,7 @@ class Send extends SendState {
 class SendScreen extends SendShared<Send> {
   Widget generateCodeUI() {
     return DTCodeGeneration(
-      fileName: fileName,
+      fileName: 'fileName',
       fileSize: fileSize,
       code: 'code',
       isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
@@ -42,7 +42,7 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingDone() {
-    return DTSendingProgress(fileSize, fileName);
+    return DTSendingProgress(fileSize, fileName,10 ,30 , "");
   }
 
   Widget selectAFileUI() {
@@ -58,7 +58,7 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return DTSendingProgress(fileSize, fileName);
+    return DTSendingProgress(fileSize, fileName,10 ,30 , "");
   }
 
   @override
