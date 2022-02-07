@@ -46,7 +46,7 @@ extension TimeRemaining on int {
 Future<PermissionStatus> canWriteToFile() async {
   if (Platform.isAndroid) {
     return await Permission.storage.request();
-  } else if (Platform.isLinux) {
+  } else if (Platform.isLinux || Platform.isMacOS) {
     return PermissionStatus.granted;
   } else {
     print("Implement write checks for ${Platform()}");

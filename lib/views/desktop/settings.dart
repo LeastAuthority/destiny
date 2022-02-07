@@ -58,11 +58,10 @@ class _SettingsState extends SettingsShared<Settings> {
                        Column(
                          children: [
                            Heading(
-                             title:
-                             '$CURRENT_SAVE_DESTINATION',
+                             title: '$CURRENT_SAVE_DESTINATION',
                              textAlign: TextAlign.center,
                              marginTop: 110.0.h,
-                             path: 'destiny/received',
+                             path: path,
                              textStyle: Theme.of(context).textTheme.headline1,
                              key: Key(SETTINGS_SCREEN_HEADING),
                            ),
@@ -72,7 +71,7 @@ class _SettingsState extends SettingsShared<Settings> {
                            DTButtonWithBackground(
                              handleSelectFile: handleSelectFile,
                              title: SELECT_A_FOLDER,
-                             width: 140.0.w,
+                             width: 150.0.w,
                            )
                          ],
                        )
