@@ -26,7 +26,7 @@ void main() {
   String createFile(int kbs) {
     var tempFile = File(path.join(tempDir.path, "${kbs}KB"));
 
-    tempFile.createSync();
+    tempFile.createSync(recursive: true);
     var sink = tempFile.openSync(mode: FileMode.write);
     for (int i = 0; i < kbs;) {
       var kbsToWrite = i + maxKbPerWrite < kbs ? maxKbPerWrite : kbs - i;
@@ -65,12 +65,20 @@ void main() {
         final code = await sendFileGo(testFilePath);
         expect(code, isNotEmpty);
 
-        final actualData = await receiver.recvFile(code);
+        final pendingDownload = await receiver.recvFile(code);
         final testData = File(testFilePath).readAsBytesSync();
+        final destinationPath =
+            "${tempDir.path}/received_go_dart/${pendingDownload.pendingDownload.fileName}";
 
-        expect(
-            sha256.convert(actualData.data), equals(sha256.convert(testData)));
-        expect(actualData.fileName, equals(path.basename(testFilePath)));
+        File(destinationPath).createSync(recursive: true);
+
+        pendingDownload.pendingDownload.accept(File(destinationPath));
+
+        await pendingDownload.done;
+        expect(sha256.convert(File(destinationPath).readAsBytesSync()),
+            equals(sha256.convert(testData)));
+        expect(pendingDownload.pendingDownload.fileName,
+            equals(path.basename(testFilePath)));
       });
 
       test('dart API -> dart API', () async {
@@ -82,11 +90,20 @@ void main() {
         expect(code, isNotEmpty);
         expect(result.done, completes);
 
-        final actualData = await receiver.recvFile(code);
+        final pendingDownload = await receiver.recvFile(code);
+
+        final destinationPath =
+            "${tempDir.path}/received_dart_dart/${pendingDownload.pendingDownload.fileName}";
+
+        File(destinationPath).createSync(recursive: true);
+
+        pendingDownload.pendingDownload.accept(File(destinationPath));
+        await pendingDownload.done;
         final testData = File(testFilePath).readAsBytesSync();
-        expect(
-            sha256.convert(actualData.data), equals(sha256.convert(testData)));
-        expect(actualData.fileName, equals(path.basename(testFilePath)));
+        expect(sha256.convert(File(destinationPath).readAsBytesSync()),
+            equals(sha256.convert(testData)));
+        expect(pendingDownload.pendingDownload.fileName,
+            equals(path.basename(testFilePath)));
       });
     });
   }

@@ -31,14 +31,22 @@ class ReceiveScreen extends ReceiveShared<Receive> {
   }
 
   Widget receiveProgress() {
-    return ReceiveProgress(
-        fileSize, fileName, totalReceived, totalSize, currentTime);
+    return ReceiveProgress(fileSize, fileName, totalReceived, totalSize,
+        currentTime ?? DateTime.now());
   }
 
   Widget receiveConfirmation() {
     return ReceiveConfirmation(
-      receive,
-    );
+        fileName,
+        fileSize,
+        acceptDownload ??
+            () {
+              throw Exception("No download to accept");
+            },
+        rejectDownload ??
+            () {
+              throw Exception("No download to reject");
+            });
   }
 
   Widget enterCodeUI() {
@@ -64,7 +72,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
                 codeChanged: codeChanged,
                 handleNextClicked: () {
                   this.setState(() {
-                    currentState = ReceiveScreenStates.ReceiveConfirmation;
+                    receive();
                   });
                 }))
       ],
