@@ -1,5 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_william/client/c_structs.dart';
@@ -23,12 +24,15 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   int totalSize = 0;
   int fileSize = 0;
   String fileName = '';
-  dynamic currentTime;
+  DateTime? currentTime;
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
   Client client = Client();
   ReceiveShared();
   String path = '';
+
+  void Function()? acceptDownload;
+  void Function()? rejectDownload;
 
   void initializePrefs() async {
     prefs = await SharedPreferences.getInstance();
@@ -70,20 +74,47 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
       _path = DOWNLOADS_FOLDER_PATH;
       prefs?.setString(PATH, _path);
     }
-    await canWriteToFile().then((permissionStatus) {
+
+    String _tempPath(String prefix) {
+      final r = Random();
+      int suffix = r.nextInt(1 << 32);
+      while (File("$prefix.$suffix").existsSync()) {
+        suffix = r.nextInt(1 << 32);
+      }
+
+      return "$prefix.$suffix";
+    }
+
+    await canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
+        late final File tempFile;
+
         client.recvFile(_code!, progressHandler).then((result) {
-          File file = File("$_path/${result.fileName}");
-          if (file.existsSync()) {
-            file.deleteSync();
-          }
-          file.createSync(recursive: true);
-          file.writeAsBytesSync(result.data.toList());
+          result.done.then((value) {
+            this.setState(() {
+              currentState = ReceiveScreenStates.FileReceived;
+            });
+            return tempFile.rename("$_path/${result.pendingDownload.fileName}");
+          });
 
           this.setState(() {
-            currentState = ReceiveScreenStates.FileReceived;
-            fileName = result.fileName;
-            fileSize = result.data.length;
+            currentState = ReceiveScreenStates.ReceiveConfirmation;
+            acceptDownload = () {
+              tempFile =
+                  File(_tempPath("$_path/${result.pendingDownload.fileName}"));
+              result.pendingDownload.accept(tempFile);
+              this.setState(() {
+                currentState = ReceiveScreenStates.FileReceiving;
+              });
+            };
+            rejectDownload = () {
+              result.pendingDownload.reject();
+              this.setState(() {
+                currentState = ReceiveScreenStates.Initial;
+              });
+            };
+            fileName = result.pendingDownload.fileName;
+            fileSize = result.pendingDownload.size;
           });
         });
       } else {

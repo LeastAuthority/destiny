@@ -6,9 +6,12 @@
 
 #include "generated_plugin_registrant.h"
 
+#include <dart_wormhole_william/dart_wormhole_william_plugin.h>
 #include <desktop_drop/desktop_drop_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
+  DartWormholeWilliamPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("DartWormholeWilliamPlugin"));
   DesktopDropPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("DesktopDropPlugin"));
 }
