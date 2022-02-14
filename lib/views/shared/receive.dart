@@ -30,7 +30,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   Client client = Client();
   ReceiveShared();
   String path = '';
-
+  String? error = null;
   void Function()? acceptDownload;
   void Function()? rejectDownload;
 
@@ -65,7 +65,17 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return prefs?.getString(PATH);
   }
 
-  void receive() async {
+  static String _tempPath(String prefix) {
+    final r = Random();
+    int suffix = r.nextInt(1 << 32);
+    while (File("$prefix.$suffix").existsSync()) {
+      suffix = r.nextInt(1 << 32);
+    }
+
+    return "$prefix.$suffix";
+  }
+
+  Future<ReceiveFileResult> receive() async {
     String? _path = await gePath();
     if (_path == null) {
       this.setState(() {
@@ -75,26 +85,22 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
       prefs?.setString(PATH, _path);
     }
 
-    String _tempPath(String prefix) {
-      final r = Random();
-      int suffix = r.nextInt(1 << 32);
-      while (File("$prefix.$suffix").existsSync()) {
-        suffix = r.nextInt(1 << 32);
-      }
-
-      return "$prefix.$suffix";
-    }
-
-    await canWriteToFile().then((permissionStatus) async {
+    return canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
         late final File tempFile;
 
-        client.recvFile(_code!, progressHandler).then((result) {
+        return client.recvFile(_code!, progressHandler).then((result) {
           result.done.then((value) {
             this.setState(() {
               currentState = ReceiveScreenStates.FileReceived;
             });
             return tempFile.rename("$_path/${result.pendingDownload.fileName}");
+          }, onError: (error, stacktrace) {
+            this.setState(() {
+              currentState = ReceiveScreenStates.ReceiveError;
+              error = error.toString();
+            });
+            return tempFile;
           });
 
           this.setState(() {
@@ -116,16 +122,18 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
             fileName = result.pendingDownload.fileName;
             fileSize = result.pendingDownload.size;
           });
+
+          return result;
         });
       } else {
-        // TODO implement permission denied UI
-        print("Permission denied");
+        return Future.error(Exception("Permission denied"));
       }
     });
   }
 
   Widget widgetByState(
       Widget Function() receivingDone,
+      Widget Function() receiveError,
       Widget Function() receiveProgress,
       Widget Function() enterCodeUI,
       Widget Function() receiveConfirmation) {
@@ -133,6 +141,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
       case ReceiveScreenStates.Initial:
         return enterCodeUI();
       case ReceiveScreenStates.ReceiveError:
+        return receiveError();
       case ReceiveScreenStates.ReceiveConfirmation:
         return receiveConfirmation();
       case ReceiveScreenStates.FileReceived:
