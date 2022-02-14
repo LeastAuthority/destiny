@@ -49,32 +49,33 @@ class _SettingsState extends SettingsShared<Settings> {
                     child: Column(
                       children: [
                         Heading(
-                          title: SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE,
+                          title:
+                              SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE,
                           textAlign: TextAlign.center,
                           marginTop: 16.0.h,
                           textStyle: Theme.of(context).textTheme.headline1,
                           // key: Key('Timing_Progress'),
                         ),
-                       Column(
-                         children: [
-                           Heading(
-                             title: '$CURRENT_SAVE_DESTINATION',
-                             textAlign: TextAlign.center,
-                             marginTop: 110.0.h,
-                             path: path,
-                             textStyle: Theme.of(context).textTheme.headline1,
-                             key: Key(SETTINGS_SCREEN_HEADING),
-                           ),
-                           SizedBox(
-                             height: 45.0.h,
-                           ),
-                           DTButtonWithBackground(
-                             handleSelectFile: handleSelectFile,
-                             title: SELECT_A_FOLDER,
-                             width: 150.0.w,
-                           )
-                         ],
-                       )
+                        Column(
+                          children: [
+                            Heading(
+                              title: '$CURRENT_SAVE_DESTINATION',
+                              textAlign: TextAlign.center,
+                              marginTop: 110.0.h,
+                              path: path,
+                              textStyle: Theme.of(context).textTheme.headline1,
+                              key: Key(SETTINGS_SCREEN_HEADING),
+                            ),
+                            SizedBox(
+                              height: 45.0.h,
+                            ),
+                            DTButtonWithBackground(
+                              handleSelectFile: handleSelectFile,
+                              title: SELECT_A_FOLDER,
+                              width: 150.0.w,
+                            )
+                          ],
+                        )
                       ],
                     )),
               ),

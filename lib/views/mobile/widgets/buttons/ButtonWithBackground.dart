@@ -35,8 +35,7 @@ class ButtonWithBackground extends StatelessWidget {
     Widget getButtonContent() {
       return GestureDetector(
           onTap: () {
-            if(disabled == false)
-             this.handleClicked();
+            if (disabled == false) this.handleClicked();
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

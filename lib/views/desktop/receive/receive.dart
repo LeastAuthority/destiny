@@ -30,7 +30,7 @@ class _ReceiveState extends State<Receive> {
               child: Container(
                 margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
                 decoration: BoxDecoration(
-                  color:  Theme.of(context).dialogBackgroundColor,
+                  color: Theme.of(context).dialogBackgroundColor,
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   border: Border(
                     top: BorderSide(width: 2.0, color: CustomColors.purple),
@@ -53,8 +53,8 @@ class _ReceiveState extends State<Receive> {
                           textStyle: Theme.of(context).textTheme.headline1,
                         ),
                         CodeInputBox(
-                          width: 400.0.w,
-                            controller:controller,
+                            width: 400.0.w,
+                            controller: controller,
                             codeChanged: (String code) {
                               controller.text = code;
                               this.setState(() {

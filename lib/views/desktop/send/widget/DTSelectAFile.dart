@@ -20,7 +20,7 @@ class DTSelectAFile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color:  Theme.of(context).dialogBackgroundColor,
+      color: Theme.of(context).dialogBackgroundColor,
       child: DropTarget(
         onDragDone: (detail) async {
           handleFileDroped(detail.files.first);

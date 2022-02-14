@@ -6,7 +6,7 @@ const String MONTSERRAT_THIN = 'MontserratThin';
 const String MONTSERRAT_SEMI_BOLD = 'MontserratSemiBold';
 const String MONTSERRAT_MEDIUM = 'MontserratMedium';
 const String ROBOTO_BLACK = 'RobotoBlack';
-const String ROBOTO_THIN= 'RobotoThin';
+const String ROBOTO_THIN = 'RobotoThin';
 
 //images
 const String LOGO = 'assets/images/logo.png';

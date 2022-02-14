@@ -12,8 +12,7 @@ class CustomTheme {
       scaffoldBackgroundColor: CustomColors.black,
       progressIndicatorTheme: ProgressIndicatorThemeData(
           color: CustomColors.purple,
-          linearTrackColor: CustomColors.superLightPurple
-      ),
+          linearTrackColor: CustomColors.superLightPurple),
       disabledColor: CustomColors.babyPowderLight,
       appBarTheme: AppBarTheme(backgroundColor: CustomColors.veryDarkPurple),
       colorScheme:
@@ -71,8 +70,7 @@ class CustomTheme {
       backgroundColor: CustomColors.darkBlue,
       progressIndicatorTheme: ProgressIndicatorThemeData(
           color: CustomColors.purple,
-          linearTrackColor: CustomColors.superLightPurple
-      ),
+          linearTrackColor: CustomColors.superLightPurple),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         secondary: CustomColors.babyPowder,
       ),
