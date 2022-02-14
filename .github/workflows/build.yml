@@ -9,7 +9,7 @@ on:
       - "main"
 
 env:
-  FLUTTER_HOME: "/opt/hostedtoolcache/flutter/2.8.1-stable/x64"
+  FLUTTER_HOME: "/opt/hostedtoolcache/flutter/2.10.1-stable/x64"
 
 jobs:
   build-apk:
