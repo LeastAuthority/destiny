@@ -79,6 +79,10 @@ class ReceiveScreen extends ReceiveShared<Receive> {
     );
   }
 
+  Widget receiveError() {
+    return Text("Error");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,8 +99,8 @@ class ReceiveScreen extends ReceiveShared<Receive> {
           child: Container(
               key: Key(RECEIVE_SCREEN_BODY),
               padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: widgetByState(receivingDone, receiveProgress, enterCodeUI,
-                  receiveConfirmation)),
+              child: widgetByState(receivingDone, receiveError, receiveProgress,
+                  enterCodeUI, receiveConfirmation)),
         ));
   }
 }
