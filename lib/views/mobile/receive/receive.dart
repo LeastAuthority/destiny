@@ -9,6 +9,7 @@ import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../shared/receive.dart';
 
 class Receive extends ReceiveState {
@@ -30,14 +31,22 @@ class ReceiveScreen extends ReceiveShared<Receive> {
   }
 
   Widget receiveProgress() {
-    return ReceiveProgress(
-        fileSize, fileName, totalReceived, totalSize, currentTimeGetter);
+    return ReceiveProgress(fileSize, fileName, totalReceived, totalSize,
+        currentTime ?? DateTime.now());
   }
 
   Widget receiveConfirmation() {
     return ReceiveConfirmation(
-      receive,
-    );
+        fileName,
+        fileSize,
+        acceptDownload ??
+            () {
+              throw Exception("No download to accept");
+            },
+        rejectDownload ??
+            () {
+              throw Exception("No download to reject");
+            });
   }
 
   Widget enterCodeUI() {
@@ -63,11 +72,15 @@ class ReceiveScreen extends ReceiveShared<Receive> {
                 codeChanged: codeChanged,
                 handleNextClicked: () {
                   this.setState(() {
-                    currentState = ReceiveScreenStates.ReceiveConfirmation;
+                    receive();
                   });
                 }))
       ],
     );
+  }
+
+  Widget receiveError() {
+    return Text("Error");
   }
 
   @override
@@ -85,9 +98,9 @@ class ReceiveScreen extends ReceiveShared<Receive> {
           onWillPop: () async => false,
           child: Container(
               key: Key(RECEIVE_SCREEN_BODY),
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: widgetByState(receivingDone, receiveProgress, enterCodeUI,
-                  receiveConfirmation)),
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: widgetByState(receivingDone, receiveError, receiveProgress,
+                  enterCodeUI, receiveConfirmation)),
         ));
   }
 }

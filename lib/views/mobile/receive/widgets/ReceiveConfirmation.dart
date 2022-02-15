@@ -1,14 +1,18 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReceiveConfirmation extends StatelessWidget {
-  final Function receive;
-  ReceiveConfirmation(this.receive);
+  final String fileName;
+  final int fileSize;
+  final Function acceptDownload;
+  final Function rejectDownload;
+
+  ReceiveConfirmation(
+      this.fileName, this.fileSize, this.acceptDownload, this.rejectDownload);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +25,7 @@ class ReceiveConfirmation extends StatelessWidget {
           textStyle: Theme.of(context).textTheme.bodyText1,
           // key: Key('Timing_Progress'),
         ),
-        FileInfo(22, 'My file name'),
+        FileInfo(fileSize, fileName),
         Heading(
           title: PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED,
           textAlign: TextAlign.center,
@@ -32,12 +36,12 @@ class ReceiveConfirmation extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Button(title: CANCEL, handleClicked: () {}, disabled: false),
-            ButtonWithBackground(
-              title: DOWNLOAD,
-              handleClicked: receive,
-              disabled: false,
-            ),
+            Button(
+                title: DOWNLOAD,
+                handleClicked: acceptDownload,
+                disabled: false),
+            Button(
+                title: CANCEL, handleClicked: rejectDownload, disabled: false),
           ],
         ),
         SizedBox(
