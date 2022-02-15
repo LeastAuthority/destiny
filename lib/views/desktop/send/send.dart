@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'package:cross_file/cross_file.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
@@ -32,9 +32,9 @@ class Send extends SendState {
 class SendScreen extends SendShared<Send> {
   Widget generateCodeUI() {
     return DTCodeGeneration(
-      fileName: 'fileName',
+      fileName: fileName,
       fileSize: fileSize,
-      code: 'code',
+      code: code ?? "Generating...",
       isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
       // cancelSend,
       key: Key(SEND_SCREEN_CODE_GENERATION_UI),
@@ -42,23 +42,21 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingDone() {
-    return DTSendingProgress(fileSize, fileName, 10, 30, "");
+    return DTSendingProgress(fileSize, fileName, 10, 30);
   }
 
   Widget selectAFileUI() {
     return DTSelectAFile(
         handleSelectFile: () {},
-        handleFileDroped: (dynamic file) async {
-          final int size = await file.length();
-          final Uint8List bytes = await file.readAsBytes();
-          PlatformFile platformFile =
-              PlatformFile(name: file.name, size: size, bytes: bytes);
+        handleFileDroped: (XFile file) async {
+          PlatformFile platformFile = PlatformFile(
+              name: file.name, size: await file.length(), path: file.path);
           send(platformFile);
         }).dottedParent();
   }
 
   Widget sendingProgress() {
-    return DTSendingProgress(fileSize, fileName, 10, 30, "");
+    return DTSendingProgress(fileSize, fileName, 10, 30);
   }
 
   @override
