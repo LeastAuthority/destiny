@@ -11,9 +11,10 @@ class DTSendingProgress extends StatelessWidget {
   final String fileName;
   final int totalSent;
   final int totalSize;
-  final String currentTimeGetter;
-  DTSendingProgress(this.fileSize, this.fileName, this.totalSent,
-      this.totalSize, this.currentTimeGetter);
+
+  DTSendingProgress(
+      this.fileSize, this.fileName, this.totalSent, this.totalSize);
+
   @override
   Widget build(BuildContext context) {
     return Container(

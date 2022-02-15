@@ -1,15 +1,16 @@
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widget/DTButtonLinearGradientWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 import 'DTButtonWithIcon.dart';
 
 class DTRowGroupButton extends StatelessWidget {
-  String code = '';
-  bool isCodeGenerating = false;
+  final String code;
+  final bool isCodeGenerating;
+
   DTRowGroupButton(this.code, this.isCodeGenerating);
 
   @override

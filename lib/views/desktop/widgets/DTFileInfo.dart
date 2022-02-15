@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +24,7 @@ class DTFileInfo extends StatelessWidget {
           ),
         ),
         Heading(
-          title: '($fileSize kb)',
+          title: '(${fileSize?.readableSize})',
           textAlign: TextAlign.center,
           marginTop: 0,
           textStyle: Theme.of(context).textTheme.subtitle2,
