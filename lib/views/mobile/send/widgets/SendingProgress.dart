@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
@@ -13,9 +11,9 @@ class SendingProgress extends StatefulWidget {
   final String fileName;
   final int totalSent;
   final int totalSize;
-  final DateTime currentTime;
+  final DateTime currentTimeGetter;
   SendingProgress(this.fileSize, this.fileName, this.totalSent, this.totalSize,
-      this.currentTime);
+      this.currentTimeGetter);
   @override
   State<SendingProgress> createState() => _SendingProgressState();
 }
@@ -31,21 +29,23 @@ class _SendingProgressState extends State<SendingProgress> {
     startingTime = DateTime.now();
   }
 
-  String getRemainingTime() {
-    Duration duration = widget.currentTime.difference(startingTime);
-    if ((widget.totalSent - previousSent) > 0 && duration.inSeconds >= 1)
-      this.setState(() {
-        sentPerSecond = widget.totalSent - previousSent;
-        previousSent = widget.totalSent;
-      });
-    int remainingTimeInSeconds =
-        ((widget.totalSize - widget.totalSent) ~/ sentPerSecond);
-    return remainingTimeInSeconds.timeRemainingInProperUnit;
+  void updateState() {
+    this.setState(() {
+      sentPerSecond = widget.totalSent - previousSent;
+      previousSent = widget.totalSent;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    String remainingTime = getRemainingTime();
+    String remainingTime = getRemainingTime(
+        widget.currentTimeGetter,
+        startingTime,
+        widget.totalSent,
+        previousSent,
+        widget.totalSize,
+        sentPerSecond,
+        updateState);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -1,9 +1,8 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
-import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:dotted_border/dotted_border.dart';
+import 'package:dart_wormhole_gui/widgets/CodeInputBox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
@@ -18,6 +17,7 @@ class Receive extends StatefulWidget {
 }
 
 class _ReceiveState extends State<Receive> {
+  String code = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +30,7 @@ class _ReceiveState extends State<Receive> {
               child: Container(
                 margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
                 decoration: BoxDecoration(
+                  color: Theme.of(context).dialogBackgroundColor,
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   border: Border(
                     top: BorderSide(width: 2.0, color: CustomColors.purple),
@@ -51,26 +52,15 @@ class _ReceiveState extends State<Receive> {
                           title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
                           textStyle: Theme.of(context).textTheme.headline1,
                         ),
-                        SizedBox(
-                          width: 400.0.w,
-                          height: 60.0.h,
-                          child: TextField(
+                        CodeInputBox(
+                            width: 400.0.w,
                             controller: controller,
-                            onChanged: (text) {
-                              this.setState(() {});
-                            },
-                            style: Theme.of(context).textTheme.headline4,
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                              hintStyle: Theme.of(context).textTheme.bodyText1,
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: CustomColors.purple, width: 1.0),
-                              ),
-                              hintText: 'Enter Code',
-                            ),
-                          ),
-                        ),
+                            codeChanged: (String code) {
+                              controller.text = code;
+                              this.setState(() {
+                                code = code;
+                              });
+                            }),
                         controller.text.length > 0
                             ? Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -78,11 +68,11 @@ class _ReceiveState extends State<Receive> {
                                   DTButtonWithBackground(
                                     title: NEXT,
                                     handleSelectFile: () {},
+                                    width: 100.0.w,
                                   ),
                                   SizedBox(
                                     width: 15.0.w,
                                   ),
-                                  DTButton(CANCEL, () {}),
                                 ],
                               )
                             : Container(

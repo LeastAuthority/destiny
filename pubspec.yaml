@@ -64,6 +64,9 @@ flutter:
     - family: Montserrat
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+    - family: MontserratMedium
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
     - family: MontserratThin
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-Thin.ttf
@@ -73,6 +76,12 @@ flutter:
     - family: Roboto
       fonts:
           - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+    - family: RobotoBlack
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Black.ttf
+    - family: RobotoThin
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Thin.ttf
     - family: Lato
       fonts:
           - asset: assets/fonts/Lato/Lato-Regular.ttf

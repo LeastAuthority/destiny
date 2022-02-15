@@ -1,3 +1,4 @@
+import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTFileInfo.dart';
@@ -27,16 +28,29 @@ class DTCodeGeneration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).dialogBackgroundColor,
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        border: Border(
+          top: BorderSide(width: 2.0, color: CustomColors.purple),
+          left: BorderSide(width: 2.0, color: CustomColors.purple),
+          right: BorderSide(width: 2.0, color: CustomColors.purple),
+          bottom: BorderSide(width: 2.0, color: CustomColors.purple),
+        ),
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            padding: EdgeInsets.only(right: 40.0.w),
-            child: Heading(
-              title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
-              textStyle: Theme.of(context).textTheme.headline1,
-            ),
-          ),
+              padding: EdgeInsets.only(right: 40.0.w),
+              child: SizedBox(
+                width: 500.0.w,
+                child: Heading(
+                  title:
+                      SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
+                  textStyle: Theme.of(context).textTheme.headline1,
+                ),
+              )),
           DTFileInfo(fileSize, fileName),
           DTRowGroupButton(code, isCodeGenerating!),
           isCodeGenerating!

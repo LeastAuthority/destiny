@@ -38,6 +38,7 @@ const String FILE_SENT = 'File sent';
 const String SECONDS = 'Seconds';
 const String MINUTES = 'Minutes';
 const String MINUTE = 'Minute';
+const String X = 'X';
 
 const String FILE_UPLOADED_SUCCESSFULLY = 'File uploaded successfully';
 const String WRONG_TYPE_FOR_PROGRESS =
