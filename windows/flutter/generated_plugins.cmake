@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  dart_wormhole_william
   desktop_drop
 )
 

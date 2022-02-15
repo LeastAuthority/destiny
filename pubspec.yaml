@@ -23,7 +23,7 @@ environment:
 dependencies:
   dart_wormhole_william:
     path: ./dart_wormhole_william
-  flutter_screenutil: 5.0.0
+  flutter_screenutil: 5.2.0
   shared_preferences: ^2.0.6
   basic_utils:
     git:
