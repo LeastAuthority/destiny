@@ -9,22 +9,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'DTRowGroupButton.dart';
 
 class DTCodeGeneration extends StatelessWidget {
-  String? fileName = '';
-  int? fileSize = 0;
-  String code = '';
-  bool? isCodeGenerating = false;
+  final String fileName;
+  final int fileSize;
+  final String code;
+  final bool isCodeGenerating;
+
   DTCodeGeneration(
       {Key? key,
-      String? fileName,
-      int? fileSize,
-      String code = '',
-      bool? isCodeGenerating})
-      : super(key: key) {
-    this.fileName = fileName;
-    this.fileSize = fileSize;
-    this.code = code;
-    this.isCodeGenerating = isCodeGenerating;
-  }
+      required this.fileName,
+      required this.fileSize,
+      required this.code,
+      required this.isCodeGenerating})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,8 +49,8 @@ class DTCodeGeneration extends StatelessWidget {
                 ),
               )),
           DTFileInfo(fileSize, fileName),
-          DTRowGroupButton(code, isCodeGenerating!),
-          isCodeGenerating!
+          DTRowGroupButton(code, isCodeGenerating),
+          isCodeGenerating
               ? SizedBox(
                   width: 200.0.w,
                   child: Heading(
@@ -74,7 +71,7 @@ class DTCodeGeneration extends StatelessWidget {
                 ),
           Column(
             children: [
-              isCodeGenerating!
+              isCodeGenerating
                   ? DTButton(
                       CANCEL,
                       () {},

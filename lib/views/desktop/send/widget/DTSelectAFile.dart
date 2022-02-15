@@ -1,22 +1,21 @@
+import 'package:cross_file/cross_file.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTSelectAFile extends StatelessWidget {
-  Function handleSelectFile = () {};
-  Function handleFileDroped = () {};
+  final Function handleSelectFile;
+  final void Function(XFile) handleFileDroped;
+
   DTSelectAFile(
       {Key? key,
-      required Function handleSelectFile,
-      required Function handleFileDroped})
-      : super(key: key) {
-    this.handleSelectFile = handleSelectFile;
-    this.handleFileDroped = handleFileDroped;
-  }
+      required this.handleSelectFile,
+      required this.handleFileDroped})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
