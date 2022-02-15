@@ -1,6 +1,5 @@
 import 'dart:ffi';
 import 'dart:io';
-
 import 'package:dart_wormhole_william/client/c_structs.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:file_picker/file_picker.dart';
@@ -22,6 +21,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
   int totalSent = 0;
   int totalSize = 0;
   late DateTime currentTime;
+  DateTime get currentTimeGetter => currentTime;
 
   SendScreenStates currentState = SendScreenStates.Initial;
 

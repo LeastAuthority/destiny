@@ -1,13 +1,14 @@
+import 'dart:typed_data';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widget/DTCodeGeneration.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSelectAFile.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSendingProgress.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,27 +31,34 @@ class Send extends SendState {
 
 class SendScreen extends SendShared<Send> {
   Widget generateCodeUI() {
-    return CodeGeneration(
-      fileName,
-      fileSize,
-      code,
-      currentState == SendScreenStates.CodeGenerating,
-      cancelSend,
+    return DTCodeGeneration(
+      fileName: 'fileName',
+      fileSize: fileSize,
+      code: 'code',
+      isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
+      // cancelSend,
       key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-    ).dottedParent();
+    );
   }
 
   Widget sendingDone() {
-    return SendingDone(fileSize, fileName);
+    return DTSendingProgress(fileSize, fileName, 10, 30, "");
   }
 
   Widget selectAFileUI() {
-    return SelectAFileUI(fileSize, fileName, handleSelectFile);
+    return DTSelectAFile(
+        handleSelectFile: () {},
+        handleFileDroped: (dynamic file) async {
+          final int size = await file.length();
+          final Uint8List bytes = await file.readAsBytes();
+          PlatformFile platformFile =
+              PlatformFile(name: file.name, size: size, bytes: bytes);
+          send(platformFile);
+        }).dottedParent();
   }
 
   Widget sendingProgress() {
-    return SendingProgress(
-        fileSize, fileName, totalSent, totalSize, currentTime);
+    return DTSendingProgress(fileSize, fileName, 10, 30, "");
   }
 
   @override

@@ -8,7 +8,6 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Send extends SendState {
   Send({Key? key}) : super(key: key);
@@ -35,7 +34,7 @@ class SendScreen extends SendShared<Send> {
 
   Widget sendingProgress() {
     return SendingProgress(
-        fileSize, fileName, totalSent, totalSize, currentTime);
+        fileSize, fileName, totalSent, totalSize, currentTimeGetter);
   }
 
   Widget sendingDone() {
@@ -58,7 +57,7 @@ class SendScreen extends SendShared<Send> {
             child: Container(
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
-                padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Container(
                     child: widgetByState(generateCodeUI, selectAFileUI,
                         sendingDone, sendingProgress)))));

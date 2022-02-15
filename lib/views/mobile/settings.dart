@@ -1,49 +1,22 @@
-import 'dart:io';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/views/shared/settings.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dart_wormhole_gui/views/shared/util.dart';
 
-class Settings extends StatefulWidget {
+class Settings extends SettingsState {
+  Settings({Key? key}) : super(key: key);
+
   @override
-  State<Settings> createState() => _SettingsState();
+  _SettingsState createState() => _SettingsState();
 }
 
-class _SettingsState extends State<Settings> {
-  String _path = '';
-  SharedPreferences? prefs;
+class _SettingsState extends SettingsShared<Settings> {
   _SettingsState() {
     initializePrefs();
-  }
-
-  void initializePrefs() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _path = prefs?.getString(PATH) ?? '';
-    });
-  }
-
-  void handleSelectFile() async {
-    await canWriteToFile().then((permissionStatus) async {
-      if (permissionStatus == PermissionStatus.granted) {
-        String? result = await FilePicker.platform.getDirectoryPath();
-        if (result == null) {
-          return;
-        }
-        setState(() {
-          _path = result;
-          prefs?.setString(PATH, result);
-        });
-      }
-    });
   }
 
   @override
@@ -69,14 +42,17 @@ class _SettingsState extends State<Settings> {
                           '$CURRENT_SAVE_DESTINATION ',
                       textAlign: TextAlign.left,
                       marginTop: 0,
-                      path: _path,
+                      path: path,
                       textStyle: Theme.of(context).textTheme.bodyText1,
                       key: Key(SETTINGS_SCREEN_HEADING),
                     ),
                   ],
                 ),
                 ButtonWithBackground(
-                    handleSelectFolder: handleSelectFile,
+                    title: SELECT_A_FOLDER,
+                    handleClicked: handleSelectFile,
+                    height: 60.0.h,
+                    width: 200.0.w,
                     key: Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)),
                 Button(
                   title: BACK,

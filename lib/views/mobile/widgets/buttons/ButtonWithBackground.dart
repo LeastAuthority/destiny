@@ -1,13 +1,33 @@
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWithBackground extends StatelessWidget {
-  Function? handleSelectFolder;
-  ButtonWithBackground({Function? handleSelectFolder, double? height, Key? key})
+  Function handleClicked = () {};
+  String title = '';
+  bool? disabled = false;
+  double? width = 120.0.w;
+  double? height = 50.0.h;
+
+  ButtonWithBackground(
+      {required String title,
+      required Function handleClicked,
+      bool? disabled,
+      double? width,
+      double? height,
+      Key? key})
       : super(key: key) {
-    this.handleSelectFolder = handleSelectFolder;
+    this.handleClicked = handleClicked;
+    this.title = title;
+    if (width != null) {
+      this.width = width;
+    }
+    if (height != null) {
+      this.height = height;
+    }
+    if (disabled != null) {
+      this.disabled = disabled;
+    }
   }
 
   @override
@@ -15,18 +35,16 @@ class ButtonWithBackground extends StatelessWidget {
     Widget getButtonContent() {
       return GestureDetector(
           onTap: () {
-            if (handleSelectFolder != null) {
-              this.handleSelectFolder!();
-            }
+            if (disabled == false) this.handleClicked();
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                child: Text('$SELECT_A_FOLDER',
+                child: Text(title,
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: Theme.of(context).textTheme.headline1!.fontSize,
+                      fontSize: Theme.of(context).textTheme.headline2!.fontSize,
                       fontWeight:
                           Theme.of(context).textTheme.headline1!.fontWeight,
                       fontFamily:
@@ -38,8 +56,15 @@ class ButtonWithBackground extends StatelessWidget {
     }
 
     BoxDecoration getBorder() {
-      var borderColor = Theme.of(context).primaryColor;
-      var backgroundColor = Theme.of(context).primaryColor;
+      var enabledBorderColor = Theme.of(context).primaryColor;
+      var disabledBorderColor = Theme.of(context).primaryColorDark;
+      var borderColor =
+          disabled == true ? disabledBorderColor : enabledBorderColor;
+
+      var enabledBackgroundColor = Theme.of(context).primaryColor;
+      var disabledBackgroundColor = Theme.of(context).primaryColorDark;
+      var backgroundColor =
+          disabled == true ? disabledBackgroundColor : enabledBackgroundColor;
 
       return BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
@@ -55,8 +80,8 @@ class ButtonWithBackground extends StatelessWidget {
 
     return Container(
         decoration: getBorder(),
-        height: 60.0.h,
-        width: 200.0.w,
+        height: height,
+        width: width,
         margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
         child: getButtonContent());
   }
