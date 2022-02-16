@@ -1,9 +1,8 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_william/client/c_structs.dart';
+import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -20,17 +19,15 @@ enum ReceiveScreenStates {
 
 abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   String? _code;
-  int totalReceived = 0;
-  int totalSize = 0;
-  int fileSize = 0;
-  String fileName = '';
-  DateTime? currentTime;
+  int? fileSize = 0;
+  String? fileName = '';
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
   Client client = Client();
   ReceiveShared();
   String path = '';
   String? error = null;
+
   void Function()? acceptDownload;
   void Function()? rejectDownload;
 
@@ -41,19 +38,9 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     });
   }
 
-  void progressHandler(dynamic progress) {
-    if (progress is int) {
-      var progressC = Pointer<Progress>.fromAddress(progress);
-      setState(() {
-        totalReceived = progressC.ref.transferredBytes;
-        totalSize = progressC.ref.totalBytes;
-        currentState = ReceiveScreenStates.FileReceiving;
-        currentTime = DateTime.now();
-      });
-    } else {
-      print('$WRONG_TYPE_FOR_PROGRESS ${progress.runtimeType}');
-    }
-  }
+  late ProgressShared progress = ProgressShared(setState, () {
+    currentState = ReceiveScreenStates.FileReceiving;
+  });
 
   void codeChanged(String code) {
     setState(() {
@@ -89,7 +76,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
       if (permissionStatus == PermissionStatus.granted) {
         late final File tempFile;
 
-        return client.recvFile(_code!, progressHandler).then((result) {
+        return client.recvFile(_code!, progress.progressHandler).then((result) {
           result.done.then((value) {
             this.setState(() {
               currentState = ReceiveScreenStates.FileReceived;

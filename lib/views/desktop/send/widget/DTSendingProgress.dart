@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTSendingProgress extends StatelessWidget {
-  final int fileSize;
-  final String fileName;
-  final int totalSent;
-  final int totalSize;
+  String fileName;
+  double percentage;
+  String remainingTimeString;
+  int totalSize;
 
   DTSendingProgress(
-      this.fileSize, this.fileName, this.totalSent, this.totalSize);
+      this.totalSize, this.fileName, this.percentage, this.remainingTimeString);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class DTSendingProgress extends StatelessWidget {
                 SizedBox(
                   height: 40.0.h,
                 ),
-                DTFileInfo(fileSize, fileName),
+                DTFileInfo(totalSize, fileName),
                 Container(
                   margin: EdgeInsets.only(top: 32.0.h),
                   width: 280.0.w,
@@ -54,11 +54,11 @@ class DTSendingProgress extends StatelessWidget {
                         .progressIndicatorTheme
                         .linearTrackColor,
                     color: Theme.of(context).progressIndicatorTheme.color,
-                    value: totalSent / totalSize,
+                    value: percentage,
                   ),
                 ),
                 Heading(
-                  title: '2 Seconds',
+                  title: remainingTimeString,
                   textAlign: TextAlign.center,
                   marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.subtitle2,

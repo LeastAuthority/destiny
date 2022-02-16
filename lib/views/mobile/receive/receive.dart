@@ -1,15 +1,15 @@
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
-import 'package:dart_wormhole_william/client/client.dart';
-import 'package:flutter/material.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
+import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
+import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
+import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_william/client/client.dart';
+import 'package:flutter/material.dart';
+
 import '../../shared/receive.dart';
 
 class Receive extends ReceiveState {
@@ -27,18 +27,18 @@ class ReceiveScreen extends ReceiveShared<Receive> {
   Client client = Client();
 
   Widget receivingDone() {
-    return ReceivingDone(fileSize, fileName, path);
+    return ReceivingDone(fileSize ?? 0, fileName ?? "", path);
   }
 
   Widget receiveProgress() {
-    return ReceiveProgress(fileSize, fileName, totalReceived, totalSize,
-        currentTime ?? DateTime.now());
+    return ReceiveProgress(fileSize ?? 0, fileName ?? "",
+        progress.percentage ?? 0.0, progress.remainingTimeString ?? "...");
   }
 
   Widget receiveConfirmation() {
     return ReceiveConfirmation(
-        fileName,
-        fileSize,
+        fileName ?? "",
+        fileSize ?? 0,
         acceptDownload ??
             () {
               throw Exception("No download to accept");

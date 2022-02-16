@@ -33,8 +33,8 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return SendingProgress(
-        fileSize, fileName, totalSent, totalSize, currentTimeGetter);
+    return SendingProgress(fileSize, fileName, progress.percentage ?? 0.0,
+        progress.remainingTimeString ?? "...");
   }
 
   Widget sendingDone() {

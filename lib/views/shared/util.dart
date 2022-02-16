@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
+
 import 'package:permission_handler/permission_handler.dart';
 
 const int KB = 1000;
@@ -30,19 +30,6 @@ extension BytesToReadableSize on int {
   }
 }
 
-extension TimeRemaining on int {
-  String get timeRemainingInProperUnit {
-    double time = this / MINUTE_IN_SECONDS;
-    if (time == 1) {
-      return "1 $MINUTE";
-    } else if (time < 1) {
-      return "${this} $SECONDS";
-    } else {
-      return "${(this / MINUTE_IN_SECONDS).toStringAsFixed(1)} $MINUTES";
-    }
-  }
-}
-
 Future<PermissionStatus> canWriteToFile() async {
   if (Platform.isAndroid) {
     return await Permission.storage.request();
@@ -52,21 +39,4 @@ Future<PermissionStatus> canWriteToFile() async {
     print("Implement write checks for ${Platform()}");
     return PermissionStatus.permanentlyDenied;
   }
-}
-
-String getRemainingTime(
-    DateTime currentTimeGetter,
-    DateTime startingTime,
-    int totalProcessed,
-    int previousProcessed,
-    int totalSize,
-    int processedPerSecond,
-    Function updateState) {
-  Duration duration = currentTimeGetter.difference(startingTime);
-  if ((totalProcessed - previousProcessed) > 0 && duration.inSeconds >= 1) {
-    updateState();
-  }
-  int remainingTimeInSeconds =
-      ((totalSize - totalProcessed) ~/ processedPerSecond);
-  return remainingTimeInSeconds.timeRemainingInProperUnit;
 }

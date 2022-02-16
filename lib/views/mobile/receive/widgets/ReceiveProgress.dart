@@ -1,7 +1,6 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
-import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,11 +8,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ReceiveProgress extends StatefulWidget {
   final int fileSize;
   final String fileName;
-  final int totalReceived;
-  final int totalSize;
-  final DateTime currentTimeGetter;
-  ReceiveProgress(this.fileSize, this.fileName, this.totalReceived,
-      this.totalSize, this.currentTimeGetter);
+  final double percentage;
+  final String remainingTimeString;
+
+  ReceiveProgress(
+      this.fileSize, this.fileName, this.percentage, this.remainingTimeString);
 
   @override
   State<ReceiveProgress> createState() => _ReceiveProgressState();
@@ -31,24 +30,8 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
     startingTime = DateTime.now();
   }
 
-  void updateState() {
-    this.setState(() {
-      sentPerSecond = widget.totalReceived - previousSent;
-      previousSent = widget.totalReceived;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    String remainingTime = getRemainingTime(
-        widget.currentTimeGetter,
-        startingTime,
-        widget.totalReceived,
-        previousSent,
-        widget.totalSize,
-        sentPerSecond,
-        updateState);
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -61,7 +44,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
         ),
         Column(
           children: [
-            FileInfo(widget.totalSize, widget.fileName),
+            FileInfo(widget.fileSize, widget.fileName),
             Container(
               width: 284.0.w,
               margin: EdgeInsets.only(top: 32.0.h),
@@ -69,11 +52,11 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
                 backgroundColor:
                     Theme.of(context).progressIndicatorTheme.linearTrackColor,
                 color: Theme.of(context).progressIndicatorTheme.color,
-                value: widget.totalReceived / widget.totalSize,
+                value: widget.percentage,
               ),
             ),
             Heading(
-              title: '$remainingTime',
+              title: '${widget.remainingTimeString}',
               textAlign: TextAlign.center,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText2,
