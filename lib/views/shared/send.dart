@@ -1,6 +1,5 @@
-import 'dart:ffi';
 import 'dart:io';
-import 'package:dart_wormhole_william/client/c_structs.dart';
+import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +17,6 @@ enum SendScreenStates {
 abstract class SendShared<T extends SendState> extends State<T> {
   String? code;
   PlatformFile? sendingFile;
-  int totalSent = 0;
-  int totalSize = 0;
-  late DateTime currentTime;
-  DateTime get currentTimeGetter => currentTime;
 
   SendScreenStates currentState = SendScreenStates.Initial;
 
@@ -29,24 +24,13 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   String get fileName => sendingFile?.name ?? "";
 
+  late ProgressShared progress = ProgressShared(setState, () {
+    currentState = SendScreenStates.FileSending;
+  });
+
   Client client = Client();
 
   SendShared();
-
-  void progressHandler(dynamic progress) {
-    if (progress is int) {
-      var progressC = Pointer<Progress>.fromAddress(progress);
-      setState(() {
-        totalSent = progressC.ref.transferredBytes;
-        totalSize = progressC.ref.totalBytes;
-        currentState = SendScreenStates.FileSending;
-        currentTime = DateTime.now();
-      });
-    } else {
-      print(
-          "Wrong type for progress. Expected int got ${progress.runtimeType}");
-    }
-  }
 
   void send(PlatformFile file) async {
     setState(() {
@@ -55,7 +39,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
     });
 
     await client
-        .sendFile(File(file.path!), progressHandler)
+        .sendFile(File(file.path!), progress.progressHandler)
         .then((result) async {
       setState(() {
         code = result.code;

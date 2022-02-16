@@ -42,7 +42,8 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingDone() {
-    return DTSendingProgress(fileSize, fileName, 10, 30);
+    return DTSendingProgress(progress.totalSize ?? 0, fileName,
+        progress.percentage ?? 0.0, progress.remainingTimeString ?? "...");
   }
 
   Widget selectAFileUI() {
@@ -56,7 +57,8 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return DTSendingProgress(fileSize, fileName, 10, 30);
+    return DTSendingProgress(progress.totalSize ?? 0, fileName,
+        progress.percentage ?? 0.0, progress.remainingTimeString ?? "...");
   }
 
   @override
