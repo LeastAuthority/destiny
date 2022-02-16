@@ -6,10 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 class SelectAFileUI extends StatelessWidget {
-  final int fileSize;
-  final String fileName;
   final Function handleSelectFile;
-  SelectAFileUI(this.fileSize, this.fileName, this.handleSelectFile);
+
+  SelectAFileUI(this.handleSelectFile);
+
   @override
   Widget build(BuildContext context) {
     return Column(

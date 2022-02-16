@@ -19,8 +19,9 @@ enum ReceiveScreenStates {
 
 abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   String? _code;
-  int? fileSize = 0;
-  String? fileName = '';
+  late int fileSize;
+  late String fileName;
+
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
   Client client = Client();
@@ -28,8 +29,8 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   String path = '';
   String? error = null;
 
-  void Function()? acceptDownload;
-  void Function()? rejectDownload;
+  late void Function() acceptDownload;
+  late void Function() rejectDownload;
 
   void initializePrefs() async {
     prefs = await SharedPreferences.getInstance();

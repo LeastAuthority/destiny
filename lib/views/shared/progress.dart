@@ -6,10 +6,12 @@ import 'package:dart_wormhole_william/client/c_structs.dart';
 const ETA_REFRESH_INTERVAL_MILLIS = 500;
 
 class ProgressShared {
-  int? totalTransferred;
-  int? totalSize;
+  late int totalTransferred;
+  late int totalSize;
+
   DateTime? lastProgress;
   int? lastTransferred;
+
   Duration? remainingTime;
 
   Function setState;
@@ -17,25 +19,30 @@ class ProgressShared {
 
   ProgressShared(this.setState, this.otherStateChange);
 
-  double? get percentage {
-    if (totalSize != null && totalTransferred != null) {
-      return totalTransferred! / totalSize!;
-    } else {
-      return null;
-    }
+  double get percentage {
+    return totalTransferred / totalSize;
   }
 
   String? get remainingTimeString {
     if (remainingTime != null) {
+      late final String unit;
+      late final int amount;
+
       if (remainingTime!.inDays > 0) {
-        return "${remainingTime!.inDays} Days";
+        unit = "Day";
+        amount = remainingTime!.inDays;
       } else if (remainingTime!.inHours > 0) {
-        return "${remainingTime!.inHours} Hours";
+        unit = "Hour";
+        amount = remainingTime!.inHours;
       } else if (remainingTime!.inMinutes > 0) {
-        return "${remainingTime!.inMinutes} Minutes";
+        unit = "Minute";
+        amount = remainingTime!.inMinutes;
       } else {
-        return "${remainingTime!.inSeconds} Seconds";
+        unit = "Second";
+        amount = remainingTime!.inSeconds;
       }
+
+      return amount == 1 ? "$amount $unit" : "$amount ${unit}s";
     } else {
       return null;
     }
@@ -53,14 +60,11 @@ class ProgressShared {
               DateTime.now().difference(lastProgress!).inMilliseconds;
 
           if (millisSinceLastUpdate >= ETA_REFRESH_INTERVAL_MILLIS) {
-            if (totalTransferred != null &&
-                lastTransferred != null &&
-                totalSize != null) {
+            if (lastTransferred != null) {
               final speedInBytesPerMillisecond =
-                  (totalTransferred! - lastTransferred!) /
-                      millisSinceLastUpdate;
+                  (totalTransferred - lastTransferred!) / millisSinceLastUpdate;
               remainingTime = Duration(
-                  milliseconds: ((totalSize! - totalTransferred!) ~/
+                  milliseconds: ((totalSize - totalTransferred) ~/
                       speedInBytesPerMillisecond));
             }
 
