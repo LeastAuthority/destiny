@@ -27,26 +27,17 @@ class ReceiveScreen extends ReceiveShared<Receive> {
   Client client = Client();
 
   Widget receivingDone() {
-    return ReceivingDone(fileSize ?? 0, fileName ?? "", path);
+    return ReceivingDone(fileSize, fileName, path);
   }
 
   Widget receiveProgress() {
-    return ReceiveProgress(fileSize ?? 0, fileName ?? "",
-        progress.percentage ?? 0.0, progress.remainingTimeString ?? "...");
+    return ReceiveProgress(fileSize, fileName, progress.percentage,
+        progress.remainingTimeString ?? "...");
   }
 
   Widget receiveConfirmation() {
     return ReceiveConfirmation(
-        fileName ?? "",
-        fileSize ?? 0,
-        acceptDownload ??
-            () {
-              throw Exception("No download to accept");
-            },
-        rejectDownload ??
-            () {
-              throw Exception("No download to reject");
-            });
+        fileName, fileSize, acceptDownload, rejectDownload);
   }
 
   Widget enterCodeUI() {

@@ -16,21 +16,21 @@ enum SendScreenStates {
 
 abstract class SendShared<T extends SendState> extends State<T> {
   String? code;
-  PlatformFile? sendingFile;
+  late PlatformFile sendingFile;
 
   SendScreenStates currentState = SendScreenStates.Initial;
-
-  int get fileSize => sendingFile?.size ?? 0;
-
-  String get fileName => sendingFile?.name ?? "";
-
-  late ProgressShared progress = ProgressShared(setState, () {
-    currentState = SendScreenStates.FileSending;
-  });
 
   Client client = Client();
 
   SendShared();
+
+  int get fileSize => sendingFile.size;
+
+  String get fileName => sendingFile.name;
+
+  late ProgressShared progress = ProgressShared(setState, () {
+    currentState = SendScreenStates.FileSending;
+  });
 
   void send(PlatformFile file) async {
     setState(() {
@@ -84,9 +84,6 @@ abstract class SendShared<T extends SendState> extends State<T> {
     if (result != null) {
       PlatformFile file = result.files.first;
       send(file);
-      setState(() {
-        sendingFile = file;
-      });
     } else {
       // User canceled the picker
     }
