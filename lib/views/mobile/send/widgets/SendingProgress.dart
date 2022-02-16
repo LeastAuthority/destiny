@@ -4,48 +4,28 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/views/shared/util.dart';
 
 class SendingProgress extends StatefulWidget {
   final int fileSize;
   final String fileName;
-  final int totalSent;
-  final int totalSize;
-  final DateTime currentTimeGetter;
-  SendingProgress(this.fileSize, this.fileName, this.totalSent, this.totalSize,
-      this.currentTimeGetter);
+  final double percentage;
+  final String remainingTimeString;
+
+  SendingProgress(
+      this.fileSize, this.fileName, this.percentage, this.remainingTimeString);
   @override
   State<SendingProgress> createState() => _SendingProgressState();
 }
 
 class _SendingProgressState extends State<SendingProgress> {
-  late final DateTime startingTime;
-  int previousSent = 0;
-  int sentPerSecond = 1;
   @protected
   @mustCallSuper
   void initState() {
     super.initState();
-    startingTime = DateTime.now();
-  }
-
-  void updateState() {
-    this.setState(() {
-      sentPerSecond = widget.totalSent - previousSent;
-      previousSent = widget.totalSent;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    String remainingTime = getRemainingTime(
-        widget.currentTimeGetter,
-        startingTime,
-        widget.totalSent,
-        previousSent,
-        widget.totalSize,
-        sentPerSecond,
-        updateState);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -69,11 +49,11 @@ class _SendingProgressState extends State<SendingProgress> {
                         .progressIndicatorTheme
                         .linearTrackColor,
                     color: Theme.of(context).progressIndicatorTheme.color,
-                    value: widget.totalSent / widget.totalSize,
+                    value: widget.percentage,
                   ),
                 ),
                 Heading(
-                  title: '$remainingTime',
+                  title: '${widget.remainingTimeString}',
                   textAlign: TextAlign.center,
                   marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.bodyText2,
