@@ -67,13 +67,15 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        child: FlatButton(
+        child: TextButton(
             onPressed: () {
               if (handleSelectFile != null) {
                 this.handleSelectFile!();
               }
             },
-            color: Theme.of(context).scaffoldBackgroundColor,
+            style: TextButton.styleFrom(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor
+            ),
             child: Container(
               child: isCodeGenerating
                   ? Row(

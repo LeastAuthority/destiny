@@ -54,13 +54,15 @@ class ButtonWithIcon extends StatelessWidget {
               ],
             ));
       else
-        return FlatButton(
+        return TextButton(
             onPressed: () {
               if (handleSelectFile != null) {
                 this.handleSelectFile!();
               }
             },
-            color: Theme.of(context).primaryColor,
+            style: TextButton.styleFrom(
+                backgroundColor: Theme.of(context).primaryColor
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

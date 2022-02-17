@@ -56,10 +56,13 @@ class DTSelectAFile extends StatelessWidget {
                   ),
                 ],
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   handleSelectFile();
                 },
+                style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor
+                ),
                 child: Image.asset(
                   PLUS_ICON,
                   width: 250.0.w,
