@@ -62,7 +62,8 @@ class CodeInputBox extends StatelessWidget {
               codeChanged('');
               controller.text = '';
             },
-            child: Column(
+            child: controller.text.length > 0 ?
+            Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(X,
@@ -73,7 +74,7 @@ class CodeInputBox extends StatelessWidget {
                   height: 37.0.h,
                 )
               ],
-            ),
+            ): Container(),
           ),
         ],
       ),
