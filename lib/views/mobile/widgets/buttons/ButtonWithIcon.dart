@@ -77,11 +77,9 @@ class ButtonWithIcon extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontSize:
-                            Theme.of(context).textTheme.headline1!.fontSize,
-                        fontWeight:
-                            Theme.of(context).textTheme.headline1!.fontWeight,
+                            Theme.of(context).textTheme.headline2!.fontSize,
                         fontFamily:
-                            Theme.of(context).textTheme.headline1!.fontFamily,
+                            Theme.of(context).textTheme.headline2!.fontFamily,
                       )),
                 ),
               ],
