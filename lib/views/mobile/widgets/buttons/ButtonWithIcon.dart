@@ -54,13 +54,14 @@ class ButtonWithIcon extends StatelessWidget {
               ],
             ));
       else
-        return FlatButton(
+        return TextButton(
             onPressed: () {
               if (handleSelectFile != null) {
                 this.handleSelectFile!();
               }
             },
-            color: Theme.of(context).primaryColor,
+            style: TextButton.styleFrom(
+                backgroundColor: Theme.of(context).primaryColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -75,11 +76,9 @@ class ButtonWithIcon extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontSize:
-                            Theme.of(context).textTheme.headline1!.fontSize,
-                        fontWeight:
-                            Theme.of(context).textTheme.headline1!.fontWeight,
+                            Theme.of(context).textTheme.headline2!.fontSize,
                         fontFamily:
-                            Theme.of(context).textTheme.headline1!.fontFamily,
+                            Theme.of(context).textTheme.headline2!.fontFamily,
                       )),
                 ),
               ],

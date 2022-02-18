@@ -9,7 +9,7 @@ class CustomTheme {
       primaryColor: CustomColors.purple,
       primaryColorLight: CustomColors.lightPurple,
       primaryColorDark: CustomColors.darkPurple,
-      scaffoldBackgroundColor: CustomColors.black,
+      scaffoldBackgroundColor: CustomColors.veryDarkBlue,
       progressIndicatorTheme: ProgressIndicatorThemeData(
           color: CustomColors.purple,
           linearTrackColor: CustomColors.superLightPurple),
@@ -26,8 +26,7 @@ class CustomTheme {
         headline2: TextStyle(
             fontSize: 17.0.sp,
             color: CustomColors.babyPowder,
-            fontFamily: ROBOTO,
-            fontWeight: FontWeight.bold),
+            fontFamily: MONTSERRAT_MEDIUM),
         headline3: TextStyle(
             fontSize: 17.0.sp,
             color: CustomColors.babyPowder,
