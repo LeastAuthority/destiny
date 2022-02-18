@@ -4,17 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 
-
 class EnterCode extends StatelessWidget {
   Function codeChanged = () {};
   Function handleNextClicked = (String txt) {};
   late final TextEditingController controller;
-  EnterCode({
-    Key? key,
-    required Function codeChanged,
-    required Function handleNextClicked,
-    required final TextEditingController controller
-}) : super(key: key) {
+  EnterCode(
+      {Key? key,
+      required Function codeChanged,
+      required Function handleNextClicked,
+      required final TextEditingController controller})
+      : super(key: key) {
     this.codeChanged = codeChanged;
     this.handleNextClicked = handleNextClicked;
     this.controller = controller;

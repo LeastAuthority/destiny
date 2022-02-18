@@ -36,8 +36,7 @@ class Button extends StatelessWidget {
           child: TextButton(
             onPressed: () => handleClicked(),
             style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor
-            ),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor),
             child: Text('$title', style: Theme.of(context).textTheme.bodyText2),
           ),
         ));

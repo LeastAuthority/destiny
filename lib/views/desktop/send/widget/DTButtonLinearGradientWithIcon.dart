@@ -74,8 +74,7 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
               }
             },
             style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor
-            ),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor),
             child: Container(
               child: isCodeGenerating
                   ? Row(

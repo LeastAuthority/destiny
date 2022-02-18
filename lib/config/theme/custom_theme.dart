@@ -26,8 +26,7 @@ class CustomTheme {
         headline2: TextStyle(
             fontSize: 17.0.sp,
             color: CustomColors.babyPowder,
-            fontFamily: MONTSERRAT_MEDIUM
-        ),
+            fontFamily: MONTSERRAT_MEDIUM),
         headline3: TextStyle(
             fontSize: 17.0.sp,
             color: CustomColors.babyPowder,

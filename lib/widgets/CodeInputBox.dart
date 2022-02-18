@@ -62,19 +62,20 @@ class CodeInputBox extends StatelessWidget {
               codeChanged('');
               controller.text = '';
             },
-            child: controller.text.length > 0 ?
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(X,
-                    style: TextStyle(
-                        fontSize: 22.0.sp,
-                        color: Theme.of(context).colorScheme.secondary)),
-                SizedBox(
-                  height: 37.0.h,
-                )
-              ],
-            ): Container(),
+            child: controller.text.length > 0
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(X,
+                          style: TextStyle(
+                              fontSize: 22.0.sp,
+                              color: Theme.of(context).colorScheme.secondary)),
+                      SizedBox(
+                        height: 37.0.h,
+                      )
+                    ],
+                  )
+                : Container(),
           ),
         ],
       ),

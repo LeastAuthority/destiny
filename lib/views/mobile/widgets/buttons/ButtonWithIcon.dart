@@ -61,8 +61,7 @@ class ButtonWithIcon extends StatelessWidget {
               }
             },
             style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).primaryColor
-            ),
+                backgroundColor: Theme.of(context).primaryColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

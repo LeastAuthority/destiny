@@ -72,8 +72,7 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
         height: height,
         child: TextButton(
             style: TextButton.styleFrom(
-                backgroundColor: Theme.of(context).scaffoldBackgroundColor
-            ),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor),
             onPressed: () {
               if (handleSelectFile != null) {
                 this.handleSelectFile!();

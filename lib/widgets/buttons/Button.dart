@@ -40,8 +40,7 @@ class _CustomAppBarState extends State<Button> {
       child: TextButton(
         onPressed: () => handleSelectFile(),
         style: TextButton.styleFrom(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor
-        ),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor),
         child: Text('$title',
             style: TextStyle(
               color: color,

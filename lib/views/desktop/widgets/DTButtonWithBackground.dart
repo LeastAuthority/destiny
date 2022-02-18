@@ -34,12 +34,10 @@ class DTButtonWithBackground extends StatelessWidget {
       ),
       width: width,
       height: 30.0.h,
-
       child: TextButton(
         onPressed: () => handleSelectFile(),
         style: TextButton.styleFrom(
-            backgroundColor: Theme.of(context).primaryColor
-        ),
+            backgroundColor: Theme.of(context).primaryColor),
         child: Text('$title', style: Theme.of(context).textTheme.subtitle1),
       ),
     );
