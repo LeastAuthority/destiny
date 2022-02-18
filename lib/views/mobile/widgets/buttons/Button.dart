@@ -33,9 +33,10 @@ class Button extends StatelessWidget {
           ),
           width: 120.0.w,
           height: 50.0.h,
-          child: FlatButton(
+          child: TextButton(
             onPressed: () => handleClicked(),
-            color: Theme.of(context).scaffoldBackgroundColor,
+            style: TextButton.styleFrom(
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor),
             child: Text('$title', style: Theme.of(context).textTheme.bodyText2),
           ),
         ));

@@ -33,9 +33,10 @@ class _CustomAppBarState extends State<DTButton> {
       ),
       width: 100.0.w,
       height: 30.0.h,
-      child: FlatButton(
+      child: TextButton(
         onPressed: () => handleSelectFile(),
-        color: Theme.of(context).scaffoldBackgroundColor,
+        style: TextButton.styleFrom(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor),
         child: Text('${title}', style: Theme.of(context).textTheme.headline5),
       ),
     );

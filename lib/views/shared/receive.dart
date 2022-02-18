@@ -23,6 +23,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   late String fileName;
 
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
+  late final TextEditingController controller = new TextEditingController();
   SharedPreferences? prefs;
   Client client = Client();
   ReceiveShared();
@@ -94,6 +95,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
           this.setState(() {
             currentState = ReceiveScreenStates.ReceiveConfirmation;
             acceptDownload = () {
+              controller.text = '';
               tempFile =
                   File(_tempPath("$_path/${result.pendingDownload.fileName}"));
               result.pendingDownload.accept(tempFile);

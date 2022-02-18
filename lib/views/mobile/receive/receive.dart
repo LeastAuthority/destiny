@@ -61,6 +61,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
             child: EnterCode(
                 key: Key(RECEIVE_SCREEN_ENTER_CODE),
                 codeChanged: codeChanged,
+                controller: controller,
                 handleNextClicked: () {
                   this.setState(() {
                     receive();
