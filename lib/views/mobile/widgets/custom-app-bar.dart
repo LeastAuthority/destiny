@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,13 +6,11 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  String? title;
-  CustomAppBar({String? title, Key? key}) : super(key: key) {
-    this.title = title;
-  }
+  final String? title;
+  CustomAppBar({this.title, Key? key}) : super(key: key);
 
   @override
-  final Size preferredSize = Size.fromHeight(85.0.h); // default is 56.0
+  final Size preferredSize = Size.fromHeight(85.0.h);
 
   @override
   _CustomAppBarState createState() => _CustomAppBarState(this.title);

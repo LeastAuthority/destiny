@@ -3,19 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 
 class CodeInputBox extends StatelessWidget {
-  Function codeChanged = () {};
-  double width = 0.0.w;
+  final Function codeChanged;
+  final double width;
   late final TextEditingController controller;
   CodeInputBox(
       {Key? key,
-      required Function codeChanged,
-      required double width,
-      required final TextEditingController controller})
-      : super(key: key) {
-    this.codeChanged = codeChanged;
-    this.width = width;
-    this.controller = controller;
-  }
+      required this.codeChanged,
+      required this.width,
+      required final this.controller})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -6,10 +6,8 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 class CustomBottomBar extends StatelessWidget {
-  String? path;
-  CustomBottomBar({Key? key, String? path}) : super(key: key) {
-    this.path = path;
-  }
+  final String? path;
+  CustomBottomBar({Key? key, this.path}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     print(MediaQuery.of(context).size.width * 0.4);

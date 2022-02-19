@@ -1,35 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWithBackground extends StatelessWidget {
-  Function handleClicked = () {};
-  String title = '';
-  bool? disabled = false;
-  double? width = 120.0.w;
-  double? height = 50.0.h;
-
+  final Function handleClicked;
+  final String title;
+  final bool? disabled;
+  final double? width;
+  final double? height;
   ButtonWithBackground(
-      {required String title,
-      required Function handleClicked,
-      bool? disabled,
-      double? width,
-      double? height,
+      {required this.title,
+      required this.handleClicked,
+      this.disabled,
+      this.width,
+      this.height,
       Key? key})
-      : super(key: key) {
-    this.handleClicked = handleClicked;
-    this.title = title;
-    if (width != null) {
-      this.width = width;
-    }
-    if (height != null) {
-      this.height = height;
-    }
-    if (disabled != null) {
-      this.disabled = disabled;
-    }
-  }
-
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     Widget getButtonContent() {
