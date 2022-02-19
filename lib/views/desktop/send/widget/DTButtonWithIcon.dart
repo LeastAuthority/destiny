@@ -1,30 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DTButtonWithIcon extends StatelessWidget {
-  String? label;
-  Function? handleSelectFile;
-  Widget? icon;
-  double? width;
-  double? height;
-  bool? isVertical;
+  final String? label;
+  final Function? handleSelectFile;
+  final Widget? icon;
+  final double? width;
+  final double? height;
+  final bool? isVertical;
   DTButtonWithIcon(
-      {String? label,
-      Function? handleSelectFile,
-      Widget? icon,
-      double? height,
-      double? width,
-      bool? isVertical,
+      {this.label,
+      this.handleSelectFile,
+      this.icon,
+      this.height,
+      this.width,
+      this.isVertical,
       Key? key})
-      : super(key: key) {
-    this.label = label;
-    this.isVertical = isVertical;
-    this.handleSelectFile = handleSelectFile;
-    this.icon = icon;
-    this.height = height;
-    this.width = width;
-  }
-
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     BoxDecoration getBorder() {

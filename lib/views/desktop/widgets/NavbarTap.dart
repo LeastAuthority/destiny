@@ -3,25 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NavbarTap extends StatelessWidget {
-  String route = '';
-  String currentRoute = '';
-  String title = '';
-  String icon = '';
-  CrossAxisAlignment alignment = CrossAxisAlignment.center;
+  final String route;
+  final String currentRoute;
+  final String title;
+  final String icon;
+  final CrossAxisAlignment alignment;
   NavbarTap(
       {Key? key,
-      String route = '',
-      String currentRoute = '',
-      String title = '',
-      String icon = '',
-      CrossAxisAlignment alignment = CrossAxisAlignment.center})
-      : super(key: key) {
-    this.route = route;
-    this.currentRoute = currentRoute;
-    this.title = title;
-    this.icon = icon;
-    this.alignment = alignment;
-  }
+      required this.route,
+      required this.currentRoute,
+      required this.title,
+      required this.icon,
+      required this.alignment})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

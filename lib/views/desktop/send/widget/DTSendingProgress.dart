@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTSendingProgress extends StatelessWidget {
-  String fileName;
-  double percentage;
-  String remainingTimeString;
-  int totalSize;
+  final String fileName;
+  final double percentage;
+  final String remainingTimeString;
+  final int totalSize;
 
   DTSendingProgress(
       this.totalSize, this.fileName, this.percentage, this.remainingTimeString);
@@ -71,9 +71,10 @@ class DTSendingProgress extends StatelessWidget {
                 Container(
                   width: 260.0.w,
                   child: Heading(
+                    textAlign: TextAlign.center,
+                    marginTop: 0,
                     title:
                         'App must remain open until the transfer is complete.',
-                    textAlign: TextAlign.center,
                     // marginTop: 16.0.h,
                     textStyle: Theme.of(context).textTheme.headline5,
                     key: Key('APP_MUST_REMAIN_OPEN'),

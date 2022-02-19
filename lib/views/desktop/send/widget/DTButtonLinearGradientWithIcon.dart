@@ -2,29 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTButtonLinearGradientWithIcon extends StatelessWidget {
-  String label = '';
-  Function? handleSelectFile;
-  Widget? icon;
-  double? width;
-  double? height;
-  bool isCodeGenerating = false;
+  final String label;
+  final Function? handleSelectFile;
+  final Widget? icon;
+  final double? width;
+  final double? height;
+  final bool isCodeGenerating;
 
   DTButtonLinearGradientWithIcon(
-      {required String label,
-      Function? handleSelectFile,
-      Widget? icon,
-      double? height,
-      double? width,
-      bool isCodeGenerating = false,
+      {required this.label,
+      this.handleSelectFile,
+      this.icon,
+      this.height,
+      this.width,
+      required this.isCodeGenerating,
       Key? key})
-      : super(key: key) {
-    this.label = label;
-    this.handleSelectFile = handleSelectFile;
-    this.icon = icon;
-    this.isCodeGenerating = isCodeGenerating;
-    this.height = height;
-    this.width = width;
-  }
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +28,8 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: !isCodeGenerating
-            ? Border(
-                top: BorderSide(
-                    width: 1.0, color: Theme.of(context).primaryColor),
-                left: BorderSide(
-                    width: 1.0, color: Theme.of(context).primaryColor),
-                right: BorderSide(
-                    width: 1.0, color: Theme.of(context).primaryColor),
-                bottom: BorderSide(
-                    width: 1.0, color: Theme.of(context).primaryColor),
-              )
-            : Border(
-                top: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-                left: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-                right: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-                bottom: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-              ),
+            ? Border.all(width: 1.0, color: Theme.of(context).primaryColor)
+            : Border.all(width: 3.0, color: Color(0x00C24DF8)),
         gradient: isCodeGenerating
             ? LinearGradient(
                 begin: Alignment.topCenter,
