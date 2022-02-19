@@ -21,14 +21,12 @@ class ReceiveConfirmation extends StatelessWidget {
         Heading(
           title: FILE_READY_TO_DOWNLOAD,
           textAlign: TextAlign.left,
-          marginTop: 0.0.h,
           textStyle: Theme.of(context).textTheme.bodyText1,
           // key: Key('Timing_Progress'),
         ),
         FileInfo(fileSize, fileName),
         Heading(
           title: PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED,
-          textAlign: TextAlign.center,
           marginTop: 16.0.h,
           textStyle: Theme.of(context).textTheme.bodyText1,
           key: Key(APP_MUST_REMAIN_OPEN),
