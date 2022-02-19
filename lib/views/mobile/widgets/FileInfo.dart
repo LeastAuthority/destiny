@@ -25,8 +25,6 @@ class FileInfo extends StatelessWidget {
         ),
         Heading(
           title: '(${fileSize.readableSize})',
-          textAlign: TextAlign.center,
-          marginTop: 0,
           textStyle: Theme.of(context).textTheme.bodyText2,
           key: Key('File_Info_Description'),
         ),

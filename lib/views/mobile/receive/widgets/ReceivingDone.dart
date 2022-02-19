@@ -18,14 +18,12 @@ class ReceivingDone extends StatelessWidget {
         Heading(
           title: FILE_DOWNLOADED_SUCCESSFULLY,
           textAlign: TextAlign.left,
-          marginTop: 0.h,
           textStyle: Theme.of(context).textTheme.bodyText1,
           // key: Key('Timing_Progress'),
         ),
         FileInfo(fileSize, fileName),
         Heading(
           title: FILE_RECEIVED,
-          textAlign: TextAlign.center,
           marginTop: 16.0.h,
           textStyle: TextStyle(
               fontSize: 25.sp, fontFamily: LATO, fontWeight: FontWeight.bold),
@@ -37,8 +35,6 @@ class ReceivingDone extends StatelessWidget {
         ),
         Heading(
           title: DOWNLOADED_TO + '\n',
-          textAlign: TextAlign.center,
-          marginTop: 0,
           path: path,
           textStyle: Theme.of(context).textTheme.bodyText1,
           key: Key(SETTINGS_SCREEN_HEADING),
