@@ -1,36 +1,27 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/views/widgets/GradientBorder.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonLinearGradientWithIcon extends StatelessWidget {
-  String label = '';
-  Function? handleSelectFile;
-  Widget? icon;
-  double? width;
-  double? height;
-  bool? isVertical;
-  bool isCodeGenerating = false;
+  final String label;
+  final Function? handleSelectFile;
+  final Widget? icon;
+  final double? width;
+  final double? height;
+  final bool? isVertical;
+  final bool isCodeGenerating;
 
   ButtonLinearGradientWithIcon(
-      {String label = '',
-      Function? handleSelectFile,
-      Widget? icon,
-      double? height,
-      double? width,
-      bool? isVertical,
-      bool isCodeGenerating = false,
+      {required this.label,
+      this.handleSelectFile,
+      this.icon,
+      this.height,
+      this.width,
+      this.isVertical,
+      required this.isCodeGenerating,
       Key? key})
-      : super(key: key) {
-    this.label = label;
-    this.isVertical = isVertical;
-    this.handleSelectFile = handleSelectFile;
-    this.icon = icon;
-    this.isCodeGenerating = isCodeGenerating;
-    this.height = height;
-    this.width = width;
-  }
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

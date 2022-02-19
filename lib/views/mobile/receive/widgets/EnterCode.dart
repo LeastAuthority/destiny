@@ -5,19 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 
 class EnterCode extends StatelessWidget {
-  Function codeChanged = () {};
-  Function handleNextClicked = (String txt) {};
-  late final TextEditingController controller;
+  final Function codeChanged;
+  final Function handleNextClicked;
+  final TextEditingController controller;
   EnterCode(
       {Key? key,
-      required Function codeChanged,
-      required Function handleNextClicked,
-      required final TextEditingController controller})
-      : super(key: key) {
-    this.codeChanged = codeChanged;
-    this.handleNextClicked = handleNextClicked;
-    this.controller = controller;
-  }
+      required this.codeChanged,
+      required this.handleNextClicked,
+      required final this.controller})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,11 +32,15 @@ class EnterCode extends StatelessWidget {
                   title: NEXT,
                   handleClicked: handleNextClicked,
                   disabled: false,
+                  width: 120.0.w,
+                  height: 50.0.h,
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED))
               : ButtonWithBackground(
                   title: NEXT,
                   handleClicked: handleNextClicked,
                   disabled: true,
+                  width: 120.0.w,
+                  height: 50.0.h,
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED)),
           SizedBox(height: 8.0.h),
         ],

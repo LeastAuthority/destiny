@@ -1,24 +1,18 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTButtonWithBackground extends StatelessWidget {
-  String title = '';
-  Function handleSelectFile = () {};
-  double width = 0.0;
-  Widget? icon;
+  final String title;
+  final Function handleSelectFile;
+  final double width;
+  final Widget? icon;
   DTButtonWithBackground({
-    String title = '',
-    required Function handleSelectFile,
-    required double width,
-    Widget? icon,
-  }) {
-    this.title = title;
-    this.icon = icon;
-    this.width = width;
-    this.handleSelectFile = handleSelectFile;
-  }
+    required this.title,
+    required this.handleSelectFile,
+    required this.width,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {

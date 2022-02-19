@@ -7,8 +7,8 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 
 class RowGroupButton extends StatelessWidget {
-  String code = '';
-  bool isCodeGenerating = false;
+  final String code;
+  final bool isCodeGenerating;
   RowGroupButton(this.code, this.isCodeGenerating);
 
   @override

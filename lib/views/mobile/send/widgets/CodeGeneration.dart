@@ -12,7 +12,7 @@ class CodeGeneration extends StatelessWidget {
   final int fileSize;
   final String? code;
   final bool isCodeGenerating;
-  Function cancelSend;
+  final Function cancelSend;
   CodeGeneration(this.fileName, this.fileSize, this.code, this.isCodeGenerating,
       this.cancelSend,
       {Key? key})

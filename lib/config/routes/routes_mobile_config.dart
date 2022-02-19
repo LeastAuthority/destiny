@@ -12,27 +12,22 @@ PageRouteBuilder? getMobileRoutes(RouteSettings settings) {
       {
         return PageRouteBuilder(pageBuilder: (_, __, ___) => Splash());
       }
-      break;
     case INTRO_ROUTE:
       {
         return PageRouteBuilder(pageBuilder: (_, __, ___) => IntroScreen());
       }
-      break;
     case SEND_ROUTE:
       {
         return PageRouteBuilder(pageBuilder: (_, __, ___) => Send());
       }
-      break;
     case RECEIVE_ROUTE:
       {
         return PageRouteBuilder(pageBuilder: (_, __, ___) => Receive());
       }
-      break;
     case SETTINGS_ROUTE:
       {
         return PageRouteBuilder(pageBuilder: (_, __, ___) => Settings());
       }
-      break;
   }
   return null;
 }

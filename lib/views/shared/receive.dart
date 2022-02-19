@@ -28,7 +28,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   Client client = Client();
   ReceiveShared();
   String path = '';
-  String? error = null;
+  String? error;
 
   late void Function() acceptDownload;
   late void Function() rejectDownload;

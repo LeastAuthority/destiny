@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Button extends StatefulWidget {
   final String title;
-  Function handleSelectFile;
-  bool? disabled;
+  final Function handleSelectFile;
+  final bool? disabled;
   Button(this.title, this.handleSelectFile, this.disabled);
   @override
   _CustomAppBarState createState() =>

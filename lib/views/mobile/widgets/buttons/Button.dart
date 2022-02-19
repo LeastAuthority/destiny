@@ -1,21 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Button extends StatelessWidget {
-  String title = '';
-  Function handleClicked = () {};
-  bool disabled = false;
+  final String title;
+  final Function handleClicked;
+  final bool disabled;
   Button({
     Key? key,
-    required Function handleClicked,
-    required bool disabled,
-    required String title,
-  }) : super(key: key) {
-    this.handleClicked = handleClicked;
-    this.title = title;
-    this.disabled = disabled;
-  }
+    required this.handleClicked,
+    required this.disabled,
+    required this.title,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Opacity(

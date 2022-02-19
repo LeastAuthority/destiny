@@ -43,6 +43,8 @@ class DTCodeGeneration extends StatelessWidget {
               child: SizedBox(
                 width: 500.0.w,
                 child: Heading(
+                  textAlign: TextAlign.center,
+                  marginTop: 0,
                   title:
                       SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
                   textStyle: Theme.of(context).textTheme.headline1,

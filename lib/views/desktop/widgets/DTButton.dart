@@ -1,11 +1,10 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTButton extends StatefulWidget {
   final String title;
-  Function handleSelectFile;
+  final Function handleSelectFile;
   DTButton(this.title, this.handleSelectFile);
 
   @override
@@ -37,7 +36,7 @@ class _CustomAppBarState extends State<DTButton> {
         onPressed: () => handleSelectFile(),
         style: TextButton.styleFrom(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor),
-        child: Text('${title}', style: Theme.of(context).textTheme.headline5),
+        child: Text('$title', style: Theme.of(context).textTheme.headline5),
       ),
     );
   }
