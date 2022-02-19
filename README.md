@@ -1,50 +1,38 @@
-# A cross platform file transferring app
+# Cross-platform Magic Wormhole graphical client
+
+⚠ This project is still a work in progress, use at your own risk ⚠
+
+Easily send and receive files without signup or loss of privacy. Based on the
+[wormhole-william](https://github.com/LeastAuthority/wormhole-william)
+implementation of the [Magic Wormhole protocol](https://github.com/magic-wormhole/magic-wormhole).
+This application relies on a plugin that wraps the wormhole-william client
+with a Dart API. The plugin is implemented [here](https://github.com/LeastAuthority/dart_wormhole_william).
 
 Supported platforms
-- Linux
-- Windows
-- Android
-- MacOS
 
-Build a production version for Android
-```CODE
+- [x] Linux
+- [x] Android
+- [ ] Windows
+- [ ] OSX
+
+## Building
+
+### Dependencies
+
+- Go >= 1.12
+- Flutter >= 2.10.1
+- Android SDK for Android builds
+
+### Unsigned release builds
+
+Linux:
+
+```bash
+flutter build linux -v
+```
+
+Android:
+
+```bash
 flutter build apk -v
 ```
-To build a production version for Android but sill see logs to in terminal
-```CODE
-flutter run -d android --release
-```
-# Project structure
-- assets folder
-    - fonts
-    - images
-- lib folder
-    - config
-        - theme
-            - colors.dart
-            - custom_theme.dart
-    - routes
-        - routes.dart
-        - routes_desktop.config.dart
-        - routes_handler.dart
-        - routes_mobile_config.dart
-    - constants
-        - app_constants.dart
-        - asset_path.dart
-    - views
-        - desktop
-
-          UI code for desktop (Linux, Windows, and Mac)
-        - mobile
-
-          UI code for mobile (Android)
-        - shared
-
-          Mobile-Desktop shared code (Not UI)
-        - widgets
-
-          Mobile-Desktop shared UI widgets.
-- test
-- pubspec.yaml
-
-  Contains packages and metadata about the project that the Dart and Flutter tooling needs to know. 

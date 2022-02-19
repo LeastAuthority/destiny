@@ -40,21 +40,16 @@ class DTSelectAFile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Heading(
-                textAlign: TextAlign.center,
-                marginTop: 0,
                 title: SEND_FILES_SIMPLE_SECURE_FAST,
                 textStyle: Theme.of(context).textTheme.headline1,
               ),
               Column(
                 children: [
                   Heading(
-                    textAlign: TextAlign.center,
-                    marginTop: 0,
                     title: DROP_A_FILE,
                     textStyle: Theme.of(context).textTheme.headline5,
                   ),
                   Heading(
-                    textAlign: TextAlign.center,
                     title: OR,
                     textStyle: Theme.of(context).textTheme.headline5,
                     marginTop: 26.0.h,
@@ -66,7 +61,8 @@ class DTSelectAFile extends StatelessWidget {
                   handleSelectFile();
                 },
                 style: TextButton.styleFrom(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor
+                ),
                 child: Image.asset(
                   PLUS_ICON,
                   width: 250.0.w,

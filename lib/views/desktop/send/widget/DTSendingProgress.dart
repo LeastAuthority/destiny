@@ -71,11 +71,9 @@ class DTSendingProgress extends StatelessWidget {
                 Container(
                   width: 260.0.w,
                   child: Heading(
-                    textAlign: TextAlign.center,
-                    marginTop: 0,
                     title:
                         'App must remain open until the transfer is complete.',
-                    // marginTop: 16.0.h,
+                    textAlign: TextAlign.center,
                     textStyle: Theme.of(context).textTheme.headline5,
                     key: Key('APP_MUST_REMAIN_OPEN'),
                   ),
