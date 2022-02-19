@@ -56,8 +56,6 @@ class _ReceiveState extends ReceiveShared<Receive> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Heading(
-                          textAlign: TextAlign.center,
-                          marginTop: 0,
                           title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
                           textStyle: Theme.of(context).textTheme.headline1,
                         ),

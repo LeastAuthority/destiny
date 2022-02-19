@@ -36,7 +36,6 @@ class DTSendingProgress extends StatelessWidget {
               children: [
                 Heading(
                   title: SENDING_IN_PROGRESS,
-                  textAlign: TextAlign.center,
                   marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.headline1,
                   // key: Key('Timing_Progress'),
@@ -59,7 +58,6 @@ class DTSendingProgress extends StatelessWidget {
                 ),
                 Heading(
                   title: remainingTimeString,
-                  textAlign: TextAlign.center,
                   marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.subtitle2,
                   key: Key('Timing_Progress'),
@@ -71,8 +69,6 @@ class DTSendingProgress extends StatelessWidget {
                 Container(
                   width: 260.0.w,
                   child: Heading(
-                    textAlign: TextAlign.center,
-                    marginTop: 0,
                     title:
                         'App must remain open until the transfer is complete.',
                     // marginTop: 16.0.h,
