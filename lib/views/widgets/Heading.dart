@@ -14,9 +14,8 @@ class Heading extends StatelessWidget {
       this.subTitle,
       this.path,
       required this.textAlign,
-       required this.marginTop,
-      this.textStyle
-      })
+      required this.marginTop,
+      this.textStyle})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
