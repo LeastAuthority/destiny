@@ -12,9 +12,9 @@ class Heading extends StatelessWidget {
       {Key? key,
       this.title,
       this.subTitle,
-      this.path,
-      required this.textAlign,
-      required this.marginTop,
+      this.path = '',
+      this.textAlign = TextAlign.center,
+      this.marginTop = 0,
       this.textStyle})
       : super(key: key);
   @override
