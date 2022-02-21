@@ -22,8 +22,8 @@ void main() {
     const expectedText = 'testing 123';
 
     test('dart API -> dart API', () async {
-      final sender = Client(config: testConfig);
-      final receiver = Client(config: testConfig);
+      final sender = Client(testConfig);
+      final receiver = Client(testConfig);
 
       final result = await sender.sendText(expectedText);
       final code = result.code;
@@ -35,7 +35,7 @@ void main() {
     });
 
     test('dart API -> go CLI', () async {
-      final sender = Client(config: testConfig);
+      final sender = Client(testConfig);
 
       final result = await sender.sendText(expectedText);
       final code = result.code;
@@ -48,7 +48,7 @@ void main() {
     });
 
     test('go CLI -> dart API', () async {
-      final receiver = Client();
+      final receiver = Client(testConfig);
 
       final code = sendTextGo(expectedText);
       // TODO: something more robust!

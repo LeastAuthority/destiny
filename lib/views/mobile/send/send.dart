@@ -7,16 +7,19 @@ import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 
 class Send extends SendState {
-  Send({Key? key}) : super(key: key);
+  Send(config, {Key? key}) : super(config, key: key);
 
   @override
-  SendScreen createState() => SendScreen();
+  SendScreen createState() => SendScreen(config);
 }
 
 class SendScreen extends SendShared<Send> {
+  SendScreen(Config config) : super(config);
+
   Widget generateCodeUI() {
     return CodeGeneration(
       fileName,

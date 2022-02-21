@@ -27,7 +27,8 @@ void main() {
   testWidgets('Send screen', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        home: ScreenUtilInit(designSize: Size(375, 590), builder: () => Send()),
+        home: ScreenUtilInit(
+            designSize: Size(375, 590), builder: () => Send(local)),
       ),
     );
 
@@ -55,7 +56,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: ScreenUtilInit(
-            designSize: Size(375, 590), builder: () => Receive()),
+            designSize: Size(375, 590), builder: () => Receive(local)),
       ),
     );
 

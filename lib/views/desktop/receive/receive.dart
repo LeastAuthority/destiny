@@ -3,21 +3,28 @@ import 'package:dart_wormhole_gui/views/desktop/widgets/DTButtonWithBackground.d
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/CodeInputBox.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 
+import '../../shared/receive.dart';
+
 final TextEditingController controller = new TextEditingController();
 
-class Receive extends StatefulWidget {
-  Receive({Key? key}) : super(key: key);
+class Receive extends ReceiveState {
+  Receive(Config config, {Key? key}) : super(config, key: key);
+
   @override
-  _ReceiveState createState() => _ReceiveState();
+  _ReceiveState createState() => _ReceiveState(config);
 }
 
-class _ReceiveState extends State<Receive> {
+class _ReceiveState extends ReceiveShared<Receive> {
   String code = "";
+
+  _ReceiveState(Config config) : super(config);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,13 +26,15 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   late final TextEditingController controller = new TextEditingController();
   SharedPreferences? prefs;
-  Client client = Client();
-  ReceiveShared();
+  final Config config;
+  late final Client client = Client(config);
   String path = '';
   String? error = null;
 
   late void Function() acceptDownload;
   late void Function() rejectDownload;
+
+  ReceiveShared(this.config);
 
   void initializePrefs() async {
     prefs = await SharedPreferences.getInstance();
@@ -145,5 +148,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
 }
 
 abstract class ReceiveState extends StatefulWidget {
-  ReceiveState({Key? key}) : super(key: key);
+  final Config config;
+
+  ReceiveState(this.config, {Key? key}) : super(key: key);
 }

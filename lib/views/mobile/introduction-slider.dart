@@ -1,18 +1,25 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
+import 'package:intro_slider/slide_object.dart';
 
 class IntroScreen extends StatefulWidget {
+  final Config config;
+  IntroScreen(this.config);
+
   @override
-  IntroScreenState createState() => new IntroScreenState();
+  IntroScreenState createState() => new IntroScreenState(config);
 }
 
 // ------------------ Custom config ------------------
 class IntroScreenState extends State<IntroScreen> {
+  final Config config;
+  IntroScreenState(this.config);
+
   List<Slide> slides = [];
 
   @override
@@ -52,7 +59,7 @@ class IntroScreenState extends State<IntroScreen> {
   void onDonePress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Send()),
+      MaterialPageRoute(builder: (context) => Send(config)),
     );
   }
 

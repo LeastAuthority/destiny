@@ -1,4 +1,6 @@
 //screens titles
+import 'package:dart_wormhole_william/client/native_client.dart';
+
 const String HOME = "Home";
 const String SEND = "Send";
 const String RECEIVE = "Receive";
@@ -127,3 +129,17 @@ const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
     'SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER';
 
 const String DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
+
+final Config magic_wormhole_io = Config(
+  rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
+  transitRelayUrl: "tcp:transit.magic-wormhole.io:4001",
+);
+
+final Config least_authority = Config(
+  rendezvousUrl: "wss://mailbox.w.leastauthority.com/v1",
+  transitRelayUrl: "tcp:relay.w.leastauthority.com:443",
+);
+
+final Config local = Config(
+    rendezvousUrl: "ws://localhost:4000/v1",
+    transitRelayUrl: "tcp:localhost:4001");
