@@ -43,7 +43,7 @@ void main() {
       final testFilePath = createFile(size);
 
       test('dart API -> go CLI', () async {
-        final sender = Client(config: testConfig);
+        final sender = Client(testConfig);
 
         final result = await sender.sendFile(File(testFilePath));
         final code = result.code;
@@ -60,7 +60,7 @@ void main() {
       });
 
       test('go CLI -> dart API', () async {
-        final receiver = Client(config: testConfig);
+        final receiver = Client(testConfig);
 
         final code = await sendFileGo(testFilePath);
         expect(code, isNotEmpty);
@@ -82,8 +82,8 @@ void main() {
       });
 
       test('dart API -> dart API', () async {
-        final sender = Client(config: testConfig);
-        final receiver = Client(config: testConfig);
+        final sender = Client(testConfig);
+        final receiver = Client(testConfig);
 
         final result = await sender.sendFile(File(testFilePath));
         final code = result.code;

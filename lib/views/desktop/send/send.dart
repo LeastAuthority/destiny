@@ -7,6 +7,7 @@ import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSelectAFile.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widget/DTSendingProgress.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +24,15 @@ extension WidgetWrappers on Widget {
 }
 
 class Send extends SendState {
-  Send({Key? key}) : super(key: key);
+  Send(config, {Key? key}) : super(config, key: key);
 
   @override
-  SendScreen createState() => SendScreen();
+  SendScreen createState() => SendScreen(config);
 }
 
 class SendScreen extends SendShared<Send> {
+  SendScreen(Config config) : super(config);
+
   Widget generateCodeUI() {
     return DTCodeGeneration(
       fileName: fileName,

@@ -7,24 +7,22 @@ import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dar
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/receive.dart';
 
 class Receive extends ReceiveState {
-  Receive({Key? key}) : super(key: key);
+  Receive(config, {Key? key}) : super(config, key: key);
 
   @override
-  ReceiveScreen createState() => ReceiveScreen();
+  ReceiveScreen createState() => ReceiveScreen(config);
 }
 
 class ReceiveScreen extends ReceiveShared<Receive> {
-  ReceiveScreen() {
+  ReceiveScreen(Config config) : super(config) {
     initializePrefs();
   }
-
-  Client client = Client();
 
   Widget receivingDone() {
     return ReceivingDone(fileSize, fileName, path);

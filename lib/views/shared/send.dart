@@ -1,6 +1,8 @@
 import 'dart:io';
+
 import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +22,10 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   SendScreenStates currentState = SendScreenStates.Initial;
 
-  Client client = Client();
+  final Config config;
+  late final Client client = Client(config);
 
-  SendShared();
+  SendShared(this.config);
 
   int get fileSize => sendingFile.size;
 
@@ -99,5 +102,6 @@ abstract class SendShared<T extends SendState> extends State<T> {
 }
 
 abstract class SendState extends StatefulWidget {
-  SendState({Key? key}) : super(key: key);
+  final Config config;
+  SendState(this.config, {Key? key}) : super(key: key);
 }
