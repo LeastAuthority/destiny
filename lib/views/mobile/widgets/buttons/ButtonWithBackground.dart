@@ -9,7 +9,7 @@ class ButtonWithBackground extends StatelessWidget {
   ButtonWithBackground(
       {required this.title,
       required this.handleClicked,
-      this.disabled,
+      this.disabled = false,
       this.width,
       this.height,
       Key? key})
