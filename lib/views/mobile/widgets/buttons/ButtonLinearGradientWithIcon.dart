@@ -41,13 +41,8 @@ class ButtonLinearGradientWithIcon extends StatelessWidget {
       height: height,
       margin: const EdgeInsets.only(top: 30.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        border: Border(
-          top: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-          left: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-          right: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-          bottom: BorderSide(width: 3.0, color: Color(0x00C24DF8)),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(4.0)),
+        border: Border.all(width: 3.0, color: Color(0x00C24DF8)),
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           colors: <Color>[
