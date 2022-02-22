@@ -9,7 +9,7 @@ class CustomTheme {
       primaryColor: CustomColors.purple,
       primaryColorLight: CustomColors.lightPurple,
       primaryColorDark: CustomColors.darkPurple,
-      scaffoldBackgroundColor: CustomColors.veryDarkBlue,
+      scaffoldBackgroundColor: CustomColors.darkBlue,
       progressIndicatorTheme: ProgressIndicatorThemeData(
           color: CustomColors.purple,
           linearTrackColor: CustomColors.superLightPurple),
