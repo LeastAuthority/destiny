@@ -56,7 +56,6 @@ class DTCodeGeneration extends StatelessWidget {
                   child: Heading(
                     title:
                         SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
-                    textAlign: TextAlign.center,
                     marginTop: 16.0.h,
                     textStyle: Theme.of(context).textTheme.subtitle1,
                     key: Key(GENERATION_DESCRIPTION),
@@ -64,7 +63,6 @@ class DTCodeGeneration extends StatelessWidget {
                 )
               : Heading(
                   title: THE_TRANSFER_WILL_AUTO,
-                  textAlign: TextAlign.center,
                   marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.subtitle1,
                   key: Key(GENERATION_DESCRIPTION),

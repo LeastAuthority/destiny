@@ -38,7 +38,6 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
         Heading(
           title: RECEIVING,
           textAlign: TextAlign.left,
-          marginTop: 0.0.h,
           textStyle: Theme.of(context).textTheme.bodyText1,
           // key: Key('Timing_Progress'),
         ),
@@ -57,14 +56,12 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
             ),
             Heading(
               title: '${widget.remainingTimeString}',
-              textAlign: TextAlign.center,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText2,
               key: Key(TIMING_PROGRESS),
             ),
             Heading(
               title: PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED,
-              textAlign: TextAlign.center,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText1,
               key: Key(APP_MUST_REMAIN_OPEN),

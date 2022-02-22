@@ -2,28 +2,21 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:flutter/material.dart';
 
 class Heading extends StatelessWidget {
-  String? title;
-  String? subTitle;
-  String? path;
-  TextAlign textAlign = TextAlign.center;
-  double marginTop = 0.0;
-  TextStyle? textStyle;
+  final String? title;
+  final String? subTitle;
+  final String? path;
+  final TextAlign textAlign;
+  final double marginTop;
+  final TextStyle? textStyle;
   Heading(
       {Key? key,
-      String? title,
-      String? subTitle,
-      String? path = '',
-      TextAlign textAlign = TextAlign.center,
-      double marginTop = 0,
-      TextStyle? textStyle})
-      : super(key: key) {
-    this.title = title;
-    this.subTitle = subTitle;
-    this.path = path;
-    this.textAlign = textAlign;
-    this.marginTop = marginTop;
-    this.textStyle = textStyle;
-  }
+      this.title,
+      this.subTitle,
+      this.path = '',
+      this.textAlign = TextAlign.center,
+      this.marginTop = 0,
+      this.textStyle})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     if (subTitle == null)
@@ -49,7 +42,7 @@ class Heading extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: marginTop),
-          child: Text('${title}', textAlign: textAlign, style: textStyle),
+          child: Text('$title', textAlign: textAlign, style: textStyle),
         ),
       ],
     );

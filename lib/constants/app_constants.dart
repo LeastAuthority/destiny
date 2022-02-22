@@ -41,8 +41,12 @@ const String SECONDS = 'Seconds';
 const String MINUTES = 'Minutes';
 const String MINUTE = 'Minute';
 const String X = 'X';
-
+const String THREE_DOTS = '...';
+const String GENERATING = 'Generating...';
 const String FILE_UPLOADED_SUCCESSFULLY = 'File uploaded successfully';
+const String THE_TRANSFER_HAS_BEEN_CANCELLED_BY_THE_RECEIVER =
+    'The transfer has been cancelled by the receiver.';
+const String RETURN_TO_SEND_HOME = 'Return to send home';
 const String WRONG_TYPE_FOR_PROGRESS =
     'Wrong type for progress. Expected int got';
 const String FILE_SENT_SUCCESSFULLY = 'File Sent successfully';
