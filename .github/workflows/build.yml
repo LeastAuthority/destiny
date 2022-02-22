@@ -24,7 +24,7 @@ jobs:
         run: "flutter pub get"
 
       - name: "Build release apk"
-        run: "FLUTTER_HOME=$FLUTTER_ROOT flutter build apk -v"
+        run: "FLUTTER_HOME=$FLUTTER_ROOT flutter build apk lib/main_la.dart -v"
 
       # TODO remove the || true when this should be enforced
       # Right now it is just informational
