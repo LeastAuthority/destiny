@@ -17,7 +17,7 @@ class DTButtonWithBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border.all(width: 1.0, color: CustomColors.purple),
       ),
