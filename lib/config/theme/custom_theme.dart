@@ -87,7 +87,7 @@ class CustomTheme {
         headline3: TextStyle(
           color: CustomColors.babyPowder,
           fontSize: 17.sp,
-          fontFamily: ROBOTO,
+          fontFamily: MONTSERRAT_EXTRA_BOLD,
         ),
         headline4: TextStyle(
           color: CustomColors.babyPowder,
@@ -99,6 +99,11 @@ class CustomTheme {
           fontSize: 17.sp,
           fontFamily: MONTSERRAT,
         ),
+        headline6: TextStyle(
+          color: CustomColors.babyPowderLight,
+          fontSize: 17.sp,
+          fontFamily: MONTSERRAT_THIN,
+        ),
         bodyText1: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 22.sp,
@@ -107,12 +112,12 @@ class CustomTheme {
         subtitle1: TextStyle(
           color: CustomColors.black,
           fontSize: 17.sp,
-          fontFamily: MONTSERRAT,
+          fontFamily: Montserrat_LIGHT,
         ),
         subtitle2: TextStyle(
           color: CustomColors.babyPowderLight,
-          fontSize: 12.sp,
-          fontFamily: ROBOTO,
+          fontSize: 17.sp,
+          fontFamily: Montserrat_LIGHT,
         ),
       ),
     );

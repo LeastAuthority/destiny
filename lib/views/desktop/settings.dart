@@ -63,7 +63,7 @@ class _SettingsState extends SettingsShared<Settings> {
                               textAlign: TextAlign.center,
                               marginTop: 110.0.h,
                               path: path,
-                              textStyle: Theme.of(context).textTheme.headline1,
+                              textStyle: Theme.of(context).textTheme.headline6,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
                             SizedBox(

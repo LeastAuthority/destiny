@@ -61,7 +61,8 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
                       children: <Widget>[
                         Text(label,
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headline2),
+                            style: Theme.of(context).textTheme.headline2
+                        ),
                         SizedBox(width: 15.0.w),
                         SizedBox(
                           width: 25.0.w,
@@ -73,7 +74,7 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
                   : Container(
                       child: Text(label,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline2),
+                          style: Theme.of(context).textTheme.bodyText1),
                     ),
             )),
       ),

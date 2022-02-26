@@ -7,6 +7,7 @@ class DTButtonWithIcon extends StatelessWidget {
   final double? width;
   final double? height;
   final bool? isVertical;
+  final TextStyle? textStyle;
   DTButtonWithIcon(
       {this.label,
       this.handleSelectFile,
@@ -14,6 +15,7 @@ class DTButtonWithIcon extends StatelessWidget {
       this.height,
       this.width,
       this.isVertical,
+        required this.textStyle,
       Key? key})
       : super(key: key);
   @override
@@ -64,7 +66,7 @@ class DTButtonWithIcon extends StatelessWidget {
                   height: 35,
                   child: icon,
                 ),
-                Text('$label', style: Theme.of(context).textTheme.subtitle2),
+                Text('$label', style: textStyle),
               ],
             )));
   }
