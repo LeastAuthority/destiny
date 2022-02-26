@@ -19,15 +19,7 @@ class CodeInputBox extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
-          border: Border(
-              top:
-                  BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
-              bottom:
-                  BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
-              left:
-                  BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
-              right: BorderSide(
-                  color: Theme.of(context).primaryColor, width: 1.0))),
+          border: Border.all(color: Theme.of(context).primaryColor, width: 1.0)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

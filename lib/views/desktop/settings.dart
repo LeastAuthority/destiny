@@ -32,12 +32,7 @@ class _SettingsState extends SettingsShared<Settings> {
                 margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                  border: Border(
-                    top: BorderSide(width: 2.0, color: CustomColors.purple),
-                    left: BorderSide(width: 2.0, color: CustomColors.purple),
-                    right: BorderSide(width: 2.0, color: CustomColors.purple),
-                    bottom: BorderSide(width: 2.0, color: CustomColors.purple),
-                  ),
+                  border: Border.all(width: 2.0, color: CustomColors.purple)
                 ),
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
