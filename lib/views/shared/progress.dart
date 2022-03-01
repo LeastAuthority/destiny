@@ -20,7 +20,11 @@ class ProgressShared {
   ProgressShared(this.setState, this.otherStateChange);
 
   double get percentage {
-    return totalTransferred / totalSize;
+    try {
+      return totalTransferred / totalSize;
+    } catch (error) {
+      return 0;
+    }
   }
 
   String? get remainingTimeString {

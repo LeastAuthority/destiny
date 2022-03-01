@@ -28,18 +28,15 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   SharedPreferences? prefs;
   final Config config;
   late final Client client = Client(config);
-  String path = '';
+  String? get path => prefs?.getString(PATH);
   String? error;
 
   late void Function() acceptDownload;
   late void Function() rejectDownload;
 
-  ReceiveShared(this.config);
-
-  void initializePrefs() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      path = prefs?.getString(PATH) ?? '';
+  ReceiveShared(this.config) {
+    SharedPreferences.getInstance().then((prefs) {
+      this.prefs = prefs;
     });
   }
 
@@ -53,10 +50,6 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     });
   }
 
-  Future gePath() async {
-    return prefs?.getString(PATH);
-  }
-
   static String _tempPath(String prefix) {
     final r = Random();
     int suffix = r.nextInt(1 << 32);
@@ -68,13 +61,16 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   }
 
   Future<ReceiveFileResult> receive() async {
-    String? _path = await gePath();
+    String? _path = path;
     if (_path == null) {
       this.setState(() {
-        path = DOWNLOADS_FOLDER_PATH;
+        prefs?.setString(
+            PATH,
+            Platform.isAndroid
+                ? DOWNLOADS_FOLDER_PATH
+                : Directory.current.path);
       });
-      _path = DOWNLOADS_FOLDER_PATH;
-      prefs?.setString(PATH, _path);
+      _path = path;
     }
 
     return canWriteToFile().then((permissionStatus) async {
