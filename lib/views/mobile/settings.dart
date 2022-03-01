@@ -15,9 +15,7 @@ class Settings extends SettingsState {
 }
 
 class _SettingsState extends SettingsShared<Settings> {
-  _SettingsState() {
-    initializePrefs();
-  }
+  _SettingsState() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +40,7 @@ class _SettingsState extends SettingsShared<Settings> {
                           '$CURRENT_SAVE_DESTINATION ',
                       textAlign: TextAlign.left,
                       marginTop: 0,
-                      path: path,
+                      path: path ?? DOWNLOADS_FOLDER_PATH,
                       textStyle: Theme.of(context).textTheme.bodyText1,
                       key: Key(SETTINGS_SCREEN_HEADING),
                     ),

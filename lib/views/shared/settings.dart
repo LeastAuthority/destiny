@@ -2,18 +2,18 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class SettingsShared<T extends SettingsState> extends State<T> {
-  String path = '';
   SharedPreferences? prefs;
 
-  void initializePrefs() async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      path = prefs?.getString(PATH) ?? '';
-    });
+  String? get path => prefs?.getString(PATH);
+
+  SettingsShared() {
+    SharedPreferences.getInstance().then((value) => setState(() {
+          prefs = value;
+        }));
   }
 
   void handleSelectFile() async {
@@ -24,7 +24,6 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
           return;
         }
         setState(() {
-          path = result;
           prefs?.setString(PATH, result);
         });
       }

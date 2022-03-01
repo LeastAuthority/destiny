@@ -20,12 +20,10 @@ class Receive extends ReceiveState {
 }
 
 class ReceiveScreen extends ReceiveShared<Receive> {
-  ReceiveScreen(Config config) : super(config) {
-    initializePrefs();
-  }
+  ReceiveScreen(Config config) : super(config);
 
   Widget receivingDone() {
-    return ReceivingDone(fileSize, fileName, path);
+    return ReceivingDone(fileSize, fileName, path!);
   }
 
   Widget receiveProgress() {

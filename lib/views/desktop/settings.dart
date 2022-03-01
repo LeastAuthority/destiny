@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
@@ -16,6 +18,8 @@ class Settings extends SettingsState {
 }
 
 class _SettingsState extends SettingsShared<Settings> {
+  _SettingsState() : super();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +60,7 @@ class _SettingsState extends SettingsShared<Settings> {
                               title: '$CURRENT_SAVE_DESTINATION',
                               textAlign: TextAlign.center,
                               marginTop: 110.0.h,
-                              path: path,
+                              path: path ?? Directory.systemTemp.path,
                               textStyle: Theme.of(context).textTheme.headline6,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
@@ -64,7 +68,7 @@ class _SettingsState extends SettingsShared<Settings> {
                               height: 45.0.h,
                             ),
                             DTButtonWithBackground(
-                              handleSelectFile: handleSelectFile,
+                              onPressed: handleSelectFile,
                               title: SELECT_A_FOLDER,
                               width: 150.0.w,
                             )
