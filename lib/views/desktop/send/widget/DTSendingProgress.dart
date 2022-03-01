@@ -21,12 +21,7 @@ class DTSendingProgress extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).dialogBackgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(4.0)),
-          border: Border(
-            top: BorderSide(width: 2.0, color: CustomColors.purple),
-            left: BorderSide(width: 2.0, color: CustomColors.purple),
-            right: BorderSide(width: 2.0, color: CustomColors.purple),
-            bottom: BorderSide(width: 2.0, color: CustomColors.purple),
-          ),
+          border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
         width: 300.0.w,
         child: Column(

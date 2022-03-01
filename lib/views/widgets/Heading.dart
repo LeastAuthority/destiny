@@ -1,4 +1,3 @@
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:flutter/material.dart';
 
 class Heading extends StatelessWidget {
@@ -33,7 +32,7 @@ class Heading extends StatelessWidget {
                 new TextSpan(text: title),
                 new TextSpan(
                     text: ' $path',
-                    style: new TextStyle(fontFamily: MONTSERRAT_MEDIUM)),
+                    style: Theme.of(context).textTheme.headline3)
               ],
             ),
           ));

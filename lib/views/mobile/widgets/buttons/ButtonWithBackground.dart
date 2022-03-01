@@ -9,7 +9,7 @@ class ButtonWithBackground extends StatelessWidget {
   ButtonWithBackground(
       {required this.title,
       required this.handleClicked,
-      this.disabled,
+      this.disabled = false,
       this.width,
       this.height,
       Key? key})
@@ -51,12 +51,7 @@ class ButtonWithBackground extends StatelessWidget {
       return BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
         color: backgroundColor,
-        border: Border(
-          top: BorderSide(width: 1.0, color: borderColor),
-          left: BorderSide(width: 1.0, color: borderColor),
-          right: BorderSide(width: 1.0, color: borderColor),
-          bottom: BorderSide(width: 1.0, color: borderColor),
-        ),
+        border: Border.all(width: 1.0, color: borderColor),
       );
     }
 

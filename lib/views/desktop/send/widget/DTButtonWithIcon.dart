@@ -7,6 +7,7 @@ class DTButtonWithIcon extends StatelessWidget {
   final double? width;
   final double? height;
   final bool? isVertical;
+  final TextStyle? textStyle;
   DTButtonWithIcon(
       {this.label,
       this.handleSelectFile,
@@ -14,6 +15,7 @@ class DTButtonWithIcon extends StatelessWidget {
       this.height,
       this.width,
       this.isVertical,
+      required this.textStyle,
       Key? key})
       : super(key: key);
   @override
@@ -28,15 +30,9 @@ class DTButtonWithIcon extends StatelessWidget {
           : Theme.of(context).primaryColor;
 
       return BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        color: backgroundColor,
-        border: Border(
-          top: BorderSide(width: 1.0, color: borderColor),
-          left: BorderSide(width: 1.0, color: borderColor),
-          right: BorderSide(width: 1.0, color: borderColor),
-          bottom: BorderSide(width: 1.0, color: borderColor),
-        ),
-      );
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          color: backgroundColor,
+          border: Border.all(width: 1.0, color: borderColor));
     }
 
     return Container(
@@ -64,7 +60,7 @@ class DTButtonWithIcon extends StatelessWidget {
                   height: 35,
                   child: icon,
                 ),
-                Text('$label', style: Theme.of(context).textTheme.subtitle2),
+                Text('$label', style: textStyle),
               ],
             )));
   }

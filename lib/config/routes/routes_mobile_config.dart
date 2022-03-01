@@ -14,28 +14,23 @@ PageRouteBuilder? Function(RouteSettings) getMobileRoutes(Config config) {
         {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => Splash());
         }
-        break;
       case INTRO_ROUTE:
         {
           return PageRouteBuilder(
               pageBuilder: (_, __, ___) => IntroScreen(config));
         }
-        break;
       case SEND_ROUTE:
         {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => Send(config));
         }
-        break;
       case RECEIVE_ROUTE:
         {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => Receive(config));
         }
-        break;
       case SETTINGS_ROUTE:
         {
           return PageRouteBuilder(pageBuilder: (_, __, ___) => Settings());
         }
-        break;
     }
     return null;
   };

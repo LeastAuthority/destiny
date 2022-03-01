@@ -13,7 +13,7 @@ const String SEND_FILES_SIMPLE_SECURE_FAST =
     'Send files simply, securely, and fast.';
 const String SENDING_IN_PROGRESS = 'Sending in progress...';
 const String DROP_A_FILE = 'Drag and drop a file';
-const String OR = 'OR';
+const String OR = 'or';
 const String PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED =
     'Please keep the app open until the file is downloaded.';
 const String ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE =

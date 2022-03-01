@@ -17,14 +17,9 @@ class Button extends StatelessWidget {
         opacity: disabled ? 0.75 : 1.00,
         child: Container(
           margin: EdgeInsets.only(top: 22.0.h),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            border: Border(
-              top: BorderSide(width: 1.0, color: Color(0xFFFDFAFA)),
-              left: BorderSide(width: 1.0, color: Color(0xFFFDFAFA)),
-              right: BorderSide(width: 1.0, color: Color(0xFFFDFAFA)),
-              bottom: BorderSide(width: 1.0, color: Color(0xFFFfDFAFA)),
-            ),
+            border: Border.all(width: 1.0, color: Color(0xFFFDFAFA)),
           ),
           width: 120.0.w,
           height: 50.0.h,

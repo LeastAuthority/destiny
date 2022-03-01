@@ -73,7 +73,7 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
                   : Container(
                       child: Text(label,
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headline2),
+                          style: Theme.of(context).textTheme.bodyText1),
                     ),
             )),
       ),

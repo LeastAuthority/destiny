@@ -38,6 +38,11 @@ class DTRowGroupButton extends StatelessWidget {
         !isCodeGenerating
             ? DTButtonWithIcon(
                 label: 'Copy',
+                textStyle: TextStyle(
+                  fontFamily: Theme.of(context).textTheme.headline5?.fontFamily,
+                  color: Theme.of(context).textTheme.headline5?.color,
+                  fontSize: 10.0.sp,
+                ),
                 handleSelectFile: () {
                   Clipboard.setData(ClipboardData(text: code));
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(

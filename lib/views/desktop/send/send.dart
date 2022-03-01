@@ -51,7 +51,7 @@ class SendScreen extends SendShared<Send> {
 
   Widget selectAFileUI() {
     return DTSelectAFile(
-        handleSelectFile: () {},
+        handleSelectFile: handleSelectFile,
         handleFileDroped: (XFile file) async {
           PlatformFile platformFile = PlatformFile(
               name: file.name, size: await file.length(), path: file.path);

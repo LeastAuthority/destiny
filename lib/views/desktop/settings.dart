@@ -31,14 +31,8 @@ class _SettingsState extends SettingsShared<Settings> {
               child: Container(
                 margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                  border: Border(
-                    top: BorderSide(width: 2.0, color: CustomColors.purple),
-                    left: BorderSide(width: 2.0, color: CustomColors.purple),
-                    right: BorderSide(width: 2.0, color: CustomColors.purple),
-                    bottom: BorderSide(width: 2.0, color: CustomColors.purple),
-                  ),
-                ),
+                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    border: Border.all(width: 2.0, color: CustomColors.purple)),
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
                 padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
@@ -63,7 +57,7 @@ class _SettingsState extends SettingsShared<Settings> {
                               textAlign: TextAlign.center,
                               marginTop: 110.0.h,
                               path: path,
-                              textStyle: Theme.of(context).textTheme.headline1,
+                              textStyle: Theme.of(context).textTheme.headline6,
                               key: Key(SETTINGS_SCREEN_HEADING),
                             ),
                             SizedBox(
