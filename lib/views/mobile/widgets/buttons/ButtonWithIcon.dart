@@ -87,9 +87,9 @@ class ButtonWithIcon extends StatelessWidget {
           : Theme.of(context).primaryColor;
 
       return BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        color: backgroundColor,
-        border: Border.all(width: 1.0, color: borderColor));
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          color: backgroundColor,
+          border: Border.all(width: 1.0, color: borderColor));
     }
 
     return Container(

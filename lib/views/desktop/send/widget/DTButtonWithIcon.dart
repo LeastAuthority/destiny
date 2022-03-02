@@ -15,7 +15,7 @@ class DTButtonWithIcon extends StatelessWidget {
       this.height,
       this.width,
       this.isVertical,
-        required this.textStyle,
+      required this.textStyle,
       Key? key})
       : super(key: key);
   @override
@@ -30,10 +30,9 @@ class DTButtonWithIcon extends StatelessWidget {
           : Theme.of(context).primaryColor;
 
       return BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        color: backgroundColor,
-        border: Border.all(width: 1.0, color: borderColor)
-      );
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          color: backgroundColor,
+          border: Border.all(width: 1.0, color: borderColor));
     }
 
     return Container(
