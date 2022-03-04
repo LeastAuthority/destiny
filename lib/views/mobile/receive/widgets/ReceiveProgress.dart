@@ -5,6 +5,8 @@ import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../widgets/CustomLinearProgressIndicator.dart';
+
 class ReceiveProgress extends StatefulWidget {
   final int fileSize;
   final String fileName;
@@ -47,10 +49,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
             Container(
               width: 284.0.w,
               margin: EdgeInsets.only(top: 32.0.h),
-              child: LinearProgressIndicator(
-                backgroundColor:
-                    Theme.of(context).progressIndicatorTheme.linearTrackColor,
-                color: Theme.of(context).progressIndicatorTheme.color,
+              child: CustomLinearProgressIndicator(
                 value: widget.percentage,
               ),
             ),
