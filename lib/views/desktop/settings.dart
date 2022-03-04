@@ -35,10 +35,9 @@ class _SettingsState extends SettingsShared<Settings> {
                     border: Border.all(width: 2.0, color: CustomColors.purple)),
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
-                padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
                 child: Container(
                     height: double.infinity,
-                    margin: EdgeInsets.fromLTRB(16.0.w, 0.0, 16.0.w, 4.0.w),
+                    color: Theme.of(context).dialogBackgroundColor,
                     padding: EdgeInsets.only(top: 80.0.h),
                     child: Column(
                       children: [
