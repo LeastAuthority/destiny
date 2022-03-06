@@ -11,8 +11,8 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
   String? get path => prefs?.getString(PATH);
 
   SettingsShared() {
-    SharedPreferences.getInstance().then((value) => setState(() {
-          prefs = value;
+    SharedPreferences.getInstance().then((prefs) => setState(() {
+          this.prefs = prefs;
         }));
   }
 
