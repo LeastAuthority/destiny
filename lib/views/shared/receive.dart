@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dart_wormhole_gui/views/shared/util.dart';
+import 'package:path_provider/path_provider.dart';
 
 enum ReceiveScreenStates {
   FileReceived,
@@ -24,20 +25,42 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   late String fileName;
 
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
-  late final TextEditingController controller = new TextEditingController();
   SharedPreferences? prefs;
   final Config config;
-  late final Client client = Client(config);
-  String? get path => prefs?.getString(PATH);
+  String? defaultPathForPlatform;
   String? error;
+  String? errorMessage;
+  dynamic stacktrace;
 
+  late final TextEditingController controller = new TextEditingController();
+  late final Client client = Client(config);
   late void Function() acceptDownload;
   late void Function() rejectDownload;
+
+  String? get path {
+    final path = prefs?.get(PATH);
+
+    if (path is String?) {
+      return path;
+    }
+
+    return defaultPathForPlatform;
+  }
 
   ReceiveShared(this.config) {
     SharedPreferences.getInstance().then((prefs) {
       this.prefs = prefs;
     });
+
+    if (Platform.isAndroid) {
+      defaultPathForPlatform = DOWNLOADS_FOLDER_PATH;
+    } else {
+      getDownloadsDirectory().then((downloadsDir) {
+        setState(() {
+          defaultPathForPlatform = downloadsDir?.path;
+        });
+      });
+    }
   }
 
   late ProgressShared progress = ProgressShared(setState, () {
@@ -60,19 +83,31 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return "$prefix.$suffix";
   }
 
-  Future<ReceiveFileResult> receive() async {
-    String? _path = path;
-    if (_path == null) {
-      this.setState(() {
-        prefs?.setString(
-            PATH,
-            Platform.isAndroid
-                ? DOWNLOADS_FOLDER_PATH
-                : Directory.current.path);
-      });
-      _path = path;
-    }
+  String nonExistingPathFor(String path) {
+    if (File(path).existsSync()) {
+      int i = 1;
+      String baseName = path.split(Platform.pathSeparator).last;
+      String directory = File(path).parent.path;
+      String? extension;
+      if (baseName.contains(".")) {
+        final parts = baseName.split(".");
+        baseName = parts.take(parts.length - 1).join("");
+        extension = parts.last;
+      }
+      String nextPath() => extension != null
+          ? "$directory/$baseName($i).$extension"
+          : "$directory/$baseName($i)";
+      while (File(nextPath()).existsSync()) {
+        i++;
+      }
 
+      return "${nextPath()}";
+    } else {
+      return path;
+    }
+  }
+
+  Future<ReceiveFileResult> receive() async {
     return canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
         late final File tempFile;
@@ -82,12 +117,17 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
             this.setState(() {
               currentState = ReceiveScreenStates.FileReceived;
             });
-            return tempFile.rename("$_path/${result.pendingDownload.fileName}");
+            return tempFile.rename(
+                nonExistingPathFor("$path/${result.pendingDownload.fileName}"));
           }, onError: (error, stacktrace) {
             this.setState(() {
-              currentState = ReceiveScreenStates.ReceiveError;
-              error = error.toString();
+              this.currentState = ReceiveScreenStates.ReceiveError;
+              this.error = error.toString();
+              this.stacktrace = stacktrace;
+              this.errorMessage = "Failed to receive file: error.toString()";
+              print("Error $error $stacktrace");
             });
+
             return tempFile;
           });
 
@@ -96,7 +136,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
             acceptDownload = () {
               controller.text = '';
               tempFile =
-                  File(_tempPath("$_path/${result.pendingDownload.fileName}"));
+                  File(_tempPath("$path/${result.pendingDownload.fileName}"));
               result.pendingDownload.accept(tempFile);
               this.setState(() {
                 currentState = ReceiveScreenStates.FileReceiving;
