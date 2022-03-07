@@ -27,7 +27,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
   final Config config;
-  String? defaultPathForPlatform;
+  late final String? defaultPathForPlatform;
   String? error;
   String? errorMessage;
   dynamic stacktrace;
@@ -40,7 +40,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   String? get path {
     final path = prefs?.get(PATH);
 
-    if (path is String?) {
+    if (path != null && path is String) {
       return path;
     }
 
