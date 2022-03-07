@@ -15,9 +15,7 @@ class Settings extends SettingsState {
 }
 
 class _SettingsState extends SettingsShared<Settings> {
-  _SettingsState() {
-    initializePrefs();
-  }
+  _SettingsState() : super();
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ Supported platforms
 - [x] Linux
 - [x] Android
 - [ ] Windows
-- [ ] OSX
+- [x] OSX
 
 ## Building
 
@@ -30,13 +30,13 @@ Builds for magic-wormhole.io:
 ```bash
 flutter build linux
 flutter build apk
+flutter build macos
 ```
 
 Builds for Least Authority servers:
 
 ```bash
 flutter build linux lib/main_la.dart
-flutter build apk lib/main_la.dart
 ```
 
 Builds for local instances:

@@ -4,12 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTButtonWithBackground extends StatelessWidget {
   final String title;
-  final Function handleSelectFile;
+  final void Function() onPressed;
   final double width;
   final Widget? icon;
+
   DTButtonWithBackground({
     required this.title,
-    required this.handleSelectFile,
+    required this.onPressed,
     required this.width,
     this.icon,
   });
@@ -24,7 +25,7 @@ class DTButtonWithBackground extends StatelessWidget {
       width: width,
       height: 30.0.h,
       child: TextButton(
-        onPressed: () => handleSelectFile(),
+        onPressed: onPressed,
         style: TextButton.styleFrom(
             backgroundColor: Theme.of(context).primaryColor),
         child: Text('$title', style: Theme.of(context).textTheme.subtitle1),
