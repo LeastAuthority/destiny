@@ -14,44 +14,52 @@ class CustomTheme {
           color: CustomColors.purple,
           linearTrackColor: CustomColors.superLightPurple),
       disabledColor: CustomColors.babyPowderLight,
-      appBarTheme: AppBarTheme(backgroundColor: CustomColors.veryDarkPurple),
+      bottomAppBarTheme: BottomAppBarTheme(color: CustomColors.lighterBlack),
       colorScheme:
           ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
       textTheme: TextTheme(
         headline1: TextStyle(
-            fontSize: 20.0.sp,
+            fontSize: 25.0.sp,
             color: CustomColors.babyPowder,
-            fontFamily: MONTSERRAT,
-            fontWeight: FontWeight.w500),
+            fontFamily: MONTSERRAT_EXTRA_BOLD),
         headline2: TextStyle(
-            fontSize: 17.0.sp,
-            color: CustomColors.babyPowder,
+            fontSize: 20.0.sp,
+            color: CustomColors.black,
             fontFamily: MONTSERRAT_MEDIUM),
         headline3: TextStyle(
-            fontSize: 17.0.sp,
+            fontSize: 20.0.sp,
             color: CustomColors.babyPowder,
-            fontFamily: LATO,
-            fontWeight: FontWeight.w500),
+            fontFamily: MONTSERRAT),
         headline4: TextStyle(
             fontSize: 17.0.sp,
             color: CustomColors.babyPowder,
-            fontFamily: MONTSERRAT,
-            fontWeight: FontWeight.w300),
+            fontFamily: MONTSERRAT_MEDIUM),
         headline5: TextStyle(
-            fontSize: 12.0.sp,
+            fontSize: 17.0.sp,
             color: CustomColors.babyPowder,
-            fontFamily: MONTSERRAT,
-            fontWeight: FontWeight.w400),
-        bodyText1: TextStyle(
+            fontFamily: MONTSERRAT_LIGHT),
+        headline6: TextStyle(
+            fontSize: 14.0.sp,
+            color: CustomColors.babyPowder,
+            fontFamily: MONTSERRAT_LIGHT),
+        subtitle1: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 14.sp,
-          fontWeight: FontWeight.w400,
+          fontFamily: MONTSERRAT_MEDIUM,
+        ),
+        subtitle2: TextStyle(
+          color: CustomColors.babyPowderLight,
+          fontSize: 12.sp,
           fontFamily: MONTSERRAT,
+        ),
+        bodyText1: TextStyle(
+          color: CustomColors.babyPowderLight,
+          fontSize: 12.sp,
+          fontFamily: MONTSERRAT_LIGHT,
         ),
         bodyText2: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 12.sp,
-          fontWeight: FontWeight.w300,
           fontFamily: MONTSERRAT,
         ),
       ),
@@ -81,7 +89,7 @@ class CustomTheme {
         ),
         headline2: TextStyle(
           color: CustomColors.babyPowder,
-          fontSize: 22.sp,
+          fontSize: 20.sp,
           fontFamily: MONTSERRAT_MEDIUM,
         ),
         headline3: TextStyle(
@@ -112,12 +120,12 @@ class CustomTheme {
         subtitle1: TextStyle(
           color: CustomColors.black,
           fontSize: 17.sp,
-          fontFamily: Montserrat_LIGHT,
+          fontFamily: MONTSERRAT_LIGHT,
         ),
         subtitle2: TextStyle(
           color: CustomColors.babyPowderLight,
           fontSize: 17.sp,
-          fontFamily: Montserrat_LIGHT,
+          fontFamily: MONTSERRAT_LIGHT,
         ),
       ),
     );

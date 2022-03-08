@@ -29,7 +29,7 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: !isCodeGenerating
             ? Border.all(width: 1.0, color: Theme.of(context).primaryColor)
-            : Border.all(width: 3.0, color: Color(0x00C24DF8)),
+            : Border.all(width: 3.0, color: Theme.of(context).primaryColor),
         gradient: isCodeGenerating
             ? LinearGradient(
                 begin: Alignment.topCenter,

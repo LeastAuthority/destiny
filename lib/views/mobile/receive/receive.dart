@@ -48,7 +48,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
             title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
             textAlign: TextAlign.left,
             marginTop: 0,
-            textStyle: Theme.of(context).textTheme.bodyText1,
+            textStyle: Theme.of(context).textTheme.headline6,
             key: Key(RECEIVE_SCREEN_HEADING),
           ),
         ),

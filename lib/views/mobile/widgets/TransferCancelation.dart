@@ -19,6 +19,7 @@ class TransferCancelation extends StatelessWidget {
             key: Key(SEND_SCREEN_HEADING),
           ),
           ButtonWithBackground(
+              fontSize: 20.0.sp,
               title: RETURN_TO_SEND_HOME,
               height: 50.0.h,
               width: 205.0.w,

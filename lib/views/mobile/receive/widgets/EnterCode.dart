@@ -29,6 +29,7 @@ class EnterCode extends StatelessWidget {
               }),
           controller.text.length > 0
               ? ButtonWithBackground(
+                  fontSize: 14.0.sp,
                   title: NEXT,
                   handleClicked: handleNextClicked,
                   disabled: false,
@@ -36,6 +37,7 @@ class EnterCode extends StatelessWidget {
                   height: 50.0.h,
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED))
               : ButtonWithBackground(
+                  fontSize: 14.0.sp,
                   title: NEXT,
                   handleClicked: handleNextClicked,
                   disabled: true,

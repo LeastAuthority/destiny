@@ -1,14 +1,10 @@
 //fonts
 const String MONTSERRAT = 'Montserrat';
-const String ROBOTO = 'Roboto';
-const String LATO = 'Lato';
 const String MONTSERRAT_THIN = 'MontserratThin';
-const String Montserrat_LIGHT = 'MontserratLight';
+const String MONTSERRAT_LIGHT = 'MontserratLight';
 const String MONTSERRAT_SEMI_BOLD = 'MontserratSemiBold';
 const String MONTSERRAT_EXTRA_BOLD = 'MontserratExtraBold';
 const String MONTSERRAT_MEDIUM = 'MontserratMedium';
-const String ROBOTO_BLACK = 'RobotoBlack';
-const String ROBOTO_THIN = 'RobotoThin';
 
 //images
 const String LOGO = 'assets/images/logo.png';

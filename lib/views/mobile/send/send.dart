@@ -72,7 +72,7 @@ class SendScreen extends SendShared<Send> {
             child: Container(
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Container(
                     child: widgetByState(generateCodeUI, selectAFileUI,
                         sendingError, sendingDone, sendingProgress)))));
