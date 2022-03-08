@@ -1,4 +1,4 @@
-name: "android-build"
+name: "build"
 
 on:
   push:
@@ -9,8 +9,18 @@ on:
       - "main"
 
 jobs:
-  build-apk:
-    runs-on: "ubuntu-latest"
+  build:
+    runs-on: ${{ matrix.host }}
+    strategy:
+      matrix:
+        host: ["ubuntu-latest", "macos-latest"]
+        target: ["android-apk", "macos-dmg"]
+        exclude:
+          - host: "ubuntu-latest"
+            target: "macos-dmg"
+          - host: "macos-latest"
+            target: "android-apk"
+
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -23,9 +33,6 @@ jobs:
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
 
-      - name: "Build release apk"
-        run: "FLUTTER_HOME=$FLUTTER_ROOT flutter build apk lib/main_la.dart -v"
-
       # TODO remove the || true when this should be enforced
       # Right now it is just informational
       - name: "Lint"
@@ -34,9 +41,40 @@ jobs:
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
 
+      - name: "Build release apk"
+        run: "FLUTTER_HOME=$FLUTTER_ROOT flutter build apk lib/main_la.dart -v"
+        if: ${{ matrix.target == 'android-apk' }}
+
       - name: "Copy apk"
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-android-${{ github.head_ref }}-unsigned"
           path: "./build/app/outputs/flutter-apk/app-release.apk"
           if-no-files-found: "error"
+        if: ${{ matrix.target == 'android-apk' }}
+
+      # TODO maybe this can be avoided by some project configuration,
+      # but running it locally doesn't change any files either.
+      - name: "Enable macos desktop builds"
+        run: "flutter config --enable-macos-desktop"
+        if: ${{ matrix.target == 'macos-dmg' }}
+
+      - name: "Build mac app"
+        run: "FLUTTER_HOME=$FLUTTER_ROOT flutter build macos lib/main_la.dart -v"
+        if: ${{ matrix.target == 'macos-dmg' }}
+
+      - name: "Install create-dmg"
+        run: "brew install create-dmg"
+        if: ${{ matrix.target == 'macos-dmg' }}
+
+      - name: "Create DMG"
+        run: "create-dmg --app-drop-link 0 0 --eula LICENSE Destiny_LA.dmg build/macos/Build/Products/Release/dart_wormhole_gui.app"
+        if: ${{ matrix.target == 'macos-dmg' }}
+
+      - name: "Copy DMG"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-macos-${{ github.head_ref }}-unsigned"
+          path: "./Destiny_LA.dmg"
+          if-no-files-found: "error"
+        if: ${{ matrix.target == 'macos-dmg' }}
