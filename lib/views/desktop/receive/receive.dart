@@ -69,7 +69,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
                                 children: [
                                   DTButtonWithBackground(
                                     title: NEXT,
-                                    handleSelectFile: () {},
+                                    onPressed: () {},
                                     width: 100.0.w,
                                   ),
                                   SizedBox(
