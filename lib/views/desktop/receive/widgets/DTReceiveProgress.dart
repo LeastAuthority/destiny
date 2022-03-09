@@ -20,17 +20,6 @@ class DTReceiveProgress extends StatefulWidget {
 }
 
 class _ReceiveProgressState extends State<DTReceiveProgress> {
-  late final DateTime startingTime;
-  int previousSent = 0;
-  int sentPerSecond = 1;
-
-  @protected
-  @mustCallSuper
-  void initState() {
-    super.initState();
-    startingTime = DateTime.now();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
