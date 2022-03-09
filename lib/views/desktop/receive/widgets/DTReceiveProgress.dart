@@ -1,26 +1,25 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../widgets/CustomLinearProgressIndicator.dart';
+import '../../widgets/DTButton.dart';
+import '../../widgets/DTFileInfo.dart';
 
-class ReceiveProgress extends StatefulWidget {
+class DTReceiveProgress extends StatefulWidget {
   final int fileSize;
   final String fileName;
   final double percentage;
   final String remainingTimeString;
 
-  ReceiveProgress(
+  DTReceiveProgress(
       this.fileSize, this.fileName, this.percentage, this.remainingTimeString);
 
   @override
-  State<ReceiveProgress> createState() => _ReceiveProgressState();
+  State<DTReceiveProgress> createState() => _ReceiveProgressState();
 }
 
-class _ReceiveProgressState extends State<ReceiveProgress> {
+class _ReceiveProgressState extends State<DTReceiveProgress> {
   late final DateTime startingTime;
   int previousSent = 0;
   int sentPerSecond = 1;
@@ -39,13 +38,13 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
       children: [
         Heading(
           title: RECEIVING,
-          textAlign: TextAlign.left,
-          textStyle: Theme.of(context).textTheme.bodyText1,
+          textAlign: TextAlign.center,
+          textStyle: Theme.of(context).textTheme.headline1,
           // key: Key('Timing_Progress'),
         ),
         Column(
           children: [
-            FileInfo(widget.fileSize, widget.fileName),
+            DTFileInfo(widget.fileSize, 'widgets.fileName'),
             Container(
               width: 284.0.w,
               margin: EdgeInsets.only(top: 32.0.h),
@@ -55,19 +54,23 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
             ),
             Heading(
               title: '${widget.remainingTimeString}',
+              textAlign: TextAlign.center,
               marginTop: 16.0.h,
-              textStyle: Theme.of(context).textTheme.bodyText2,
-              key: Key(TIMING_PROGRESS),
+              textStyle: Theme.of(context).textTheme.subtitle2,
+              key: Key('Timing_Progress'),
             ),
-            Heading(
-              title: PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED,
-              marginTop: 16.0.h,
-              textStyle: Theme.of(context).textTheme.bodyText1,
-              key: Key(APP_MUST_REMAIN_OPEN),
-            ),
+            SizedBox(
+              width: 500.0.w,
+              child: Heading(
+                title: THE_APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETED,
+                marginTop: 16.0.h,
+                textStyle: Theme.of(context).textTheme.bodyText1,
+                key: Key(APP_MUST_REMAIN_OPEN),
+              ),
+            )
           ],
         ),
-        Button(title: CANCEL, handleClicked: () {}, disabled: false),
+        DTButton(CANCEL, () {}),
         SizedBox(
           height: 37.0.h,
         )
