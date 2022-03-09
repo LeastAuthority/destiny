@@ -10,6 +10,8 @@ import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/Heading.dart';
+
 class Send extends SendState {
   Send(config, {Key? key}) : super(config, key: key);
 
@@ -44,6 +46,16 @@ class SendScreen extends SendShared<Send> {
     return SendingDone(fileSize, fileName);
   }
 
+  Widget sendingError() {
+    return Column(
+      children: [
+        Heading(title: "ERROR"),
+        Heading(title: errorMessage ?? "Unknown error"),
+        Heading(title: "Stacktrace: ${stacktrace?.toString()}")
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +75,6 @@ class SendScreen extends SendShared<Send> {
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Container(
                     child: widgetByState(generateCodeUI, selectAFileUI,
-                        sendingDone, sendingProgress)))));
+                        sendingError, sendingDone, sendingProgress)))));
   }
 }

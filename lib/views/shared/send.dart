@@ -25,6 +25,10 @@ abstract class SendShared<T extends SendState> extends State<T> {
   final Config config;
   late final Client client = Client(config);
 
+  Exception? error;
+  String? errorMessage;
+  StackTrace? stacktrace;
+
   SendShared(this.config);
 
   int get fileSize => sendingFile.size;
@@ -53,6 +57,16 @@ abstract class SendShared<T extends SendState> extends State<T> {
         setState(() {
           currentState = SendScreenStates.FileSent;
         });
+      }, onError: (error, stacktrace) {
+        this.setState(() {
+          this.currentState = SendScreenStates.SendError;
+          this.error = error;
+          this.errorMessage = "Error sending file: $error";
+          this.stacktrace = stacktrace as StackTrace;
+          print("Error sending file\n$error\n$stacktrace");
+        });
+
+        return Future.error(error);
       });
     });
   }
@@ -60,6 +74,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
   Widget widgetByState(
       Widget Function() generateCodeUI,
       Widget Function() selectAFileUI,
+      Widget Function() sendingError,
       Widget Function() sendingDone,
       Widget Function() sendingProgress) {
     switch (currentState) {
@@ -71,7 +86,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
         return sendingDone();
 
       case SendScreenStates.SendError:
-      // TODO handle error states
+        return sendingError();
       case SendScreenStates.FileSending:
         // TODO fix this
         return sendingProgress();

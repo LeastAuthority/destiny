@@ -30,7 +30,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   late final String? defaultPathForPlatform;
   String? error;
   String? errorMessage;
-  dynamic stacktrace;
+  StackTrace? stacktrace;
 
   late final TextEditingController controller = new TextEditingController();
   late final Client client = Client(config);
@@ -123,9 +123,9 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
             this.setState(() {
               this.currentState = ReceiveScreenStates.ReceiveError;
               this.error = error.toString();
-              this.stacktrace = stacktrace;
-              this.errorMessage = "Failed to receive file: error.toString()";
-              print("Error $error $stacktrace");
+              this.stacktrace = stacktrace as StackTrace;
+              this.errorMessage = "Failed to receive file: $error";
+              print("Error receiving file\n$error\n$stacktrace");
             });
 
             return tempFile;
