@@ -13,6 +13,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../widgets/Heading.dart';
+
 extension WidgetWrappers on Widget {
   Widget dottedParent() {
     return DottedBorder(
@@ -64,6 +66,16 @@ class SendScreen extends SendShared<Send> {
         progress.remainingTimeString ?? THREE_DOTS);
   }
 
+  Widget sendingError() {
+    return Column(
+      children: [
+        Heading(title: "ERROR"),
+        Heading(title: errorMessage ?? "Unknown error"),
+        Heading(title: "Stacktrace: ${stacktrace?.toString()}")
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +91,6 @@ class SendScreen extends SendShared<Send> {
                     height: double.infinity,
                     margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
                     child: widgetByState(generateCodeUI, selectAFileUI,
-                        sendingDone, sendingProgress)))));
+                        sendingError, sendingDone, sendingProgress)))));
   }
 }
