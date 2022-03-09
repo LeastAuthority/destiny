@@ -16,6 +16,8 @@ const String DROP_A_FILE = 'Drag and drop a file';
 const String OR = 'or';
 const String PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED =
     'Please keep the app open until the file is downloaded.';
+const String THE_APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETED =
+    'The app must remain open until the transfer is completed.';
 const String ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE =
     'Enter the code in order to receive the file.';
 const String SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE =
