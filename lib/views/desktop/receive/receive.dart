@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../shared/receive.dart';
 import '../../desktop/receive/widgets/DTReceivingDone.dart';
 import '../../desktop/receive/widgets/DTReceiveProgress.dart';
+import '../../mobile/receive/widgets/ReceiveConfirmation.dart';
 
 final TextEditingController controller = new TextEditingController();
 
