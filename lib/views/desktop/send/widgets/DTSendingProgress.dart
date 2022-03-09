@@ -5,6 +5,7 @@ import 'package:dart_wormhole_gui/views/desktop/widgets/DTFileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../widgets/CustomLinearProgressIndicator.dart';
 
 class DTSendingProgress extends StatelessWidget {
   final String fileName;
@@ -43,11 +44,7 @@ class DTSendingProgress extends StatelessWidget {
                   margin: EdgeInsets.only(top: 32.0.h),
                   width: 280.0.w,
                   height: 5.0.h,
-                  child: LinearProgressIndicator(
-                    backgroundColor: Theme.of(context)
-                        .progressIndicatorTheme
-                        .linearTrackColor,
-                    color: Theme.of(context).progressIndicatorTheme.color,
+                  child: CustomLinearProgressIndicator(
                     value: percentage,
                   ),
                 ),

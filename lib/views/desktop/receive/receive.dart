@@ -11,10 +11,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../shared/receive.dart';
 
-// TODO remove these once they are implemented for desktop
-import '../../mobile/receive/widgets/ReceivingDone.dart';
+import './widgets/DTReceivingDone.dart';
 import '../../mobile/receive/widgets/ReceiveConfirmation.dart';
-import '../../mobile/receive/widgets/ReceiveProgress.dart';
+import './widgets/DTReceiveProgress.dart';
 
 final TextEditingController controller = new TextEditingController();
 
@@ -69,7 +68,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receivingDone() {
-    return ReceivingDone(fileSize, fileName, path!);
+    return DTReceivingDone(fileSize, fileName, path!);
   }
 
   Widget receiveError() {
@@ -83,7 +82,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receiveProgress() {
-    return ReceiveProgress(fileSize, fileName, progress.percentage,
+    return DTReceiveProgress(fileSize, fileName, progress.percentage,
         progress.remainingTimeString ?? "...");
   }
 

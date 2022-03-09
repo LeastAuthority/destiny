@@ -62,7 +62,7 @@ wormhole-william receive 33-leprosy-highchair
 Transferring files with leastauthority.com
 
 ```bash
-wormhole-william receive --relay-url="wss://mailbox.w.leastauthority.com/v1" --transit-helper="tcp:relay.w.leastauthority.com:443" 33-leprosy-highchair
+wormhole-william receive --relay-url="wss://mailbox.w.leastauthority.com/v1" --transit-helper="wss://relay.w.leastauthority.com:443" 33-leprosy-highchair
 ```
 
 Transferring files with a local backend
