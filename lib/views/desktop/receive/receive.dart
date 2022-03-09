@@ -45,7 +45,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
                     children: [
                       DTButtonWithBackground(
                         title: NEXT,
-                        handleSelectFile: () {
+                        onPressed: () {
                           setState(() {
                             receive();
                           });
@@ -65,7 +65,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receivingDone() {
-    return DTReceivingDone(fileSize, fileName, path);
+    return DTReceivingDone(fileSize, fileName, path!);
   }
 
   Widget receiveError() {
