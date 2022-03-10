@@ -19,7 +19,8 @@ class Button extends StatelessWidget {
           margin: EdgeInsets.only(top: 22.0.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            border: Border.all(width: 1.0, color: Color(0xFFFDFAFA)),
+            border: Border.all(
+                width: 1.0, color: Theme.of(context).colorScheme.secondary),
           ),
           width: 120.0.w,
           height: 50.0.h,

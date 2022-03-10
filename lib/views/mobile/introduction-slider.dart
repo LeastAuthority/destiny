@@ -63,28 +63,6 @@ class IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  Widget renderNextBtn() {
-    return Icon(
-      Icons.navigate_next,
-      color: Color(0xffF3B4BA),
-      size: 35.0,
-    );
-  }
-
-  Widget renderDoneBtn() {
-    return Icon(
-      Icons.done,
-      color: Color(0xffF3B4BA),
-    );
-  }
-
-  Widget renderSkipBtn() {
-    return Icon(
-      Icons.skip_next,
-      color: Color(0xffF3B4BA),
-    );
-  }
-
   ButtonStyle myButtonStyle() {
     return ButtonStyle(
       shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
@@ -96,34 +74,17 @@ class IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return new IntroSlider(
-      // List slides
       slides: this.slides,
       showSkipBtn: false,
       showNextBtn: false,
       showPrevBtn: false,
       showDoneBtn: false,
-      // Skip button
-      // renderSkipBtn: this.renderSkipBtn(),
-      // skipButtonStyle: myButtonStyle(),
-
-      // Next button
-      // renderNextBtn: this.renderNextBtn(),
-      // nextButtonStyle: myButtonStyle(),
-
-      // Done button
-      // renderDoneBtn: this.renderDoneBtn(),
       onDonePress: this.onDonePress,
-      // doneButtonStyle: myButtonStyle(),
-      // Dot indicator
       colorDot: Theme.of(context).scaffoldBackgroundColor,
       colorActiveDot: Theme.of(context).colorScheme.secondary,
       sizeDot: 13.0,
-
-      // Show or hide status bar
       hideStatusBar: true,
       backgroundColorAllSlides: Colors.grey,
-
-      // Scrollbar
       verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
     );
   }

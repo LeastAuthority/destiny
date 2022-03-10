@@ -8,6 +8,8 @@ class ButtonWithIcon extends StatelessWidget {
   final double? width;
   final double? height;
   final bool? isVertical;
+  final double? fontSize;
+  final String? fontFamily;
   ButtonWithIcon(
       {this.label,
       this.handleSelectFile,
@@ -15,6 +17,8 @@ class ButtonWithIcon extends StatelessWidget {
       this.height,
       this.width,
       this.isVertical,
+      required this.fontSize,
+      required this.fontFamily,
       Key? key})
       : super(key: key);
 
@@ -66,12 +70,9 @@ class ButtonWithIcon extends StatelessWidget {
                 Container(
                   child: Text('$label',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize:
-                            Theme.of(context).textTheme.headline2!.fontSize,
-                        fontFamily:
-                            Theme.of(context).textTheme.headline2!.fontFamily,
-                      )),
+                          color: Colors.black,
+                          fontSize: fontSize,
+                          fontFamily: fontFamily)),
                 ),
               ],
             ));

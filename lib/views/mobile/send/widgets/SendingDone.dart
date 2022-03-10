@@ -18,7 +18,7 @@ class SendingDone extends StatelessWidget {
           title: FILE_SENT_SUCCESSFULLY,
           textAlign: TextAlign.left,
           marginTop: 0.h,
-          textStyle: Theme.of(context).textTheme.bodyText1,
+          textStyle: Theme.of(context).textTheme.headline6,
           // key: Key('Timing_Progress'),
         ),
         FileInfo(fileSize, fileName),
@@ -26,8 +26,7 @@ class SendingDone extends StatelessWidget {
           title: FILE_SENT,
           textAlign: TextAlign.center,
           marginTop: 16.0.h,
-          textStyle: TextStyle(
-              fontSize: 25.sp, fontFamily: LATO, fontWeight: FontWeight.bold),
+          textStyle: Theme.of(context).textTheme.headline1,
           key: Key('Timing_Progress'),
         ),
         Image.asset(

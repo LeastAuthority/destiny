@@ -6,12 +6,14 @@ class ButtonWithBackground extends StatelessWidget {
   final bool? disabled;
   final double? width;
   final double? height;
+  final double fontSize;
   ButtonWithBackground(
       {required this.title,
       required this.handleClicked,
       this.disabled = false,
       this.width,
       this.height,
+      required this.fontSize,
       Key? key})
       : super(key: key);
   @override
@@ -27,11 +29,10 @@ class ButtonWithBackground extends StatelessWidget {
               Container(
                 child: Text(title,
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: Theme.of(context).textTheme.headline2!.fontSize,
-                      fontFamily:
-                          Theme.of(context).textTheme.headline2!.fontFamily,
-                    )),
+                        fontSize: fontSize,
+                        fontFamily:
+                            Theme.of(context).textTheme.headline2?.fontFamily,
+                        color: Theme.of(context).textTheme.headline2?.color)),
               ),
             ],
           ));

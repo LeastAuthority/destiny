@@ -28,7 +28,7 @@ class CodeGeneration extends StatelessWidget {
             title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
             textAlign: TextAlign.left,
             marginTop: 0,
-            textStyle: Theme.of(context).textTheme.bodyText1,
+            textStyle: Theme.of(context).textTheme.headline6,
             key: Key(SEND_SCREEN_HEADING),
           ),
         ),
@@ -42,14 +42,14 @@ class CodeGeneration extends StatelessWidget {
                         SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
                     textAlign: TextAlign.center,
                     marginTop: 16.0.h,
-                    textStyle: Theme.of(context).textTheme.bodyText2,
+                    textStyle: Theme.of(context).textTheme.headline6,
                     key: Key(GENERATION_DESCRIPTION),
                   )
                 : Heading(
                     title: THE_TRANSFER_WILL_AUTO,
                     textAlign: TextAlign.center,
                     marginTop: 16.0.h,
-                    textStyle: Theme.of(context).textTheme.bodyText2,
+                    textStyle: Theme.of(context).textTheme.headline6,
                     key: Key(GENERATION_DESCRIPTION),
                   )
           ],

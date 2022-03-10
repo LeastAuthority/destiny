@@ -39,7 +39,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     height: 60.0.h,
                     child: Text(
                       '$title',
-                      style: Theme.of(context).textTheme.headline2,
+                      style: Theme.of(context).textTheme.headline4,
                     ),
                   ),
                 ),

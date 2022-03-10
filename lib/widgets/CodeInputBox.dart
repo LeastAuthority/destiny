@@ -31,11 +31,11 @@ class CodeInputBox extends StatelessWidget {
               onChanged: (txt) {
                 codeChanged(txt);
               },
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headline6,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 30.0),
-                hintStyle: Theme.of(context).textTheme.bodyText1,
+                hintStyle: Theme.of(context).textTheme.headline6,
                 hintText: ENTER_CODE,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0x000000), width: 0.0),

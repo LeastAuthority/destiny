@@ -8,12 +8,10 @@ import 'package:dart_wormhole_gui/widgets/CodeInputBox.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../shared/receive.dart';
-
-import './widgets/DTReceivingDone.dart';
+import '../../desktop/receive/widgets/DTReceivingDone.dart';
+import '../../desktop/receive/widgets/DTReceiveProgress.dart';
 import '../../mobile/receive/widgets/ReceiveConfirmation.dart';
-import './widgets/DTReceiveProgress.dart';
 
 final TextEditingController controller = new TextEditingController();
 
@@ -87,8 +85,8 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receiveConfirmation() {
-    return ReceiveConfirmation(
-        fileName, fileSize, acceptDownload, rejectDownload);
+    return DTReceiveProgress(fileSize, fileName, progress.percentage,
+        progress.remainingTimeString ?? "...");
   }
 
   @override
@@ -109,7 +107,8 @@ class _ReceiveState extends ReceiveShared<Receive> {
                 ),
                 width: double.infinity,
                 key: Key(SEND_SCREEN_BODY),
-                padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+                padding:
+                    EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
                 child: widgetByState(receivingDone, receiveError,
                     receiveProgress, enterCode, receiveConfirmation),
               ),

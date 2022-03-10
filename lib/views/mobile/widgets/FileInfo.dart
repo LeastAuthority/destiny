@@ -19,13 +19,13 @@ class FileInfo extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               '$fileName',
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.headline4,
             ),
           ),
         ),
         Heading(
           title: '(${fileSize.readableSize})',
-          textStyle: Theme.of(context).textTheme.bodyText2,
+          textStyle: Theme.of(context).textTheme.subtitle2,
           key: Key('File_Info_Description'),
         ),
       ],
