@@ -134,7 +134,7 @@ const String SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON =
 const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
     'SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER';
 
-const String DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
+const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 final Config magic_wormhole_io = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",

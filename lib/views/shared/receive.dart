@@ -53,7 +53,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     });
 
     if (Platform.isAndroid) {
-      defaultPathForPlatform = DOWNLOADS_FOLDER_PATH;
+      defaultPathForPlatform = ANDROID_DOWNLOADS_FOLDER_PATH;
     } else {
       getDownloadsDirectory().then((downloadsDir) {
         setState(() {

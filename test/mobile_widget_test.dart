@@ -1,4 +1,5 @@
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
+import 'package:dart_wormhole_gui/config/theme/custom_theme.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/receive.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
@@ -9,13 +10,32 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 void main() {
+  Size mobileScreenSize = Size(375, 590);
+  ScreenUtilInit getScreenUtilInit(Widget? screen, ThemeData theme, Size size) {
+    return ScreenUtilInit(
+      designSize: size,
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () => MaterialApp(
+        home: screen,
+        builder: (context, widget) {
+          ScreenUtil.setContext(context);
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 0.5),
+            child: widget!,
+          );
+        },
+        theme: theme,
+      ),
+    );
+  }
+
   testWidgets('Splash screen', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home:
-            ScreenUtilInit(designSize: Size(375, 590), builder: () => Splash()),
+            ScreenUtilInit(designSize: mobileScreenSize, builder: () => Splash()),
       ),
     );
     final splashScreenBody = find.byKey(Key(SPLASH_SCREEN_BODY));
@@ -25,14 +45,9 @@ void main() {
   });
 
   testWidgets('Send screen', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: ScreenUtilInit(
-            designSize: Size(375, 590), builder: () => Send(local)),
-      ),
-    );
+    await tester.pumpWidget(getScreenUtilInit(
+        Send(local), CustomTheme.darkThemeMobile, Size(375, 590)));
 
-    // Create the Finders.
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
     final sendScreenContent = find.byKey(Key(SEND_SCREEN_CONTENT));
@@ -51,15 +66,10 @@ void main() {
     expect(sendScreenSelectAFileButton, findsOneWidget);
     // expect(sendScreenCodeGenerationUI, findsOneWidget);
   });
-
+  //
   testWidgets('Receive screen', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: ScreenUtilInit(
-            designSize: Size(375, 590), builder: () => Receive(local)),
-      ),
-    );
-
+    await tester.pumpWidget(getScreenUtilInit(
+        Receive(local), CustomTheme.darkThemeMobile, mobileScreenSize));
     // Create the Finders.
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
@@ -78,12 +88,8 @@ void main() {
   });
 
   testWidgets('Settings screen', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: ScreenUtilInit(
-            designSize: Size(375, 590), builder: () => Settings()),
-      ),
-    );
+    await tester.pumpWidget(getScreenUtilInit(
+        Settings(), CustomTheme.darkThemeMobile, mobileScreenSize));
     final settingsScreenBody = find.byKey(Key(SETTINGS_SCREEN_BODY));
 
     expect(settingsScreenBody, findsOneWidget);
@@ -108,21 +114,26 @@ void main() {
   });
 
   testWidgets('Custom BottomBar', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-      bottomNavigationBar: CustomBottomBar(
-        path: SEND_ROUTE,
-        key: Key(BOTTOM_NAV_BAR),
-      ),
-    )));
-    final bottomBarBody = find.byKey(Key(BOTTOM_NAV_BAR_BODY));
-    final bottomNavbarContainer = find.byKey(Key(BOTTOM_NAV_BAR_CONTAINER));
-    final bottomNavbarLeftItem = find.byKey(Key(BOTTOM_NAV_BAR_LEFT_ITEM));
-    final bottomNavbarRightItem = find.byKey(Key(BOTTOM_NAV_BAR_RIGHT_ITEM));
+    await tester.pumpWidget(
+        getScreenUtilInit(
+          Scaffold(
+              bottomNavigationBar:
+                  CustomBottomBar(
+                    path: SEND_ROUTE,
+                    key: Key(BOTTOM_NAV_BAR),
+                  )),
+        CustomTheme.darkThemeMobile,
+        mobileScreenSize
+    ));
 
-    expect(bottomBarBody, findsOneWidget);
-    expect(bottomNavbarContainer, findsOneWidget);
-    expect(bottomNavbarLeftItem, findsOneWidget);
-    expect(bottomNavbarRightItem, findsOneWidget);
+     final bottomBarBody = find.byKey(Key(BOTTOM_NAV_BAR_BODY));
+     final bottomNavbarContainer = find.byKey(Key(BOTTOM_NAV_BAR_CONTAINER));
+     final bottomNavbarLeftItem = find.byKey(Key(BOTTOM_NAV_BAR_LEFT_ITEM));
+    // final bottomNavbarRightItem = find.byKey(Key(BOTTOM_NAV_BAR_RIGHT_ITEM));
+
+     expect(bottomBarBody, findsOneWidget);
+     expect(bottomNavbarContainer, findsOneWidget);
+     expect(bottomNavbarLeftItem, findsOneWidget);
+     // expect(bottomNavbarRightItem, findsOneWidget);
   });
 }

@@ -21,7 +21,7 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
     return defaultPathForPlatform;
   }
 
-  late final String? defaultPathForPlatform;
+  late String? defaultPathForPlatform = '';
 
   SettingsShared() {
     SharedPreferences.getInstance().then((prefs) => setState(() {
@@ -29,12 +29,10 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
         }));
 
     if (Platform.isAndroid) {
-      defaultPathForPlatform = DOWNLOADS_FOLDER_PATH;
+      defaultPathForPlatform = ANDROID_DOWNLOADS_FOLDER_PATH;
     } else {
       getDownloadsDirectory().then((downloadsDir) {
-        setState(() {
-          defaultPathForPlatform = downloadsDir?.path;
-        });
+        defaultPathForPlatform = downloadsDir?.path;
       });
     }
   }
