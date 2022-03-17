@@ -27,21 +27,27 @@ class MyApp extends StatelessWidget {
   MyApp(this.config);
 
   Widget onGenerateRoute() {
-    if (Platform.isAndroid) {
-      return ScreenUtilInit(
-          designSize: Size(375, 590),
-          builder: () => MaterialApp(
-                theme: CustomTheme.darkThemeMobile,
-                onGenerateRoute: getMobileRoutes(config),
-              ));
-    }
-
     return ScreenUtilInit(
-        designSize: Size(1280, 800),
-        builder: () => MaterialApp(
-              theme: CustomTheme.darkThemeDesktop,
-              onGenerateRoute: getDesktopRoutes(config),
-            ));
+      designSize: Platform.isAndroid ? Size(375, 590) : Size(1280, 800),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () => MaterialApp(
+        onGenerateRoute: Platform.isAndroid
+            ? getMobileRoutes(config)
+            : getDesktopRoutes(config),
+        builder: (context, widget) {
+          ScreenUtil.setContext(context);
+          return MediaQuery(
+            //Setting font does not change with system font size
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget!,
+          );
+        },
+        theme: Platform.isAndroid
+            ? CustomTheme.darkThemeMobile
+            : CustomTheme.darkThemeDesktop,
+      ),
+    );
   }
 
   @override
