@@ -33,7 +33,7 @@ extension BytesToReadableSize on int {
 Future<PermissionStatus> canWriteToFile() async {
   if (Platform.isAndroid) {
     return await Permission.storage.request();
-  } else if (Platform.isLinux || Platform.isMacOS) {
+  } else if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
     return PermissionStatus.granted;
   } else {
     print("Implement write checks for ${Platform()}");
