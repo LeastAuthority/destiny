@@ -23,6 +23,10 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
 
   late String? defaultPathForPlatform = '';
 
+  String get version {
+    return const String.fromEnvironment("version", defaultValue: "undefined");
+  }
+
   SettingsShared() {
     SharedPreferences.getInstance().then((prefs) => setState(() {
           this.prefs = prefs;

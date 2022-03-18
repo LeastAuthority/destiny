@@ -70,7 +70,12 @@ class _SettingsState extends SettingsShared<Settings> {
                               width: 150.0.w,
                             )
                           ],
-                        )
+                        ),
+                        Text("version: $version",
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(color: Colors.white)),
                       ],
                     )),
               ),
