@@ -59,7 +59,8 @@ class _SettingsState extends SettingsShared<Settings> {
                     Navigator.pop(context);
                   },
                   disabled: false,
-                )
+                ),
+                Text("version: $version")
               ]),
         ));
   }
