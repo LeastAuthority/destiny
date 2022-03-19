@@ -45,6 +45,7 @@ class _SendingProgressState extends State<SendingProgress> {
               children: [
                 Container(
                   margin: EdgeInsets.only(top: 32.0.h),
+                  height: 8.0.h,
                   child: CustomLinearProgressIndicator(
                     value: widget.percentage,
                   ),

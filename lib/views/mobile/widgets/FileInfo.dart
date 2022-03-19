@@ -19,6 +19,7 @@ class FileInfo extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               '$fileName',
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline4,
             ),
           ),

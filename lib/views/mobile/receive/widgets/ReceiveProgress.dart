@@ -49,6 +49,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
             Container(
               width: 284.0.w,
               margin: EdgeInsets.only(top: 32.0.h),
+              height: 8.0.h,
               child: CustomLinearProgressIndicator(
                 value: widget.percentage,
               ),
