@@ -10,6 +10,7 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 void main() {
   Size mobileScreenSize = Size(375, 590);
   ScreenUtilInit getScreenUtilInit(Widget? screen, ThemeData theme, Size size) {
@@ -34,8 +35,8 @@ void main() {
   testWidgets('Splash screen', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        home:
-            ScreenUtilInit(designSize: mobileScreenSize, builder: () => Splash()),
+        home: ScreenUtilInit(
+            designSize: mobileScreenSize, builder: () => Splash()),
       ),
     );
     final splashScreenBody = find.byKey(Key(SPLASH_SCREEN_BODY));
@@ -114,26 +115,23 @@ void main() {
   });
 
   testWidgets('Custom BottomBar', (WidgetTester tester) async {
-    await tester.pumpWidget(
-        getScreenUtilInit(
-          Scaffold(
-              bottomNavigationBar:
-                  CustomBottomBar(
-                    path: SEND_ROUTE,
-                    key: Key(BOTTOM_NAV_BAR),
-                  )),
+    await tester.pumpWidget(getScreenUtilInit(
+        Scaffold(
+            bottomNavigationBar: CustomBottomBar(
+          path: SEND_ROUTE,
+          key: Key(BOTTOM_NAV_BAR),
+        )),
         CustomTheme.darkThemeMobile,
-        mobileScreenSize
-    ));
+        mobileScreenSize));
 
-     final bottomBarBody = find.byKey(Key(BOTTOM_NAV_BAR_BODY));
-     final bottomNavbarContainer = find.byKey(Key(BOTTOM_NAV_BAR_CONTAINER));
-     final bottomNavbarLeftItem = find.byKey(Key(BOTTOM_NAV_BAR_LEFT_ITEM));
+    final bottomBarBody = find.byKey(Key(BOTTOM_NAV_BAR_BODY));
+    final bottomNavbarContainer = find.byKey(Key(BOTTOM_NAV_BAR_CONTAINER));
+    final bottomNavbarLeftItem = find.byKey(Key(BOTTOM_NAV_BAR_LEFT_ITEM));
     // final bottomNavbarRightItem = find.byKey(Key(BOTTOM_NAV_BAR_RIGHT_ITEM));
 
-     expect(bottomBarBody, findsOneWidget);
-     expect(bottomNavbarContainer, findsOneWidget);
-     expect(bottomNavbarLeftItem, findsOneWidget);
-     // expect(bottomNavbarRightItem, findsOneWidget);
+    expect(bottomBarBody, findsOneWidget);
+    expect(bottomNavbarContainer, findsOneWidget);
+    expect(bottomNavbarLeftItem, findsOneWidget);
+    // expect(bottomNavbarRightItem, findsOneWidget);
   });
 }
