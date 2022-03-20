@@ -92,7 +92,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
           onWillPop: () async => false,
           child: Container(
               key: Key(RECEIVE_SCREEN_BODY),
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: widgetByState(receivingDone, receiveError, receiveProgress,
                   enterCodeUI, receiveConfirmation)),
         ));

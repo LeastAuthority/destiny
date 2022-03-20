@@ -56,15 +56,17 @@ class DTSelectAFile extends StatelessWidget {
                   ),
                 ],
               ),
-              TextButton(
-                onPressed: () {
-                  handleSelectFile();
-                },
-                child: Image.asset(
-                  PLUS_ICON,
-                  width: 250.0.w,
-                ),
-              )
+              MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      handleSelectFile();
+                    },
+                    child: Image.asset(
+                      PLUS_ICON,
+                      width: 250.0.w,
+                    ),
+                  ))
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,11 +36,14 @@ class ReceiveConfirmation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Button(
-                title: DOWNLOAD,
-                handleClicked: acceptDownload,
-                disabled: false),
-            Button(
                 title: CANCEL, handleClicked: rejectDownload, disabled: false),
+            ButtonWithBackground(
+                handleClicked: acceptDownload,
+                title: DOWNLOAD,
+                width: 120.0.w,
+                height: 50.0.h,
+                fontSize: 14.0.sp,
+                disabled: false),
           ],
         ),
         SizedBox(
