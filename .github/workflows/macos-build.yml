@@ -62,3 +62,9 @@ jobs:
           name: "destiny-macos-${{ env.DESTINY_VERSION }}-unsigned"
           path: "./Destiny_LA_${{ env.DESTINY_VERSION }}.dmg"
           if-no-files-found: "error"
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./Destiny_LA_${{ env.DESTINY_VERSION }}.dmg"
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref_type == 'tag' }}
