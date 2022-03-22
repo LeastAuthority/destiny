@@ -51,3 +51,9 @@ jobs:
           name: "destiny-android-${{ env.DESTINY_VERSION }}-unsigned"
           path: "./build/app/outputs/flutter-apk/app-release.apk"
           if-no-files-found: "error"
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./build/app/outputs/flutter-apk/app-release.apk"
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref_type == 'tag' }}
