@@ -1,0 +1,62 @@
+name: "windows-build"
+
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  windows-build:
+    runs-on: windows-latest
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          submodules: "recursive"
+
+      - name: "Set version string for release"
+        run: echo DESTINY_VERSION=la_${{ github.ref_name }} >> $GITHUB_ENV
+        if: ${{ github.ref_type == 'tag' }}
+
+      - name: "Set version string for branch"
+        run: echo DESTINY_VERSION=la_${{ github.head_ref }} >> $GITHUB_ENV
+        if: ${{ github.ref_type != 'tag' }}
+
+      - name: "Setup flutter"
+        uses: "subosito/flutter-action@v2.3.0"
+
+      - name: "Fetch flutter dependencies"
+        run: "flutter pub get"
+
+      # TODO remove the || true when this should be enforced
+      # Right now it is just informational
+      - name: "Lint"
+        run: "flutter analyze || true"
+
+      - name: "Style check"
+        run: "flutter format --set-exit-if-changed lib test"
+
+      - name: "Build windows"
+        run: "flutter build windows lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }}"
+
+      - name: "Zip executable and libraries"
+        run: "7z a windows-${{ env.DESTINY_VERSION }}.zip build/windows/runner/Release"
+
+      - name: "Upload zip"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-windows-${{ env.DESTINY_VERSION }}-unsigned"
+          path: "windows-${{ env.DESTINY_VERSION }}.zip"
+          if-no-files-found: "error"
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "windows-${{ env.DESTINY_VERSION }}.zip"
+          allowUpdates: true
+          prerelease: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref_type == 'tag' }}
