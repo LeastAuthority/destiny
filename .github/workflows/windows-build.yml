@@ -19,11 +19,11 @@ jobs:
           submodules: "recursive"
 
       - name: "Set version string for release"
-        run: "echo DESTINY_VERSION=la_${{ github.ref_name }} >> %GITHUB_ENV%"
+        run: "echo \"DESTINY_VERSION=la_${{ github.ref_name }})\" >> $env:GITHUB_ENV"
         if: ${{ github.ref_type == 'tag' }}
 
       - name: "Set version string for branch"
-        run: "echo DESTINY_VERSION=la_${{ github.head_ref }} >> %GITHUB_ENV%"
+        run: "echo \"DESTINY_VERSION=la_${{ github.head_ref }}\" >> $env:GITHUB_ENV"
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
