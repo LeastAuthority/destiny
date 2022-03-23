@@ -38,8 +38,14 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return SendingProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? "...");
+    return SendingProgress(
+        fileSize,
+        fileName,
+        progress.percentage,
+        progress.remainingTimeString ??
+            (progress.percentage - 1.0 <= 0.001
+                ? WAITING_FOR_RECEIVER
+                : THREE_DOTS));
   }
 
   Widget sendingDone() {
