@@ -13,6 +13,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../mobile/send/widgets/SendingDone.dart';
 import '../../widgets/Heading.dart';
 
 extension WidgetWrappers on Widget {
@@ -47,8 +48,7 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingDone() {
-    return DTSendingProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? THREE_DOTS);
+    return SendingDone(fileSize, fileName);
   }
 
   Widget selectAFileUI() {
