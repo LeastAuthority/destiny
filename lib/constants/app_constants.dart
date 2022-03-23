@@ -144,6 +144,7 @@ final Config magic_wormhole_io = Config(
 final Config least_authority = Config(
   rendezvousUrl: "wss://mailbox.w.leastauthority.com/v1",
   transitRelayUrl: "wss://relay.w.leastauthority.com:443",
+  appId: "myFileTransfer",
 );
 
 final Config local = Config(
