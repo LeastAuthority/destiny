@@ -54,5 +54,6 @@ jobs:
         with:
           artifacts: "./build/app/outputs/flutter-apk/app-release.apk"
           allowUpdates: true
+          prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ github.ref_type == 'tag' }}

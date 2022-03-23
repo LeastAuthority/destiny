@@ -65,5 +65,6 @@ jobs:
         with:
           artifacts: "./Destiny_LA_${{ env.DESTINY_VERSION }}.dmg"
           allowUpdates: true
+          prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ github.ref_type == 'tag' }}
