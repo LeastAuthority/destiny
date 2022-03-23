@@ -44,6 +44,8 @@ const String MINUTES = 'Minutes';
 const String MINUTE = 'Minute';
 const String X = 'X';
 const String THREE_DOTS = '...';
+const String WAITING_FOR_RECEIVER =
+    "Waiting for receiver to complete transfer...";
 const String GENERATING = 'Generating...';
 const String FILE_UPLOADED_SUCCESSFULLY = 'File uploaded successfully';
 const String THE_TRANSFER_HAS_BEEN_CANCELLED_BY_THE_RECEIVER =

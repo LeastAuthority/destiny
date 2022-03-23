@@ -43,10 +43,14 @@ class ProgressShared {
         amount = remainingTime!.inMinutes;
       } else {
         unit = "Second";
-        amount = remainingTime!.inSeconds == 0 ? 1 : remainingTime!.inSeconds;
+        amount = remainingTime!.inSeconds;
       }
 
-      return amount == 1 ? "$amount $unit" : "$amount ${unit}s";
+      return amount == 0
+          ? null
+          : amount == 1
+              ? "$amount $unit"
+              : "$amount ${unit}s";
     } else {
       return null;
     }

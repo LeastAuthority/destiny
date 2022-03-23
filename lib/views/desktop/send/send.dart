@@ -62,8 +62,14 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return DTSendingProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? THREE_DOTS);
+    return DTSendingProgress(
+        fileSize,
+        fileName,
+        progress.percentage,
+        progress.remainingTimeString ??
+            (progress.percentage - 1.0 <= 0.001
+                ? WAITING_FOR_RECEIVER
+                : THREE_DOTS));
   }
 
   Widget sendingError() {
