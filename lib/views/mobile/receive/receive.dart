@@ -28,7 +28,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
 
   Widget receiveProgress() {
     return ReceiveProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? "...");
+        progress.remainingTimeString ?? THREE_DOTS);
   }
 
   Widget receiveConfirmation() {

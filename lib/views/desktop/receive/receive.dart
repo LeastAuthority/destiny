@@ -85,8 +85,8 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receiveConfirmation() {
-    return DTReceiveProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? "...");
+    return ReceiveConfirmation(
+        fileName, fileSize, acceptDownload, rejectDownload);
   }
 
   @override
