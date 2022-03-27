@@ -28,7 +28,7 @@ dependencies:
   basic_utils:
     git:
       url: https://github.com/Ephenodrom/Dart-Basic-Utils
-  file_picker: ^4.3.3
+  file_picker: ^4.5.0
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider

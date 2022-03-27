@@ -18,7 +18,7 @@ class SelectAFileUI extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Heading(
-            title: SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST,
+            title: SEND_FILES_SIMPLE_SECURE_FAST,
             textAlign: TextAlign.left,
             marginTop: 0,
             textStyle: Theme.of(context).textTheme.headline6,

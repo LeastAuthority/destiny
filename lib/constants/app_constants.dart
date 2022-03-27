@@ -26,7 +26,7 @@ const String THE_TRANSFER_WILL_AUTO =
     'The transfer will automatically begin once the receiver enters the code.';
 const String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT =
     'Send the selected file by sharing the code with the recipient.';
-const String FILE_READY_TO_DOWNLOAD = 'File ready to download';
+const String FILE_READY_TO_DOWNLOAD = 'Ready to download';
 const String DOWNLOAD = 'Download';
 const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
@@ -53,7 +53,7 @@ const String THE_TRANSFER_HAS_BEEN_CANCELLED_BY_THE_RECEIVER =
 const String RETURN_TO_SEND_HOME = 'Return to send home';
 const String WRONG_TYPE_FOR_PROGRESS =
     'Wrong type for progress. Expected int got';
-const String FILE_SENT_SUCCESSFULLY = 'File Sent successfully';
+const String FILE_TRANSFER_SUCCESSFULLY = 'File transfer successful.';
 const String MUST_CHOOSE_PATH_TO_SAVE_THE_FILE =
     'Must choose a path to save the file';
 const String FILE_DOWNLOADED_SUCCESSFULLY = 'File download successful.';
@@ -65,6 +65,7 @@ const String SEEN = 'seen';
 const String PATH = 'path';
 const String LOADING = 'Loading...';
 const String CODE_COPIED = 'Code Copied';
+const String THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR = 'The app does not have the permission to store files in this directory.';
 const String CUSTOM_NAV_BAR_MENU_FANDQ_ITEM = 'F&Q';
 const String RECEIVING = 'Receiving…';
 
