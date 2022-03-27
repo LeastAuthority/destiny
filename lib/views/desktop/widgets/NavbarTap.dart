@@ -37,8 +37,8 @@ class NavbarTap extends StatelessWidget {
                     children: [
                       Image.asset(
                         icon,
-                        width: 40.0.w,
-                        height: 20.0.h,
+                        width: 45.0.w,
+                        height: 25.0.h,
                       ),
                       Text(title, style: Theme.of(context).textTheme.headline4),
                       route == currentRoute

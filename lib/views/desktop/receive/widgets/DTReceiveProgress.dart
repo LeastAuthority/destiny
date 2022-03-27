@@ -33,7 +33,7 @@ class _ReceiveProgressState extends State<DTReceiveProgress> {
         ),
         Column(
           children: [
-            DTFileInfo(widget.fileSize, 'widgets.fileName'),
+            DTFileInfo(widget.fileSize, widget.fileName),
             Container(
               width: 284.0.w,
               margin: EdgeInsets.only(top: 32.0.h),

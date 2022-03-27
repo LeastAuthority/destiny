@@ -213,7 +213,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d8be95e177a0937aa69b790a4f2b715d74516527
+      resolved-ref: "8da47d64f622a304d085481f8f34a6f776d6d2c0"
       url: "https://github.com/shareef-dweikat/flutter-intro-slider"
     source: git
     version: "3.0.2"
@@ -529,7 +529,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.2"
+    version: "2.4.4"
   xdg_directories:
     dependency: transitive
     description:
