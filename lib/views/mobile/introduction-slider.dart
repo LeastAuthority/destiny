@@ -3,6 +3,7 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
 import 'package:intro_slider/slide_object.dart';
@@ -73,19 +74,36 @@ class IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new IntroSlider(
-      slides: this.slides,
-      showSkipBtn: false,
-      showNextBtn: false,
-      showPrevBtn: false,
-      showDoneBtn: false,
-      onDonePress: this.onDonePress,
-      colorDot: Theme.of(context).scaffoldBackgroundColor,
-      colorActiveDot: Theme.of(context).colorScheme.secondary,
-      sizeDot: 13.0,
-      hideStatusBar: true,
-      backgroundColorAllSlides: Colors.grey,
-      verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
+    return ScreenUtilInit(
+      designSize: Size(375, 590) ,
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () => MaterialApp(
+        home: new IntroSlider(
+          slides: this.slides,
+          showSkipBtn: false,
+          showNextBtn: false,
+          showPrevBtn: false,
+          showDoneBtn: false,
+          onDonePress: this.onDonePress,
+          colorDot: Theme.of(context).scaffoldBackgroundColor,
+          colorActiveDot: Theme.of(context).colorScheme.secondary,
+          sizeDot: 13.0,
+          subTitleFontSize: 18.0.sp,
+          titleFontSize: 22.0.sp,
+          hideStatusBar: true,
+          backgroundColorAllSlides: Colors.grey,
+          verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
+        ),
+        builder: (context, widget) {
+          ScreenUtil.setContext(context);
+          return MediaQuery(
+            //Setting font does not change with system font size
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget!,
+          );
+        },
+      ),
     );
   }
 }
