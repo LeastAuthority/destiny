@@ -38,6 +38,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
             ),
             CodeInputBox(
                 width: 400.0.w,
+                style: Theme.of(context).textTheme.bodyText1,
                 controller: controller,
                 codeChanged: codeChanged),
             controller.text.length > 0
