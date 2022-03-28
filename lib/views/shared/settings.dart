@@ -40,6 +40,10 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
       });
     }
   }
+  canWriteToDirectory(String result) async {
+    await File('$result/test').writeAsBytes([]);
+    await File('$result/test').delete();
+  }
 
   void handleSelectFile() async {
     await canWriteToFile().then((permissionStatus) async {
@@ -48,9 +52,17 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
         if (result == null) {
           return;
         }
-        setState(() {
-          prefs?.setString(PATH, result);
-        });
+        try {
+          await canWriteToDirectory(result);
+          setState(() {
+            prefs?.setString(PATH, result);
+          });
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+                THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
+          ));
+        }
       }
     });
   }

@@ -75,7 +75,7 @@ class IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(375, 590) ,
+      designSize: Size(375, 590),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => MaterialApp(

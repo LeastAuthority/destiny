@@ -65,7 +65,8 @@ const String SEEN = 'seen';
 const String PATH = 'path';
 const String LOADING = 'Loading...';
 const String CODE_COPIED = 'Code Copied';
-const String THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR = 'The app does not have the permission to store files in this directory.';
+const String THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR =
+    'The app does not have the permission to store files in this directory.';
 const String CUSTOM_NAV_BAR_MENU_FANDQ_ITEM = 'F&Q';
 const String RECEIVING = 'Receiving…';
 
