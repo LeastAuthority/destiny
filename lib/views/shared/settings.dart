@@ -40,9 +40,11 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
       });
     }
   }
+
   canWriteToDirectory(String result) async {
-    await File('$result/test').writeAsBytes([]);
-    await File('$result/test').delete();
+    String path = nonExistingPathFor('$result/test');
+    await File(path).writeAsBytes([]);
+    await File(path).delete();
   }
 
   void handleSelectFile() async {
