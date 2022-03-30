@@ -83,7 +83,6 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return "$prefix.$suffix";
   }
 
-
   Future<ReceiveFileResult> receive() async {
     return canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
