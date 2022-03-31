@@ -41,25 +41,29 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
     }
   }
 
-  canWriteToDirectory(String result) async {
-    String path = nonExistingPathFor('$result/test');
-    await File(path).writeAsBytes([]);
-    await File(path).delete();
+  canWriteToDirectory(String directory) async {
+    try {
+      String path = nonExistingPathFor('$directory/test');
+      await File(path).writeAsBytes([]);
+      await File(path).delete();
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   void handleSelectFile() async {
     await canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
-        String? result = await FilePicker.platform.getDirectoryPath();
-        if (result == null) {
+        String? directory = await FilePicker.platform.getDirectoryPath();
+        if (directory == null) {
           return;
         }
-        try {
-          await canWriteToDirectory(result);
+        if (await canWriteToDirectory(directory)) {
           setState(() {
-            prefs?.setString(PATH, result);
+            prefs?.setString(PATH, directory);
           });
-        } catch (e) {
+        } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
                 THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),

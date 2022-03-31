@@ -47,7 +47,6 @@ class _SettingsState extends SettingsShared<Settings> {
                       textAlign: TextAlign.left,
                       marginTop: 0,
                       path: path,
-                      // key: Key(SETTINGS_SCREEN_HEADING),
                     ),
                   ],
                 ),
