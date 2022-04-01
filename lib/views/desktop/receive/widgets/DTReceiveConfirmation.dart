@@ -20,20 +20,20 @@ class ReceiveConfirmation extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-       Column(
-         children: [
-           Heading(
-             title: READY_TO_DOWNLOAD,
-             textAlign: TextAlign.center,
-             textStyle: Theme.of(context).textTheme.headline1,
-             // key: Key('Timing_Progress'),
-           ),
-           SizedBox(
-             height: 70.0.h,
-           ),
-           FileInfo(fileSize, fileName),
-         ],
-       ),
+        Column(
+          children: [
+            Heading(
+              title: READY_TO_DOWNLOAD,
+              textAlign: TextAlign.center,
+              textStyle: Theme.of(context).textTheme.headline1,
+              // key: Key('Timing_Progress'),
+            ),
+            SizedBox(
+              height: 70.0.h,
+            ),
+            FileInfo(fileSize, fileName),
+          ],
+        ),
         Column(
           children: [
             Heading(
@@ -49,10 +49,7 @@ class ReceiveConfirmation extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  DTButton(
-                      CANCEL,
-                      rejectDownload
-                  ),
+                  DTButton(CANCEL, rejectDownload),
                   SizedBox(
                     width: 10.0.w,
                   ),
@@ -65,7 +62,6 @@ class ReceiveConfirmation extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ),
         SizedBox(

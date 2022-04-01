@@ -35,13 +35,12 @@ class DTCodeGeneration extends StatelessWidget {
         children: [
           Container(
               child: SizedBox(
-                width: 500.0.w,
-                child: Heading(
-                  title:
-                      SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
-                  textStyle: Theme.of(context).textTheme.headline1,
-                ),
-              )),
+            width: 500.0.w,
+            child: Heading(
+              title: SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT,
+              textStyle: Theme.of(context).textTheme.headline1,
+            ),
+          )),
           DTFileInfo(fileSize, fileName),
           DTRowGroupButton(code, isCodeGenerating),
           isCodeGenerating

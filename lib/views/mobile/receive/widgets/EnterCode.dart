@@ -24,7 +24,7 @@ class EnterCode extends StatelessWidget {
           CodeInputBox(
               controller: controller,
               style: Theme.of(context).textTheme.headline6,
-               width: 300.0.w,
+              width: 300.0.w,
               codeChanged: (String code) {
                 codeChanged(code);
               }),

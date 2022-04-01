@@ -9,7 +9,7 @@ class CodeInputBox extends StatelessWidget {
   late final TextEditingController controller;
   CodeInputBox(
       {Key? key,
-        required this.style,
+      required this.style,
       required this.codeChanged,
       required this.width,
       required final this.controller})
