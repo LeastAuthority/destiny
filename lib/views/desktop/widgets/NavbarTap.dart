@@ -22,6 +22,7 @@ class NavbarTap extends StatelessWidget {
     return Expanded(
         key: Key(BOTTOM_NAV_BAR_LEFT_ITEM),
         child: Container(
+          height: 60.0.h,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: alignment,

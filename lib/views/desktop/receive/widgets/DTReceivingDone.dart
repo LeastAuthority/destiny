@@ -16,7 +16,6 @@ class DTReceivingDone extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
-            padding: EdgeInsets.only(right: 40.0.w),
             child: SizedBox(
               width: 500.0.w,
               child: Heading(

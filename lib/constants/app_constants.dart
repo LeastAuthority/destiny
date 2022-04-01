@@ -26,7 +26,7 @@ const String THE_TRANSFER_WILL_AUTO =
     'The transfer will automatically begin once the receiver enters the code.';
 const String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT =
     'Send the selected file by sharing the code with the recipient.';
-const String FILE_READY_TO_DOWNLOAD = 'Ready to download';
+const String READY_TO_DOWNLOAD = 'Ready to download';
 const String DOWNLOAD = 'Download';
 const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
