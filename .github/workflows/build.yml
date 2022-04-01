@@ -1,0 +1,229 @@
+name: "build"
+
+on:
+  push:
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          submodules: "recursive"
+
+      - name: "Set version string for release"
+        run: echo DESTINY_VERSION=la_${{ github.ref_name }} >> $GITHUB_ENV
+        if: ${{ github.ref_type == 'tag' }}
+
+      - name: "Set version string for branch"
+        run: echo DESTINY_VERSION=la_${{ github.head_ref }} >> $GITHUB_ENV
+        if: ${{ github.ref_type != 'tag' }}
+
+      - name: "Setup flutter"
+        uses: "subosito/flutter-action@v2.3.0"
+
+      - name: "Fetch flutter dependencies"
+        run: "flutter pub get"
+
+      # TODO remove the || true when this should be enforced
+      # Right now it is just informational
+      - name: "Lint"
+        run: "flutter analyze || true"
+
+      - name: "Style check"
+        run: "flutter format --set-exit-if-changed lib test"
+
+      - name: "Build release apk"
+        run: "flutter build apk lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
+
+      - name: "Copy apk"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-android-${{ env.DESTINY_VERSION }}-unsigned"
+          path: "./build/app/outputs/flutter-apk/app-release.apk"
+          if-no-files-found: "error"
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./build/app/outputs/flutter-apk/app-release.apk"
+          allowUpdates: true
+          prerelease: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref_type == 'tag' }}
+
+  linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          submodules: "recursive"
+
+      - name: "Set version string for release"
+        run: echo DESTINY_VERSION=la_${{ github.ref_name }} >> $GITHUB_ENV
+        if: ${{ github.ref_type == 'tag' }}
+
+      - name: "Set version string for branch"
+        run: echo DESTINY_VERSION=la_${{ github.head_ref }} >> $GITHUB_ENV
+        if: ${{ github.ref_type != 'tag' }}
+
+      - name: "Setup flutter"
+        uses: "subosito/flutter-action@v2.3.0"
+
+      - name: "Fetch flutter dependencies"
+        run: "flutter pub get"
+
+      # TODO remove the || true when this should be enforced
+      # Right now it is just informational
+      - name: "Lint"
+        run: "flutter analyze || true"
+
+      - name: "Style check"
+        run: "flutter format --set-exit-if-changed lib test"
+
+      - name: "Enable linux builds"
+        run: "flutter config --enable-linux-desktop"
+
+      - name: "Install linux build dependencies"
+        run: "sudo apt update && sudo apt install ninja-build libgtk-3-dev libgtkmm-3.0-dev"
+
+      - name: "Build for linux"
+        run: "flutter build linux lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }}"
+
+      - name: "Zip executable and libraries"
+        run: "7z a linux-${{ env.DESTINY_VERSION }}.zip build/linux/x64/release/bundle"
+
+      - name: "Upload zip"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-linux-${{ env.DESTINY_VERSION }}-unsigned"
+          path: "linux-${{ env.DESTINY_VERSION }}.zip"
+          if-no-files-found: "error"
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "linux-${{ env.DESTINY_VERSION }}.zip"
+          allowUpdates: true
+          prerelease: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref_type == 'tag' }}
+
+  macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          submodules: "recursive"
+
+      - name: "Set version string for release"
+        run: echo DESTINY_VERSION=la_${{ github.ref_name }} >> $GITHUB_ENV
+        if: ${{ github.ref_type == 'tag' }}
+
+      - name: "Set version string for branch"
+        run: echo DESTINY_VERSION=la_${{ github.head_ref }} >> $GITHUB_ENV
+        if: ${{ github.ref_type != 'tag' }}
+
+      - name: "Setup flutter"
+        uses: "subosito/flutter-action@v2.3.0"
+
+      - name: "Fetch flutter dependencies"
+        run: "flutter pub get"
+
+      # TODO remove the || true when this should be enforced
+      # Right now it is just informational
+      - name: "Lint"
+        run: "flutter analyze || true"
+
+      - name: "Style check"
+        run: "flutter format --set-exit-if-changed lib test"
+
+      # TODO maybe this can be avoided by some project configuration,
+      # but running it locally doesn't change any files either.
+      - name: "Enable macos desktop builds"
+        run: "flutter config --enable-macos-desktop"
+
+      - name: "Build mac app"
+        run: "flutter build macos lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
+
+      - name: "Install create-dmg"
+        run: "brew install create-dmg"
+
+      - name: "Create DMG"
+        run: "create-dmg --app-drop-link 0 0 --eula LICENSE Destiny_LA_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/dart_wormhole_gui.app"
+
+      - name: "Copy DMG"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-macos-${{ env.DESTINY_VERSION }}-unsigned"
+          path: "./Destiny_LA_${{ env.DESTINY_VERSION }}.dmg"
+          if-no-files-found: "error"
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./Destiny_LA_${{ env.DESTINY_VERSION }}.dmg"
+          allowUpdates: true
+          prerelease: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref_type == 'tag' }}
+
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+        with:
+          submodules: "recursive"
+
+      - name: "Set version string for release"
+        run: 'echo "DESTINY_VERSION=la_${{ github.ref_name }}" >> $env:GITHUB_ENV'
+        if: ${{ github.ref_type == 'tag' }}
+
+      - name: "Set version string for branch"
+        run: 'echo "DESTINY_VERSION=la_${{ github.head_ref }}" >> $env:GITHUB_ENV'
+        if: ${{ github.ref_type != 'tag' }}
+
+      - name: "Setup flutter"
+        uses: "subosito/flutter-action@v2.3.0"
+
+      - name: "Fetch flutter dependencies"
+        run: "flutter pub get"
+
+      # TODO remove the || true when this should be enforced
+      # Right now it is just informational
+      - name: "Lint"
+        run: "flutter analyze || true"
+
+      - name: "Style check"
+        run: "flutter format --set-exit-if-changed lib test"
+
+      - name: "Build windows"
+        run: "flutter build windows lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }}"
+
+      - name: "Zip executable and libraries"
+        run: "7z a windows-${{ env.DESTINY_VERSION }}.zip build/windows/runner/Release"
+
+      - name: "Upload zip"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-windows-${{ env.DESTINY_VERSION }}-unsigned"
+          path: "windows-${{ env.DESTINY_VERSION }}.zip"
+          if-no-files-found: "error"
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "windows-${{ env.DESTINY_VERSION }}.zip"
+          allowUpdates: true
+          prerelease: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.ref_type == 'tag' }}
