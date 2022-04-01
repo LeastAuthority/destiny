@@ -40,3 +40,27 @@ Future<PermissionStatus> canWriteToFile() async {
     return PermissionStatus.permanentlyDenied;
   }
 }
+
+String nonExistingPathFor(String path) {
+  if (File(path).existsSync()) {
+    int i = 1;
+    String baseName = path.split(Platform.pathSeparator).last;
+    String directory = File(path).parent.path;
+    String? extension;
+    if (baseName.contains(".")) {
+      final parts = baseName.split(".");
+      baseName = parts.take(parts.length - 1).join("");
+      extension = parts.last;
+    }
+    String nextPath() => extension != null
+        ? "$directory/$baseName($i).$extension"
+        : "$directory/$baseName($i)";
+    while (File(nextPath()).existsSync()) {
+      i++;
+    }
+
+    return "${nextPath()}";
+  } else {
+    return path;
+  }
+}

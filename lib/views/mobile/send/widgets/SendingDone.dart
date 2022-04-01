@@ -15,7 +15,7 @@ class SendingDone extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Heading(
-          title: FILE_SENT_SUCCESSFULLY,
+          title: FILE_TRANSFER_SUCCESSFULLY,
           textAlign: TextAlign.left,
           marginTop: 0.h,
           textStyle: Theme.of(context).textTheme.headline6,
