@@ -16,14 +16,13 @@ class DTReceivingDone extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
-            padding: EdgeInsets.only(right: 40.0.w),
             child: SizedBox(
-              width: 500.0.w,
-              child: Heading(
-                title: FILE_DOWNLOADED_SUCCESSFULLY,
-                textStyle: Theme.of(context).textTheme.headline1,
-              ),
-            )),
+          width: 500.0.w,
+          child: Heading(
+            title: FILE_DOWNLOADED_SUCCESSFULLY,
+            textStyle: Theme.of(context).textTheme.headline1,
+          ),
+        )),
         DTFileInfo(fileSize, fileName),
         Image.asset(
           CHECK_ICON,

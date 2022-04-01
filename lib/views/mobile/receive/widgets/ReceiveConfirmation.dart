@@ -20,7 +20,7 @@ class ReceiveConfirmation extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Heading(
-          title: FILE_READY_TO_DOWNLOAD,
+          title: READY_TO_DOWNLOAD,
           textAlign: TextAlign.left,
           textStyle: Theme.of(context).textTheme.headline6,
           // key: Key('Timing_Progress'),

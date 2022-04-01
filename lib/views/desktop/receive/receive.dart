@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../shared/receive.dart';
 import '../../desktop/receive/widgets/DTReceivingDone.dart';
 import '../../desktop/receive/widgets/DTReceiveProgress.dart';
-import '../../mobile/receive/widgets/ReceiveConfirmation.dart';
+import '../../desktop/receive/widgets/DTReceiveConfirmation.dart';
 
 final TextEditingController controller = new TextEditingController();
 
@@ -38,6 +38,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
             ),
             CodeInputBox(
                 width: 400.0.w,
+                style: Theme.of(context).textTheme.bodyText1,
                 controller: controller,
                 codeChanged: codeChanged),
             controller.text.length > 0

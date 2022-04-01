@@ -5,9 +5,11 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 class CodeInputBox extends StatelessWidget {
   final Function codeChanged;
   final double width;
+  final TextStyle? style;
   late final TextEditingController controller;
   CodeInputBox(
       {Key? key,
+      required this.style,
       required this.codeChanged,
       required this.width,
       required final this.controller})
@@ -31,11 +33,11 @@ class CodeInputBox extends StatelessWidget {
               onChanged: (txt) {
                 codeChanged(txt);
               },
-              style: Theme.of(context).textTheme.headline6,
+              style: style,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 30.0),
-                hintStyle: Theme.of(context).textTheme.headline6,
+                hintStyle: style,
                 hintText: ENTER_CODE,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0x000000), width: 0.0),

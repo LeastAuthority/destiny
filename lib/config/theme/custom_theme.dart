@@ -99,7 +99,7 @@ class CustomTheme {
         ),
         headline4: TextStyle(
           color: CustomColors.babyPowder,
-          fontSize: 12.sp,
+          fontSize: 14.sp,
           fontFamily: MONTSERRAT_SEMI_BOLD,
         ),
         headline5: TextStyle(
