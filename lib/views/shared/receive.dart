@@ -12,6 +12,8 @@ import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:path_provider/path_provider.dart';
 
 enum ReceiveScreenStates {
+  TransferRejected,
+  TransferCancelled,
   FileReceived,
   ReceiveError,
   FileReceiving,
@@ -34,8 +36,19 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
 
   late final TextEditingController controller = new TextEditingController();
   late final Client client = Client(config);
-  late void Function() acceptDownload;
-  late void Function() rejectDownload;
+
+  void Function() failWith(String errorMessage) {
+    return () {
+      throw Exception(errorMessage);
+    };
+  }
+
+  late void Function() acceptDownload =
+      failWith("No accept download function set");
+  late void Function() rejectDownload =
+      failWith("No reject download function set");
+
+  late CancelFunc cancelFunc = failWith("No cancel transfer function set");
 
   String? get path {
     final path = prefs?.get(PATH);
@@ -84,7 +97,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   }
 
   Future<ReceiveFileResult> receive() async {
-    return canWriteToFile().then((permissionStatus) async {
+    return await canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
         late final File tempFile;
 
@@ -102,9 +115,20 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
               this.stacktrace = stacktrace as StackTrace;
               this.errorMessage = "Failed to receive file: $error";
               print("Error receiving file\n$error\n$stacktrace");
+
+              if (error is ClientError) {
+                switch (error.errorCode) {
+                  case ErrCodeTransferRejected:
+                    this.currentState = ReceiveScreenStates.TransferRejected;
+                    break;
+                  case ErrCodeTransferCancelled:
+                    this.currentState = ReceiveScreenStates.TransferCancelled;
+                    break;
+                }
+              }
             });
 
-            return tempFile;
+            throw error;
           });
 
           this.setState(() {
@@ -113,9 +137,10 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
               controller.text = '';
               tempFile =
                   File(_tempPath("$path/${result.pendingDownload.fileName}"));
-              result.pendingDownload.accept(tempFile);
+              var cancelFunc = result.pendingDownload.accept(tempFile);
               this.setState(() {
                 currentState = ReceiveScreenStates.FileReceiving;
+                this.cancelFunc = cancelFunc;
               });
             };
             rejectDownload = () {
@@ -141,7 +166,9 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
       Widget Function() receiveError,
       Widget Function() receiveProgress,
       Widget Function() enterCodeUI,
-      Widget Function() receiveConfirmation) {
+      Widget Function() receiveConfirmation,
+      Widget Function() transferCancelled,
+      Widget Function() transferRejected) {
     switch (currentState) {
       case ReceiveScreenStates.Initial:
         return enterCodeUI();
@@ -153,6 +180,10 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
         return receivingDone();
       case ReceiveScreenStates.FileReceiving:
         return receiveProgress();
+      case ReceiveScreenStates.TransferRejected:
+        return transferRejected();
+      case ReceiveScreenStates.TransferCancelled:
+        return transferCancelled();
     }
   }
 

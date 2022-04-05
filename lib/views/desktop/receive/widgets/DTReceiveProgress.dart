@@ -1,5 +1,6 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../widgets/CustomLinearProgressIndicator.dart';
@@ -11,15 +12,17 @@ class DTReceiveProgress extends StatefulWidget {
   final String fileName;
   final double percentage;
   final String remainingTimeString;
-
-  DTReceiveProgress(
-      this.fileSize, this.fileName, this.percentage, this.remainingTimeString);
+  final CancelFunc cancel;
+  DTReceiveProgress(this.fileSize, this.fileName, this.percentage,
+      this.remainingTimeString, this.cancel);
 
   @override
-  State<DTReceiveProgress> createState() => _ReceiveProgressState();
+  State<DTReceiveProgress> createState() => _ReceiveProgressState(cancel);
 }
 
 class _ReceiveProgressState extends State<DTReceiveProgress> {
+  final CancelFunc cancel;
+  _ReceiveProgressState(this.cancel);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,7 +62,9 @@ class _ReceiveProgressState extends State<DTReceiveProgress> {
             )
           ],
         ),
-        DTButton(CANCEL, () {}),
+        DTButton(CANCEL, () {
+          cancel();
+        }),
         SizedBox(
           height: 37.0.h,
         )

@@ -3,6 +3,7 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTFileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../widgets/CustomLinearProgressIndicator.dart';
@@ -12,9 +13,10 @@ class DTSendingProgress extends StatelessWidget {
   final double percentage;
   final String remainingTimeString;
   final int totalSize;
+  final CancelFunc cancel;
 
-  DTSendingProgress(
-      this.totalSize, this.fileName, this.percentage, this.remainingTimeString);
+  DTSendingProgress(this.totalSize, this.fileName, this.percentage,
+      this.remainingTimeString, this.cancel);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,9 @@ class DTSendingProgress extends StatelessWidget {
                 SizedBox(
                   height: 40.0.h,
                 ),
-                DTButton('Cancel', () {})
+                DTButton('Cancel', () {
+                  cancel();
+                }),
               ],
             )
           ],

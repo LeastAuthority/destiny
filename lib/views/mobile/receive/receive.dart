@@ -77,6 +77,16 @@ class ReceiveScreen extends ReceiveShared<Receive> {
     );
   }
 
+  Widget transferCancelled() {
+    return Text("TODO implement transfer cancelled screen",
+        style: TextStyle(color: Colors.white));
+  }
+
+  Widget transferRejected() {
+    return Text("TODO implement transfer rejected screen",
+        style: TextStyle(color: Colors.white));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,8 +103,14 @@ class ReceiveScreen extends ReceiveShared<Receive> {
           child: Container(
               key: Key(RECEIVE_SCREEN_BODY),
               padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: widgetByState(receivingDone, receiveError, receiveProgress,
-                  enterCodeUI, receiveConfirmation)),
+              child: widgetByState(
+                  receivingDone,
+                  receiveError,
+                  receiveProgress,
+                  enterCodeUI,
+                  receiveConfirmation,
+                  transferCancelled,
+                  transferRejected)),
         ));
   }
 }

@@ -7,6 +7,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 enum SendScreenStates {
+  TransferCancelled,
+  TransferRejected,
   CodeGenerating,
   FileSelecting,
   FileSent,
@@ -24,8 +26,9 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   final Config config;
   late final Client client = Client(config);
+  late CancelFunc cancelFunc;
 
-  Exception? error;
+  ClientError? error;
   String? errorMessage;
   StackTrace? stacktrace;
 
@@ -39,18 +42,19 @@ abstract class SendShared<T extends SendState> extends State<T> {
     currentState = SendScreenStates.FileSending;
   });
 
-  void send(PlatformFile file) async {
+  Future<void> send(PlatformFile file) async {
     setState(() {
       sendingFile = file;
       currentState = SendScreenStates.CodeGenerating;
     });
 
-    await client
+    return await client
         .sendFile(File(file.path!), progress.progressHandler)
         .then((result) async {
       setState(() {
         code = result.code;
         currentState = SendScreenStates.CodeGenerated;
+        cancelFunc = result.cancel;
       });
 
       await result.done.then((result) {
@@ -64,9 +68,19 @@ abstract class SendShared<T extends SendState> extends State<T> {
           this.errorMessage = "Error sending file: $error";
           this.stacktrace = stacktrace as StackTrace;
           print("Error sending file\n$error\n$stacktrace");
+
+          if (error is ClientError) {
+            switch (error.errorCode) {
+              case ErrCodeTransferRejected:
+                this.currentState = SendScreenStates.TransferRejected;
+                break;
+              case ErrCodeTransferCancelled:
+                this.currentState = SendScreenStates.TransferCancelled;
+            }
+          }
         });
 
-        return Future.error(error);
+        throw error;
       });
     });
   }
@@ -76,7 +90,9 @@ abstract class SendShared<T extends SendState> extends State<T> {
       Widget Function() selectAFileUI,
       Widget Function() sendingError,
       Widget Function() sendingDone,
-      Widget Function() sendingProgress) {
+      Widget Function() sendingProgress,
+      Widget Function() transferCancelled,
+      Widget Function() transferRejected) {
     switch (currentState) {
       case SendScreenStates.Initial:
       case SendScreenStates.FileSelecting:
@@ -93,6 +109,10 @@ abstract class SendShared<T extends SendState> extends State<T> {
       case SendScreenStates.CodeGenerating:
       case SendScreenStates.CodeGenerated:
         return generateCodeUI();
+      case SendScreenStates.TransferCancelled:
+        return transferCancelled();
+      case SendScreenStates.TransferRejected:
+        return transferRejected();
     }
   }
 
