@@ -42,6 +42,7 @@ class SendScreen extends SendShared<Send> {
       fileSize: fileSize,
       code: code ?? GENERATING,
       isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
+      cancelFunc: cancelFunc,
       // cancelSend,
       key: Key(SEND_SCREEN_CODE_GENERATION_UI),
     );
@@ -69,7 +70,8 @@ class SendScreen extends SendShared<Send> {
         progress.remainingTimeString ??
             (progress.percentage - 1.0 <= 0.001
                 ? WAITING_FOR_RECEIVER
-                : THREE_DOTS));
+                : THREE_DOTS),
+        this.cancelFunc);
   }
 
   Widget sendingError() {
@@ -80,6 +82,16 @@ class SendScreen extends SendShared<Send> {
         Heading(title: "Stacktrace: ${stacktrace?.toString()}")
       ],
     );
+  }
+
+  Widget transferCancelled() {
+    return Text("TODO implement transfer cancelled screen",
+        style: TextStyle(color: Colors.white));
+  }
+
+  Widget transferRejected() {
+    return Text("TODO implement transfer rejected screen",
+        style: TextStyle(color: Colors.white));
   }
 
   @override
@@ -96,7 +108,13 @@ class SendScreen extends SendShared<Send> {
                 child: Container(
                     height: double.infinity,
                     margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
-                    child: widgetByState(generateCodeUI, selectAFileUI,
-                        sendingError, sendingDone, sendingProgress)))));
+                    child: widgetByState(
+                        generateCodeUI,
+                        selectAFileUI,
+                        sendingError,
+                        sendingDone,
+                        sendingProgress,
+                        transferCancelled,
+                        transferRejected)))));
   }
 }

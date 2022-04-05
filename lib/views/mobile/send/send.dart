@@ -62,6 +62,16 @@ class SendScreen extends SendShared<Send> {
     );
   }
 
+  Widget transferCancelled() {
+    return Text("TODO implement transfer cancelled screen",
+        style: TextStyle(color: Colors.white));
+  }
+
+  Widget transferRejected() {
+    return Text("TODO implement transfer rejected screen",
+        style: TextStyle(color: Colors.white));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +90,13 @@ class SendScreen extends SendShared<Send> {
                 key: Key(SEND_SCREEN_BODY),
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Container(
-                    child: widgetByState(generateCodeUI, selectAFileUI,
-                        sendingError, sendingDone, sendingProgress)))));
+                    child: widgetByState(
+                        generateCodeUI,
+                        selectAFileUI,
+                        sendingError,
+                        sendingDone,
+                        sendingProgress,
+                        transferCancelled,
+                        transferRejected)))));
   }
 }

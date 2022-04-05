@@ -4,19 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTButton extends StatefulWidget {
   final String title;
-  final Function handleSelectFile;
-  DTButton(this.title, this.handleSelectFile);
+  final Function onPressed;
+  DTButton(this.title, this.onPressed);
 
   @override
-  _CustomAppBarState createState() =>
-      _CustomAppBarState(title, handleSelectFile);
+  _CustomAppBarState createState() => _CustomAppBarState(title, onPressed);
 }
 
 class _CustomAppBarState extends State<DTButton> {
   final String title;
-  Function handleSelectFile;
+  Function onPressed;
   Widget? icon;
-  _CustomAppBarState(this.title, this.handleSelectFile);
+  _CustomAppBarState(this.title, this.onPressed);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,9 @@ class _CustomAppBarState extends State<DTButton> {
       width: 100.0.w,
       height: 30.0.h,
       child: TextButton(
-        onPressed: () => handleSelectFile(),
+        onPressed: () {
+          onPressed();
+        },
         style: TextButton.styleFrom(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor),
         child: Text('$title', style: Theme.of(context).textTheme.headline5),

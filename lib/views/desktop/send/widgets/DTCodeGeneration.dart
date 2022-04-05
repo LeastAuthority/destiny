@@ -3,6 +3,7 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButton.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTFileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,13 +14,15 @@ class DTCodeGeneration extends StatelessWidget {
   final int fileSize;
   final String code;
   final bool isCodeGenerating;
+  final CancelFunc cancelFunc;
 
   DTCodeGeneration(
       {Key? key,
       required this.fileName,
       required this.fileSize,
       required this.code,
-      required this.isCodeGenerating})
+      required this.isCodeGenerating,
+      required this.cancelFunc})
       : super(key: key);
 
   @override
@@ -67,10 +70,9 @@ class DTCodeGeneration extends StatelessWidget {
                       CANCEL,
                       () {},
                     )
-                  : DTButton(
-                      CANCEL,
-                      () {},
-                    ),
+                  : DTButton(CANCEL, () {
+                      cancelFunc();
+                    }),
               SizedBox(
                 height: 37.0.h,
               )

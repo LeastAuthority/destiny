@@ -82,12 +82,22 @@ class _ReceiveState extends ReceiveShared<Receive> {
 
   Widget receiveProgress() {
     return DTReceiveProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? "...");
+        progress.remainingTimeString ?? "...", cancelFunc);
   }
 
   Widget receiveConfirmation() {
     return ReceiveConfirmation(
         fileName, fileSize, acceptDownload, rejectDownload);
+  }
+
+  Widget transferCancelled() {
+    return Text("TODO implement transfer cancelled screen",
+        style: TextStyle(color: Colors.white));
+  }
+
+  Widget transferRejected() {
+    return Text("TODO implement transfer rejected screen",
+        style: TextStyle(color: Colors.white));
   }
 
   @override
@@ -110,8 +120,14 @@ class _ReceiveState extends ReceiveShared<Receive> {
                 key: Key(SEND_SCREEN_BODY),
                 padding:
                     EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
-                child: widgetByState(receivingDone, receiveError,
-                    receiveProgress, enterCode, receiveConfirmation),
+                child: widgetByState(
+                    receivingDone,
+                    receiveError,
+                    receiveProgress,
+                    enterCode,
+                    receiveConfirmation,
+                    transferCancelled,
+                    transferRejected),
               ),
             )));
   }
