@@ -37,6 +37,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
   int get fileSize => sendingFile.size;
 
   String get fileName => sendingFile.name;
+  bool selectingFile = false;
 
   late ProgressShared progress = ProgressShared(setState, () {
     currentState = SendScreenStates.FileSending;
@@ -117,13 +118,24 @@ abstract class SendShared<T extends SendState> extends State<T> {
   }
 
   void handleSelectFile() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result != null) {
-      PlatformFile file = result.files.first;
-      send(file);
-    } else {
-      // User canceled the picker
+    if (!selectingFile) {
+      try {
+        this.setState(() {
+          selectingFile = true;
+        });
+        FilePickerResult? result =
+            await FilePicker.platform.pickFiles(allowMultiple: false);
+        if (result != null) {
+          PlatformFile file = result.files.first;
+          send(file);
+        } else {
+          // User canceled the picker
+        }
+      } finally {
+        this.setState(() {
+          selectingFile = false;
+        });
+      }
     }
   }
 
