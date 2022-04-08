@@ -27,14 +27,14 @@ class DTSendingProgress extends StatelessWidget {
           border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
         width: 300.0.w,
+        padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               children: [
                 Heading(
                   title: SENDING_IN_PROGRESS,
-                  marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.headline1,
                   // key: Key('Timing_Progress'),
                 ),
@@ -76,7 +76,9 @@ class DTSendingProgress extends StatelessWidget {
                 DTButton('Cancel', () {
                   cancel();
                 }),
-              ],
+                SizedBox(
+                  height: 120.0.h,
+                )              ],
             )
           ],
         ));

@@ -33,8 +33,9 @@ class DTCodeGeneration extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border.all(width: 2.0, color: CustomColors.purple),
       ),
+      padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
               child: SizedBox(
@@ -74,7 +75,7 @@ class DTCodeGeneration extends StatelessWidget {
                       cancelFunc();
                     }),
               SizedBox(
-                height: 37.0.h,
+                height: 120.0.h,
               )
             ],
           )

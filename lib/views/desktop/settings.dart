@@ -40,14 +40,14 @@ class _SettingsState extends SettingsShared<Settings> {
                 child: Container(
                     height: double.infinity,
                     color: Theme.of(context).dialogBackgroundColor,
-                    padding: EdgeInsets.only(top: 80.0.h),
+                    padding:
+                        EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
                     child: Column(
                       children: [
                         Heading(
                           title:
                               SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE,
                           textAlign: TextAlign.center,
-                          marginTop: 16.0.h,
                           textStyle: Theme.of(context).textTheme.headline1,
                           // key: Key('Timing_Progress'),
                         ),
