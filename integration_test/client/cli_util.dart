@@ -48,7 +48,6 @@ String recvTextGo(String code) {
 }
 
 Future<File> recvFileGo(String code, String filename) async {
-  final done = Completer<File>();
   final recvProcess = await Process.start(
     goCliFromTestFileDestPath,
     [
