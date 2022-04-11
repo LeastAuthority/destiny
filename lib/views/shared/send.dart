@@ -26,7 +26,9 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   final Config config;
   late final Client client = Client(config);
-  late CancelFunc cancelFunc;
+  CancelFunc cancelFunc = () {
+    print("No cancel function assigned. Doing nothing");
+  };
 
   ClientError? error;
   String? errorMessage;
@@ -105,7 +107,6 @@ abstract class SendShared<T extends SendState> extends State<T> {
       case SendScreenStates.SendError:
         return sendingError();
       case SendScreenStates.FileSending:
-        // TODO fix this
         return sendingProgress();
       case SendScreenStates.CodeGenerating:
       case SendScreenStates.CodeGenerated:

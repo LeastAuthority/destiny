@@ -63,6 +63,7 @@ add_dependencies(${BINARY_NAME} flutter_assemble)
 set_target_properties(${BINARY_NAME}
   PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/intermediates_do_not_run"
+  BUILD_WITH_INSTALL_RPATH TRUE
 )
 
 # Generated plugin build rules, which manage building the plugins and adding
