@@ -98,6 +98,14 @@ jobs:
       - name: "Build for linux"
         run: "flutter build linux lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }}"
 
+      - name: "rpath workaround"
+        run: |
+          cd build/linux/x64/release/bundle
+          patchelf --remove-needed libbindings.so dart_wormhole_gui
+          patchelf --add-needed libbindings.so dart_wormhole_gui
+          patchelf --remove-needed libwormhole_william.so dart_wormhole_gui
+          patchelf --add-needed libwormhole_william.so dart_wormhole_gui
+
       - name: "Zip executable and libraries"
         run: "7z a linux-${{ env.DESTINY_VERSION }}.zip build/linux/x64/release/bundle"
 
