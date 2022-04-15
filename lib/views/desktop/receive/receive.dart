@@ -30,38 +30,44 @@ class _ReceiveState extends ReceiveShared<Receive> {
         height: double.infinity,
         margin: EdgeInsets.fromLTRB(16.0.w, 0.0, 16.0.w, 4.0.w),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Heading(
               title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
               textStyle: Theme.of(context).textTheme.headline1,
             ),
-            CodeInputBox(
-                width: 400.0.w,
-                style: Theme.of(context).textTheme.bodyText1,
-                controller: controller,
-                codeChanged: codeChanged),
-            controller.text.length > 0
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DTButtonWithBackground(
-                        title: NEXT,
-                        onPressed: () {
-                          setState(() {
-                            receive();
-                          });
-                        },
-                        width: 100.0.w,
-                      ),
-                      SizedBox(
-                        width: 15.0.w,
-                      ),
-                    ],
-                  )
-                : Container(
-                    height: 30.0.h,
-                  )
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CodeInputBox(
+                      width: 400.0.w,
+                      style: Theme.of(context).textTheme.bodyText1,
+                      controller: controller,
+                      codeChanged: codeChanged),
+                  controller.text.length > 0
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            DTButtonWithBackground(
+                              title: NEXT,
+                              onPressed: () {
+                                setState(() {
+                                  receive();
+                                });
+                              },
+                              width: 100.0.w,
+                            ),
+                            SizedBox(
+                              width: 15.0.w,
+                            ),
+                          ],
+                        )
+                      : Container(
+                          height: 30.0.h,
+                        )
+                ],
+              ),
+            )
           ],
         ));
   }
@@ -86,7 +92,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receiveConfirmation() {
-    return ReceiveConfirmation(
+    return DTReceiveConfirmation(
         fileName, fileSize, acceptDownload, rejectDownload);
   }
 

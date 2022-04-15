@@ -41,17 +41,6 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
     }
   }
 
-  canWriteToDirectory(String directory) async {
-    try {
-      String path = nonExistingPathFor('$directory/test');
-      await File(path).writeAsBytes([]);
-      await File(path).delete();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
   void handleSelectFile() async {
     await canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {

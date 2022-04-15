@@ -33,8 +33,9 @@ class DTCodeGeneration extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border.all(width: 2.0, color: CustomColors.purple),
       ),
+      padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
               child: SizedBox(
@@ -48,7 +49,7 @@ class DTCodeGeneration extends StatelessWidget {
           DTRowGroupButton(code, isCodeGenerating),
           isCodeGenerating
               ? SizedBox(
-                  width: 400.0.w,
+                  width: 350.0.w,
                   child: Heading(
                     title:
                         SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE,
@@ -57,11 +58,14 @@ class DTCodeGeneration extends StatelessWidget {
                     key: Key(GENERATION_DESCRIPTION),
                   ),
                 )
-              : Heading(
-                  title: THE_TRANSFER_WILL_AUTO,
-                  marginTop: 16.0.h,
-                  textStyle: Theme.of(context).textTheme.subtitle2,
-                  key: Key(GENERATION_DESCRIPTION),
+              : SizedBox(
+                  width: 380.0.w,
+                  child: Heading(
+                    title: THE_TRANSFER_WILL_AUTO,
+                    marginTop: 16.0.h,
+                    textStyle: Theme.of(context).textTheme.subtitle2,
+                    key: Key(GENERATION_DESCRIPTION),
+                  ),
                 ),
           Column(
             children: [
@@ -74,7 +78,7 @@ class DTCodeGeneration extends StatelessWidget {
                       cancelFunc();
                     }),
               SizedBox(
-                height: 37.0.h,
+                height: 120.0.h,
               )
             ],
           )

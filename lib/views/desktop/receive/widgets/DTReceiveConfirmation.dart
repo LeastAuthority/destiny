@@ -7,13 +7,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/DTButton.dart';
 import '../../widgets/DTButtonWithBackground.dart';
 
-class ReceiveConfirmation extends StatelessWidget {
+class DTReceiveConfirmation extends StatelessWidget {
   final String fileName;
   final int fileSize;
   final Function acceptDownload;
   final Function rejectDownload;
 
-  ReceiveConfirmation(
+  DTReceiveConfirmation(
       this.fileName, this.fileSize, this.acceptDownload, this.rejectDownload);
   @override
   Widget build(BuildContext context) {
