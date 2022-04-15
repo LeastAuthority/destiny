@@ -5,6 +5,8 @@ import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import '../../config/routes/routes.dart';
+import '../../constants/app_constants.dart';
 
 enum SendScreenStates {
   TransferCancelled,
@@ -124,13 +126,30 @@ abstract class SendShared<T extends SendState> extends State<T> {
         this.setState(() {
           selectingFile = true;
         });
-        FilePickerResult? result =
-            await FilePicker.platform.pickFiles(allowMultiple: false);
-        if (result != null) {
-          PlatformFile file = result.files.first;
-          send(file);
-        } else {
-          // User canceled the picker
+        try {
+          PlatformFile tempEmptyFile =
+              new PlatformFile(name: 'Loading file...', size: 0);
+          FilePickerResult? result = await FilePicker.platform.pickFiles(
+              allowMultiple: false,
+              onFileLoading: (status) {
+                if (status.toString() == 'FilePickerStatus.picking') {
+                  setState(() {
+                    sendingFile = tempEmptyFile;
+                    currentState = SendScreenStates.CodeGenerating;
+                  });
+                }
+              });
+          if (result != null) {
+            PlatformFile file = result.files.first;
+            send(file);
+          }
+        } catch (e) {
+          setState(() {
+            currentState = SendScreenStates.FileSelecting;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(SPACE_AVAILABLE_IS_NOT_ENOUGH),
+          ));
         }
       } finally {
         this.setState(() {
@@ -141,9 +160,10 @@ abstract class SendShared<T extends SendState> extends State<T> {
   }
 
   void cancelSend() {
-    setState(() {
-      currentState = SendScreenStates.FileSelecting;
-    });
+    Navigator.pushReplacementNamed(
+      context,
+      SEND_ROUTE,
+    );
   }
 
   Widget build(BuildContext context);

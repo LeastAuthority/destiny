@@ -78,7 +78,8 @@ class DTSendingProgress extends StatelessWidget {
                 }),
                 SizedBox(
                   height: 120.0.h,
-                )              ],
+                )
+              ],
             )
           ],
         ));

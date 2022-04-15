@@ -64,3 +64,14 @@ String nonExistingPathFor(String path) {
     return path;
   }
 }
+
+canWriteToDirectory(String directory) async {
+  try {
+    String path = nonExistingPathFor('$directory/test');
+    await File(path).writeAsBytes([]);
+    await File(path).delete();
+    return true;
+  } catch (e) {
+    return false;
+  }
+}

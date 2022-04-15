@@ -59,7 +59,7 @@ class CodeGeneration extends StatelessWidget {
             Button(
               title: CANCEL,
               handleClicked: cancelSend,
-              disabled: true,
+              disabled: false,
             ),
             SizedBox(
               height: 37.0.h,
