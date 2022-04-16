@@ -5,11 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class DTErrorUI extends StatelessWidget {
   final String text;
   final String subText;
-  DTErrorUI({
-    this.text = '',
-    this.subText = '',
-    Key? key
-  }) : super(key: key);
+  DTErrorUI({this.text = '', this.subText = '', Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -85,7 +85,8 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget transferCancelled() {
-    return DTErrorUI(text: 'The transfer was interrupted.', subText: 'Please try again.');
+    return DTErrorUI(
+        text: 'The transfer was interrupted.', subText: 'Please try again.');
   }
 
   Widget transferRejected() {
@@ -104,16 +105,15 @@ class SendScreen extends SendShared<Send> {
                 key: Key(SEND_SCREEN_BODY),
                 padding: EdgeInsets.only(left: 125.0.w, right: 125.0.w),
                 child: Container(
-                  height: double.infinity,
-                  margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
-                  child: widgetByState(
-                      generateCodeUI,
-                      selectAFileUI,
-                      sendingError,
-                      sendingDone,
-                      sendingProgress,
-                      transferCancelled,
-                      transferRejected)
-                ))));
+                    height: double.infinity,
+                    margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
+                    child: widgetByState(
+                        generateCodeUI,
+                        selectAFileUI,
+                        sendingError,
+                        sendingDone,
+                        sendingProgress,
+                        transferCancelled,
+                        transferRejected)))));
   }
 }
