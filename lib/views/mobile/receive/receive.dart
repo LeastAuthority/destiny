@@ -28,7 +28,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
 
   Widget receiveProgress() {
     return ReceiveProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? THREE_DOTS);
+        progress.remainingTimeString ?? THREE_DOTS, this.cancelFunc);
   }
 
   Widget receiveConfirmation() {
@@ -78,13 +78,13 @@ class ReceiveScreen extends ReceiveShared<Receive> {
   }
 
   Widget transferCancelled() {
-    return Text("TODO implement transfer cancelled screen",
-        style: TextStyle(color: Colors.white));
+    return Text("The transfer has been interrupted. \nPlease try again.",
+        style: Theme.of(context).textTheme.headline6);
   }
 
   Widget transferRejected() {
-    return Text("TODO implement transfer rejected screen",
-        style: TextStyle(color: Colors.white));
+    return Text("The transfer has been cancelled \nby the sender.",
+        style: Theme.of(context).textTheme.headline6);
   }
 
   @override
