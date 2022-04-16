@@ -2,28 +2,27 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../widgets/CustomLinearProgressIndicator.dart';
 
-class SendingProgress extends StatefulWidget {
+class SendingProgress extends StatelessWidget {
   final int fileSize;
   final String fileName;
   final double percentage;
   final String remainingTimeString;
+  final CancelFunc cancel;
 
-  SendingProgress(
-      this.fileSize, this.fileName, this.percentage, this.remainingTimeString);
+  SendingProgress(this.fileSize, this.fileName, this.percentage,
+      this.remainingTimeString, this.cancel);
+
   @override
-  State<SendingProgress> createState() => _SendingProgressState();
-}
-
-class _SendingProgressState extends State<SendingProgress> {
   @protected
   @mustCallSuper
-  void initState() {
-    super.initState();
-  }
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class _SendingProgressState extends State<SendingProgress> {
           textStyle: Theme.of(context).textTheme.headline6,
           // key: Key('Timing_Progress'),
         ),
-        FileInfo(widget.fileSize, widget.fileName),
+        FileInfo(fileSize, fileName),
         Padding(
             padding: EdgeInsets.fromLTRB(30.0.w, 0, 30.0.w, 0),
             child: Column(
@@ -47,11 +46,11 @@ class _SendingProgressState extends State<SendingProgress> {
                   margin: EdgeInsets.only(top: 32.0.h),
                   height: 8.0.h,
                   child: CustomLinearProgressIndicator(
-                    value: widget.percentage,
+                    value: percentage,
                   ),
                 ),
                 Heading(
-                  title: '${widget.remainingTimeString}',
+                  title: '${remainingTimeString}',
                   textAlign: TextAlign.center,
                   marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.bodyText1,
@@ -66,7 +65,12 @@ class _SendingProgressState extends State<SendingProgress> {
                 ),
               ],
             )),
-        Button(title: CANCEL, handleClicked: () {}, disabled: false),
+        Button(
+            title: CANCEL,
+            handleClicked: () {
+              cancel();
+            },
+            disabled: false),
         SizedBox(
           height: 38.0.h,
         )
