@@ -36,12 +36,18 @@ class _SettingsState extends SettingsShared<Settings> {
                 Column(
                   children: [
                     Heading(
-                      title: '$SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE '
-                          '$CURRENT_SAVE_DESTINATION ',
+                      title:
+                          '$SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE ',
                       textAlign: TextAlign.left,
                       marginTop: 0,
                       textStyle: Theme.of(context).textTheme.headline6,
                       key: Key(SETTINGS_SCREEN_HEADING),
+                    ),
+                    Heading(
+                      title: '$CURRENT_SAVE_DESTINATION ',
+                      textAlign: TextAlign.left,
+                      marginTop: 10.0.h,
+                      textStyle: Theme.of(context).textTheme.headline6,
                     ),
                     Heading(
                       textAlign: TextAlign.left,

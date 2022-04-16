@@ -45,7 +45,8 @@ class SendScreen extends SendShared<Send> {
         progress.remainingTimeString ??
             (progress.percentage - 1.0 <= 0.001
                 ? WAITING_FOR_RECEIVER
-                : THREE_DOTS));
+                : THREE_DOTS),
+        this.cancelFunc);
   }
 
   Widget sendingDone() {
@@ -63,13 +64,13 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget transferCancelled() {
-    return Text("TODO implement transfer cancelled screen",
-        style: TextStyle(color: Colors.white));
+    return Text("The transfer has been interrupted. \nPlease try again.",
+        style: Theme.of(context).textTheme.headline6);
   }
 
   Widget transferRejected() {
-    return Text("TODO implement transfer rejected screen",
-        style: TextStyle(color: Colors.white));
+    return Text("The transfer has been cancelled by \nthe receiver.",
+        style: Theme.of(context).textTheme.headline6);
   }
 
   @override

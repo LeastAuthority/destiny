@@ -3,6 +3,7 @@ import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTCodeGeneration.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTErrorUI.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTSelectAFile.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTSendingProgress.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
@@ -84,13 +85,12 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget transferCancelled() {
-    return Text("TODO implement transfer cancelled screen",
-        style: TextStyle(color: Colors.white));
+    return DTErrorUI(
+        text: 'The transfer was interrupted.', subText: 'Please try again.');
   }
 
   Widget transferRejected() {
-    return Text("TODO implement transfer rejected screen",
-        style: TextStyle(color: Colors.white));
+    return DTErrorUI(text: 'The transfer was cancelled by the receiver.');
   }
 
   @override

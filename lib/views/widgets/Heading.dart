@@ -32,7 +32,7 @@ class Heading extends StatelessWidget {
                 new TextSpan(text: title),
                 new TextSpan(
                     text: ' $path',
-                    style: Theme.of(context).textTheme.headline3)
+                    style: Theme.of(context).textTheme.subtitle1)
               ],
             ),
           ));

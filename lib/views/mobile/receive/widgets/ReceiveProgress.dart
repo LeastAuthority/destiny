@@ -2,25 +2,22 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../widgets/CustomLinearProgressIndicator.dart';
 
-class ReceiveProgress extends StatefulWidget {
+class ReceiveProgress extends StatelessWidget {
   final int fileSize;
   final String fileName;
   final double percentage;
   final String remainingTimeString;
+  final CancelFunc cancel;
 
-  ReceiveProgress(
-      this.fileSize, this.fileName, this.percentage, this.remainingTimeString);
+  ReceiveProgress(this.fileSize, this.fileName, this.percentage,
+      this.remainingTimeString, this.cancel);
 
-  @override
-  State<ReceiveProgress> createState() => _ReceiveProgressState();
-}
-
-class _ReceiveProgressState extends State<ReceiveProgress> {
   late final DateTime startingTime;
   int previousSent = 0;
   int sentPerSecond = 1;
@@ -28,7 +25,7 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
   @protected
   @mustCallSuper
   void initState() {
-    super.initState();
+    // super.initState();
     startingTime = DateTime.now();
   }
 
@@ -45,17 +42,17 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
         ),
         Column(
           children: [
-            FileInfo(widget.fileSize, widget.fileName),
+            FileInfo(fileSize, fileName),
             Container(
               width: 284.0.w,
               margin: EdgeInsets.only(top: 32.0.h),
               height: 8.0.h,
               child: CustomLinearProgressIndicator(
-                value: widget.percentage,
+                value: percentage,
               ),
             ),
             Heading(
-              title: '${widget.remainingTimeString}',
+              title: '${remainingTimeString}',
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText1,
               key: Key(TIMING_PROGRESS),
@@ -68,7 +65,12 @@ class _ReceiveProgressState extends State<ReceiveProgress> {
             ),
           ],
         ),
-        Button(title: CANCEL, handleClicked: () {}, disabled: false),
+        Button(
+            title: CANCEL,
+            handleClicked: () {
+              cancel();
+            },
+            disabled: false),
         SizedBox(
           height: 37.0.h,
         )
