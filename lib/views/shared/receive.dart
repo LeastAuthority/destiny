@@ -106,8 +106,14 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
             this.setState(() {
               currentState = ReceiveScreenStates.FileReceived;
             });
-            return tempFile.rename(
-                nonExistingPathFor("$path/${result.pendingDownload.fileName}"));
+            if (!Platform.isWindows) {
+              tempFile.rename(nonExistingPathFor(
+                  "$path/${result.pendingDownload.fileName}"));
+            } else {
+              tempFile.copySync(nonExistingPathFor(
+                  "$path/${result.pendingDownload.fileName}"));
+              tempFile.deleteSync();
+            }
           }, onError: (error, stacktrace) {
             this.setState(() {
               this.currentState = ReceiveScreenStates.ReceiveError;
