@@ -2,8 +2,6 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../widgets/DTButton.dart';
 import '../../widgets/DTButtonWithBackground.dart';
 
@@ -29,7 +27,7 @@ class DTReceiveConfirmation extends StatelessWidget {
               // key: Key('Timing_Progress'),
             ),
             SizedBox(
-              height: 70.0.h,
+              height: 70.0,
             ),
             FileInfo(fileSize, fileName),
           ],
@@ -38,12 +36,12 @@ class DTReceiveConfirmation extends StatelessWidget {
           children: [
             Heading(
               title: PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED,
-              marginTop: 16.0.h,
+              marginTop: 16.0,
               textStyle: Theme.of(context).textTheme.headline6,
               key: Key(APP_MUST_REMAIN_OPEN),
             ),
             SizedBox(
-              height: 40.0.h,
+              height: 40.0,
             ),
             Container(
               child: Row(
@@ -51,21 +49,23 @@ class DTReceiveConfirmation extends StatelessWidget {
                 children: [
                   DTButton(CANCEL, rejectDownload),
                   SizedBox(
-                    width: 10.0.w,
+                    width: 10.0,
                   ),
                   DTButtonWithBackground(
-                      onPressed: () {
-                        acceptDownload();
-                      },
-                      title: DOWNLOAD,
-                      width: 120.0.w),
+                    onPressed: () {
+                      acceptDownload();
+                    },
+                    title: DOWNLOAD,
+                    width: 120.0,
+                    disabled: false,
+                  ),
                 ],
               ),
             ),
           ],
         ),
         SizedBox(
-          height: 1.0.h,
+          height: 1.0,
         )
       ],
     );

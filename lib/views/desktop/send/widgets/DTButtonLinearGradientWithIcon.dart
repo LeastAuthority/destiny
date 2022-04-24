@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTButtonLinearGradientWithIcon extends StatelessWidget {
   final String label;
@@ -62,10 +61,10 @@ class DTButtonLinearGradientWithIcon extends StatelessWidget {
                         Text(label,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headline2),
-                        SizedBox(width: 15.0.w),
+                        SizedBox(width: 15.0),
                         SizedBox(
-                          width: 25.0.w,
-                          height: 25.0.h,
+                          width: 25.0,
+                          height: 25.0,
                           child: icon,
                         ),
                       ],

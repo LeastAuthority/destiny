@@ -4,11 +4,13 @@ import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../shared/receive.dart';
 
@@ -57,6 +59,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
             child: EnterCode(
                 key: Key(RECEIVE_SCREEN_ENTER_CODE),
                 codeChanged: codeChanged,
+                isRequestingConnection: isRequestingConnection,
                 controller: controller,
                 handleNextClicked: () {
                   this.setState(() {
@@ -78,13 +81,45 @@ class ReceiveScreen extends ReceiveShared<Receive> {
   }
 
   Widget transferCancelled() {
-    return Text("The transfer has been interrupted. \nPlease try again.",
-        style: Theme.of(context).textTheme.headline6);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("The transfer has been interrupted. \nPlease try again.",
+            textAlign: TextAlign.left,
+            style: Theme.of(context).textTheme.headline6),
+        Container(
+          alignment: Alignment.center,
+          child: ButtonWithBackground(
+              width: 200.0.w,
+              height: 60.0.h,
+              title: "Send a file",
+              handleClicked: () {
+                Navigator.pushReplacementNamed(
+                  context,
+                  SEND_ROUTE,
+                );
+              },
+              fontSize: 18.0.sp),
+        ),
+        SizedBox(
+          height: 150.0.h,
+        )
+      ],
+    );
   }
 
   Widget transferRejected() {
-    return Text("The transfer has been cancelled \nby the sender.",
-        style: Theme.of(context).textTheme.headline6);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text("The transfer has been cancelled \nby the sender.",
+            style: Theme.of(context).textTheme.headline6),
+        SizedBox(
+          height: 250.0.h,
+        )
+      ],
+    );
   }
 
   @override

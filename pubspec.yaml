@@ -25,6 +25,10 @@ dependencies:
     path: ./dart_wormhole_william
   flutter_screenutil: 5.2.0
   shared_preferences: ^2.0.6
+  window_size:
+    git:
+      url:  https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
   basic_utils:
     git:
       url: https://github.com/Ephenodrom/Dart-Basic-Utils
@@ -46,6 +50,7 @@ dependencies:
   desktop_drop: ^0.3.0
   permission_handler: ^8.3.0
   open_file: ^3.2.1
+  flutter_spinkit: ^5.1.0
 window_size:
   git:
     url: git://github.com/google/flutter-desktop-embedding.git

@@ -1,6 +1,5 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTButton extends StatefulWidget {
   final String title;
@@ -24,8 +23,8 @@ class _CustomAppBarState extends State<DTButton> {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border.all(width: 1.0, color: CustomColors.purple),
       ),
-      width: 100.0.w,
-      height: 30.0.h,
+      width: 100.0,
+      height: 30.0,
       child: TextButton(
         onPressed: () {
           onPressed();

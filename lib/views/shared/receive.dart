@@ -25,6 +25,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   String? _code;
   late int fileSize;
   late String fileName;
+  late bool isRequestingConnection = false;
 
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
@@ -100,7 +101,9 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return await canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
         late final File tempFile;
-
+        this.setState(() {
+          isRequestingConnection = true;
+        });
         return client.recvFile(_code!, progress.progressHandler).then((result) {
           result.done.then((value) {
             this.setState(() {

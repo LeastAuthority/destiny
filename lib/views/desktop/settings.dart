@@ -41,7 +41,7 @@ class _SettingsState extends SettingsShared<Settings> {
                     height: double.infinity,
                     color: Theme.of(context).dialogBackgroundColor,
                     padding:
-                        EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
+                        EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0.h),
                     child: Column(
                       children: [
                         Heading(
@@ -67,7 +67,8 @@ class _SettingsState extends SettingsShared<Settings> {
                             DTButtonWithBackground(
                               onPressed: handleSelectFile,
                               title: SELECT_A_FOLDER,
-                              width: 150.0.w,
+                              width: 150.0,
+                              disabled: false,
                             )
                           ],
                         ),

@@ -7,11 +7,13 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 class EnterCode extends StatelessWidget {
   final Function codeChanged;
   final Function handleNextClicked;
+  final bool isRequestingConnection;
   final TextEditingController controller;
   EnterCode(
       {Key? key,
       required this.codeChanged,
       required this.handleNextClicked,
+      required this.isRequestingConnection,
       required final this.controller})
       : super(key: key);
   @override
@@ -28,7 +30,7 @@ class EnterCode extends StatelessWidget {
               codeChanged: (String code) {
                 codeChanged(code);
               }),
-          controller.text.length > 0
+          controller.text.length > 0 && !isRequestingConnection
               ? ButtonWithBackground(
                   fontSize: 14.0.sp,
                   title: NEXT,
@@ -39,7 +41,7 @@ class EnterCode extends StatelessWidget {
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED))
               : ButtonWithBackground(
                   fontSize: 14.0.sp,
-                  title: NEXT,
+                  title: isRequestingConnection ? 'Please wait...' : NEXT,
                   handleClicked: handleNextClicked,
                   disabled: true,
                   width: 120.0.w,

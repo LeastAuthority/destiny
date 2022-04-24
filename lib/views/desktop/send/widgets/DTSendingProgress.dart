@@ -27,7 +27,7 @@ class DTSendingProgress extends StatelessWidget {
           border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
         width: 300.0.w,
-        padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
+        padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -39,33 +39,29 @@ class DTSendingProgress extends StatelessWidget {
                   // key: Key('Timing_Progress'),
                 ),
                 SizedBox(
-                  height: 40.0.h,
+                  height: 40.0,
                 ),
                 DTFileInfo(totalSize, fileName),
                 Container(
-                  margin: EdgeInsets.only(top: 32.0.h),
-                  width: 280.0.w,
-                  height: 5.0.h,
+                  margin: EdgeInsets.only(top: 32.0),
+                  width: 280.0,
+                  height: 5.0,
                   child: CustomLinearProgressIndicator(
                     value: percentage,
                   ),
                 ),
                 Heading(
                   title: remainingTimeString,
-                  marginTop: 16.0.h,
-                  textStyle: Theme.of(context).textTheme.subtitle2,
+                  marginTop: 16.0,
+                  textStyle: Theme.of(context).textTheme.subtitle1,
                   key: Key('Timing_Progress'),
                 ),
-              ],
-            ),
-            Column(
-              children: [
                 Container(
-                  width: 260.0.w,
+                  width: 260.0,
                   child: Heading(
+                    marginTop: 40.0,
                     title:
                         'App must remain open until the transfer is complete.',
-                    // marginTop: 16.0.h,
                     textStyle: Theme.of(context).textTheme.headline5,
                     key: Key('APP_MUST_REMAIN_OPEN'),
                   ),
@@ -77,10 +73,10 @@ class DTSendingProgress extends StatelessWidget {
                   cancel();
                 }),
                 SizedBox(
-                  height: 120.0.h,
+                  height: 120.0,
                 )
               ],
-            )
+            ),
           ],
         ));
   }
