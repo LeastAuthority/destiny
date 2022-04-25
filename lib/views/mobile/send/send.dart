@@ -56,9 +56,7 @@ class SendScreen extends SendShared<Send> {
   Widget sendingError() {
     return Column(
       children: [
-        Heading(title: "ERROR"),
         Heading(title: errorMessage ?? "Unknown error"),
-        Heading(title: "Stacktrace: ${stacktrace?.toString()}")
       ],
     );
   }

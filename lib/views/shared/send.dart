@@ -34,7 +34,6 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   ClientError? error;
   String? errorMessage;
-  StackTrace? stacktrace;
 
   SendShared(this.config);
 
@@ -71,7 +70,6 @@ abstract class SendShared<T extends SendState> extends State<T> {
           this.currentState = SendScreenStates.SendError;
           this.error = error;
           this.errorMessage = "Error sending file: $error";
-          this.stacktrace = stacktrace as StackTrace;
           print("Error sending file\n$error\n$stacktrace");
 
           if (error is ClientError) {
@@ -81,6 +79,9 @@ abstract class SendShared<T extends SendState> extends State<T> {
                 break;
               case ErrCodeTransferCancelled:
                 this.currentState = SendScreenStates.TransferCancelled;
+                break;
+              case ErrCodeWrongCode:
+                this.errorMessage = ERR_WRONG_CODE_SENDER;
             }
           }
         });

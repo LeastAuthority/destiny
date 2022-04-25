@@ -73,9 +73,7 @@ class ReceiveScreen extends ReceiveShared<Receive> {
   Widget receiveError() {
     return Column(
       children: [
-        Heading(title: "ERROR"),
         Heading(title: errorMessage ?? "Unknown error"),
-        Heading(title: "Stacktrace: ${stacktrace?.toString()}")
       ],
     );
   }

@@ -38,13 +38,13 @@ class SendScreen extends SendShared<Send> {
 
   Widget generateCodeUI() {
     return DTCodeGeneration(
-      fileName: fileName,
-      fileSize: fileSize,
-      code: code ?? GENERATING,
-      isCodeGenerating: currentState == SendScreenStates.CodeGenerating,
-      cancelFunc: cancelFunc,
-      // cancelSend,
-      key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+      fileName,
+      fileSize,
+      code ?? GENERATING,
+      currentState == SendScreenStates.CodeGenerating,
+      () {
+        this.cancelFunc();
+      },
     );
   }
 
@@ -75,13 +75,7 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingError() {
-    return Column(
-      children: [
-        Heading(title: "ERROR"),
-        Heading(title: errorMessage ?? "Unknown error"),
-        Heading(title: "Stacktrace: ${stacktrace?.toString()}")
-      ],
-    );
+    return DTErrorUI(text: errorMessage ?? "Unknown error");
   }
 
   Widget transferCancelled() {

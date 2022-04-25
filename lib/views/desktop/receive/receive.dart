@@ -81,13 +81,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receiveError() {
-    return Column(
-      children: [
-        Heading(title: "ERROR"),
-        Heading(title: errorMessage ?? "Unknown error"),
-        Heading(title: "Stacktrace: ${stacktrace?.toString()}")
-      ],
-    );
+    return DTErrorUI(text: errorMessage ?? "Unknown error");
   }
 
   Widget receiveProgress() {

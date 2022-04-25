@@ -142,6 +142,14 @@ const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
 
 const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
+const String ERR_WRONG_CODE_RECEIVER = """Oops..
+If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
+Please ask the sender for a new code and for them to stay connected until you get the file.""";
+
+const String ERR_WRONG_CODE_SENDER = """Oops..
+The receiver has entered the wrong code.
+Please try sending the file again""";
+
 final Config magic_wormhole_io = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
   transitRelayUrl: "tcp:transit.magic-wormhole.io:4001",
