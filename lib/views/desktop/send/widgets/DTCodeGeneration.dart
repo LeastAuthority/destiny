@@ -16,14 +16,8 @@ class DTCodeGeneration extends StatelessWidget {
   final bool isCodeGenerating;
   final CancelFunc cancelFunc;
 
-  DTCodeGeneration(
-      {Key? key,
-      required this.fileName,
-      required this.fileSize,
-      required this.code,
-      required this.isCodeGenerating,
-      required this.cancelFunc})
-      : super(key: key);
+  DTCodeGeneration(this.fileName, this.fileSize, this.code,
+      this.isCodeGenerating, this.cancelFunc);
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +53,9 @@ class DTCodeGeneration extends StatelessWidget {
           SizedBox(
             height: 40.0,
           ),
-          isCodeGenerating
-              ? DTButton(
-                  CANCEL,
-                  () {},
-                )
-              : DTButton(CANCEL, () {
-                  cancelFunc();
-                }),
+          DTButton(CANCEL, () {
+            cancelFunc();
+          }),
           SizedBox(
             height: 150.0,
           )

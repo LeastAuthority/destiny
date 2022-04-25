@@ -33,7 +33,6 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   late final String? defaultPathForPlatform;
   String? error;
   String? errorMessage;
-  StackTrace? stacktrace;
 
   late final TextEditingController controller = new TextEditingController();
   late final Client client = Client(config);
@@ -97,6 +96,30 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return "$prefix.$suffix";
   }
 
+  void defaultErrorHandler(Object error, Object stacktrace) {
+    this.setState(() {
+      this.currentState = ReceiveScreenStates.ReceiveError;
+      this.error = error.toString();
+      this.errorMessage = "Failed to receive file: $error";
+      print("Error receiving file\n$error\n$stacktrace");
+
+      if (error is ClientError) {
+        switch (error.errorCode) {
+          case ErrCodeTransferRejected:
+            this.currentState = ReceiveScreenStates.TransferRejected;
+            break;
+          case ErrCodeTransferCancelled:
+            this.currentState = ReceiveScreenStates.TransferCancelled;
+            break;
+          case ErrCodeWrongCode:
+            this.errorMessage = ERR_WRONG_CODE_RECEIVER;
+        }
+      }
+    });
+
+    throw error;
+  }
+
   Future<ReceiveFileResult> receive() async {
     return await canWriteToFile().then((permissionStatus) async {
       if (permissionStatus == PermissionStatus.granted) {
@@ -117,28 +140,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
                   "$path/${result.pendingDownload.fileName}"));
               tempFile.deleteSync();
             }
-          }, onError: (error, stacktrace) {
-            this.setState(() {
-              this.currentState = ReceiveScreenStates.ReceiveError;
-              this.error = error.toString();
-              this.stacktrace = stacktrace as StackTrace;
-              this.errorMessage = "Failed to receive file: $error";
-              print("Error receiving file\n$error\n$stacktrace");
-
-              if (error is ClientError) {
-                switch (error.errorCode) {
-                  case ErrCodeTransferRejected:
-                    this.currentState = ReceiveScreenStates.TransferRejected;
-                    break;
-                  case ErrCodeTransferCancelled:
-                    this.currentState = ReceiveScreenStates.TransferCancelled;
-                    break;
-                }
-              }
-            });
-
-            throw error;
-          });
+          }, onError: defaultErrorHandler);
 
           this.setState(() {
             currentState = ReceiveScreenStates.ReceiveConfirmation;
@@ -163,7 +165,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
           });
 
           return result;
-        });
+        }, onError: defaultErrorHandler);
       } else {
         return Future.error(Exception("Permission denied"));
       }
