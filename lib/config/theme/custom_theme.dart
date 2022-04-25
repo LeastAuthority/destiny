@@ -84,47 +84,47 @@ class CustomTheme {
       textTheme: TextTheme(
         headline1: TextStyle(
           color: CustomColors.babyPowder,
-          fontSize: 25.sp,
+          fontSize: 25.0,
           fontFamily: MONTSERRAT_THIN,
         ),
         headline2: TextStyle(
           color: CustomColors.babyPowder,
-          fontSize: 20.sp,
+          fontSize: 20.0,
           fontFamily: MONTSERRAT_MEDIUM,
         ),
         headline3: TextStyle(
           color: CustomColors.babyPowder,
-          fontSize: 17.sp,
+          fontSize: 17.0,
           fontFamily: MONTSERRAT_EXTRA_BOLD,
         ),
         headline4: TextStyle(
           color: CustomColors.babyPowder,
-          fontSize: 14.sp,
+          fontSize: 14.0,
           fontFamily: MONTSERRAT_SEMI_BOLD,
         ),
         headline5: TextStyle(
           color: CustomColors.babyPowderLight,
-          fontSize: 17.sp,
+          fontSize: 17.0,
           fontFamily: MONTSERRAT,
         ),
         headline6: TextStyle(
           color: CustomColors.babyPowderLight,
-          fontSize: 17.sp,
+          fontSize: 17.0,
           fontFamily: MONTSERRAT_THIN,
         ),
         bodyText1: TextStyle(
           color: CustomColors.babyPowderLight,
-          fontSize: 22.sp,
+          fontSize: 22.0,
           fontFamily: MONTSERRAT_THIN,
         ),
         subtitle1: TextStyle(
-          color: CustomColors.black,
-          fontSize: 17.sp,
+          color: CustomColors.babyPowderLight,
+          fontSize: 17.0,
           fontFamily: MONTSERRAT_LIGHT,
         ),
         subtitle2: TextStyle(
-          color: CustomColors.babyPowderLight,
-          fontSize: 17.sp,
+          color: CustomColors.black,
+          fontSize: 17.0,
           fontFamily: MONTSERRAT_LIGHT,
         ),
       ),

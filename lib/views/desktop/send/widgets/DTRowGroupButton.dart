@@ -3,7 +3,7 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTButtonLinearGradientWithIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'DTButtonWithIcon.dart';
 
@@ -23,17 +23,17 @@ class DTRowGroupButton extends StatelessWidget {
           isCodeGenerating: isCodeGenerating,
           handleSelectFile: () {},
           icon: isCodeGenerating
-              ? CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.secondary,
-                  value: 0.75,
-                  semanticsLabel: 'Linear progress indicator',
+              ? SpinKitRing(
+                  lineWidth: 2.0,
+                  color: Colors.white,
+                  size: 50.0,
                 )
               : null,
-          height: 60.0.h,
-          width: !isCodeGenerating ? 350.0.w : 400.0.w,
+          height: 60.0,
+          width: !isCodeGenerating ? 350.0 : 400.0,
         ),
         SizedBox(
-          width: 8.0.w,
+          width: 8.0,
         ),
         !isCodeGenerating
             ? DTButtonWithIcon(
@@ -41,7 +41,7 @@ class DTRowGroupButton extends StatelessWidget {
                 textStyle: TextStyle(
                   fontFamily: Theme.of(context).textTheme.headline5?.fontFamily,
                   color: Theme.of(context).textTheme.headline5?.color,
-                  fontSize: 12.0.sp,
+                  fontSize: 12.0,
                 ),
                 handleSelectFile: () {
                   Clipboard.setData(ClipboardData(text: code));
@@ -51,11 +51,11 @@ class DTRowGroupButton extends StatelessWidget {
                 },
                 icon: Image.asset(
                   COPY_ICON,
-                  width: 30.0.w,
-                  height: 30.0.h,
+                  width: 30.0,
+                  height: 30.0,
                 ),
-                width: 50.0.w,
-                height: 60.0.h,
+                width: 50.0,
+                height: 60.0,
                 isVertical: true,
               )
             : Container(),

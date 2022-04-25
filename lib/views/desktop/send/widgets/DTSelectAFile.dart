@@ -24,20 +24,10 @@ class DTSelectAFile extends StatelessWidget {
         onDragDone: (detail) async {
           handleFileDroped(detail.files.first);
         },
-        onDragEntered: (detail) {
-          // print(detail);
-          // setState(() {
-          //   // _dragging = true;
-          // });
-        },
-        onDragExited: (detail) {
-          // setState(() {
-          //   // _dragging = false;
-          // });
-        },
         child: Container(
+          padding: EdgeInsets.only(top: 80.0.h),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Heading(
                 title: SEND_FILES_SIMPLE_SECURE_FAST,
@@ -52,7 +42,7 @@ class DTSelectAFile extends StatelessWidget {
                   Heading(
                     title: OR,
                     textStyle: Theme.of(context).textTheme.headline5,
-                    marginTop: 26.0.h,
+                    marginTop: 26.0,
                   ),
                 ],
               ),
@@ -62,11 +52,18 @@ class DTSelectAFile extends StatelessWidget {
                     onTap: () {
                       handleSelectFile();
                     },
-                    child: Image.asset(
-                      PLUS_ICON,
-                      width: 250.0.w,
+                    child: Container(
+                      height: 200.0,
+                      width: 250.0,
+                      child: Image.asset(
+                        PLUS_ICON,
+                        width: 250.0,
+                      ),
                     ),
-                  ))
+                  )),
+              SizedBox(
+                height: 20.0,
+              )
             ],
           ),
         ),

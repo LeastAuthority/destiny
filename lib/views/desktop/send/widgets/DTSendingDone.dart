@@ -18,7 +18,7 @@ class SendingDone extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(4.0)),
           border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
-        padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
+        padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -32,16 +32,16 @@ class SendingDone extends StatelessWidget {
             Heading(
               title: FILE_SENT,
               textAlign: TextAlign.center,
-              marginTop: 16.0.h,
+              marginTop: 16.0,
               textStyle: Theme.of(context).textTheme.headline1,
               key: Key('Timing_Progress'),
             ),
             Image.asset(
               CHECK_ICON,
-              width: 64.0.w,
+              width: 64.0,
             ),
             SizedBox(
-              height: 150.0.h,
+              height: 150.0,
             )
           ],
         ));

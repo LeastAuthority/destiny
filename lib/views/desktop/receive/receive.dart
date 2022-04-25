@@ -12,6 +12,7 @@ import '../../shared/receive.dart';
 import '../../desktop/receive/widgets/DTReceivingDone.dart';
 import '../../desktop/receive/widgets/DTReceiveProgress.dart';
 import '../../desktop/receive/widgets/DTReceiveConfirmation.dart';
+import '../send/widgets/DTErrorUI.dart';
 
 final TextEditingController controller = new TextEditingController();
 
@@ -40,7 +41,7 @@ class _ReceiveState extends ReceiveShared<Receive> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CodeInputBox(
-                      width: 400.0.w,
+                      width: 400.0,
                       style: Theme.of(context).textTheme.bodyText1,
                       controller: controller,
                       codeChanged: codeChanged),
@@ -49,21 +50,24 @@ class _ReceiveState extends ReceiveShared<Receive> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             DTButtonWithBackground(
-                              title: NEXT,
+                              title: isRequestingConnection
+                                  ? 'Please wait...'
+                                  : NEXT,
                               onPressed: () {
                                 setState(() {
                                   receive();
                                 });
                               },
-                              width: 100.0.w,
+                              width: 150.0,
+                              disabled: isRequestingConnection ? true : false,
                             ),
                             SizedBox(
-                              width: 15.0.w,
+                              width: 15.0,
                             ),
                           ],
                         )
                       : Container(
-                          height: 30.0.h,
+                          height: 30.0,
                         )
                 ],
               ),
@@ -97,13 +101,12 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget transferCancelled() {
-    return Text("TODO implement transfer cancelled screen",
-        style: TextStyle(color: Colors.white));
+    return DTErrorUI(
+        text: 'The transfer was interrupted.', subText: 'Please try again.');
   }
 
   Widget transferRejected() {
-    return Text("TODO implement transfer rejected screen",
-        style: TextStyle(color: Colors.white));
+    return DTErrorUI(text: 'The transfer was cancelled by the receiver.');
   }
 
   @override

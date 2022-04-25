@@ -1,7 +1,6 @@
 import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DTFileInfo extends StatelessWidget {
   final int? fileSize;
@@ -14,7 +13,7 @@ class DTFileInfo extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 32.0.h),
+          margin: EdgeInsets.only(top: 32.0),
           child: Align(
             alignment: Alignment.center,
             child: Text(
@@ -27,7 +26,7 @@ class DTFileInfo extends StatelessWidget {
           title: '(${fileSize?.readableSize})',
           textAlign: TextAlign.center,
           marginTop: 0,
-          textStyle: Theme.of(context).textTheme.subtitle2,
+          textStyle: Theme.of(context).textTheme.subtitle1,
           key: Key('File_Info_Description'),
         ),
       ],

@@ -2,7 +2,6 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../widgets/CustomLinearProgressIndicator.dart';
 import '../../widgets/DTButton.dart';
 import '../../widgets/DTFileInfo.dart';
@@ -38,8 +37,8 @@ class _ReceiveProgressState extends State<DTReceiveProgress> {
           children: [
             DTFileInfo(widget.fileSize, widget.fileName),
             Container(
-              width: 284.0.w,
-              margin: EdgeInsets.only(top: 32.0.h),
+              width: 284.0,
+              margin: EdgeInsets.only(top: 32.0),
               child: CustomLinearProgressIndicator(
                 value: widget.percentage,
               ),
@@ -47,15 +46,15 @@ class _ReceiveProgressState extends State<DTReceiveProgress> {
             Heading(
               title: '${widget.remainingTimeString}',
               textAlign: TextAlign.center,
-              marginTop: 16.0.h,
-              textStyle: Theme.of(context).textTheme.subtitle2,
+              marginTop: 16.0,
+              textStyle: Theme.of(context).textTheme.subtitle1,
               key: Key('Timing_Progress'),
             ),
             SizedBox(
-              width: 500.0.w,
+              width: 500.0,
               child: Heading(
                 title: THE_APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETED,
-                marginTop: 16.0.h,
+                marginTop: 16.0,
                 textStyle: Theme.of(context).textTheme.bodyText1,
                 key: Key(APP_MUST_REMAIN_OPEN),
               ),
@@ -66,7 +65,7 @@ class _ReceiveProgressState extends State<DTReceiveProgress> {
           cancel();
         }),
         SizedBox(
-          height: 37.0.h,
+          height: 37.0,
         )
       ],
     );

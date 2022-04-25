@@ -27,10 +27,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: dcb0dcd12235d6e4fdeef7dfcfbd1fc34379fb23
+      resolved-ref: d61f00d2dc72aba984ac2c709e3989f66ab936a3
       url: "https://github.com/Ephenodrom/Dart-Basic-Utils"
     source: git
-    version: "4.2.0"
+    version: "4.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -174,6 +174,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.2.0"
+  flutter_spinkit:
+    dependency: "direct main"
+    description:
+      name: flutter_spinkit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -530,6 +537,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.1"
+  window_size:
+    dependency: "direct main"
+    description:
+      path: "plugins/window_size"
+      ref: HEAD
+      resolved-ref: "5c51870ced62a00e809ba4b81a846a052d241c9f"
+      url: "https://github.com/google/flutter-desktop-embedding.git"
+    source: git
+    version: "0.1.0"
   xdg_directories:
     dependency: transitive
     description:

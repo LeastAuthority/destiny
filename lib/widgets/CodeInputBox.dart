@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 
 class CodeInputBox extends StatelessWidget {
@@ -27,7 +26,7 @@ class CodeInputBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: width - 30.0.w,
+            width: width - 30.0,
             child: TextField(
               controller: controller,
               onChanged: (txt) {
@@ -59,10 +58,10 @@ class CodeInputBox extends StatelessWidget {
                     children: [
                       Text(X,
                           style: TextStyle(
-                              fontSize: 22.0.sp,
+                              fontSize: 22.0,
                               color: Theme.of(context).colorScheme.secondary)),
                       SizedBox(
-                        height: 37.0.h,
+                        height: 37.0,
                       )
                     ],
                   )
