@@ -53,7 +53,7 @@ class DTSelectAFile extends StatelessWidget {
                       handleSelectFile();
                     },
                     child: Container(
-                      height: 250.0,
+                      height: 200.0,
                       width: 250.0,
                       child: Image.asset(
                         PLUS_ICON,
@@ -62,7 +62,7 @@ class DTSelectAFile extends StatelessWidget {
                     ),
                   )),
               SizedBox(
-                height: 40.0.h,
+                height: 20.0,
               )
             ],
           ),

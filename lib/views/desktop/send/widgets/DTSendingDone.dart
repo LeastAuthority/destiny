@@ -4,6 +4,7 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/desktop//widgets/DTFileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SendingDone extends StatelessWidget {
   final int fileSize;
@@ -17,7 +18,7 @@ class SendingDone extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(4.0)),
           border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
-        padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0),
+        padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

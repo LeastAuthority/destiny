@@ -5,6 +5,7 @@ import 'package:dart_wormhole_gui/views/desktop/widgets/DTFileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'DTRowGroupButton.dart';
 
@@ -32,7 +33,7 @@ class DTCodeGeneration extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border.all(width: 2.0, color: CustomColors.purple),
       ),
-      padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0),
+      padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0.h),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

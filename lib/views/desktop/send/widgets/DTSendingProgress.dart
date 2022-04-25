@@ -27,7 +27,7 @@ class DTSendingProgress extends StatelessWidget {
           border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
         width: 300.0.w,
-        padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0),
+        padding: EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
