@@ -6,7 +6,6 @@ import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:path_provider/path_provider.dart';
@@ -96,12 +95,12 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return "$prefix.$suffix";
   }
 
-  void defaultErrorHandler(Object error, Object stacktrace) {
+  void defaultErrorHandler(Object error) {
     this.setState(() {
       this.currentState = ReceiveScreenStates.ReceiveError;
       this.error = error.toString();
       this.errorMessage = "Failed to receive file: $error";
-      print("Error receiving file\n$error\n$stacktrace");
+      print("Error receiving file\n$error");
 
       if (error is ClientError) {
         switch (error.errorCode) {
@@ -121,8 +120,8 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   }
 
   Future<ReceiveFileResult> receive() async {
-    return await canWriteToFile().then((permissionStatus) async {
-      if (permissionStatus == PermissionStatus.granted) {
+    return await canWriteToDirectory(path!).then((canWrite) async {
+      if (canWrite) {
         late final File tempFile;
         this.setState(() {
           isRequestingConnection = true;
@@ -167,7 +166,10 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
           return result;
         }, onError: defaultErrorHandler);
       } else {
-        return Future.error(Exception("Permission denied"));
+        final error =
+            Exception("Permission denied. Could not write to ${path!}");
+        defaultErrorHandler(error);
+        return Future.error(error);
       }
     });
   }
