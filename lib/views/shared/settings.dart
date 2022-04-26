@@ -42,22 +42,20 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
   }
 
   void handleSelectFile() async {
-    await canWriteToFile().then((permissionStatus) async {
-      if (permissionStatus == PermissionStatus.granted) {
-        String? directory = await FilePicker.platform.getDirectoryPath();
-        if (directory == null) {
-          return;
-        }
-        if (await canWriteToDirectory(directory)) {
-          setState(() {
-            prefs?.setString(PATH, directory);
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-                THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
-          ));
-        }
+    String? directory = await FilePicker.platform.getDirectoryPath();
+    if (directory == null) {
+      return;
+    }
+    await canWriteToDirectory(directory).then((canWrite) async {
+      if (canWrite) {
+        setState(() {
+          prefs?.setString(PATH, directory);
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+              THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
+        ));
       }
     });
   }

@@ -30,17 +30,6 @@ extension BytesToReadableSize on int {
   }
 }
 
-Future<PermissionStatus> canWriteToFile() async {
-  if (Platform.isAndroid) {
-    return await Permission.storage.request();
-  } else if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
-    return PermissionStatus.granted;
-  } else {
-    print("Implement write checks for ${Platform()}");
-    return PermissionStatus.permanentlyDenied;
-  }
-}
-
 String nonExistingPathFor(String path) {
   if (File(path).existsSync()) {
     int i = 1;
@@ -65,13 +54,20 @@ String nonExistingPathFor(String path) {
   }
 }
 
-canWriteToDirectory(String directory) async {
-  try {
-    String path = nonExistingPathFor('$directory/test');
-    await File(path).writeAsBytes([]);
-    await File(path).delete();
-    return true;
-  } catch (e) {
+Future<bool> canWriteToDirectory(String directory) async {
+  if (Platform.isAndroid) {
+    return await Permission.storage.request() == PermissionStatus.granted;
+  } else if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
+    try {
+      String path = nonExistingPathFor('$directory/test');
+      File(path).writeAsBytesSync([]);
+      File(path).deleteSync();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  } else {
+    print("Implement write checks for ${Platform()}");
     return false;
   }
 }
