@@ -74,7 +74,11 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingError() {
-    return DTErrorUI(text: errorMessage ?? "Unknown error", showBoxDecoration: true, route: SEND_ROUTE, buttonTitle: 'Send a file');
+    return DTErrorUI(
+        text: errorMessage ?? "Unknown error",
+        showBoxDecoration: true,
+        route: SEND_ROUTE,
+        buttonTitle: 'Send a file');
   }
 
   Widget transferCancelled() {
@@ -83,8 +87,7 @@ class SendScreen extends SendShared<Send> {
         text: 'The transfer was interrupted.',
         subText: 'Please try again.',
         route: SEND_ROUTE,
-        buttonTitle: 'Send a file'
-    );
+        buttonTitle: 'Send a file');
   }
 
   Widget transferRejected() {
@@ -92,8 +95,7 @@ class SendScreen extends SendShared<Send> {
         showBoxDecoration: true,
         text: 'The transfer was cancelled by the receiver.',
         route: SEND_ROUTE,
-        buttonTitle: 'Send a file'
-    );
+        buttonTitle: 'Send a file');
   }
 
   @override

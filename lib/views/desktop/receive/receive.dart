@@ -81,7 +81,10 @@ class _ReceiveState extends ReceiveShared<Receive> {
   }
 
   Widget receiveError() {
-    return DTErrorUI(text: errorMessage ?? "Unknown error", route: RECEIVE_ROUTE, buttonTitle: 'Receive a file');
+    return DTErrorUI(
+        text: errorMessage ?? "Unknown error",
+        route: RECEIVE_ROUTE,
+        buttonTitle: 'Receive a file');
   }
 
   Widget receiveProgress() {
@@ -96,11 +99,17 @@ class _ReceiveState extends ReceiveShared<Receive> {
 
   Widget transferCancelled() {
     return DTErrorUI(
-        text: 'The transfer was interrupted.', subText: 'Please try again.', route: RECEIVE_ROUTE, buttonTitle: 'Receive a file');
+        text: 'The transfer was interrupted.',
+        subText: 'Please try again.',
+        route: RECEIVE_ROUTE,
+        buttonTitle: 'Receive a file');
   }
 
   Widget transferRejected() {
-    return DTErrorUI(text: 'The transfer was cancelled by the receiver.', route: RECEIVE_ROUTE, buttonTitle: 'Receive a file');
+    return DTErrorUI(
+        text: 'The transfer was cancelled by the receiver.',
+        route: RECEIVE_ROUTE,
+        buttonTitle: 'Receive a file');
   }
 
   @override

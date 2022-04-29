@@ -10,7 +10,12 @@ class DTErrorUI extends StatelessWidget {
   final String buttonTitle;
   bool? showBoxDecoration = false;
   DTErrorUI(
-      {this.text = '', this.subText = '', this.showBoxDecoration, this.route = '', this.buttonTitle = '',Key? key})
+      {this.text = '',
+      this.subText = '',
+      this.showBoxDecoration,
+      this.route = '',
+      this.buttonTitle = '',
+      Key? key})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -53,7 +58,6 @@ class DTErrorUI extends StatelessWidget {
               disabled: false,
             )
           ],
-
         ));
   }
 }
