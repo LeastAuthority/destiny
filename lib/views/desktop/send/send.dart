@@ -14,7 +14,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../desktop//send/widgets/DTSendingDone.dart';
-import '../../widgets/Heading.dart';
 
 extension WidgetWrappers on Widget {
   Widget dottedParent() {
@@ -75,20 +74,26 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingError() {
-    return DTErrorUI(text: errorMessage ?? "Unknown error");
+    return DTErrorUI(text: errorMessage ?? "Unknown error", showBoxDecoration: true, route: SEND_ROUTE, buttonTitle: 'Send a file');
   }
 
   Widget transferCancelled() {
     return DTErrorUI(
         showBoxDecoration: true,
         text: 'The transfer was interrupted.',
-        subText: 'Please try again.');
+        subText: 'Please try again.',
+        route: SEND_ROUTE,
+        buttonTitle: 'Send a file'
+    );
   }
 
   Widget transferRejected() {
     return DTErrorUI(
         showBoxDecoration: true,
-        text: 'The transfer was cancelled by the receiver.');
+        text: 'The transfer was cancelled by the receiver.',
+        route: SEND_ROUTE,
+        buttonTitle: 'Send a file'
+    );
   }
 
   @override

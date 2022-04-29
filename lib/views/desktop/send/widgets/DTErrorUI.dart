@@ -1,13 +1,16 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../widgets/DTButtonWithBackground.dart';
 
 class DTErrorUI extends StatelessWidget {
   final String text;
   final String subText;
+  final String route;
+  final String buttonTitle;
   bool? showBoxDecoration = false;
   DTErrorUI(
-      {this.text = '', this.subText = '', this.showBoxDecoration, Key? key})
+      {this.text = '', this.subText = '', this.showBoxDecoration, this.route = '', this.buttonTitle = '',Key? key})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class DTErrorUI extends StatelessWidget {
                 border: Border.all(width: 2.0, color: CustomColors.purple),
               )
             : null,
-        padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: 80.0.h),
+        padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
         child: Column(
           children: [
             Text(
@@ -34,8 +37,23 @@ class DTErrorUI extends StatelessWidget {
               subText,
               style: Theme.of(context).textTheme.headline1,
               textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 100.0.h,
+            ),
+            DTButtonWithBackground(
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                  context,
+                  route,
+                );
+              },
+              title: buttonTitle,
+              width: 150.0,
+              disabled: false,
             )
           ],
+
         ));
   }
 }
