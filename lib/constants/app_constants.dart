@@ -71,6 +71,10 @@ const String THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR =
     'The app does not have the permission to store files in this directory.';
 const String CUSTOM_NAV_BAR_MENU_FANDQ_ITEM = 'F&Q';
 const String RECEIVING = 'Receiving…';
+const String THE_TRANSFER_HAS_BEEN_INTERRUPTED =
+    "The transfer has been interrupted. \nPlease try again.";
+const String THE_TRANSFER_HAS_BEEN_CANCELLED =
+    "The transfer has been cancelled by";
 
 //Slider UI strings
 const String GET_STARTED = 'Get Started';
@@ -126,7 +130,7 @@ const String RECEIVE_SCREEN_CANCEL_BTN_ENABLED =
     'RECEIVE_SCREEN_CANCEL_BTN_ENABLED';
 const String TIMING_PROGRESS = 'TIMING_PROGRESS';
 const String APP_MUST_REMAIN_OPEN = 'APP_MUST_REMAIN_OPEN';
-
+const String RECEIVE_A_FILE = 'Receive a file';
 //-Splash screen
 const String SPLASH_SCREEN_BODY = 'SPLASH_SCREEN_BODY';
 const String SPLASH_SCREEN_LOADING = 'SPLASH_SCREEN_LOADING';
