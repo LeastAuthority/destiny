@@ -98,8 +98,7 @@ class SendScreen extends SendShared<Send> {
         showBoxDecoration: true,
         text: 'The transfer was cancelled by the receiver.',
         route: SEND_ROUTE,
-        buttonTitle: 'Send a file'
-    );
+        buttonTitle: 'Send a file');
   }
 
   @override

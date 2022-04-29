@@ -60,7 +60,6 @@ class DTErrorUI extends StatelessWidget {
               disabled: false,
             )
           ],
-
         ));
   }
 }
