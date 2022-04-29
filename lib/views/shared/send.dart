@@ -149,7 +149,8 @@ abstract class SendShared<T extends SendState> extends State<T> {
             currentState = SendScreenStates.FileSelecting;
           });
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(SPACE_AVAILABLE_IS_NOT_ENOUGH),
+            content: Text(
+                'Not enough space on disk. Please free up space on your device to send this file.'),
           ));
         }
       } finally {

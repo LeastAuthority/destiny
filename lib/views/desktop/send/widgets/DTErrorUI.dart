@@ -8,6 +8,7 @@ class DTErrorUI extends StatelessWidget {
   final String subText;
   final String route;
   final String buttonTitle;
+  final double paddingTop;
   bool? showBoxDecoration = false;
   DTErrorUI(
       {this.text = '',
@@ -15,6 +16,7 @@ class DTErrorUI extends StatelessWidget {
       this.showBoxDecoration,
       this.route = '',
       this.buttonTitle = '',
+      this.paddingTop = 0.0,
       Key? key})
       : super(key: key);
   @override
@@ -27,7 +29,7 @@ class DTErrorUI extends StatelessWidget {
                 border: Border.all(width: 2.0, color: CustomColors.purple),
               )
             : null,
-        padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w),
+        padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: paddingTop),
         child: Column(
           children: [
             Text(
@@ -58,6 +60,7 @@ class DTErrorUI extends StatelessWidget {
               disabled: false,
             )
           ],
+
         ));
   }
 }
