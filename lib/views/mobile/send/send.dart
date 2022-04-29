@@ -9,8 +9,8 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-
 import '../../widgets/Heading.dart';
+import '../widgets/ErrorUI.dart';
 
 class Send extends SendState {
   Send(config, {Key? key}) : super(config, key: key);
@@ -62,13 +62,17 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget transferCancelled() {
-    return Text("The transfer has been interrupted. \nPlease try again.",
-        style: Theme.of(context).textTheme.headline6);
+    return ErrorUI(
+        text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
+        subText: 'Send a file',
+        route: SEND_ROUTE);
   }
 
   Widget transferRejected() {
-    return Text("The transfer has been cancelled by \nthe receiver.",
-        style: Theme.of(context).textTheme.headline6);
+    return ErrorUI(
+        text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nthe receiver.",
+        subText: 'Send a file',
+        route: SEND_ROUTE);
   }
 
   @override

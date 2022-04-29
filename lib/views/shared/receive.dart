@@ -82,6 +82,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   void codeChanged(String code) {
     setState(() {
       _code = code;
+      isRequestingConnection = false;
     });
   }
 
