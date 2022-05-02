@@ -75,6 +75,7 @@ class SendScreen extends SendShared<Send> {
 
   Widget sendingError() {
     return DTErrorUI(
+        paddingTop: 80.0.h,
         text: errorMessage ?? "Unknown error",
         showBoxDecoration: true,
         route: SEND_ROUTE,
@@ -83,6 +84,7 @@ class SendScreen extends SendShared<Send> {
 
   Widget transferCancelled() {
     return DTErrorUI(
+        paddingTop: 80.0.h,
         showBoxDecoration: true,
         text: 'The transfer was interrupted.',
         subText: 'Please try again.',
@@ -92,6 +94,7 @@ class SendScreen extends SendShared<Send> {
 
   Widget transferRejected() {
     return DTErrorUI(
+        paddingTop: 80.0.h,
         showBoxDecoration: true,
         text: 'The transfer was cancelled by the receiver.',
         route: SEND_ROUTE,
