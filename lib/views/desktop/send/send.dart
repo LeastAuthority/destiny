@@ -78,7 +78,7 @@ class SendScreen extends SendShared<Send> {
         paddingTop: 80.0.h,
         text: errorMessage ?? "Unknown error",
         showBoxDecoration: true,
-        route: SEND_ROUTE,
+        route: DESKTOP_SEND_ROUTE,
         buttonTitle: 'Send a file');
   }
 
@@ -88,7 +88,7 @@ class SendScreen extends SendShared<Send> {
         showBoxDecoration: true,
         text: 'The transfer was interrupted.',
         subText: 'Please try again.',
-        route: SEND_ROUTE,
+        route: DESKTOP_SEND_ROUTE,
         buttonTitle: 'Send a file');
   }
 
@@ -97,7 +97,7 @@ class SendScreen extends SendShared<Send> {
         paddingTop: 80.0.h,
         showBoxDecoration: true,
         text: 'The transfer was cancelled by the receiver.',
-        route: SEND_ROUTE,
+        route: DESKTOP_SEND_ROUTE,
         buttonTitle: 'Send a file');
   }
 
