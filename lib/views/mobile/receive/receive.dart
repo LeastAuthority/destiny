@@ -1,16 +1,20 @@
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/ErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../shared/receive.dart';
-import '../widgets/ErrorUI.dart';
+import '../widgets/AbortErrorUI.dart';
+import '../widgets/buttons/ButtonWithBackground.dart';
 
 class Receive extends ReceiveState {
   Receive(config, {Key? key}) : super(config, key: key);
@@ -70,20 +74,22 @@ class ReceiveScreen extends ReceiveShared<Receive> {
 
   Widget receiveError() {
     return ErrorUI(
-        text: errorMessage ?? "Unknown error",
-        subText: RECEIVE_A_FILE,
-        route: RECEIVE_ROUTE);
+      errorTitle: errorTitle,
+      errorMessage: errorMessage,
+      error: error,
+      route: RECEIVE_ROUTE,
+    );
   }
 
   Widget transferCancelled() {
-    return ErrorUI(
+    return AbortErrorUI(
         text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
         subText: RECEIVE_A_FILE,
         route: RECEIVE_ROUTE);
   }
 
   Widget transferRejected() {
-    return ErrorUI(
+    return AbortErrorUI(
         text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nby the sender.",
         subText: RECEIVE_A_FILE,
         route: RECEIVE_ROUTE);

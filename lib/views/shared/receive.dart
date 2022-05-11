@@ -47,6 +47,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
   late final String? defaultPathForPlatform;
   String? error;
   String? errorMessage;
+  String? errorTitle;
 
   late final TextEditingController controller = new TextEditingController();
   late final Client client = Client(config);
@@ -115,7 +116,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     this.setState(() {
       this.currentState = ReceiveScreenStates.ReceiveError;
       this.error = error.toString();
-      this.errorMessage = "Failed to receive file: $error";
+      this.errorTitle = "Error receiving file";
       print("Error receiving file\n$error");
 
       if (error is ClientError) {
