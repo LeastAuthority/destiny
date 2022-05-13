@@ -1,4 +1,3 @@
-import 'package:cross_file/cross_file.dart';
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
@@ -10,9 +9,9 @@ import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../desktop//send/widgets/DTSendingDone.dart';
 
 extension WidgetWrappers on Widget {
@@ -36,41 +35,42 @@ class SendScreen extends SendShared<Send> {
   SendScreen(Config config) : super(config);
 
   Widget generateCodeUI() {
-    return DTCodeGeneration(
-      fileName,
-      fileSize,
-      code ?? GENERATING,
-      currentState == SendScreenStates.CodeGenerating,
-      () {
-        this.cancelFunc();
-      },
-    );
+    return widgetFromMetadata((metadata) {
+      return DTCodeGeneration(
+        metadata.fileName!,
+        metadata.fileSize!,
+        code ?? GENERATING,
+        currentState == SendScreenStates.CodeGenerating,
+        () {
+          cancelFunc();
+        },
+      );
+    });
   }
 
   Widget sendingDone() {
-    return SendingDone(fileSize, fileName);
+    return widgetFromMetadata((metadata) {
+      return SendingDone(metadata.fileSize!, metadata.fileName!);
+    });
   }
 
   Widget selectAFileUI() {
-    return DTSelectAFile(
-        handleSelectFile: handleSelectFile,
-        handleFileDroped: (XFile file) async {
-          PlatformFile platformFile = PlatformFile(
-              name: file.name, size: await file.length(), path: file.path);
-          send(platformFile);
-        }).dottedParent();
+    return DTSelectAFile(onFileSelected: handleSelectFile, onFileDropped: send)
+        .dottedParent();
   }
 
   Widget sendingProgress() {
-    return DTSendingProgress(
-        fileSize,
-        fileName,
-        progress.percentage,
-        progress.remainingTimeString ??
-            (progress.percentage - 1.0 <= 0.001
-                ? WAITING_FOR_RECEIVER
-                : THREE_DOTS),
-        this.cancelFunc);
+    return widgetFromMetadata((metadata) {
+      return DTSendingProgress(
+          metadata.fileSize!,
+          metadata.fileName!,
+          progress.percentage,
+          progress.remainingTimeString ??
+              (progress.percentage - 1.0 <= 0.001
+                  ? WAITING_FOR_RECEIVER
+                  : THREE_DOTS),
+          cancelFunc);
+    });
   }
 
   Widget sendingError() {
