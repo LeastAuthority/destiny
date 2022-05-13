@@ -1,12 +1,15 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/file.dart';
+import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:dart_wormhole_william/client/native_client.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+
 import '../../config/routes/routes.dart';
 import '../../constants/app_constants.dart';
+import 'file_picker.dart';
 
 enum SendScreenStates {
   TransferCancelled,
@@ -22,7 +25,7 @@ enum SendScreenStates {
 
 abstract class SendShared<T extends SendState> extends State<T> {
   String? code;
-  late PlatformFile sendingFile;
+  late f.File sendingFile;
 
   SendScreenStates currentState = SendScreenStates.Initial;
 
@@ -37,23 +40,35 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   SendShared(this.config);
 
-  int get fileSize => sendingFile.size;
+  Future<int> get fileSize =>
+      sendingFile.metadata().then((metadata) => metadata.fileSize!);
 
-  String get fileName => sendingFile.name;
+  Future<String> get fileName =>
+      sendingFile.metadata().then((metadata) => metadata.fileName!);
   bool selectingFile = false;
 
   late ProgressShared progress = ProgressShared(setState, () {
     currentState = SendScreenStates.FileSending;
   });
 
-  Future<void> send(PlatformFile file) async {
+  Widget widgetFromMetadata(Widget Function(Metadata) f) {
+    return FutureBuilder<Metadata>(
+        future: sendingFile.metadata(),
+        builder: (context, snapshot) {
+          return snapshot.data != null
+              ? f(snapshot.data!)
+              : Text("No file metadata");
+        });
+  }
+
+  Future<void> send(f.File file) async {
     setState(() {
       sendingFile = file;
       currentState = SendScreenStates.CodeGenerating;
     });
 
     return await client
-        .sendFile(File(file.path!), progress.progressHandler)
+        .sendFile(file, progress.progressHandler)
         .then((result) async {
       setState(() {
         code = result.code;
@@ -67,21 +82,20 @@ abstract class SendShared<T extends SendState> extends State<T> {
         });
       }, onError: (error, stacktrace) {
         this.setState(() {
-          this.currentState = SendScreenStates.SendError;
-          this.error = error;
-          this.errorMessage = "Error sending file: $error";
+          currentState = SendScreenStates.SendError;
+          error = error;
           print("Error sending file\n$error\n$stacktrace");
 
           if (error is ClientError) {
             switch (error.errorCode) {
               case ErrCodeTransferRejected:
-                this.currentState = SendScreenStates.TransferRejected;
+                currentState = SendScreenStates.TransferRejected;
                 break;
               case ErrCodeTransferCancelled:
-                this.currentState = SendScreenStates.TransferCancelled;
+                currentState = SendScreenStates.TransferCancelled;
                 break;
               case ErrCodeWrongCode:
-                this.errorMessage = ERR_WRONG_CODE_SENDER;
+                errorMessage = ERR_WRONG_CODE_SENDER;
             }
           }
         });
@@ -123,41 +137,20 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   void handleSelectFile() async {
     if (!selectingFile) {
-      try {
-        this.setState(() {
-          selectingFile = true;
-        });
-        try {
-          PlatformFile tempEmptyFile =
-              new PlatformFile(name: 'Loading file...', size: 0);
-          FilePickerResult? result = await FilePicker.platform.pickFiles(
-              allowMultiple: false,
-              onFileLoading: (status) {
-                if (status.toString() == 'FilePickerStatus.picking') {
-                  setState(() {
-                    sendingFile = tempEmptyFile;
-                    currentState = SendScreenStates.CodeGenerating;
-                  });
-                }
-              });
-          if (result != null) {
-            PlatformFile file = result.files.first;
-            send(file);
-          }
-        } catch (e) {
-          setState(() {
-            currentState = SendScreenStates.FileSelecting;
-          });
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-                'Not enough space on disk. Please free up space on your device to send this file.'),
-          ));
-        }
-      } finally {
+      this.setState(() {
+        selectingFile = true;
+      });
+      await getFilePicker().showSelectFile().onError((error, stackTrace) {
+        print(error);
+        throw error!;
+      }).then((file) async {
+        print("Selected file $file");
+        await send(file);
+      }).whenComplete(() {
         this.setState(() {
           selectingFile = false;
         });
-      }
+      });
     }
   }
 

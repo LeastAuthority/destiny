@@ -9,6 +9,7 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
+
 import '../../widgets/Heading.dart';
 import '../widgets/ErrorUI.dart';
 
@@ -23,14 +24,14 @@ class SendScreen extends SendShared<Send> {
   SendScreen(Config config) : super(config);
 
   Widget generateCodeUI() {
-    return CodeGeneration(
-      fileName,
-      fileSize,
-      code,
-      currentState == SendScreenStates.CodeGenerating,
-      cancelSend,
-      key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-    );
+    return widgetFromMetadata((metadata) => CodeGeneration(
+          metadata.fileName!,
+          metadata.fileSize!,
+          code,
+          currentState == SendScreenStates.CodeGenerating,
+          cancelSend,
+          key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+        ));
   }
 
   Widget selectAFileUI() {
@@ -38,19 +39,20 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingProgress() {
-    return SendingProgress(
-        fileSize,
-        fileName,
+    return widgetFromMetadata((metadata) => SendingProgress(
+        metadata.fileSize!,
+        metadata.fileName!,
         progress.percentage,
         progress.remainingTimeString ??
             (progress.percentage - 1.0 <= 0.001
                 ? WAITING_FOR_RECEIVER
                 : THREE_DOTS),
-        this.cancelFunc);
+        cancelFunc));
   }
 
   Widget sendingDone() {
-    return SendingDone(fileSize, fileName);
+    return widgetFromMetadata(
+        (metadata) => SendingDone(metadata.fileSize!, metadata.fileName!));
   }
 
   Widget sendingError() {
