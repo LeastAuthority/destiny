@@ -27,10 +27,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: d61f00d2dc72aba984ac2c709e3989f66ab936a3
+      resolved-ref: "3fd9a9d2961b14a109669ecd898574e9ba437fcd"
       url: "https://github.com/Ephenodrom/Dart-Basic-Utils"
     source: git
-    version: "4.2.1"
+    version: "4.2.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -128,7 +128,7 @@ packages:
       name: ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.1"
   file:
     dependency: transitive
     description:
@@ -342,7 +342,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   path_provider_windows:
     dependency: transitive
     description:
@@ -398,7 +398,7 @@ packages:
       name: shared_preferences
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.14"
+    version: "2.0.15"
   shared_preferences_android:
     dependency: transitive
     description:
