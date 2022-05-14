@@ -42,8 +42,8 @@ String nonExistingPathFor(String path) {
       extension = parts.last;
     }
     String nextPath() => extension != null
-        ? "$directory/$baseName($i).$extension"
-        : "$directory/$baseName($i)";
+        ? "$directory" + Platform.pathSeparator + "$baseName($i).$extension"
+        : "$directory" + Platform.pathSeparator + "$baseName($i)";
     while (File(nextPath()).existsSync()) {
       i++;
     }
