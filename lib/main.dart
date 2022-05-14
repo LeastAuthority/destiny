@@ -16,7 +16,7 @@ void startApp(Config c) {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowMinSize(const Size(700, 700));
-    setWindowMaxSize(const Size(1200, 1200));
+    setWindowMaxSize(const Size(1600, 1200));
     setWindowFrame(Rect.fromLTWH(0, 0, 700, 700));
   }
   runApp(MyApp(c));

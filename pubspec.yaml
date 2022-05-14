@@ -85,6 +85,9 @@ flutter:
     - family: MontserratThin
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-Thin.ttf
+    - family: MontserratLightItalic
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-LightItalic.ttf
     - family: MontserratSemiBold
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf

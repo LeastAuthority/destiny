@@ -55,19 +55,17 @@ String nonExistingPathFor(String path) {
 }
 
 Future<bool> canWriteToDirectory(String directory) async {
-  if (Platform.isAndroid) {
-    return await Permission.storage.request() == PermissionStatus.granted;
-  } else if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
-    try {
-      String path = nonExistingPathFor('$directory/test');
-      File(path).writeAsBytesSync([]);
-      File(path).deleteSync();
-      return true;
-    } catch (e) {
-      return false;
+  try {
+    String path = nonExistingPathFor('$directory/test');
+    if (Platform.isAndroid) {
+      bool isGranted =
+          await Permission.storage.request() == PermissionStatus.granted;
+      if (isGranted == false) return false;
     }
-  } else {
-    print("Implement write checks for ${Platform()}");
+    File(path).writeAsBytesSync([]);
+    File(path).deleteSync();
+    return true;
+  } catch (e) {
     return false;
   }
 }
