@@ -36,7 +36,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 alignment: Alignment.center,
                 child: Image.asset(
                   LOGO,
-                  width: 76.0.w,
+                  width: 76.0,
                 ),
               ),
               Container(
