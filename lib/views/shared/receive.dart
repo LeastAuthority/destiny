@@ -144,26 +144,22 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
           isRequestingConnection = true;
         });
         return client.recvFile(_code!, progress.progressHandler).then((result) {
-          result.done.then((value) {
+          result.done.then((value) async {
             this.setState(() {
               currentState = ReceiveScreenStates.FileReceived;
             });
-            if (!Platform.isWindows) {
-              tempFile.rename(nonExistingPathFor(
-                  "$path/${result.pendingDownload.fileName}"));
-            } else {
-              tempFile.copySync(nonExistingPathFor(
-                  "$path/${result.pendingDownload.fileName}"));
-              tempFile.deleteSync();
-            }
+            await tempFile.rename(nonExistingPathFor("$path" +
+                Platform.pathSeparator +
+                "${result.pendingDownload.fileName}"));
           }, onError: defaultErrorHandler);
 
           this.setState(() {
             currentState = ReceiveScreenStates.ReceiveConfirmation;
             acceptDownload = () {
               controller.text = '';
-              tempFile =
-                  File(_tempPath("$path/${result.pendingDownload.fileName}"));
+              tempFile = File(_tempPath("$path" +
+                  Platform.pathSeparator +
+                  "${result.pendingDownload.fileName}"));
               var cancelFunc =
                   result.pendingDownload.accept(tempFile.writeOnlyFile());
               this.setState(() {
