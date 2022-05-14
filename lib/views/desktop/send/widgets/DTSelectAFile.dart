@@ -13,11 +13,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 extension ReadOnlyXFileFile on XFile {
   f.File readOnlyFile() {
     final openFile = File(this.path).openSync();
-    return f.File(
-      read: (Uint8List buffer) async {
-        return await openFile.readInto(buffer);
-      },
-    );
+    return f.File(read: (Uint8List buffer) async {
+      return await openFile.readInto(buffer);
+    }, close: () async {
+      return await openFile.close();
+    });
   }
 }
 

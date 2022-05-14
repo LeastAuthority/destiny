@@ -147,7 +147,6 @@ abstract class SendShared<T extends SendState> extends State<T> {
         print(error);
         throw error!;
       }).then((file) async {
-        print("Selected file $file");
         await send(file);
       }).whenComplete(() {
         this.setState(() {
