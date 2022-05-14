@@ -57,11 +57,12 @@ String nonExistingPathFor(String path) {
 Future<bool> canWriteToDirectory(String directory) async {
   try {
     String path = nonExistingPathFor('$directory/test');
+    if (Platform.isAndroid) {
+      bool isGranted =  await Permission.storage.request() == PermissionStatus.granted;
+      if(isGranted == false) return false;
+    }
     File(path).writeAsBytesSync([]);
     File(path).deleteSync();
-    if (Platform.isAndroid) {
-      return await Permission.storage.request() == PermissionStatus.granted;
-    }
     return true;
   } catch (e) {
     return false;
