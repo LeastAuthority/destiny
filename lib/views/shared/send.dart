@@ -138,7 +138,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
     }
   }
 
-  void handleSelectFile() async {
+  Future<void> handleSelectFile() async {
     if (!selectingFile) {
       this.setState(() {
         selectingFile = true;

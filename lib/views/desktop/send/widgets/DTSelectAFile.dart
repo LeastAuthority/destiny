@@ -13,17 +13,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 extension ReadOnlyXFileFile on XFile {
   f.File readOnlyFile() {
     final openFile = File(this.path).openSync();
-    return f.File(read: (Uint8List buffer) async {
-      return await openFile.readInto(buffer);
-    }, close: () async {
-      return await openFile.close();
-    });
+    return f.File(
+        read: (Uint8List buffer) async {
+          return await openFile.readInto(buffer);
+        },
+        close: () async {
+          return await openFile.close();
+        },
+        metadata: () async {
+          return f.Metadata(fileName: this.name, fileSize: await this.length());
+        },
+        getPosition: openFile.position,
+        setPosition: openFile.setPosition);
   }
 }
 
 class DTSelectAFile extends StatelessWidget {
-  final Function onFileSelected;
-  final void Function(f.File) onFileDropped;
+  final Future<void> Function() onFileSelected;
+  final Future<void> Function(f.File) onFileDropped;
 
   DTSelectAFile(
       {Key? key, required this.onFileSelected, required this.onFileDropped})
@@ -35,7 +42,7 @@ class DTSelectAFile extends StatelessWidget {
       color: Theme.of(context).dialogBackgroundColor,
       child: DropTarget(
         onDragDone: (detail) async {
-          onFileDropped(detail.files.first.readOnlyFile());
+          await onFileDropped(detail.files.first.readOnlyFile());
         },
         child: Container(
           padding: EdgeInsets.only(top: 80.0.h),
@@ -62,8 +69,8 @@ class DTSelectAFile extends StatelessWidget {
               MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: () {
-                      onFileSelected();
+                    onTap: () async {
+                      await onFileSelected();
                     },
                     child: Container(
                       height: 200.0,
