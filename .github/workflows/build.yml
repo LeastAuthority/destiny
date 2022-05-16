@@ -167,7 +167,7 @@ jobs:
         run: "brew install create-dmg"
 
       - name: "Create DMG"
-        run: "create-dmg --app-drop-link 0 0 --eula LICENSE Destiny_LA_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/dart_wormhole_gui.app"
+        run: "create-dmg --app-drop-link 0 0 --eula LICENSE Destiny_LA_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/Destiny.app"
 
       - name: "Copy DMG"
         uses: "actions/upload-artifact@v2"
