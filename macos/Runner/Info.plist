@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>LSArchitecturePriority</key>
+	<string>x86_64</string>
+	<key>LSRequiresNativeExecution</key>
+	<false/>
 </dict>
 </plist>
