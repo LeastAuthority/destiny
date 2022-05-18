@@ -26,7 +26,7 @@ class SplashState extends State<Splash> {
       Navigator.pushNamed(context, SEND_ROUTE);
     } else {
       await setSeenToTrue();
-    Navigator.pushNamed(context, INTRO_ROUTE);
+      Navigator.pushNamed(context, INTRO_ROUTE);
     }
   }
 
