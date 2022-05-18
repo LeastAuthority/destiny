@@ -1,12 +1,10 @@
 import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_william/client/client.dart';
-import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -20,19 +18,6 @@ enum ReceiveScreenStates {
   FileReceiving,
   ReceiveConfirmation,
   Initial,
-}
-
-extension WriteOnlyFileFile on File {
-  f.File writeOnlyFile() {
-    final openFile = File(this.path).openWrite(); // this.openWrite();
-    return f.File(write: (Uint8List buffer) async {
-      openFile.add(buffer);
-      await openFile.flush();
-    }, close: () async {
-      await openFile.close();
-      await openFile.done;
-    });
-  }
 }
 
 abstract class ReceiveShared<T extends ReceiveState> extends State<T> {

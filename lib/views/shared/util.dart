@@ -1,5 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:cross_file/cross_file.dart';
+import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:permission_handler/permission_handler.dart';
 
 const int KB = 1000;
@@ -67,5 +70,54 @@ Future<bool> canWriteToDirectory(String directory) async {
     return true;
   } catch (e) {
     return false;
+  }
+}
+
+extension WriteOnlyFileFile on File {
+  f.File writeOnlyFile() {
+    final openFile = File(this.path).openWrite(); // this.openWrite();
+    return f.File(write: (Uint8List buffer) async {
+      openFile.add(buffer);
+      await openFile.flush();
+    }, close: () async {
+      await openFile.close();
+      await openFile.done;
+    });
+  }
+
+  f.File readOnlyFile() {
+    final openFile = File(this.path).open();
+    return f.File(read: (Uint8List buffer) async {
+      return await (await openFile).readInto(buffer);
+    }, close: () async {
+      await (await openFile).close();
+    }, setPosition: (int position) async {
+      (await openFile).setPosition(position);
+    }, getPosition: () async {
+      return await (await openFile).position();
+    }, metadata: () async {
+      final file = await openFile;
+      return f.Metadata(
+          fileName: file.path.split(Platform.pathSeparator).last,
+          fileSize: await file.length());
+    });
+  }
+}
+
+extension ReadOnlyXFileFile on XFile {
+  f.File readOnlyFile() {
+    final openFile = File(this.path).openSync();
+    return f.File(
+        read: (Uint8List buffer) async {
+          return await openFile.readInto(buffer);
+        },
+        close: () async {
+          return await openFile.close();
+        },
+        metadata: () async {
+          return f.Metadata(fileName: this.name, fileSize: await this.length());
+        },
+        getPosition: openFile.position,
+        setPosition: openFile.setPosition);
   }
 }
