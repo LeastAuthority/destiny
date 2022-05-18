@@ -91,7 +91,7 @@ class IntroScreenState extends State<IntroScreen> {
           sizeDot: 13.0,
           subTitleFontSize: 18.0.sp,
           titleFontSize: 22.0.sp,
-          hideStatusBar: true,
+          hideStatusBar: false,
           backgroundColorAllSlides: Colors.grey,
           verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
         ),
