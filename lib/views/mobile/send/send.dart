@@ -65,6 +65,7 @@ class SendScreen extends SendShared<Send> {
 
   Widget transferCancelled() {
     return AbortErrorUI(
+        handleSelectFile: handleSelectFile,
         text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
         subText: 'Send a file',
         route: SEND_ROUTE);
@@ -72,6 +73,7 @@ class SendScreen extends SendShared<Send> {
 
   Widget transferRejected() {
     return AbortErrorUI(
+        handleSelectFile: handleSelectFile,
         text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nthe receiver.",
         subText: 'Send a file',
         route: SEND_ROUTE);

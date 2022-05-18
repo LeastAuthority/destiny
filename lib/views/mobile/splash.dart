@@ -22,13 +22,12 @@ class SplashState extends State<Splash> {
 
   Future checkFirstSeen() async {
     bool isItFirstLunch = await isItAppFirstLunch();
-    Navigator.pushNamed(context, INTRO_ROUTE);
-    // if (isItFirstLunch) {
-    //   Navigator.pushNamed(context, SEND_ROUTE);
-    // } else {
-    //   await setSeenToTrue();
-    //   Navigator.pushNamed(context, INTRO_ROUTE);
-    // }
+    if (isItFirstLunch) {
+      Navigator.pushNamed(context, SEND_ROUTE);
+    } else {
+      await setSeenToTrue();
+      Navigator.pushNamed(context, INTRO_ROUTE);
+    }
   }
 
   @override
