@@ -14,8 +14,6 @@ import '../../desktop/receive/widgets/DTReceiveProgress.dart';
 import '../../desktop/receive/widgets/DTReceiveConfirmation.dart';
 import '../send/widgets/DTErrorUI.dart';
 
-final TextEditingController controller = new TextEditingController();
-
 class Receive extends ReceiveState {
   Receive(Config config, {Key? key}) : super(config, key: key);
 
