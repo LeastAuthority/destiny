@@ -37,7 +37,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
 
   ClientError? error;
   String? errorMessage;
-
+  String? errorTitle;
   SendShared(this.config);
 
   Future<int> get fileSize =>
@@ -83,7 +83,10 @@ abstract class SendShared<T extends SendState> extends State<T> {
       }, onError: (error, stacktrace) {
         this.setState(() {
           currentState = SendScreenStates.SendError;
+          this.errorMessage = "Error sending file: $error";
+          this.errorTitle = "Error Sending File";
           error = error;
+
           print("Error sending file\n$error\n$stacktrace");
 
           if (error is ClientError) {
@@ -135,7 +138,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
     }
   }
 
-  void handleSelectFile() async {
+  Future<void> handleSelectFile() async {
     if (!selectingFile) {
       this.setState(() {
         selectingFile = true;
@@ -144,7 +147,6 @@ abstract class SendShared<T extends SendState> extends State<T> {
         print(error);
         throw error!;
       }).then((file) async {
-        print("Selected file $file");
         await send(file);
       }).whenComplete(() {
         this.setState(() {

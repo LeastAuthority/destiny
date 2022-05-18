@@ -9,8 +9,7 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-
-import '../../widgets/Heading.dart';
+import '../widgets/AbortErrorUI.dart';
 import '../widgets/ErrorUI.dart';
 
 class Send extends SendState {
@@ -56,22 +55,23 @@ class SendScreen extends SendShared<Send> {
   }
 
   Widget sendingError() {
-    return Column(
-      children: [
-        Heading(title: errorMessage ?? "Unknown error"),
-      ],
+    return ErrorUI(
+      errorTitle: errorTitle,
+      errorMessage: errorMessage ?? "Unknown error",
+      error: error.toString(),
+      route: SEND_ROUTE,
     );
   }
 
   Widget transferCancelled() {
-    return ErrorUI(
+    return AbortErrorUI(
         text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
         subText: 'Send a file',
         route: SEND_ROUTE);
   }
 
   Widget transferRejected() {
-    return ErrorUI(
+    return AbortErrorUI(
         text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nthe receiver.",
         subText: 'Send a file',
         route: SEND_ROUTE);

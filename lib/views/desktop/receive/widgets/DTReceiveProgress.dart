@@ -55,7 +55,7 @@ class _ReceiveProgressState extends State<DTReceiveProgress> {
               child: Heading(
                 title: THE_APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETED,
                 marginTop: 16.0,
-                textStyle: Theme.of(context).textTheme.bodyText1,
+                textStyle: Theme.of(context).textTheme.headline6,
                 key: Key(APP_MUST_REMAIN_OPEN),
               ),
             )

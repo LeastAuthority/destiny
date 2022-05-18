@@ -1,37 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../constants/asset_path.dart';
+import '../../widgets/Heading.dart';
 import 'buttons/ButtonWithBackground.dart';
 
 class ErrorUI extends StatelessWidget {
-  final String text;
-  final String subText;
+  final String? errorTitle;
+  final String? error;
+  final String? errorMessage;
   final String route;
-  ErrorUI({this.text = '', this.subText = '', this.route = '', Key? key})
+  ErrorUI(
+      {this.errorTitle,
+      this.error,
+      this.errorMessage,
+      this.route = '',
+      Key? key})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(text, style: Theme.of(context).textTheme.headline6),
-        Container(
-          alignment: Alignment.center,
-          child: ButtonWithBackground(
-              width: 200.0.w,
-              height: 60.0.h,
-              title: subText,
-              handleClicked: () {
-                Navigator.pushReplacementNamed(
-                  context,
-                  route,
-                );
-              },
-              fontSize: 18.0.sp),
+        Heading(
+          title: this.errorTitle,
+          textStyle: TextStyle(
+            fontSize: 14.0,
+            fontFamily: MONTSERRAT,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          textAlign: TextAlign.left,
         ),
-        SizedBox(
-          height: 150.0.h,
-        )
+        Heading(
+          title: this.error,
+          textStyle: Theme.of(context).textTheme.headline6,
+          textAlign: TextAlign.left,
+        ),
+        Heading(
+          marginTop: 44.0,
+          title: errorMessage ?? "Unknown error",
+          textStyle: TextStyle(
+            fontSize: Theme.of(context).textTheme.headline6?.fontSize,
+            fontFamily: MONTSERRAT_LIGHT_ITALIC,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+        ButtonWithBackground(
+            width: 200.0.w,
+            height: 60.0.h,
+            title: "Receive a File",
+            handleClicked: () {
+              Navigator.pushReplacementNamed(
+                context,
+                route,
+              );
+            },
+            fontSize: 18.0.sp),
       ],
     );
   }
