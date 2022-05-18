@@ -6,7 +6,8 @@ class AbortErrorUI extends StatelessWidget {
   final String text;
   final String subText;
   final String route;
-  AbortErrorUI({this.text = '', this.subText = '', this.route = '', Key? key})
+  final Function? handleSelectFile;
+  AbortErrorUI({this.text = '', this.subText = '', this.route = '', this.handleSelectFile, Key? key})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,14 @@ class AbortErrorUI extends StatelessWidget {
               height: 60.0.h,
               title: subText,
               handleClicked: () {
-                Navigator.pushReplacementNamed(
-                  context,
-                  route,
-                );
+                if(handleSelectFile != null) {
+                  this.handleSelectFile!();
+                } else {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    route,
+                  );
+                }
               },
               fontSize: 18.0.sp),
         ),
