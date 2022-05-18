@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -45,7 +46,8 @@ void main() {
       test('dart API -> go CLI', () async {
         final sender = Client(testConfig);
 
-        final result = await sender.sendFile(File(testFilePath));
+        final result =
+            await sender.sendFile(File(testFilePath).readOnlyFile(), (v) {});
         final code = result.code;
         expect(code, isNotEmpty);
         expect(result.done, completes);
@@ -65,14 +67,15 @@ void main() {
         final code = await sendFileGo(testFilePath);
         expect(code, isNotEmpty);
 
-        final pendingDownload = await receiver.recvFile(code);
+        final pendingDownload = await receiver.recvFile(code, (v) {});
         final testData = File(testFilePath).readAsBytesSync();
         final destinationPath =
             "${tempDir.path}/received_go_dart/${pendingDownload.pendingDownload.fileName}";
 
         File(destinationPath).createSync(recursive: true);
 
-        pendingDownload.pendingDownload.accept(File(destinationPath));
+        pendingDownload.pendingDownload
+            .accept(File(destinationPath).writeOnlyFile());
 
         await pendingDownload.done;
         expect(sha256.convert(File(destinationPath).readAsBytesSync()),
@@ -85,19 +88,21 @@ void main() {
         final sender = Client(testConfig);
         final receiver = Client(testConfig);
 
-        final result = await sender.sendFile(File(testFilePath));
+        final result =
+            await sender.sendFile(File(testFilePath).readOnlyFile(), (v) {});
         final code = result.code;
         expect(code, isNotEmpty);
         expect(result.done, completes);
 
-        final pendingDownload = await receiver.recvFile(code);
+        final pendingDownload = await receiver.recvFile(code, (v) {});
 
         final destinationPath =
             "${tempDir.path}/received_dart_dart/${pendingDownload.pendingDownload.fileName}";
 
         File(destinationPath).createSync(recursive: true);
 
-        pendingDownload.pendingDownload.accept(File(destinationPath));
+        pendingDownload.pendingDownload
+            .accept(File(destinationPath).writeOnlyFile());
         await pendingDownload.done;
         final testData = File(testFilePath).readAsBytesSync();
         expect(sha256.convert(File(destinationPath).readAsBytesSync()),
