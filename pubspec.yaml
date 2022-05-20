@@ -63,6 +63,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   crypto: ^3.0.1
+  msix: ^3.6.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -144,3 +145,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+msix_config:
+  display_name: Destiny
+  publisher_display_name: "Destiny CI"
+  publisher: "CN=Destiny CI, O=Destiny CI"
+  identity_name: com.leastauthority.Destiny
+  logo_path: .\assets\images\logo.png
+  capabilities: internetClientServer
+  build_windows: false
+  sign_msix: false
