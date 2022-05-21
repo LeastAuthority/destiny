@@ -1,5 +1,10 @@
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:cross_file/cross_file.dart';
+import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:permission_handler/permission_handler.dart';
 
 const int KB = 1000;
@@ -54,20 +59,49 @@ String nonExistingPathFor(String path) {
   }
 }
 
-Future<bool> canWriteToDirectory(String directory) async {
-  if (Platform.isAndroid) {
-    return await Permission.storage.request() == PermissionStatus.granted;
-  } else if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
-    try {
-      String path = nonExistingPathFor('$directory/test');
-      File(path).writeAsBytesSync([]);
-      File(path).deleteSync();
-      return true;
-    } catch (e) {
-      return false;
-    }
+Future<bool> isAndroidStoragePermissionsGranted() async {
+  DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  final androidInfo = await deviceInfoPlugin.androidInfo;
+  const int API_LEVEL_29 = 29;
+  bool isGranted;
+
+  if (androidInfo.version.sdkInt! <= API_LEVEL_29) {
+    isGranted = await Permission.storage.request() == PermissionStatus.granted;
   } else {
-    print("Implement write checks for ${Platform()}");
+    isGranted = await Permission.manageExternalStorage.request() ==
+        PermissionStatus.granted;
+  }
+
+  return isGranted;
+}
+
+Future<bool> canWriteToDirectory(String directory) async {
+  try {
+    String path = nonExistingPathFor('$directory/test');
+    if (Platform.isAndroid &&
+        await isAndroidStoragePermissionsGranted() == false) return false;
+    File(path).writeAsBytesSync([]);
+    File(path).deleteSync();
+    return true;
+  } catch (e) {
     return false;
+  }
+}
+
+extension ReadOnlyXFileFile on XFile {
+  f.File readOnlyFile() {
+    final openFile = File(this.path).openSync();
+    return f.File(
+        read: (Uint8List buffer) async {
+          return await openFile.readInto(buffer);
+        },
+        close: () async {
+          return await openFile.close();
+        },
+        metadata: () async {
+          return f.Metadata(fileName: this.name, fileSize: await this.length());
+        },
+        getPosition: openFile.position,
+        setPosition: openFile.setPosition);
   }
 }
