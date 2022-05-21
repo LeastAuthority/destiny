@@ -1,32 +1,11 @@
-import 'dart:io';
-import 'dart:typed_data';
-
-import 'package:cross_file/cross_file.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
+import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-extension ReadOnlyXFileFile on XFile {
-  f.File readOnlyFile() {
-    final openFile = File(this.path).openSync();
-    return f.File(
-        read: (Uint8List buffer) async {
-          return await openFile.readInto(buffer);
-        },
-        close: () async {
-          return await openFile.close();
-        },
-        metadata: () async {
-          return f.Metadata(fileName: this.name, fileSize: await this.length());
-        },
-        getPosition: openFile.position,
-        setPosition: openFile.setPosition);
-  }
-}
 
 class DTSelectAFile extends StatelessWidget {
   final Future<void> Function() onFileSelected;

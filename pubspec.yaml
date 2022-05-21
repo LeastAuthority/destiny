@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -27,7 +27,7 @@ dependencies:
   shared_preferences: ^2.0.6
   window_size:
     git:
-      url:  https://github.com/google/flutter-desktop-embedding.git
+      url: https://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
   basic_utils:
     git:
@@ -48,7 +48,7 @@ dependencies:
   path_provider: ^2.0.0
   dotted_border: ^2.0.0+1
   desktop_drop: ^0.3.0
-  permission_handler: ^8.3.0
+  permission_handler: ^9.2.0
   open_file: ^3.2.1
   flutter_spinkit: ^5.1.0
   device_info_plus: ^3.2.3
@@ -94,7 +94,7 @@ flutter:
         - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
     - family: Roboto
       fonts:
-          - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
     - family: RobotoBlack
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Black.ttf
@@ -103,7 +103,7 @@ flutter:
         - asset: assets/fonts/Roboto/Roboto-Thin.ttf
     - family: Lato
       fonts:
-          - asset: assets/fonts/Lato/Lato-Regular.ttf
+        - asset: assets/fonts/Lato/Lato-Regular.ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -136,7 +136,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-
 
   #   - family: Trajan Pro
   #     fonts:
