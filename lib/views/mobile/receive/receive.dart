@@ -66,6 +66,11 @@ class ReceiveScreen extends StatelessWidget {
                     state.setState(() {
                       state.receive();
                     });
+                  },
+                  onEnterPressed: (_) {
+                    state.setState(() {
+                      state.receive();
+                    });
                   }))
         ],
       );
