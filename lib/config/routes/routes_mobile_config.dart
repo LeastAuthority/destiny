@@ -21,11 +21,11 @@ PageRouteBuilder? Function(RouteSettings) getMobileRoutes(Config config) {
         }
       case SEND_ROUTE:
         {
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => Send(config));
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => SendScreen());
         }
       case RECEIVE_ROUTE:
         {
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => Receive(config));
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => ReceiveScreen());
         }
       case SETTINGS_ROUTE:
         {

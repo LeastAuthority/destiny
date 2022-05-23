@@ -2,10 +2,10 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_gui/widgets/CustomLinearProgressIndicator.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../widgets/CustomLinearProgressIndicator.dart';
 
 class SendingProgress extends StatelessWidget {
   final int fileSize;
@@ -50,7 +50,7 @@ class SendingProgress extends StatelessWidget {
                   ),
                 ),
                 Heading(
-                  title: '${remainingTimeString}',
+                  title: '$remainingTimeString',
                   textAlign: TextAlign.center,
                   marginTop: 16.0.h,
                   textStyle: Theme.of(context).textTheme.bodyText1,

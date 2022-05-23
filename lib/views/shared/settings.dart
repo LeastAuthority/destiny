@@ -5,7 +5,6 @@ import 'package:dart_wormhole_gui/views/shared/util.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class SettingsShared<T extends SettingsState> extends State<T> {

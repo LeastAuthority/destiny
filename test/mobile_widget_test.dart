@@ -47,7 +47,7 @@ void main() {
 
   testWidgets('Send screen', (WidgetTester tester) async {
     await tester.pumpWidget(getScreenUtilInit(
-        Send(local), CustomTheme.darkThemeMobile, Size(375, 590)));
+        SendScreen(), CustomTheme.darkThemeMobile, Size(375, 590)));
 
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
@@ -70,7 +70,7 @@ void main() {
   //
   testWidgets('Receive screen', (WidgetTester tester) async {
     await tester.pumpWidget(getScreenUtilInit(
-        Receive(local), CustomTheme.darkThemeMobile, mobileScreenSize));
+        ReceiveScreen(), CustomTheme.darkThemeMobile, mobileScreenSize));
     // Create the Finders.
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));

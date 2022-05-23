@@ -20,7 +20,7 @@ enum ReceiveScreenStates {
   Initial,
 }
 
-abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
+class ReceiveSharedState extends ChangeNotifier {
   String? _code;
   late int fileSize;
   late String fileName;
@@ -43,6 +43,11 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     };
   }
 
+  void setState(void Function() change) {
+    change();
+    notifyListeners();
+  }
+
   late void Function() acceptDownload =
       failWith("No accept download function set");
   late void Function() rejectDownload =
@@ -60,7 +65,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     return defaultPathForPlatform;
   }
 
-  ReceiveShared(this.config) {
+  ReceiveSharedState(this.config) {
     SharedPreferences.getInstance().then((prefs) {
       this.prefs = prefs;
     });
@@ -76,7 +81,7 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
     }
   }
 
-  late ProgressShared progress = ProgressShared(setState, () {
+  late ProgressSharedState progress = ProgressSharedState(setState, () {
     currentState = ReceiveScreenStates.FileReceiving;
   });
 
@@ -198,12 +203,4 @@ abstract class ReceiveShared<T extends ReceiveState> extends State<T> {
         return transferCancelled();
     }
   }
-
-  Widget build(BuildContext context);
-}
-
-abstract class ReceiveState extends StatefulWidget {
-  final Config config;
-
-  ReceiveState(this.config, {Key? key}) : super(key: key);
 }

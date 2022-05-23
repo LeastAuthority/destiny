@@ -1,20 +1,25 @@
 import 'package:dart_wormhole_gui/config/theme/colors.dart';
+import 'package:dart_wormhole_gui/views/desktop/widgets/DTButtonWithBackground.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../widgets/DTButtonWithBackground.dart';
+
+void doNothing() {
+  print("Doing nothing with error UI button");
+}
 
 class DTErrorUI extends StatelessWidget {
   final String text;
   final String subText;
-  final String route;
   final String buttonTitle;
   final double paddingTop;
-  bool? showBoxDecoration = false;
+  final void Function() onPressed;
+  final bool? showBoxDecoration;
+
   DTErrorUI(
       {this.text = '',
       this.subText = '',
-      this.showBoxDecoration,
-      this.route = '',
+      this.showBoxDecoration = false,
+      this.onPressed = doNothing,
       this.buttonTitle = '',
       this.paddingTop = 0.0,
       Key? key})
@@ -49,12 +54,7 @@ class DTErrorUI extends StatelessWidget {
               height: 100.0.h,
             ),
             DTButtonWithBackground(
-              onPressed: () {
-                Navigator.pushReplacementNamed(
-                  context,
-                  route,
-                );
-              },
+              onPressed: onPressed,
               title: buttonTitle,
               width: 150.0,
               disabled: false,

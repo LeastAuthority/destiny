@@ -10,11 +10,11 @@ PageRouteBuilder? Function(RouteSettings) getDesktopRoutes(Config config) {
     switch (settings.name) {
       case DESKTOP_SEND_ROUTE:
         {
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => Send(config));
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => SendScreen());
         }
       case RECEIVE_ROUTE:
         {
-          return PageRouteBuilder(pageBuilder: (_, __, ___) => Receive(config));
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => ReceiveScreen());
         }
       case SETTINGS_ROUTE:
         {

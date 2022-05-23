@@ -60,7 +60,7 @@ class IntroScreenState extends State<IntroScreen> {
   void onDonePress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Send(config)),
+      MaterialPageRoute(builder: (context) => SendScreen()),
     );
   }
 
