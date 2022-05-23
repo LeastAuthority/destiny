@@ -6,12 +6,15 @@ class CodeInputBox extends StatelessWidget {
   final double width;
   final TextStyle? style;
   late final TextEditingController controller;
+  final void Function(String) onEnterPressed;
+
   CodeInputBox(
       {Key? key,
       required this.style,
       required this.codeChanged,
       required this.width,
-      required final this.controller})
+      required final this.controller,
+      required this.onEnterPressed})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,7 @@ class CodeInputBox extends StatelessWidget {
             width: width - 30.0,
             child: TextField(
               controller: controller,
+              onSubmitted: onEnterPressed,
               onChanged: (txt) {
                 codeChanged(txt);
               },

@@ -9,12 +9,14 @@ class EnterCode extends StatelessWidget {
   final Function handleNextClicked;
   final bool isRequestingConnection;
   final TextEditingController controller;
+  final void Function(String) onEnterPressed;
   EnterCode(
       {Key? key,
       required this.codeChanged,
       required this.handleNextClicked,
       required this.isRequestingConnection,
-      required final this.controller})
+      required final this.controller,
+      required this.onEnterPressed})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,8 @@ class EnterCode extends StatelessWidget {
               width: 300.0.w,
               codeChanged: (String code) {
                 codeChanged(code);
-              }),
+              },
+              onEnterPressed: onEnterPressed),
           controller.text.length > 0 && !isRequestingConnection
               ? ButtonWithBackground(
                   fontSize: 14.0.sp,

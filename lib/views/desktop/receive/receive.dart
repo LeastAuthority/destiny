@@ -34,7 +34,12 @@ class ReceiveScreen extends StatelessWidget {
                         width: 400.0,
                         style: Theme.of(context).textTheme.bodyText1,
                         controller: state.controller,
-                        codeChanged: state.codeChanged),
+                        codeChanged: state.codeChanged,
+                        onEnterPressed: (_) {
+                          state.setState(() {
+                            state.receive();
+                          });
+                        }),
                     state.controller.text.length > 0
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.center,
