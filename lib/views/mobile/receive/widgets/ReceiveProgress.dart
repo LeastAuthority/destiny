@@ -19,8 +19,6 @@ class ReceiveProgress extends StatelessWidget {
       this.remainingTimeString, this.cancel);
 
   late final DateTime startingTime;
-  int previousSent = 0;
-  int sentPerSecond = 1;
 
   @protected
   @mustCallSuper
@@ -52,7 +50,7 @@ class ReceiveProgress extends StatelessWidget {
               ),
             ),
             Heading(
-              title: '${remainingTimeString}',
+              title: remainingTimeString,
               marginTop: 16.0.h,
               textStyle: Theme.of(context).textTheme.bodyText1,
               key: Key(TIMING_PROGRESS),

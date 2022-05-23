@@ -1,16 +1,20 @@
+import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'buttons/ButtonWithBackground.dart';
+
+void doNothing() {
+  print("AbortErrorUI button doing nothing");
+}
 
 class AbortErrorUI extends StatelessWidget {
   final String text;
   final String subText;
-  final String route;
   final Function? handleSelectFile;
+  final void Function() onPressed;
   AbortErrorUI(
       {this.text = '',
       this.subText = '',
-      this.route = '',
+      this.onPressed = doNothing,
       this.handleSelectFile,
       Key? key})
       : super(key: key);
@@ -31,10 +35,7 @@ class AbortErrorUI extends StatelessWidget {
                 if (handleSelectFile != null) {
                   this.handleSelectFile!();
                 } else {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    route,
-                  );
+                  onPressed();
                 }
               },
               fontSize: 18.0.sp),

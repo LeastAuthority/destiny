@@ -1,11 +1,12 @@
 import 'dart:ffi';
 
 import 'package:dart_wormhole_william/client/c_structs.dart';
+import 'package:flutter/widgets.dart';
 
 // How many milliseconds to wait before updating the remaining time
 const ETA_REFRESH_INTERVAL_MILLIS = 500;
 
-class ProgressShared {
+class ProgressSharedState extends ChangeNotifier {
   late int totalTransferred;
   late int totalSize;
 
@@ -17,7 +18,7 @@ class ProgressShared {
   Function setState;
   Function otherStateChange;
 
-  ProgressShared(this.setState, this.otherStateChange);
+  ProgressSharedState(this.setState, this.otherStateChange);
 
   double get percentage {
     try {

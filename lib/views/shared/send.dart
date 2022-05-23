@@ -1,15 +1,13 @@
 import 'dart:async';
 
+import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:dart_wormhole_gui/views/shared/file_picker.dart';
 import 'package:dart_wormhole_gui/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/file.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-
-import '../../config/routes/routes.dart';
-import '../../constants/app_constants.dart';
-import 'file_picker.dart';
 
 enum SendScreenStates {
   TransferCancelled,
@@ -23,7 +21,7 @@ enum SendScreenStates {
   Initial,
 }
 
-abstract class SendShared<T extends SendState> extends State<T> {
+class SendSharedState extends ChangeNotifier {
   String? code;
   late f.File sendingFile;
 
@@ -38,7 +36,7 @@ abstract class SendShared<T extends SendState> extends State<T> {
   ClientError? error;
   String? errorMessage;
   String? errorTitle;
-  SendShared(this.config);
+  SendSharedState(this.config);
 
   Future<int> get fileSize =>
       sendingFile.metadata().then((metadata) => metadata.fileSize!);
@@ -47,7 +45,12 @@ abstract class SendShared<T extends SendState> extends State<T> {
       sendingFile.metadata().then((metadata) => metadata.fileName!);
   bool selectingFile = false;
 
-  late ProgressShared progress = ProgressShared(setState, () {
+  void setState(void Function() change) {
+    change();
+    notifyListeners();
+  }
+
+  late ProgressSharedState progress = ProgressSharedState(setState, () {
     currentState = SendScreenStates.FileSending;
   });
 
@@ -157,16 +160,8 @@ abstract class SendShared<T extends SendState> extends State<T> {
   }
 
   void cancelSend() {
-    Navigator.pushReplacementNamed(
-      context,
-      SEND_ROUTE,
-    );
+    currentState = SendScreenStates.TransferCancelled;
+    cancelFunc();
+    notifyListeners();
   }
-
-  Widget build(BuildContext context);
-}
-
-abstract class SendState extends StatefulWidget {
-  final Config config;
-  SendState(this.config, {Key? key}) : super(key: key);
 }
