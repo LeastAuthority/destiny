@@ -19,11 +19,11 @@ jobs:
           submodules: "recursive"
 
       - name: "Set version string for release"
-        run: echo DESTINY_VERSION=la_${{ github.ref_name }} >> $GITHUB_ENV
+        run: echo DESTINY_VERSION=${{ github.ref_name }} >> $GITHUB_ENV
         if: ${{ github.ref_type == 'tag' }}
 
       - name: "Set version string for branch"
-        run: echo DESTINY_VERSION=la_${{ github.head_ref }} >> $GITHUB_ENV
+        run: echo DESTINY_VERSION=${{ github.head_ref }} >> $GITHUB_ENV
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
@@ -43,16 +43,19 @@ jobs:
       - name: "Build release apk"
         run: "flutter build apk lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
 
+      - name: "Move apk"
+        run: mv ./build/app/outputs/flutter-apk/app-release.apk destiny_android_${{ env.DESTINY_VERSION }}.apk
+
       - name: "Copy apk"
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-android-${{ env.DESTINY_VERSION }}-unsigned"
-          path: "./build/app/outputs/flutter-apk/app-release.apk"
+          path: destiny_android_${{ env.DESTINY_VERSION }}.apk
           if-no-files-found: "error"
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "./build/app/outputs/flutter-apk/app-release.apk"
+          artifacts: destiny_android_${{ env.DESTINY_VERSION }}.apk
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -68,11 +71,11 @@ jobs:
           submodules: "recursive"
 
       - name: "Set version string for release"
-        run: echo DESTINY_VERSION=la_${{ github.ref_name }} >> $GITHUB_ENV
+        run: echo DESTINY_VERSION=${{ github.ref_name }} >> $GITHUB_ENV
         if: ${{ github.ref_type == 'tag' }}
 
       - name: "Set version string for branch"
-        run: echo DESTINY_VERSION=la_${{ github.head_ref }} >> $GITHUB_ENV
+        run: echo DESTINY_VERSION=${{ github.head_ref }} >> $GITHUB_ENV
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
@@ -107,18 +110,18 @@ jobs:
           patchelf --add-needed libwormhole_william.so dart_wormhole_gui
 
       - name: "Zip executable and libraries"
-        run: "7z a linux-${{ env.DESTINY_VERSION }}.zip build/linux/x64/release/bundle"
+        run: "7z a destiny_linux_${{ env.DESTINY_VERSION }}.zip build/linux/x64/release/bundle"
 
       - name: "Upload zip"
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-linux-${{ env.DESTINY_VERSION }}-unsigned"
-          path: "linux-${{ env.DESTINY_VERSION }}.zip"
+          path: "destiny_linux_${{ env.DESTINY_VERSION }}.zip"
           if-no-files-found: "error"
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "linux-${{ env.DESTINY_VERSION }}.zip"
+          artifacts: "destiny_linux_${{ env.DESTINY_VERSION }}.zip"
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -134,11 +137,11 @@ jobs:
           submodules: "recursive"
 
       - name: "Set version string for release"
-        run: echo DESTINY_VERSION=la_${{ github.ref_name }} >> $GITHUB_ENV
+        run: echo DESTINY_VERSION=${{ github.ref_name }} >> $GITHUB_ENV
         if: ${{ github.ref_type == 'tag' }}
 
       - name: "Set version string for branch"
-        run: echo DESTINY_VERSION=la_${{ github.head_ref }} >> $GITHUB_ENV
+        run: echo DESTINY_VERSION=${{ github.head_ref }} >> $GITHUB_ENV
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
@@ -167,18 +170,18 @@ jobs:
         run: "brew install create-dmg"
 
       - name: "Create DMG"
-        run: "create-dmg --app-drop-link 0 0 --eula LICENSE Destiny_LA_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/Destiny.app"
+        run: "create-dmg --app-drop-link 0 0 --eula LICENSE destiny_macos_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/Destiny.app"
 
       - name: "Copy DMG"
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-macos-${{ env.DESTINY_VERSION }}-unsigned"
-          path: "./Destiny_LA_${{ env.DESTINY_VERSION }}.dmg"
+          path: "./destiny_macos_${{ env.DESTINY_VERSION }}.dmg"
           if-no-files-found: "error"
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "./Destiny_LA_${{ env.DESTINY_VERSION }}.dmg"
+          artifacts: "./destiny_macos_${{ env.DESTINY_VERSION }}.dmg"
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -194,11 +197,11 @@ jobs:
           submodules: "recursive"
 
       - name: "Set version string for release"
-        run: 'echo "DESTINY_VERSION=la_${{ github.ref_name }}" >> $env:GITHUB_ENV'
+        run: 'echo "DESTINY_VERSION=${{ github.ref_name }}" >> $env:GITHUB_ENV'
         if: ${{ github.ref_type == 'tag' }}
 
       - name: "Set version string for branch"
-        run: 'echo "DESTINY_VERSION=la_${{ github.head_ref }}" >> $env:GITHUB_ENV'
+        run: 'echo "DESTINY_VERSION=${{ github.head_ref }}" >> $env:GITHUB_ENV'
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
@@ -218,19 +221,43 @@ jobs:
       - name: "Build windows"
         run: "flutter build windows lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }}"
 
+      - name: "Copy VC++ redistributables"
+        run: |
+          $vcredistpath = ((Get-ChildItem -Filter "msvcp140.dll" -Recurse "C:/Program Files/Microsoft Visual Studio/")[0] | Select -expand FullName) + "/.."
+          echo $vcredistpath
+          cp $vcredistpath/msvcp140.dll build/windows/runner/Release
+          cp $vcredistpath/vcruntime140.dll build/windows/runner/Release
+          cp $vcredistpath/vcruntime140_1.dll build/windows/runner/Release
+
       - name: "Zip executable and libraries"
-        run: "7z a windows-${{ env.DESTINY_VERSION }}.zip build/windows/runner/Release"
+        run: "7z a destiny_windows_${{ env.DESTINY_VERSION }}.zip build/windows/runner/Release"
+
+      - name: "Create windows installer"
+        run: |
+          $version = ("${{ github.ref_name }}" -replace "v","") + ".0"
+          if ( -not ( $version -match "^\d+\.\d+\.\d+\.\d+$" ) ) {
+            echo "Invalid version for MSIX packaging: $version. Using 0.0.1.0 instead"
+            $version = "0.0.1.0"
+          }
+          echo y | flutter pub run msix:create --version $version --output-path . --build-windows false --output-name destiny_windows_${{ env.DESTINY_VERSION }}
 
       - name: "Upload zip"
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-windows-${{ env.DESTINY_VERSION }}-unsigned"
-          path: "windows-${{ env.DESTINY_VERSION }}.zip"
+          path: "destiny_windows_${{ env.DESTINY_VERSION }}.zip"
+          if-no-files-found: "error"
+
+      - name: "Upload msix"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-windows-${{ env.DESTINY_VERSION }}-unsigned-msix"
+          path: "destiny_windows_${{ env.DESTINY_VERSION }}.msix"
           if-no-files-found: "error"
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "windows-${{ env.DESTINY_VERSION }}.zip"
+          artifacts: "destiny_windows_${{ env.DESTINY_VERSION }}.zip,destiny_windows_${{ env.DESTINY_VERSION }}.msix"
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
