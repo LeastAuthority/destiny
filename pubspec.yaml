@@ -51,6 +51,7 @@ dependencies:
   permission_handler: ^9.2.0
   open_file: ^3.2.1
   flutter_spinkit: ^5.1.0
+  device_info_plus: ^3.2.3
 window_size:
   git:
     url: git://github.com/google/flutter-desktop-embedding.git

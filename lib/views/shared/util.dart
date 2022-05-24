@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:permission_handler/permission_handler.dart';
@@ -57,14 +58,27 @@ String nonExistingPathFor(String path) {
   }
 }
 
+Future<bool> isAndroidStoragePermissionsGranted() async {
+  DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  final androidInfo = await deviceInfoPlugin.androidInfo;
+  const int API_LEVEL_29 = 29;
+  bool isGranted;
+
+  if (androidInfo.version.sdkInt! <= API_LEVEL_29) {
+    isGranted = await Permission.storage.request() == PermissionStatus.granted;
+  } else {
+    isGranted = await Permission.manageExternalStorage.request() ==
+        PermissionStatus.granted;
+  }
+
+  return isGranted;
+}
+
 Future<bool> canWriteToDirectory(String directory) async {
   try {
     String path = nonExistingPathFor('$directory/test');
-    if (Platform.isAndroid) {
-      bool isGranted =
-          await Permission.storage.request() == PermissionStatus.granted;
-      if (isGranted == false) return false;
-    }
+    if (Platform.isAndroid &&
+        await isAndroidStoragePermissionsGranted() == false) return false;
     File(path).writeAsBytesSync([]);
     File(path).deleteSync();
     return true;
