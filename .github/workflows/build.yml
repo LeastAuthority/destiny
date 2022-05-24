@@ -104,10 +104,10 @@ jobs:
       - name: "rpath workaround"
         run: |
           cd build/linux/x64/release/bundle
-          patchelf --remove-needed libbindings.so dart_wormhole_gui
-          patchelf --add-needed libbindings.so dart_wormhole_gui
-          patchelf --remove-needed libwormhole_william.so dart_wormhole_gui
-          patchelf --add-needed libwormhole_william.so dart_wormhole_gui
+          patchelf --remove-needed libbindings.so destiny
+          patchelf --add-needed libbindings.so destiny
+          patchelf --remove-needed libwormhole_william.so destiny
+          patchelf --add-needed libwormhole_william.so destiny
 
       - name: "Zip executable and libraries"
         run: "7z a destiny_linux_${{ env.DESTINY_VERSION }}.zip build/linux/x64/release/bundle"
