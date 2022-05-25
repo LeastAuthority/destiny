@@ -104,13 +104,18 @@ jobs:
       - name: "rpath workaround"
         run: |
           cd build/linux/x64/release/bundle
-          patchelf --remove-needed libbindings.so dart_wormhole_gui
-          patchelf --add-needed libbindings.so dart_wormhole_gui
-          patchelf --remove-needed libwormhole_william.so dart_wormhole_gui
-          patchelf --add-needed libwormhole_william.so dart_wormhole_gui
+          patchelf --remove-needed libbindings.so destiny
+          patchelf --add-needed libbindings.so destiny
+          patchelf --remove-needed libwormhole_william.so destiny
+          patchelf --add-needed libwormhole_william.so destiny
 
       - name: "Zip executable and libraries"
         run: "7z a destiny_linux_${{ env.DESTINY_VERSION }}.zip build/linux/x64/release/bundle"
+
+      - name: "Make AppImage"
+        run: |
+          ./scripts/make_appimage.sh
+          mv Destiny-x86_64.AppImage Destiny-x86_64-${{ env.DESTINY_VERSION }}.AppImage
 
       - name: "Upload zip"
         uses: "actions/upload-artifact@v2"
@@ -119,9 +124,16 @@ jobs:
           path: "destiny_linux_${{ env.DESTINY_VERSION }}.zip"
           if-no-files-found: "error"
 
+      - name: "Upload AppImage"
+        uses: "actions/upload-artifact@v2"
+        with:
+          name: "destiny-linux-${{ env.DESTINY_VERSION }}-appimage-unsigned"
+          path: "Destiny-x86_64-${{ env.DESTINY_VERSION }}.AppImage"
+          if-no-files-found: "error"
+
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "destiny_linux_${{ env.DESTINY_VERSION }}.zip"
+          artifacts: "destiny_linux_${{ env.DESTINY_VERSION }}.zip,Destiny-x86_64-${{ env.DESTINY_VERSION }}.AppImage"
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}

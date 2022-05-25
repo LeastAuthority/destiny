@@ -8,12 +8,15 @@ class ErrorUI extends StatelessWidget {
   final String? errorTitle;
   final String? error;
   final String? errorMessage;
-  final String route;
+  final String actionText;
+  final void Function() onPressed;
+
   ErrorUI(
       {this.errorTitle,
       this.error,
       this.errorMessage,
-      this.route = '',
+      this.actionText = "",
+      required this.onPressed,
       Key? key})
       : super(key: key);
   @override
@@ -48,10 +51,7 @@ class ErrorUI extends StatelessWidget {
             height: 60.0.h,
             title: "Receive a File",
             handleClicked: () {
-              Navigator.pushReplacementNamed(
-                context,
-                route,
-              );
+              onPressed();
             },
             fontSize: 18.0.sp),
       ],

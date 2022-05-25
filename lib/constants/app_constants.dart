@@ -154,12 +154,12 @@ const String ERR_WRONG_CODE_SENDER = """Oops..
 The receiver has entered the wrong code.
 Please try sending the file again""";
 
-final Config magic_wormhole_io = Config(
+final Config magicWormholeIO = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
   transitRelayUrl: "tcp:transit.magic-wormhole.io:4001",
 );
 
-final Config least_authority = Config(
+final Config leastAuthority = Config(
   rendezvousUrl: "wss://mailbox.w.leastauthority.com/v1",
   transitRelayUrl: "tcp:relay.w.leastauthority.com:4001",
   appId: "myFileTransfer",

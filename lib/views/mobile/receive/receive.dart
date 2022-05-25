@@ -1,124 +1,150 @@
 import 'package:dart_wormhole_gui/config/routes/routes.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/AbortErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/ErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:dart_wormhole_gui/views/shared/receive.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../shared/receive.dart';
-import '../widgets/AbortErrorUI.dart';
-import '../widgets/buttons/ButtonWithBackground.dart';
+import 'package:provider/provider.dart';
 
-class Receive extends ReceiveState {
-  Receive(config, {Key? key}) : super(config, key: key);
-
-  @override
-  ReceiveScreen createState() => ReceiveScreen(config);
-}
-
-class ReceiveScreen extends ReceiveShared<Receive> {
-  ReceiveScreen(Config config) : super(config);
-
+class ReceiveScreen extends StatelessWidget {
   Widget receivingDone() {
-    return ReceivingDone(fileSize, fileName, path!);
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return ReceivingDone(state.fileSize, state.fileName, state.path!);
+    });
   }
 
   Widget receiveProgress() {
-    return ReceiveProgress(fileSize, fileName, progress.percentage,
-        progress.remainingTimeString ?? THREE_DOTS, this.cancelFunc);
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return ReceiveProgress(
+          state.fileSize,
+          state.fileName,
+          state.progress.percentage,
+          state.progress.remainingTimeString ?? THREE_DOTS,
+          state.cancelFunc);
+    });
   }
 
   Widget receiveConfirmation() {
-    return ReceiveConfirmation(
-        fileName, fileSize, acceptDownload, rejectDownload);
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return ReceiveConfirmation(state.fileName, state.fileSize,
+          state.acceptDownload, state.rejectDownload);
+    });
   }
 
   Widget enterCodeUI() {
-    return Column(
-      key: Key(RECEIVE_SCREEN_CONTENT),
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Expanded(
-          flex: 1,
-          child: Heading(
-            title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
-            textAlign: TextAlign.left,
-            marginTop: 0,
-            textStyle: Theme.of(context).textTheme.headline6,
-            key: Key(RECEIVE_SCREEN_HEADING),
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return Column(
+        key: Key(RECEIVE_SCREEN_CONTENT),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Expanded(
+            flex: 1,
+            child: Heading(
+              title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+              textAlign: TextAlign.left,
+              marginTop: 0,
+              textStyle: Theme.of(context).textTheme.headline6,
+              key: Key(RECEIVE_SCREEN_HEADING),
+            ),
           ),
-        ),
-        Expanded(
-            flex: 2,
-            child: EnterCode(
-                key: Key(RECEIVE_SCREEN_ENTER_CODE),
-                codeChanged: codeChanged,
-                isRequestingConnection: isRequestingConnection,
-                controller: controller,
-                handleNextClicked: () {
-                  this.setState(() {
-                    receive();
-                  });
-                }))
-      ],
-    );
+          Expanded(
+              flex: 2,
+              child: EnterCode(
+                  key: Key(RECEIVE_SCREEN_ENTER_CODE),
+                  codeChanged: state.codeChanged,
+                  isRequestingConnection: state.isRequestingConnection,
+                  controller: state.controller,
+                  handleNextClicked: () {
+                    state.setState(() {
+                      state.receive();
+                    });
+                  },
+                  onEnterPressed: (_) {
+                    state.setState(() {
+                      state.receive();
+                    });
+                  }))
+        ],
+      );
+    });
   }
 
   Widget receiveError() {
-    return ErrorUI(
-      errorTitle: errorTitle,
-      errorMessage: errorMessage,
-      error: error,
-      route: RECEIVE_ROUTE,
-    );
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return ErrorUI(
+        errorTitle: state.errorTitle,
+        errorMessage: state.errorMessage,
+        error: state.error,
+        actionText: "Receive a file",
+        onPressed: () {
+          state.setState(() {
+            state.currentState = ReceiveScreenStates.Initial;
+          });
+        },
+      );
+    });
   }
 
   Widget transferCancelled() {
-    return AbortErrorUI(
-        text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
-        subText: RECEIVE_A_FILE,
-        route: RECEIVE_ROUTE);
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return AbortErrorUI(
+          text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
+          subText: RECEIVE_A_FILE,
+          onPressed: () {
+            state.setState(() {
+              state.currentState = ReceiveScreenStates.Initial;
+            });
+          });
+    });
   }
 
   Widget transferRejected() {
-    return AbortErrorUI(
-        text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nby the sender.",
-        subText: RECEIVE_A_FILE,
-        route: RECEIVE_ROUTE);
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return AbortErrorUI(
+          text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nby the sender.",
+          subText: RECEIVE_A_FILE,
+          onPressed: () {
+            state.setState(() {
+              state.currentState = ReceiveScreenStates.Initial;
+            });
+          });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        bottomNavigationBar: CustomBottomBar(
-          path: RECEIVE_ROUTE,
-          key: Key(BOTTOM_NAV_BAR),
-        ),
-        appBar: CustomAppBar(
-          title: RECEIVE,
-          key: Key(CUSTOM_NAV_BAR),
-        ),
-        body: WillPopScope(
-          onWillPop: () async => false,
-          child: Container(
-              key: Key(RECEIVE_SCREEN_BODY),
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: widgetByState(
-                  receivingDone,
-                  receiveError,
-                  receiveProgress,
-                  enterCodeUI,
-                  receiveConfirmation,
-                  transferCancelled,
-                  transferRejected)),
-        ));
+    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
+      return Scaffold(
+          bottomNavigationBar: CustomBottomBar(
+            path: RECEIVE_ROUTE,
+            key: Key(BOTTOM_NAV_BAR),
+          ),
+          appBar: CustomAppBar(
+            title: RECEIVE,
+            key: Key(CUSTOM_NAV_BAR),
+          ),
+          body: WillPopScope(
+            onWillPop: () async => false,
+            child: Container(
+                key: Key(RECEIVE_SCREEN_BODY),
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: state.widgetByState(
+                    receivingDone,
+                    receiveError,
+                    receiveProgress,
+                    enterCodeUI,
+                    receiveConfirmation,
+                    transferCancelled,
+                    transferRejected)),
+          ));
+    });
   }
 }

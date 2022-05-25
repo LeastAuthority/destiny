@@ -4,106 +4,126 @@ import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart'
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/AbortErrorUI.dart';
+import 'package:dart_wormhole_gui/views/mobile/widgets/ErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:dart_wormhole_gui/views/shared/send.dart';
-import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-import '../widgets/AbortErrorUI.dart';
-import '../widgets/ErrorUI.dart';
+import 'package:provider/provider.dart';
 
-class Send extends SendState {
-  Send(config, {Key? key}) : super(config, key: key);
-
-  @override
-  SendScreen createState() => SendScreen(config);
-}
-
-class SendScreen extends SendShared<Send> {
-  SendScreen(Config config) : super(config);
-
+class SendScreen extends StatelessWidget {
   Widget generateCodeUI() {
-    return widgetFromMetadata((metadata) => CodeGeneration(
-          metadata.fileName!,
-          metadata.fileSize!,
-          code,
-          currentState == SendScreenStates.CodeGenerating,
-          cancelSend,
-          key: Key(SEND_SCREEN_CODE_GENERATION_UI),
-        ));
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return state.widgetFromMetadata((metadata) => CodeGeneration(
+            metadata.fileName!,
+            metadata.fileSize!,
+            state.code,
+            state.currentState == SendScreenStates.CodeGenerating,
+            state.cancelSend,
+            key: Key(SEND_SCREEN_CODE_GENERATION_UI),
+          ));
+    });
   }
 
   Widget selectAFileUI() {
-    return SelectAFileUI(handleSelectFile);
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return SelectAFileUI(state.handleSelectFile);
+    });
   }
 
   Widget sendingProgress() {
-    return widgetFromMetadata((metadata) => SendingProgress(
-        metadata.fileSize!,
-        metadata.fileName!,
-        progress.percentage,
-        progress.remainingTimeString ??
-            (progress.percentage - 1.0 <= 0.001
-                ? WAITING_FOR_RECEIVER
-                : THREE_DOTS),
-        cancelFunc));
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return state.widgetFromMetadata((metadata) => SendingProgress(
+          metadata.fileSize!,
+          metadata.fileName!,
+          state.progress.percentage,
+          state.progress.remainingTimeString ??
+              (state.progress.percentage - 1.0 <= 0.001
+                  ? WAITING_FOR_RECEIVER
+                  : THREE_DOTS),
+          state.cancelFunc));
+    });
   }
 
   Widget sendingDone() {
-    return widgetFromMetadata(
-        (metadata) => SendingDone(metadata.fileSize!, metadata.fileName!));
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return state.widgetFromMetadata(
+          (metadata) => SendingDone(metadata.fileSize!, metadata.fileName!));
+    });
   }
 
   Widget sendingError() {
-    return ErrorUI(
-      errorTitle: errorTitle,
-      errorMessage: errorMessage ?? "Unknown error",
-      error: error.toString(),
-      route: SEND_ROUTE,
-    );
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return ErrorUI(
+        errorTitle: state.errorTitle,
+        errorMessage: state.errorMessage ?? "Unknown error",
+        error: state.error.toString(),
+        actionText: "Send a file",
+        onPressed: () {
+          state.setState(() {
+            state.currentState = SendScreenStates.Initial;
+          });
+        },
+      );
+    });
   }
 
   Widget transferCancelled() {
-    return AbortErrorUI(
-        handleSelectFile: handleSelectFile,
-        text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
-        subText: 'Send a file',
-        route: SEND_ROUTE);
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return AbortErrorUI(
+          handleSelectFile: state.handleSelectFile,
+          text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
+          subText: 'Send a file',
+          onPressed: () {
+            state.setState(() {
+              state.currentState = SendScreenStates.Initial;
+            });
+          });
+    });
   }
 
   Widget transferRejected() {
-    return AbortErrorUI(
-        handleSelectFile: handleSelectFile,
-        text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nthe receiver.",
-        subText: 'Send a file',
-        route: SEND_ROUTE);
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return AbortErrorUI(
+          handleSelectFile: state.handleSelectFile,
+          text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nthe receiver.",
+          subText: 'Send a file',
+          onPressed: () {
+            state.setState(() {
+              state.currentState = SendScreenStates.Initial;
+            });
+          });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        bottomNavigationBar: CustomBottomBar(
-          path: SEND_ROUTE,
-          key: Key(BOTTOM_NAV_BAR),
-        ),
-        appBar: CustomAppBar(
-          title: SEND,
-          key: Key(CUSTOM_NAV_BAR),
-        ),
-        body: WillPopScope(
-            onWillPop: () async => false,
-            child: Container(
-                width: double.infinity,
-                key: Key(SEND_SCREEN_BODY),
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                    child: widgetByState(
-                        generateCodeUI,
-                        selectAFileUI,
-                        sendingError,
-                        sendingDone,
-                        sendingProgress,
-                        transferCancelled,
-                        transferRejected)))));
+    return Consumer<SendSharedState>(builder: (context, state, _) {
+      return Scaffold(
+          bottomNavigationBar: CustomBottomBar(
+            path: SEND_ROUTE,
+            key: Key(BOTTOM_NAV_BAR),
+          ),
+          appBar: CustomAppBar(
+            title: SEND,
+            key: Key(CUSTOM_NAV_BAR),
+          ),
+          body: WillPopScope(
+              onWillPop: () async => false,
+              child: Container(
+                  width: double.infinity,
+                  key: Key(SEND_SCREEN_BODY),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Container(
+                      child: state.widgetByState(
+                          generateCodeUI,
+                          selectAFileUI,
+                          sendingError,
+                          sendingDone,
+                          sendingProgress,
+                          transferCancelled,
+                          transferRejected)))));
+    });
   }
 }
