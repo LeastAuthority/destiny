@@ -119,6 +119,8 @@ class MainActivity : FlutterActivity() {
         val selectFileIntent = Intent()
             .setType("*/*")
             .setAction(Intent.ACTION_GET_CONTENT)
+            .addCategory(Intent.CATEGORY_OPENABLE)
+            .putExtra(Intent.EXTRA_LOCAL_ONLY, true)
             .setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivityForResult(
             Intent.createChooser(selectFileIntent, "Select a file"),
