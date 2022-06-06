@@ -95,8 +95,6 @@ class IntroScreenState extends State<IntroScreen> {
           colorDot: Theme.of(context).scaffoldBackgroundColor,
           colorActiveDot: Theme.of(context).colorScheme.secondary,
           sizeDot: 13.0,
-          // subTitleFontSize: 18.0.sp,
-          // titleFontSize: 22.0.sp,
           hideStatusBar: false,
           backgroundColorAllSlides: Colors.grey,
           verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
@@ -104,7 +102,6 @@ class IntroScreenState extends State<IntroScreen> {
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           return MediaQuery(
-            //Setting font does not change with system font size
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
             child: widget!,
           );

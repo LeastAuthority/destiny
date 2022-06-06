@@ -103,32 +103,5 @@ class IntroScreenState extends State<IntroScreen> {
       backgroundColorAllSlides: Colors.grey,
       verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
     );
-    // return ScreenUtilInit(
-    //  designSize: Size(1250, 780),
-    //   builder: () => MaterialApp(
-    //     home: new IntroSlider(
-    //       slides: this.slides,
-    //       showSkipBtn: false,
-    //       showNextBtn: false,
-    //       showPrevBtn: false,
-    //       showDoneBtn: false,
-    //       onDonePress: this.onDonePress,
-    //       colorDot: Theme.of(context).scaffoldBackgroundColor,
-    //       colorActiveDot: Theme.of(context).colorScheme.secondary,
-    //       sizeDot: 13.0,
-    //       hideStatusBar: false,
-    //       backgroundColorAllSlides: Colors.grey,
-    //       verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
-    //     ),
-    //     builder: (context, widget) {
-    //       ScreenUtil.setContext(context);
-    //       return MediaQuery(
-    //         //Setting font does not change with system font size
-    //         data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-    //         child: widget!,
-    //       );
-    //     },
-    //   ),
-    // );
   }
 }
