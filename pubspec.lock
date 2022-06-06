@@ -304,7 +304,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: edeff45a97e22b8cef92d29102491d824de9c59c
+      resolved-ref: "483ee6aaea66e5993c22e28c3110a033a2f07299"
       url: "https://github.com/shareef-dweikat/flutter-intro-slider"
     source: git
     version: "3.0.2"
