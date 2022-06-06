@@ -31,6 +31,8 @@ class IntroScreenState extends State<IntroScreen> {
           title: END_TO_END_ENCRYPTION,
           description:
               SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
+          subTitleTextFontSize: 14.0,
+          titleTextFontSize: 23.0,
           btnTitle: GET_STARTED,
           pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
@@ -40,6 +42,8 @@ class IntroScreenState extends State<IntroScreen> {
       new Slide(
           title: NO_SIGN_UP,
           description: SEND_AND_RECEIVE_FILES_WITH_NO_NEED_TO_SIGN_UP,
+          subTitleTextFontSize: 14.0,
+          titleTextFontSize: 23.0,
           pathImage: PRIVACY_IMG,
           backgroundColor: Colors.black,
           btnTitle: NEXT,
@@ -49,6 +53,8 @@ class IntroScreenState extends State<IntroScreen> {
       new Slide(
           title: DEVICE_TO_DEVICE,
           description: SEND_AND_RECEIVE_FROM_AND_TO_YOUR_DEVICE_WITHOUT_STORING,
+          subTitleTextFontSize: 14.0,
+          titleTextFontSize: 23.0,
           btnTitle: START_HERE,
           maxLineTextDescription: 3,
           pathImage: DEVICE_TO_DEVICE_IMG,
@@ -89,8 +95,8 @@ class IntroScreenState extends State<IntroScreen> {
           colorDot: Theme.of(context).scaffoldBackgroundColor,
           colorActiveDot: Theme.of(context).colorScheme.secondary,
           sizeDot: 13.0,
-          subTitleFontSize: 18.0.sp,
-          titleFontSize: 22.0.sp,
+          // subTitleFontSize: 18.0.sp,
+          // titleFontSize: 22.0.sp,
           hideStatusBar: false,
           backgroundColorAllSlides: Colors.grey,
           verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,

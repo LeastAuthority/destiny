@@ -12,6 +12,7 @@ const String LOGO = 'assets/images/logo.png';
 const String DEVICE_TO_DEVICE_IMG = 'assets/images/Device2Device.png';
 const String PRIVACY_IMG = 'assets/images/No-Sign-Up.png';
 const String INTRO_LOGO = 'assets/images/intro-logo.png';
+const String LAPTOP_TO_MOBILE = 'assets/images/Laptop-to-mobile-transfer.png';
 
 //Icons
 const String SEND_ICON = 'assets/images/icons/send.png';

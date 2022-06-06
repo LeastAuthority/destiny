@@ -19,8 +19,8 @@ class ButtonWithBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget getButtonContent() {
-      return GestureDetector(
-          onTap: () {
+      return TextButton(
+          onPressed: () {
             if (disabled == false) this.handleClicked();
           },
           child: Row(
