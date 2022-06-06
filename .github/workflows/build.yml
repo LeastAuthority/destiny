@@ -115,7 +115,7 @@ jobs:
       - name: "Make AppImage"
         run: |
           ./scripts/make_appimage.sh
-          mv Destiny-x86_64.AppImage Destiny-x86_64-${{ env.DESTINY_VERSION }}.AppImage
+          mv Destiny-x86_64.AppImage destiny_linux_${{ env.DESTINY_VERSION }}.AppImage
 
       - name: "Upload zip"
         uses: "actions/upload-artifact@v2"
@@ -128,12 +128,12 @@ jobs:
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-linux-${{ env.DESTINY_VERSION }}-appimage-unsigned"
-          path: "Destiny-x86_64-${{ env.DESTINY_VERSION }}.AppImage"
+          path: "destiny_linux_${{ env.DESTINY_VERSION }}.AppImage"
           if-no-files-found: "error"
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "destiny_linux_${{ env.DESTINY_VERSION }}.zip,Destiny-x86_64-${{ env.DESTINY_VERSION }}.AppImage"
+          artifacts: "destiny_linux_${{ env.DESTINY_VERSION }}.zip,destiny_linux_${{ env.DESTINY_VERSION }}.AppImage"
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -182,7 +182,7 @@ jobs:
         run: "brew install create-dmg"
 
       - name: "Create DMG"
-        run: "create-dmg --app-drop-link 0 0 --eula LICENSE destiny_macos_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/Destiny.app"
+        run: "create-dmg --app-drop-link 0 0 destiny_macos_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/Destiny.app"
 
       - name: "Copy DMG"
         uses: "actions/upload-artifact@v2"

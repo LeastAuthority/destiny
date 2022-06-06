@@ -49,6 +49,8 @@ class MyApp extends StatelessWidget {
             : getDesktopRoutes(config),
         builder: (context, widget) {
           ScreenUtil.setContext(context);
+          WidgetsFlutterBinding.ensureInitialized();
+          setWindowTitle(WINDOW_TITLE);
           return MediaQuery(
             //Setting font does not change with system font size
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),

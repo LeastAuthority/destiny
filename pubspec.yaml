@@ -154,7 +154,7 @@ flutter:
 msix_config:
   display_name: Destiny
   publisher_display_name: "Destiny CI"
-  publisher: "CN=Destiny CI, O=Destiny CI"
+  publisher: "CN=Destiny CI, OID.2.25.311729368913984317654407730594956997722=1"
   identity_name: com.leastauthority.Destiny
   logo_path: .\assets\images\logo.png
   capabilities: internetClientServer

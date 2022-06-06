@@ -24,8 +24,6 @@ const String SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'Share code with recipient & wait until the transfer is complete.';
 const String THE_TRANSFER_WILL_AUTO =
     'The transfer will automatically begin once the receiver enters the code.';
-const String SPACE_AVAILABLE_IS_NOT_ENOUGH =
-    'Space available is not enough. Please free more space. As a security measure, Destiny cashes the file before sending it.';
 const String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT =
     'Send the selected file by sharing the code with the recipient.';
 const String READY_TO_DOWNLOAD = 'Ready to download';
@@ -145,6 +143,8 @@ const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
     'SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER';
 
 const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
+
+const String WINDOW_TITLE = "Destiny";
 
 const String ERR_WRONG_CODE_RECEIVER = """Oops..
 If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
