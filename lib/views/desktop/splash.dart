@@ -3,12 +3,7 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Splash extends StatefulWidget {
-  @override
-  SplashState createState() => new SplashState();
-}
-
-class SplashState extends State<Splash> {
+class Splash extends StatelessWidget {
   SharedPreferences? prefs;
   Future isItAppFirstLunch() async {
     prefs = await SharedPreferences.getInstance();
@@ -20,7 +15,7 @@ class SplashState extends State<Splash> {
     return prefs?.setBool(SEEN, true);
   }
 
-  Future checkFirstSeen() async {
+  Future checkFirstSeen(context) async {
     bool isItFirstLunch = await isItAppFirstLunch();
     if (isItFirstLunch) {
       Navigator.pushNamed(context, DESKTOP_SEND_ROUTE);
@@ -31,7 +26,7 @@ class SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    checkFirstSeen();
+    checkFirstSeen(context);
     return Scaffold(
       body: Center(
         key: Key(SPLASH_SCREEN_BODY),
