@@ -18,9 +18,8 @@ class Splash extends StatelessWidget {
   Future checkFirstSeen(context) async {
     bool isItFirstLunch = await isItAppFirstLunch();
     if (isItFirstLunch) {
-      Navigator.pushNamed(context, SEND_ROUTE);
+      Navigator.pushNamed(context, DESKTOP_SEND_ROUTE);
     } else {
-      await setSeenToTrue();
       Navigator.pushNamed(context, INTRO_ROUTE);
     }
   }

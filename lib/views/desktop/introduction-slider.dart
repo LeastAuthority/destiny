@@ -1,12 +1,12 @@
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
   final Config config;
@@ -29,10 +29,11 @@ class IntroScreenState extends State<IntroScreen> {
     slides.add(
       new Slide(
           title: END_TO_END_ENCRYPTION,
+          titleTextFontSize: 44.0,
+          subTitleTextFontSize: 24.0,
+          desktopActionButtonEnabled: true,
           description:
               SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
-          subTitleTextFontSize: 14.0,
-          titleTextFontSize: 23.0,
           btnTitle: GET_STARTED,
           pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
@@ -41,9 +42,10 @@ class IntroScreenState extends State<IntroScreen> {
     slides.add(
       new Slide(
           title: NO_SIGN_UP,
+          titleTextFontSize: 44.0,
+          subTitleTextFontSize: 24.0,
+          desktopActionButtonEnabled: true,
           description: SEND_AND_RECEIVE_FILES_WITH_NO_NEED_TO_SIGN_UP,
-          subTitleTextFontSize: 14.0,
-          titleTextFontSize: 23.0,
           pathImage: PRIVACY_IMG,
           backgroundColor: Colors.black,
           btnTitle: NEXT,
@@ -52,18 +54,25 @@ class IntroScreenState extends State<IntroScreen> {
     slides.add(
       new Slide(
           title: DEVICE_TO_DEVICE,
+          titleTextFontSize: 44.0,
+          subTitleTextFontSize: 24.0,
+          desktopActionButtonEnabled: true,
           description: SEND_AND_RECEIVE_FROM_AND_TO_YOUR_DEVICE_WITHOUT_STORING,
-          subTitleTextFontSize: 14.0,
-          titleTextFontSize: 23.0,
           btnTitle: START_HERE,
           maxLineTextDescription: 3,
-          pathImage: DEVICE_TO_DEVICE_IMG,
+          pathImage: LAPTOP_TO_MOBILE,
           backgroundColor: Colors.black,
           heightImage: 300.0),
     );
   }
 
-  void onDonePress() {
+  Future setSeenToTrue() async {
+    SharedPreferences? prefs = await SharedPreferences.getInstance();
+    return prefs.setBool(SEEN, true);
+  }
+
+  void onDonePress() async {
+    await setSeenToTrue();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SendScreen()),
@@ -80,33 +89,19 @@ class IntroScreenState extends State<IntroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: Size(375, 590),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: () => MaterialApp(
-        home: new IntroSlider(
-          slides: this.slides,
-          showSkipBtn: false,
-          showNextBtn: false,
-          showPrevBtn: false,
-          showDoneBtn: false,
-          onDonePress: this.onDonePress,
-          colorDot: Theme.of(context).scaffoldBackgroundColor,
-          colorActiveDot: Theme.of(context).colorScheme.secondary,
-          sizeDot: 13.0,
-          hideStatusBar: false,
-          backgroundColorAllSlides: Colors.grey,
-          verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
-        ),
-        builder: (context, widget) {
-          ScreenUtil.setContext(context);
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: widget!,
-          );
-        },
-      ),
+    return new IntroSlider(
+      slides: this.slides,
+      showSkipBtn: false,
+      showNextBtn: false,
+      showPrevBtn: false,
+      showDoneBtn: false,
+      onDonePress: this.onDonePress,
+      colorDot: Theme.of(context).scaffoldBackgroundColor,
+      colorActiveDot: Theme.of(context).colorScheme.secondary,
+      sizeDot: 13.0,
+      hideStatusBar: false,
+      backgroundColorAllSlides: Colors.grey,
+      verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
     );
   }
 }
