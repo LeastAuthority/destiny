@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           WidgetsFlutterBinding.ensureInitialized();
-          if(!Platform.isAndroid) {
+          if (!Platform.isAndroid) {
             setWindowTitle(WINDOW_TITLE);
           }
           return MediaQuery(
