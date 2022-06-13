@@ -49,7 +49,7 @@ class ErrorUI extends StatelessWidget {
         ButtonWithBackground(
             width: 200.0.w,
             height: 60.0.h,
-            title: "Receive a File",
+            title: actionText,
             handleClicked: () {
               onPressed();
             },

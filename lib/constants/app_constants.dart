@@ -37,6 +37,7 @@ const String NEXT = 'Next';
 const String CANCEL = 'Cancel';
 const String COPY = 'Copy';
 const String BACK = 'Back';
+const String DONE = 'Done';
 const String FILE_RECEIVED = 'File received';
 const String FILE_SENT = 'File sent';
 const String SECONDS = 'Seconds';
@@ -56,7 +57,9 @@ const String WRONG_TYPE_FOR_PROGRESS =
 const String FILE_TRANSFER_SUCCESSFULLY = 'File transfer successful.';
 const String MUST_CHOOSE_PATH_TO_SAVE_THE_FILE =
     'Must choose a path to save the file';
-const String FILE_DOWNLOADED_SUCCESSFULLY = 'File download successful.';
+const String FILE_DOWNLOADED_SUCCESSFULLY = 'File successfully downloaded to:';
+const String FILE_DOWNLOAD_SUCCESSFUL = 'File download successful.';
+
 const String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE =
     'Select default save destination for this device.';
 const String CURRENT_SAVE_DESTINATION = 'Current save destination:';

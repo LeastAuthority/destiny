@@ -43,7 +43,11 @@ class SendScreen extends StatelessWidget {
   Widget sendingDone() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return state.widgetFromMetadata((metadata) {
-        return SendingDone(metadata.fileSize!, metadata.fileName!);
+        return SendingDone(metadata.fileSize!, metadata.fileName!, () {
+          state.setState(() {
+            state.currentState = SendScreenStates.Initial;
+          });
+        });
       });
     });
   }

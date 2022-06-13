@@ -3,19 +3,21 @@ import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../widgets/DTButton.dart';
 import '../../widgets/DTFileInfo.dart';
 
 class DTReceivingDone extends StatelessWidget {
   final int fileSize;
   final String fileName;
   final String path;
-  DTReceivingDone(this.fileSize, this.fileName, this.path);
+  final Function handleDoneButtonPressed;
+  DTReceivingDone(this.fileSize, this.fileName, this.path, this.handleDoneButtonPressed);
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Heading(
-          title: FILE_DOWNLOADED_SUCCESSFULLY,
+          title: FILE_DOWNLOAD_SUCCESSFUL,
           textStyle: Theme.of(context).textTheme.headline1,
         ),
         Expanded(
@@ -33,6 +35,9 @@ class DTReceivingDone extends StatelessWidget {
               textStyle: Theme.of(context).textTheme.bodyText1,
               key: Key(SETTINGS_SCREEN_HEADING),
             ),
+            DTButton(DONE, () {
+              handleDoneButtonPressed();
+            }),
             SizedBox(
               height: 37.0.h,
             )
