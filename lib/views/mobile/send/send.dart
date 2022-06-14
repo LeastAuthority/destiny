@@ -75,7 +75,7 @@ class SendScreen extends StatelessWidget {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return AbortErrorUI(
           handleSelectFile: state.handleSelectFile,
-          text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
+          text: ERR_INTERRUPTION_CANCELLATION_SENDER,
           subText: 'Send a file',
           onPressed: () {
             state.setState(() {

@@ -100,7 +100,7 @@ class ReceiveScreen extends StatelessWidget {
   Widget transferCancelled() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return AbortErrorUI(
-          text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
+          text: ERR_INTERRUPTION_CANCELLATION_RECEIVER,
           subText: RECEIVE_A_FILE,
           onPressed: () {
             state.setState(() {

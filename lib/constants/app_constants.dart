@@ -72,8 +72,6 @@ const String THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR =
     'The app does not have the permission to store files in this directory.';
 const String CUSTOM_NAV_BAR_MENU_FANDQ_ITEM = 'F&Q';
 const String RECEIVING = 'Receiving…';
-const String THE_TRANSFER_HAS_BEEN_INTERRUPTED =
-    "The transfer has been interrupted. \nPlease try again.";
 const String THE_TRANSFER_HAS_BEEN_CANCELLED =
     "The transfer has been cancelled by";
 
@@ -156,6 +154,11 @@ Please ask the sender for a new code and for them to stay connected until you ge
 const String ERR_WRONG_CODE_SENDER = """Oops..
 The receiver has entered the wrong code.
 Please try sending the file again""";
+
+const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =
+    "The transfer was interrupted or it was cancelled by the sender";
+const String ERR_INTERRUPTION_CANCELLATION_SENDER =
+    "The transfer was interrupted or it was cancelled by the receiver";
 
 final Config magicWormholeIO = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",

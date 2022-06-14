@@ -96,7 +96,7 @@ class SendScreen extends StatelessWidget {
       return DTErrorUI(
           paddingTop: 80.0.h,
           showBoxDecoration: true,
-          text: 'The transfer was interrupted.',
+          text: ERR_INTERRUPTION_CANCELLATION_SENDER,
           subText: 'Please try again.',
           onPressed: () {
             state.setState(() {
