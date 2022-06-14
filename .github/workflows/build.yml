@@ -27,7 +27,7 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.3.0"
+        uses: "subosito/flutter-action@v2.4.0"
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -79,7 +79,7 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.3.0"
+        uses: "subosito/flutter-action@v2.4.0"
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -157,7 +157,7 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.3.0"
+        uses: "subosito/flutter-action@v2.4.0"
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -217,7 +217,7 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.3.0"
+        uses: "subosito/flutter-action@v2.4.0"
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
