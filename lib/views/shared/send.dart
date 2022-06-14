@@ -23,7 +23,7 @@ enum SendScreenStates {
 
 class SendSharedState extends ChangeNotifier {
   String? code;
-  late f.File sendingFile;
+  f.File? sendingFile;
 
   SendScreenStates currentState = SendScreenStates.Initial;
 
@@ -39,15 +39,37 @@ class SendSharedState extends ChangeNotifier {
   SendSharedState(this.config);
 
   Future<int> get fileSize =>
-      sendingFile.metadata().then((metadata) => metadata.fileSize!);
+      sendingFile?.metadata().then((metadata) => metadata.fileSize!) ??
+      Future.error("No file size as there is no file being sent");
 
   Future<String> get fileName =>
-      sendingFile.metadata().then((metadata) => metadata.fileName!);
+      sendingFile?.metadata().then((metadata) => metadata.fileName!) ??
+      Future.error("No file name as there is no file being sent");
   bool selectingFile = false;
 
   void setState(void Function() change) {
     change();
     notifyListeners();
+  }
+
+  void reset() {
+    setState(() {
+      code = null;
+      sendingFile = null;
+      currentState = SendScreenStates.Initial;
+      error = null;
+      errorMessage = null;
+      errorTitle = null;
+      selectingFile = false;
+
+      cancelFunc = () {
+        print("No transfer to cancel");
+      };
+
+      progress = ProgressSharedState(setState, () {
+        currentState = SendScreenStates.FileSending;
+      });
+    });
   }
 
   late ProgressSharedState progress = ProgressSharedState(setState, () {
@@ -56,7 +78,7 @@ class SendSharedState extends ChangeNotifier {
 
   Widget widgetFromMetadata(Widget Function(Metadata) f) {
     return FutureBuilder<Metadata>(
-        future: sendingFile.metadata(),
+        future: sendingFile?.metadata() ?? Future.error("Not sending a file"),
         builder: (context, snapshot) {
           return snapshot.data != null
               ? f(snapshot.data!)
