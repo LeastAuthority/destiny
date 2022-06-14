@@ -109,8 +109,10 @@ jobs:
           patchelf --remove-needed libwormhole_william.so destiny
           patchelf --add-needed libwormhole_william.so destiny
 
-      - name: "Zip executable and libraries"
-        run: "7z a destiny_linux_${{ env.DESTINY_VERSION }}.zip build/linux/x64/release/bundle"
+      - name: "Prepare tarball"
+        run: |
+          cp -r build/linux/x64/release/bundle "destiny_linux_${{ env.DESTINY_VERSION }}"
+          tar -czf destiny_linux_${{ env.DESTINY_VERSION }}.tar.gz "destiny_linux_${{ env.DESTINY_VERSION }}"
 
       - name: "Make AppImage"
         run: |
@@ -121,7 +123,7 @@ jobs:
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-linux-${{ env.DESTINY_VERSION }}-unsigned"
-          path: "destiny_linux_${{ env.DESTINY_VERSION }}.zip"
+          path: "destiny_linux_${{ env.DESTINY_VERSION }}.tar.gz"
           if-no-files-found: "error"
 
       - name: "Upload AppImage"
@@ -133,7 +135,7 @@ jobs:
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "destiny_linux_${{ env.DESTINY_VERSION }}.zip,destiny_linux_${{ env.DESTINY_VERSION }}.AppImage"
+          artifacts: "destiny_linux_${{ env.DESTINY_VERSION }}.tar.gz,destiny_linux_${{ env.DESTINY_VERSION }}.AppImage"
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -242,7 +244,9 @@ jobs:
           cp $vcredistpath/vcruntime140_1.dll build/windows/runner/Release
 
       - name: "Zip executable and libraries"
-        run: "7z a destiny_windows_${{ env.DESTINY_VERSION }}.zip build/windows/runner/Release"
+        run: |
+          cp -r build/windows/runner/Release destiny_windows_${{ env.DESTINY_VERSION }}
+          7z a destiny_windows_${{ env.DESTINY_VERSION }}.zip "destiny_windows_${{ env.DESTINY_VERSION }}"
 
       - name: "Create windows installer"
         run: |
