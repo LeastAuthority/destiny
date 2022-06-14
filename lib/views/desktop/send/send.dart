@@ -83,9 +83,7 @@ class SendScreen extends StatelessWidget {
           text: state.errorMessage ?? "Unknown error",
           showBoxDecoration: true,
           onPressed: () {
-            state.setState(() {
-              state.currentState = SendScreenStates.Initial;
-            });
+            state.reset();
           },
           buttonTitle: 'Send a file');
     });
@@ -99,9 +97,7 @@ class SendScreen extends StatelessWidget {
           text: ERR_INTERRUPTION_CANCELLATION_SENDER,
           subText: 'Please try again.',
           onPressed: () {
-            state.setState(() {
-              state.currentState = SendScreenStates.Initial;
-            });
+            state.reset();
           },
           buttonTitle: 'Send a file');
     });
@@ -114,7 +110,7 @@ class SendScreen extends StatelessWidget {
           showBoxDecoration: true,
           text: 'The transfer was cancelled by the receiver.',
           onPressed: () {
-            state.currentState = SendScreenStates.Initial;
+            state.reset();
           },
           buttonTitle: 'Send a file');
     });
