@@ -2,13 +2,15 @@ import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/constants/asset_path.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:dart_wormhole_gui/widgets/buttons/Button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SendingDone extends StatelessWidget {
   final int fileSize;
   final String fileName;
-  SendingDone(this.fileSize, this.fileName);
+  final Function handleDoneButtonPressed;
+  SendingDone(this.fileSize, this.fileName, this.handleDoneButtonPressed);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,8 +35,9 @@ class SendingDone extends StatelessWidget {
           CHECK_ICON,
           width: 64.0.w,
         ),
+        Button(DONE, handleDoneButtonPressed, false),
         SizedBox(
-          height: 150.0.h,
+          height: 37.0.h,
         )
       ],
     );

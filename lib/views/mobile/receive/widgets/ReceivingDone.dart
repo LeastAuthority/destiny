@@ -5,18 +5,23 @@ import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../widgets/buttons/Button.dart';
+
 class ReceivingDone extends StatelessWidget {
   final int fileSize;
   final String fileName;
   final String path;
-  ReceivingDone(this.fileSize, this.fileName, this.path);
+  final Function handleDoneButtonPressed;
+  ReceivingDone(
+      this.fileSize, this.fileName, this.path, this.handleDoneButtonPressed);
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Heading(
-          title: FILE_DOWNLOADED_SUCCESSFULLY,
+          title: FILE_DOWNLOADED_SUCCESSFULLY + '\n',
+          path: path,
           textAlign: TextAlign.left,
           textStyle: Theme.of(context).textTheme.headline6,
           // key: Key('Timing_Progress'),
@@ -32,12 +37,7 @@ class ReceivingDone extends StatelessWidget {
           CHECK_ICON,
           width: 64.0.w,
         ),
-        Heading(
-          title: DOWNLOADED_TO + '\n',
-          path: path,
-          textStyle: Theme.of(context).textTheme.bodyText1,
-          key: Key(SETTINGS_SCREEN_HEADING),
-        ),
+        Button(DONE, handleDoneButtonPressed, false),
         SizedBox(
           height: 37.0.h,
         )

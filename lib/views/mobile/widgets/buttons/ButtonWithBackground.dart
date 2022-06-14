@@ -19,10 +19,15 @@ class ButtonWithBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget getButtonContent() {
+      var enabledBackgroundColor = Theme.of(context).primaryColor;
+      var disabledBackgroundColor = Theme.of(context).primaryColorDark;
+      var backgroundColor =
+          disabled == true ? disabledBackgroundColor : enabledBackgroundColor;
       return TextButton(
           onPressed: () {
             if (disabled == false) this.handleClicked();
           },
+          style: TextButton.styleFrom(backgroundColor: backgroundColor),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -43,15 +48,8 @@ class ButtonWithBackground extends StatelessWidget {
       var disabledBorderColor = Theme.of(context).primaryColorDark;
       var borderColor =
           disabled == true ? disabledBorderColor : enabledBorderColor;
-
-      var enabledBackgroundColor = Theme.of(context).primaryColor;
-      var disabledBackgroundColor = Theme.of(context).primaryColorDark;
-      var backgroundColor =
-          disabled == true ? disabledBackgroundColor : enabledBackgroundColor;
-
       return BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
-        color: backgroundColor,
         border: Border.all(width: 1.0, color: borderColor),
       );
     }

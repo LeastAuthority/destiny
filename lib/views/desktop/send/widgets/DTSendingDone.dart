@@ -5,11 +5,13 @@ import 'package:dart_wormhole_gui/views/desktop//widgets/DTFileInfo.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../widgets/DTButton.dart';
 
 class SendingDone extends StatelessWidget {
   final int fileSize;
   final String fileName;
-  SendingDone(this.fileSize, this.fileName);
+  final Function handleDoneButtonPressed;
+  SendingDone(this.fileSize, this.fileName, this.handleDoneButtonPressed);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,8 +42,11 @@ class SendingDone extends StatelessWidget {
               CHECK_ICON,
               width: 64.0,
             ),
+            DTButton(DONE, () {
+              handleDoneButtonPressed();
+            }),
             SizedBox(
-              height: 150.0,
+              height: 37.0.h,
             )
           ],
         ));
