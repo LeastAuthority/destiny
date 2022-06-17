@@ -147,12 +147,12 @@ const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
 
-const String ERR_WRONG_CODE_RECEIVER = """Oops..
-If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
+const String ERR_WRONG_CODE_RECEIVER = """Oops..\n   
+If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.\n
 Please ask the sender for a new code and for them to stay connected until you get the file.""";
 
-const String ERR_WRONG_CODE_SENDER = """Oops..
-The receiver has entered the wrong code.
+const String ERR_WRONG_CODE_SENDER = """Oops..\n
+The receiver has entered the wrong code.\n
 Please try sending the file again""";
 
 const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =

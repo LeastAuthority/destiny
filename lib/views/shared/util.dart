@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 const int KB = 1000;
@@ -58,19 +60,26 @@ String nonExistingPathFor(String path) {
   }
 }
 
+List<Container> convertErrorMessageIntoParagraphs(String? errorMessage,
+    TextStyle? textStyle, TextAlign textAlign, BuildContext context) {
+  return errorMessage
+          ?.split("\n")
+          .map((txt) => Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.zero,
+                child: Text(
+                  txt,
+                  style: textStyle,
+                  textAlign: textAlign,
+                ),
+              ))
+          .toList() ??
+      [];
+}
+
 Future<bool> isAndroidStoragePermissionsGranted() async {
-  DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-  final androidInfo = await deviceInfoPlugin.androidInfo;
-  const int API_LEVEL_29 = 29;
   bool isGranted;
-
-  if (androidInfo.version.sdkInt! <= API_LEVEL_29) {
-    isGranted = await Permission.storage.request() == PermissionStatus.granted;
-  } else {
-    isGranted = await Permission.manageExternalStorage.request() ==
-        PermissionStatus.granted;
-  }
-
+  isGranted = await Permission.storage.request() == PermissionStatus.granted;
   return isGranted;
 }
 
