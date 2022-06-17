@@ -83,7 +83,7 @@ class ReceiveScreen extends StatelessWidget {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return ErrorUI(
         errorTitle: state.errorTitle,
-        errorMessage: state.errorMessage,
+        errorMessage: state.errorMessage ?? "Unknown error",
         error: state.error,
         actionText: "Receive a file",
         onPressed: () {
