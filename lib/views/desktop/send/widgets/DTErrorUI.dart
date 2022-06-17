@@ -36,28 +36,23 @@ class DTErrorUI extends StatelessWidget {
               )
             : null,
         padding: EdgeInsets.only(left: 8.0.w, right: 8.0.w, top: paddingTop),
-        child: Column(
-          children: [
-            ...convertErrorMessageIntoParagraphs(
-                text,
-                Theme.of(context).textTheme.headline1,
-                 TextAlign.center,
-                context),
-            Text(
-              subText,
-              style: Theme.of(context).textTheme.headline1,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 100.0.h,
-            ),
-            DTButtonWithBackground(
-              onPressed: onPressed,
-              title: buttonTitle,
-              width: 150.0,
-              disabled: false,
-            )
-          ]
-        ));
+        child: Column(children: [
+          ...convertErrorMessageIntoParagraphs(text,
+              Theme.of(context).textTheme.headline1, TextAlign.center, context),
+          Text(
+            subText,
+            style: Theme.of(context).textTheme.headline1,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 100.0.h,
+          ),
+          DTButtonWithBackground(
+            onPressed: onPressed,
+            title: buttonTitle,
+            width: 150.0,
+            disabled: false,
+          )
+        ]));
   }
 }

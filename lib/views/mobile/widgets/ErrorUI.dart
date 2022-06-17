@@ -21,26 +21,24 @@ class ErrorUI extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ...convertErrorMessageIntoParagraphs(
-            errorMessage,
-            TextStyle(
-              fontSize: Theme.of(context).textTheme.headline6?.fontSize,
-              fontFamily: MONTSERRAT_LIGHT,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            TextAlign.left,
-            context),
-        ButtonWithBackground(
-            width: 200.0.w,
-            height: 60.0.h,
-            title: actionText,
-            handleClicked: () {
-              onPressed();
-            },
-            fontSize: 18.0.sp),
-      ]
-    );
+    return Column(children: [
+      ...convertErrorMessageIntoParagraphs(
+          errorMessage,
+          TextStyle(
+            fontSize: Theme.of(context).textTheme.headline6?.fontSize,
+            fontFamily: MONTSERRAT_LIGHT,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          TextAlign.left,
+          context),
+      ButtonWithBackground(
+          width: 200.0.w,
+          height: 60.0.h,
+          title: actionText,
+          handleClicked: () {
+            onPressed();
+          },
+          fontSize: 18.0.sp),
+    ]);
   }
 }

@@ -59,21 +59,23 @@ String nonExistingPathFor(String path) {
     return path;
   }
 }
-List<Container> convertErrorMessageIntoParagraphs(String? errorMessage,TextStyle? textStyle, TextAlign textAlign ,BuildContext context) {
-  return errorMessage?.split("\n").map((txt) =>
-      Container(
-        width: MediaQuery.of(context).size.width,
-        margin: EdgeInsets.zero,
-        child: Text(
-          txt,
-          style: textStyle,
-          textAlign: textAlign,
-        ),
-      )
-  ).toList() ?? [];
 
-  }
-
+List<Container> convertErrorMessageIntoParagraphs(String? errorMessage,
+    TextStyle? textStyle, TextAlign textAlign, BuildContext context) {
+  return errorMessage
+          ?.split("\n")
+          .map((txt) => Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.zero,
+                child: Text(
+                  txt,
+                  style: textStyle,
+                  textAlign: textAlign,
+                ),
+              ))
+          .toList() ??
+      [];
+}
 
 Future<bool> isAndroidStoragePermissionsGranted() async {
   bool isGranted;
