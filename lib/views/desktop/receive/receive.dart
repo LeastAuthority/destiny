@@ -75,9 +75,9 @@ class ReceiveScreen extends StatelessWidget {
 
   Widget receivingDone() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return DTReceivingDone(state.fileSize, state.fileName, state.path!, () {
+      return DTReceivingDone(state.fileSize!, state.fileName!, state.path!, () {
         state.setState(() {
-          state.currentState = ReceiveScreenStates.Initial;
+          state.reset();
         });
       });
     });
@@ -88,9 +88,7 @@ class ReceiveScreen extends StatelessWidget {
       return DTErrorUI(
           text: state.errorMessage ?? "Unknown error",
           onPressed: () {
-            state.setState(() {
-              state.currentState = ReceiveScreenStates.Initial;
-            });
+            state.reset();
           },
           buttonTitle: 'Receive a file');
     });
@@ -99,8 +97,8 @@ class ReceiveScreen extends StatelessWidget {
   Widget receiveProgress() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return DTReceiveProgress(
-          state.fileSize,
-          state.fileName,
+          state.fileSize!,
+          state.fileName!,
           state.progress.percentage,
           state.progress.remainingTimeString ?? "...",
           state.cancelFunc);
@@ -109,7 +107,7 @@ class ReceiveScreen extends StatelessWidget {
 
   Widget receiveConfirmation() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return DTReceiveConfirmation(state.fileName, state.fileSize,
+      return DTReceiveConfirmation(state.fileName!, state.fileSize!,
           state.acceptDownload, state.rejectDownload);
     });
   }
@@ -117,12 +115,10 @@ class ReceiveScreen extends StatelessWidget {
   Widget transferCancelled() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return DTErrorUI(
-          text: 'The transfer was interrupted.',
+          text: ERR_INTERRUPTION_CANCELLATION_RECEIVER,
           subText: 'Please try again.',
           onPressed: () {
-            state.setState(() {
-              state.currentState = ReceiveScreenStates.Initial;
-            });
+            state.reset();
           },
           buttonTitle: 'Receive a file');
     });
@@ -133,9 +129,7 @@ class ReceiveScreen extends StatelessWidget {
       return DTErrorUI(
           text: 'The transfer was cancelled by the receiver.',
           onPressed: () {
-            state.setState(() {
-              state.currentState = ReceiveScreenStates.Initial;
-            });
+            state.reset();
           },
           buttonTitle: 'Receive a file');
     });

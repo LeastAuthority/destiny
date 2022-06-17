@@ -22,8 +22,12 @@ enum ReceiveScreenStates {
 
 class ReceiveSharedState extends ChangeNotifier {
   String? _code;
-  late int fileSize;
-  late String fileName;
+
+  PendingDownload? pendingDownload;
+
+  int? get fileSize => pendingDownload?.size;
+  String? get fileName => pendingDownload?.fileName;
+
   late bool isRequestingConnection = false;
 
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
@@ -63,6 +67,23 @@ class ReceiveSharedState extends ChangeNotifier {
     }
 
     return defaultPathForPlatform;
+  }
+
+  void reset() {
+    setState(() {
+      _code = null;
+      pendingDownload = null;
+      isRequestingConnection = false;
+      currentState = ReceiveScreenStates.Initial;
+      error = null;
+      errorMessage = null;
+      errorTitle = null;
+
+      progress = ProgressSharedState(setState, () {
+        currentState = ReceiveScreenStates.FileReceiving;
+      });
+      cancelFunc = failWith("No cancel transfer function set");
+    });
   }
 
   ReceiveSharedState(this.config) {
@@ -159,12 +180,9 @@ class ReceiveSharedState extends ChangeNotifier {
             };
             rejectDownload = () {
               result.pendingDownload.reject();
-              this.setState(() {
-                currentState = ReceiveScreenStates.Initial;
-              });
+              reset();
             };
-            fileName = result.pendingDownload.fileName;
-            fileSize = result.pendingDownload.size;
+            pendingDownload = result.pendingDownload;
           });
 
           return result;

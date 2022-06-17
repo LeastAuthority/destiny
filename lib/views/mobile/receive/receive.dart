@@ -16,10 +16,8 @@ import 'package:provider/provider.dart';
 class ReceiveScreen extends StatelessWidget {
   Widget receivingDone() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return ReceivingDone(state.fileSize, state.fileName, state.path!, () {
-        state.setState(() {
-          state.currentState = ReceiveScreenStates.Initial;
-        });
+      return ReceivingDone(state.fileSize!, state.fileName!, state.path!, () {
+        state.reset();
       });
     });
   }
@@ -27,8 +25,8 @@ class ReceiveScreen extends StatelessWidget {
   Widget receiveProgress() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return ReceiveProgress(
-          state.fileSize,
-          state.fileName,
+          state.fileSize!,
+          state.fileName!,
           state.progress.percentage,
           state.progress.remainingTimeString ?? THREE_DOTS,
           state.cancelFunc);
@@ -37,7 +35,7 @@ class ReceiveScreen extends StatelessWidget {
 
   Widget receiveConfirmation() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return ReceiveConfirmation(state.fileName, state.fileSize,
+      return ReceiveConfirmation(state.fileName!, state.fileSize!,
           state.acceptDownload, state.rejectDownload);
     });
   }
@@ -89,9 +87,7 @@ class ReceiveScreen extends StatelessWidget {
         error: state.error,
         actionText: "Receive a file",
         onPressed: () {
-          state.setState(() {
-            state.currentState = ReceiveScreenStates.Initial;
-          });
+          state.reset();
         },
       );
     });
@@ -100,12 +96,10 @@ class ReceiveScreen extends StatelessWidget {
   Widget transferCancelled() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return AbortErrorUI(
-          text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
+          text: ERR_INTERRUPTION_CANCELLATION_RECEIVER,
           subText: RECEIVE_A_FILE,
           onPressed: () {
-            state.setState(() {
-              state.currentState = ReceiveScreenStates.Initial;
-            });
+            state.reset();
           });
     });
   }
@@ -116,9 +110,7 @@ class ReceiveScreen extends StatelessWidget {
           text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nby the sender.",
           subText: RECEIVE_A_FILE,
           onPressed: () {
-            state.setState(() {
-              state.currentState = ReceiveScreenStates.Initial;
-            });
+            state.reset();
           });
     });
   }

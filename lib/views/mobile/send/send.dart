@@ -49,11 +49,9 @@ class SendScreen extends StatelessWidget {
   Widget sendingDone() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return state.widgetFromMetadata(
-          (metadata) => SendingDone(metadata.fileSize!, metadata.fileName!, (){
-            state.setState(() {
-              state.currentState = SendScreenStates.Initial;
-            });
-          }));
+          (metadata) => SendingDone(metadata.fileSize!, metadata.fileName!, () {
+                state.reset();
+              }));
     });
   }
 
@@ -65,6 +63,7 @@ class SendScreen extends StatelessWidget {
         error: state.error.toString(),
         actionText: "Send a file",
         onPressed: () {
+          state.reset();
           state.handleSelectFile();
         },
       );
@@ -75,12 +74,10 @@ class SendScreen extends StatelessWidget {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return AbortErrorUI(
           handleSelectFile: state.handleSelectFile,
-          text: THE_TRANSFER_HAS_BEEN_INTERRUPTED,
+          text: ERR_INTERRUPTION_CANCELLATION_SENDER,
           subText: 'Send a file',
           onPressed: () {
-            state.setState(() {
-              state.currentState = SendScreenStates.Initial;
-            });
+            state.reset();
           });
     });
   }
@@ -92,9 +89,7 @@ class SendScreen extends StatelessWidget {
           text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nthe receiver.",
           subText: 'Send a file',
           onPressed: () {
-            state.setState(() {
-              state.currentState = SendScreenStates.Initial;
-            });
+            state.reset();
           });
     });
   }

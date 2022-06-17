@@ -22,13 +22,12 @@ class ButtonWithBackground extends StatelessWidget {
       var enabledBackgroundColor = Theme.of(context).primaryColor;
       var disabledBackgroundColor = Theme.of(context).primaryColorDark;
       var backgroundColor =
-      disabled == true ? disabledBackgroundColor : enabledBackgroundColor;
+          disabled == true ? disabledBackgroundColor : enabledBackgroundColor;
       return TextButton(
           onPressed: () {
             if (disabled == false) this.handleClicked();
           },
-          style: TextButton.styleFrom(
-              backgroundColor: backgroundColor),
+          style: TextButton.styleFrom(backgroundColor: backgroundColor),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -38,8 +37,7 @@ class ButtonWithBackground extends StatelessWidget {
                         fontSize: fontSize,
                         fontFamily:
                             Theme.of(context).textTheme.headline2?.fontFamily,
-                        color: Theme.of(context).textTheme.headline2?.color
-                    )),
+                        color: Theme.of(context).textTheme.headline2?.color)),
               ),
             ],
           ));

@@ -12,7 +12,8 @@ class ReceivingDone extends StatelessWidget {
   final String fileName;
   final String path;
   final Function handleDoneButtonPressed;
-  ReceivingDone(this.fileSize, this.fileName, this.path, this.handleDoneButtonPressed);
+  ReceivingDone(
+      this.fileSize, this.fileName, this.path, this.handleDoneButtonPressed);
   @override
   Widget build(BuildContext context) {
     return Column(
