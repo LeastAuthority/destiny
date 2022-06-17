@@ -156,9 +156,9 @@ The receiver has entered the wrong code.\n
 Please try sending the file again""";
 
 const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =
-    "The transfer was interrupted or it was cancelled by the sender";
+    "The transfer was cancelled or interrupted";
 const String ERR_INTERRUPTION_CANCELLATION_SENDER =
-    "The transfer was interrupted or it was cancelled by the receiver";
+    "The transfer was cancelled or interrupted";
 
 final Config magicWormholeIO = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
