@@ -59,7 +59,8 @@ class _SettingsState extends SettingsShared<Settings> {
                 ButtonWithBackground(
                     fontSize: 20.0.sp,
                     title: SELECT_A_FOLDER,
-                    handleClicked: handleSelectFile,
+                    // handleClicked: handleSelectFile,
+                    handleClicked: () {},
                     height: 60.0.h,
                     width: 200.0.w,
                     key: Key(SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON)),

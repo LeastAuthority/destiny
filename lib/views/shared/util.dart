@@ -76,18 +76,8 @@ List<Container> convertErrorMessageIntoParagraphs(String? errorMessage,TextStyle
 
 
 Future<bool> isAndroidStoragePermissionsGranted() async {
-  DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-  final androidInfo = await deviceInfoPlugin.androidInfo;
-  const int API_LEVEL_29 = 29;
   bool isGranted;
-
-  if (androidInfo.version.sdkInt! <= API_LEVEL_29) {
-    isGranted = await Permission.storage.request() == PermissionStatus.granted;
-  } else {
-    isGranted = await Permission.manageExternalStorage.request() ==
-        PermissionStatus.granted;
-  }
-
+  isGranted = await Permission.storage.request() == PermissionStatus.granted;
   return isGranted;
 }
 
