@@ -63,6 +63,10 @@ android {
             //signingConfig signingConfigs.debug
             signingConfig signingConfigs.release
 
+            // adding debug symbols: https://developer.android.com/studio/build/shrink-code#android_gradle_plugin_version_41_or_later
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
         }
     }
 }
