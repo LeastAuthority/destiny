@@ -64,8 +64,11 @@ android {
             signingConfig signingConfigs.release
 
             // adding debug symbols: https://developer.android.com/studio/build/shrink-code#android_gradle_plugin_version_41_or_later
+            //shrinkResources false
+            //minifyEnabled false
             ndk {
                 debugSymbolLevel 'SYMBOL_TABLE'
+                //abiFilters 'arm64-v8a', 'x86_64', 'x86', 'armeabi-v7a'
             }
         }
     }
