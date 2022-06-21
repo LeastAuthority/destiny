@@ -58,20 +58,17 @@ android {
 
     buildTypes {
         debug {
+            // Run `flutter build --debug` to sign with debug keys.
             signingConfig signingConfigs.debug
         }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            //signingConfig signingConfigs.debug
+            // Run flutter build --release to make build ready for upload to store 
             signingConfig signingConfigs.release
 
-            // adding debug symbols: https://developer.android.com/studio/build/shrink-code#android_gradle_plugin_version_41_or_later
-            //shrinkResources false
-            //minifyEnabled false
             ndk {
+                // Recommended by Google Play Store for testing
+                // https://developer.android.com/reference/tools/gradle-api/6.7/com/android/build/api/dsl/Ndk
                 debugSymbolLevel 'SYMBOL_TABLE'
-                //abiFilters 'arm64-v8a', 'x86_64', 'x86', 'armeabi-v7a'
             }
         }
     }
