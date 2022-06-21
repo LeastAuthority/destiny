@@ -40,8 +40,9 @@ jobs:
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
 
-      - name: "Build release apk"
-        run: "flutter build apk lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
+      # We are building debug version APK which can be manually install, however it cannot be reused for upload to store 
+      - name: "Build debug apk"
+        run: "flutter build apk lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }} --debug"
 
       - name: "Move apk"
         run: mv ./build/app/outputs/flutter-apk/app-release.apk destiny_android_${{ env.DESTINY_VERSION }}.apk
