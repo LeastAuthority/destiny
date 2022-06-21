@@ -45,7 +45,7 @@ jobs:
         run: "flutter build apk lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }} --debug"
 
       - name: "Move apk"
-        run: mv ./build/app/outputs/flutter-apk/app-release.apk destiny_android_${{ env.DESTINY_VERSION }}.apk
+        run: mv ./build/app/outputs/flutter-apk/app-debug.apk destiny_android_${{ env.DESTINY_VERSION }}.apk
 
       - name: "Copy apk"
         uses: "actions/upload-artifact@v2"
