@@ -19,7 +19,6 @@ Supported platforms
 
 ```bash
 git clone git@github.com:LeastAuthority/flutter_wormhole_gui.git
-cd Transfer
 git submodule init
 git submodule update --recursive
 ```
