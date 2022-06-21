@@ -44,6 +44,7 @@ Builds for magic-wormhole.io:
 ```bash
 flutter build linux
 flutter build apk
+flutter build appbundle
 flutter build macos
 ```
 
@@ -58,6 +59,25 @@ Builds for local instances:
 ```bash
 flutter build linux lib/main_local.dart
 ```
+
+## Signing Android AppBundle for Google Play upload
+Developer upload key is necessary for upload AppBundle to store. Find out [more](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en#zippy=%2Cupload-key-requirements)
+1. Generate upload key with keytool (Note! store keystore.jks file outside repo)
+```bash
+keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload-key
+```
+2. Create android/key.properties file and add your details (Note! key.properties should not be pushed to repo)
+```bash
+storePassword=<password>
+keyPassword=<password>
+keyAlias=upload-key
+storeFile=~/upload-keystore.jks
+```
+3. Run build manually
+```bash
+flutter build appbundle --build-name=<build_version> --build-number=<build_number> -t lib/main_la.dart
+```
+Note: Google Play store requires unique or incremental build-number for every upload to store.
 
 ## Usage with `wormhole-william`
 
