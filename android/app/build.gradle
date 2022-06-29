@@ -6,7 +6,6 @@ if (project.hasProperty("AndroidProject.signing")){
         keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
     } else {  
         println 'key.properties file not found'  
-        android.buildTypes.release.signingConfig = null  
     } 
 } else {
     println "AndroidProject.signing is not defined"
