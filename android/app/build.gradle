@@ -1,9 +1,17 @@
+// read key.properties file outside project dir
 def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+if (project.hasProperty("AndroidProject.signing")){
+    def keystorePropertiesFile = new File(project.property("AndroidProject.signing").toString()) 
+    if (keystorePropertiesFile.canRead()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    } else {  
+        println 'key.properties file not found'  
+        android.buildTypes.release.signingConfig = null  
+    } 
+} else {
+    println "AndroidProject.signing is not defined"
 }
-
+  
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -41,7 +49,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.leastauthority.dart_wormhole_gui"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -49,10 +57,10 @@ android {
 
     signingConfigs {
        release {
-           keyAlias keystoreProperties['keyAlias']
-           keyPassword keystoreProperties['keyPassword']
-           storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-           storePassword keystoreProperties['storePassword']
+           keyAlias keystoreProperties['KEY_ALIAS']
+           keyPassword keystoreProperties['KEY_PASSWORD']
+           storeFile keystoreProperties['STORE_FILE'] ? file(keystoreProperties['STORE_FILE']) : null
+           storePassword keystoreProperties['STORE_PASSWORD']
        }
     }
 
