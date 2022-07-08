@@ -60,7 +60,7 @@ class IntroScreenState extends State<IntroScreen> {
           description: SEND_AND_RECEIVE_FROM_AND_TO_YOUR_DEVICE_WITHOUT_STORING,
           btnTitle: START_HERE,
           maxLineTextDescription: 3,
-          pathImage: LAPTOP_TO_MOBILE,
+          pathImage: DEVICE_TO_DEVICE_IMG,
           backgroundColor: Colors.black,
           heightImage: 300.0),
     );
