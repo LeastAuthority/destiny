@@ -185,6 +185,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0+2"
+  expand_widget:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: d3323de31c1df57abf8812bea1bc7f1d7c9a7b86
+      url: "https://github.com/shareef-dweikat/expand_widget"
+    source: git
+    version: "2.1.0"
   fake_async:
     dependency: transitive
     description:

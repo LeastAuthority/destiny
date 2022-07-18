@@ -36,6 +36,9 @@ dependencies:
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider
+  expand_widget:
+    git:
+      url: https://github.com/shareef-dweikat/expand_widget
   flutter:
     sdk: flutter
 
@@ -107,6 +110,9 @@ flutter:
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato/Lato-Regular.ttf
+    - family: Courier
+      fonts:
+        - asset: assets/fonts/Courier/CourierPrime-Regular.ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

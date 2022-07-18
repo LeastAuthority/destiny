@@ -6,7 +6,7 @@ const String MONTSERRAT_SEMI_BOLD = 'MontserratSemiBold';
 const String MONTSERRAT_EXTRA_BOLD = 'MontserratExtraBold';
 const String MONTSERRAT_MEDIUM = 'MontserratMedium';
 const String MONTSERRAT_LIGHT_ITALIC = 'MontserratLightItalic';
-
+const String COURIER = 'Courier';
 //images
 const String LOGO = 'assets/images/logo.png';
 const String DEVICE_TO_DEVICE_IMG = 'assets/images/Device2Device.png';
