@@ -59,7 +59,7 @@ class SendScreen extends StatelessWidget {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return ErrorUI(
         errorTitle: state.errorTitle,
-        errorMessage: state.errorMessage ?? "Unknown error",
+        errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
         error: state.error != null ? state.error?.error : '',
         actionText: "Send a file",
         onPressed: () {

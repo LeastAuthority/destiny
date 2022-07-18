@@ -82,7 +82,7 @@ class SendScreen extends StatelessWidget {
           paddingTop: 80.0.h,
           errorTitle: 'Please try again.',
           error: state.error != null ? state.error?.error : '',
-          errorMessage: state.errorMessage ?? "Unknown error",
+          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
           showBoxDecoration: true,
           onPressed: () {
             state.reset();

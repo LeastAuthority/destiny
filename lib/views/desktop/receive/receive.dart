@@ -88,7 +88,7 @@ class ReceiveScreen extends StatelessWidget {
       return DTErrorUI(
           errorTitle: state.errorTitle,
           error: '',
-          errorMessage: state.errorMessage ?? "Unknown error",
+          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
           onPressed: () {
             state.reset();
           },
@@ -119,7 +119,7 @@ class ReceiveScreen extends StatelessWidget {
       return DTErrorUI(
           errorTitle: ERR_INTERRUPTION_CANCELLATION_RECEIVER,
           error: state.error != null ? state.error : '',
-          errorMessage: state.errorMessage ?? "Unknown error",
+          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
           onPressed: () {
             state.reset();
           },

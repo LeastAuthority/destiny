@@ -2,6 +2,7 @@ import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/DTButtonWithBackground.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../constants/app_constants.dart';
 import '../../../../constants/asset_path.dart';
 import '../../../../widgets/ExpandableTextBox.dart';
 import '../../../widgets/Heading.dart';
@@ -94,7 +95,7 @@ class ExtensiveDesktopErrorExpandable extends StatelessWidget {
             height: 30.0.h,
           ),
           Heading(
-            title: 'See details',
+            title: SEE_DETAILS,
             textStyle: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: Theme.of(context).textTheme.subtitle1?.fontSize,

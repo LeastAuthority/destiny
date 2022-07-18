@@ -2,6 +2,7 @@ import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_gui/widgets/ExpandableTextBox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../constants/app_constants.dart';
 import '../../../constants/asset_path.dart';
 import 'buttons/ButtonWithBackground.dart';
 
@@ -76,7 +77,7 @@ class ExtensiveMobileErrorExpandable extends StatelessWidget {
       return Column(
         children: [
           Heading(
-            title: 'See details',
+            title: SEE_DETAILS,
             textStyle: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: Theme.of(context).textTheme.subtitle1?.fontSize,
