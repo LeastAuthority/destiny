@@ -86,6 +86,7 @@ class ExtensiveMobileErrorExpandable extends StatelessWidget {
           ),
           SizedBox(height: 4.0),
           ExpandableTextBox(
+            showBorders: false,
             errorMessage: errorMessage,
             fontSize: 12.0,
           )
