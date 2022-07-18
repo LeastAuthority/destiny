@@ -1,4 +1,4 @@
-package com.example.dart_wormhole_gui
+package com.leastauthority.dart_wormhole_gui
 
 import android.Manifest
 import android.content.ContentResolver

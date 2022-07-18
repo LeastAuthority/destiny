@@ -15,6 +15,19 @@ Supported platforms
 - [ ] Windows
 - [x] OSX
 
+## Cloning
+
+```bash
+git clone git@github.com:LeastAuthority/flutter_wormhole_gui.git
+git submodule init
+git submodule update --recursive
+```
+or you can do it in one step:
+
+```bash
+git clone --recurse-submodules git@github.com:LeastAuthority/flutter_wormhole_gui.git
+```
+
 ## Building
 
 ### Dependencies
@@ -30,6 +43,7 @@ Builds for magic-wormhole.io:
 ```bash
 flutter build linux
 flutter build apk
+flutter build appbundle
 flutter build macos
 ```
 
@@ -44,6 +58,28 @@ Builds for local instances:
 ```bash
 flutter build linux lib/main_local.dart
 ```
+
+## Signing Android AppBundle for Google Play upload
+Improtant! First time upload key is used for signing further builds. Key should be shared with other developers if more then one person is signing app
+
+Developer upload key is necessary for upload AppBundle to store. Find out [more](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en#zippy=%2Cupload-key-requirements)
+1. Generate upload key with keytool (Note! store keystore.jks file outside project dir)
+```bash
+keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload-key
+```
+2. Create key.properties file and add your details (Note! key.properties should outside project dir and not be pushed to repo)
+```bash
+KEY_ALIAS=upload-key
+KEY_PASSWORD=<password>
+STORE_FILE=/Users/<my_user>/upload-keystore.jks
+STORE_PASSWORDP=<password>
+```
+3. Set key.properties path in gradle.properties file for parameter AndroidProject.signing=/your/path/key.properties
+4. Run build manually
+```bash
+flutter build appbundle --build-name=<build_version> --build-number=<build_number> -t lib/main_la.dart
+```
+Note: Google Play store requires unique or incremental build-number for every upload to store.
 
 ## Usage with `wormhole-william`
 

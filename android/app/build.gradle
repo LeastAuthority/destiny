@@ -1,3 +1,16 @@
+// read key.properties file outside project dir
+def keystoreProperties = new Properties()
+if (project.hasProperty("AndroidProject.signing")){
+    def keystorePropertiesFile = new File(project.property("AndroidProject.signing").toString()) 
+    if (keystorePropertiesFile.canRead()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    } else {  
+        println 'key.properties file not found'  
+    } 
+} else {
+    println "AndroidProject.signing is not defined"
+}
+  
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -34,18 +47,38 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.dart_wormhole_gui"
-        minSdkVersion 16
+        applicationId "com.leastauthority.dart_wormhole_gui"
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
+    signingConfigs {
+       release {
+           keyAlias keystoreProperties['KEY_ALIAS']
+           keyPassword keystoreProperties['KEY_PASSWORD']
+           storeFile keystoreProperties['STORE_FILE'] ? file(keystoreProperties['STORE_FILE']) : null
+           storePassword keystoreProperties['STORE_PASSWORD']
+       }
+    }
+
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+        debug {
+            // Run `flutter build --debug` to sign with debug keys.
             signingConfig signingConfigs.debug
+        }
+        release {
+            // Run flutter build --release to make build ready for upload to store 
+            signingConfig signingConfigs.release
+
+            ndk {
+                // Recommended by Google Play Store for testing
+                // https://developer.android.com/reference/tools/gradle-api/6.7/com/android/build/api/dsl/Ndk
+                debugSymbolLevel 'SYMBOL_TABLE'
+                // Flutter doesn't support x86, so we need add only supported platforms: https://docs.flutter.dev/deployment/android#what-are-the-supported-target-architectures
+                abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+            }
         }
     }
 }
