@@ -7,6 +7,7 @@ class Heading extends StatelessWidget {
   final TextAlign textAlign;
   final double marginTop;
   final TextStyle? textStyle;
+  final bool? isVisible;
   Heading(
       {Key? key,
       this.title,
@@ -14,10 +15,12 @@ class Heading extends StatelessWidget {
       this.path = '',
       this.textAlign = TextAlign.center,
       this.marginTop = 0,
-      this.textStyle})
+      this.textStyle,
+      this.isVisible = true})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    if (isVisible == false) return Container();
     if (subTitle == null)
       return Container(
           width: double.infinity,
@@ -36,7 +39,6 @@ class Heading extends StatelessWidget {
               ],
             ),
           ));
-
     return Row(
       children: [
         Container(

@@ -86,7 +86,9 @@ class ReceiveScreen extends StatelessWidget {
   Widget receiveError() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return DTErrorUI(
-          text: state.errorMessage ?? "Unknown error",
+          errorTitle: state.errorTitle,
+          error: '',
+          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
           onPressed: () {
             state.reset();
           },
@@ -115,8 +117,9 @@ class ReceiveScreen extends StatelessWidget {
   Widget transferCancelled() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return DTErrorUI(
-          text: ERR_INTERRUPTION_CANCELLATION_RECEIVER,
-          subText: 'Please try again.',
+          errorTitle: ERR_INTERRUPTION_CANCELLATION_RECEIVER,
+          error: state.error != null ? state.error : '',
+          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
           onPressed: () {
             state.reset();
           },
@@ -127,7 +130,9 @@ class ReceiveScreen extends StatelessWidget {
   Widget transferRejected() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return DTErrorUI(
-          text: 'The transfer was cancelled by the receiver.',
+          errorTitle: 'The transfer was cancelled by the receiver.',
+          error: state.error != null ? state.error : '',
+          errorMessage: state.errorMessage,
           onPressed: () {
             state.reset();
           },

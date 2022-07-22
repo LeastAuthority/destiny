@@ -34,10 +34,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "6b1822cd01510f8a12e22376e2bdf49b31b8c8bd"
+      resolved-ref: "9dda94bfdbffe6fa0efc4453c075659ac2e3ac7f"
       url: "https://github.com/Ephenodrom/Dart-Basic-Utils"
     source: git
-    version: "4.2.2"
+    version: "4.3.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -121,7 +121,7 @@ packages:
       name: dart_console
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.1"
   dart_wormhole_william:
     dependency: "direct main"
     description:
@@ -185,6 +185,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0+2"
+  expand_widget:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "0345379dd6d8cd89563074b0c9df47d93b53c5aa"
+      url: "https://github.com/shareef-dweikat/expand_widget"
+    source: git
+    version: "2.1.0"
   fake_async:
     dependency: transitive
     description:
@@ -236,7 +245,7 @@ packages:
       name: flutter_plugin_android_lifecycle
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.7"
   flutter_screenutil:
     dependency: "direct main"
     description:
@@ -299,12 +308,19 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   intro_slider:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "483ee6aaea66e5993c22e28c3110a033a2f07299"
+      resolved-ref: "23a25d41fcb13f4971ceedef88e6755631d00cb2"
       url: "https://github.com/shareef-dweikat/flutter-intro-slider"
     source: git
     version: "3.0.2"
@@ -321,7 +337,7 @@ packages:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.0"
+    version: "4.6.0"
   logging:
     dependency: transitive
     description:
@@ -419,7 +435,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.15"
+    version: "2.0.16"
   path_provider_ios:
     dependency: transitive
     description:
@@ -696,7 +712,7 @@ packages:
     description:
       path: "plugins/window_size"
       ref: HEAD
-      resolved-ref: "5c51870ced62a00e809ba4b81a846a052d241c9f"
+      resolved-ref: "12decbe0f592e14e03223f6f2c0c7e0e2dbd70a1"
       url: "https://github.com/google/flutter-desktop-embedding.git"
     source: git
     version: "0.1.0"
