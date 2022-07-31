@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class SettingsShared<T extends SettingsState> extends State<T> {
   SharedPreferences? prefs;
+  bool selectingFolder = false;
 
   String? get path {
     final path = prefs?.get(PATH);
@@ -41,22 +42,32 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
   }
 
   void handleSelectFile() async {
-    String? directory = await FilePicker.platform.getDirectoryPath();
-    if (directory == null) {
-      return;
-    }
-    await canWriteToDirectory(directory).then((canWrite) async {
-      if (canWrite) {
-        setState(() {
-          prefs?.setString(PATH, directory);
-        });
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-              THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
-        ));
+    if (selectingFolder) return;
+    try {
+      this.setState(() {
+        selectingFolder = true;
+      });
+      String? directory = await FilePicker.platform.getDirectoryPath();
+      if (directory == null) {
+        return;
       }
-    });
+      await canWriteToDirectory(directory).then((canWrite) async {
+        if (canWrite) {
+          setState(() {
+            prefs?.setString(PATH, directory);
+          });
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+                THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
+          ));
+        }
+      });
+    } finally {
+      this.setState(() {
+        selectingFolder = false;
+      });
+    }
   }
 
   Widget build(BuildContext context);
