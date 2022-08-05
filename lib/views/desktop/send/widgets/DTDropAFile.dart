@@ -7,19 +7,19 @@ class DTDropAFile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Heading(
-              title: DROP_HERE,
-              textAlign: TextAlign.center,
-              textStyle: TextStyle(
-                fontSize: 40.0,
-                fontFamily: Theme.of(context).textTheme.headline1?.fontFamily,
-                color: Theme.of(context).textTheme.headline1?.color,
-              ),
-              // key: Key('Timing_Progress'),
-            ),
-          ],
-        );
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Heading(
+          title: DROP_HERE,
+          textAlign: TextAlign.center,
+          textStyle: TextStyle(
+            fontSize: 40.0,
+            fontFamily: Theme.of(context).textTheme.headline1?.fontFamily,
+            color: Theme.of(context).textTheme.headline1?.color,
+          ),
+          // key: Key('Timing_Progress'),
+        ),
+      ],
+    );
   }
 }

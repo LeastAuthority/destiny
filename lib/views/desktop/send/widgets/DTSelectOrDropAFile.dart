@@ -21,25 +21,28 @@ class DTSelectOrDropAFile extends StatefulWidget {
 class _DTSelectOrDropAFile extends State<DTSelectOrDropAFile> {
   @override
   Widget build(BuildContext context) {
-      return Container(
-        color: widget.dragEntered ? Color(0xff3A2655): Theme.of(context).dialogBackgroundColor,
-        child: DropTarget(
-          onDragDone: (detail) async {
-            await widget.onFileDropped(detail.files.first.readOnlyFile());
-          },
-          onDragEntered: (detail) async {
-            this.setState(() {
-              widget.dragEntered = true;
-            });
-          },
-          onDragExited: (detail) async {
-            this.setState(() {
-              widget.dragEntered = false;
-            });
-          },
-          child: widget.dragEntered ? DTDropAFile() : DTSelectAFile(widget.onFileSelected),
-        ),
-      );
-
+    return Container(
+      color: widget.dragEntered
+          ? Color(0xff3A2655)
+          : Theme.of(context).dialogBackgroundColor,
+      child: DropTarget(
+        onDragDone: (detail) async {
+          await widget.onFileDropped(detail.files.first.readOnlyFile());
+        },
+        onDragEntered: (detail) async {
+          this.setState(() {
+            widget.dragEntered = true;
+          });
+        },
+        onDragExited: (detail) async {
+          this.setState(() {
+            widget.dragEntered = false;
+          });
+        },
+        child: widget.dragEntered
+            ? DTDropAFile()
+            : DTSelectAFile(widget.onFileSelected),
+      ),
+    );
   }
 }
