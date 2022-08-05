@@ -9,6 +9,8 @@ const String SETTINGS = "Settings";
 //ui strings
 const String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST =
     'Send and receive files securely and fast';
+const String DROP_HERE =
+    'Drop Here';
 const String SEND_FILES_SIMPLE_SECURE_FAST =
     'Send files simply, securely, and fast.';
 const String SENDING_IN_PROGRESS = 'Sending in progress...';

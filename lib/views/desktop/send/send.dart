@@ -3,7 +3,7 @@ import 'package:dart_wormhole_gui/config/theme/colors.dart';
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTCodeGeneration.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTErrorUI.dart';
-import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTSelectAFile.dart';
+import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTSelectOrDropAFile.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTSendingDone.dart';
 import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTSendingProgress.dart';
 import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
@@ -54,7 +54,7 @@ class SendScreen extends StatelessWidget {
 
   Widget selectAFileUI() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
-      return DTSelectAFile(
+      return DTSelectOrDropAFile(
               onFileSelected: state.handleSelectFile, onFileDropped: state.send)
           .dottedParent();
     });
