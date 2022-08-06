@@ -38,7 +38,9 @@ class CodeGeneration extends StatelessWidget {
             FileInfo(fileSize, fileName),
             TextButton(
               child: Text("Share"),
-              onPressed: () {Share.share(code ?? "");},
+              onPressed: () {
+                Share.share(code ?? "");
+              },
             ),
             RowGroupButton(code ?? "", isCodeGenerating),
             Heading(

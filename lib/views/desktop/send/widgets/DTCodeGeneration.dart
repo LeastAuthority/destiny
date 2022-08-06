@@ -43,7 +43,9 @@ class DTCodeGeneration extends StatelessWidget {
           DTFileInfo(fileSize, fileName),
           TextButton(
             child: Text("Share"),
-            onPressed: () {Share.share(code);},
+            onPressed: () {
+              Share.share(code);
+            },
           ),
           DTRowGroupButton(code, isCodeGenerating),
           SizedBox(
