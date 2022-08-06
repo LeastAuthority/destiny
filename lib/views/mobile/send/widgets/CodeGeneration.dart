@@ -4,6 +4,7 @@ import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
 import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'RowGroupButtons.dart';
 
@@ -35,6 +36,10 @@ class CodeGeneration extends StatelessWidget {
         Column(
           children: [
             FileInfo(fileSize, fileName),
+            TextButton(
+              child: Text("Share"),
+              onPressed: () {Share.share(code ?? "");},
+            ),
             RowGroupButton(code ?? "", isCodeGenerating),
             Heading(
               title: THE_TRANSFER_WILL_AUTO,

@@ -6,6 +6,7 @@ import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'DTRowGroupButton.dart';
 
@@ -40,6 +41,10 @@ class DTCodeGeneration extends StatelessWidget {
             ),
           )),
           DTFileInfo(fileSize, fileName),
+          TextButton(
+            child: Text("Share"),
+            onPressed: () {Share.share(code);},
+          ),
           DTRowGroupButton(code, isCodeGenerating),
           SizedBox(
             width: 380.0,
