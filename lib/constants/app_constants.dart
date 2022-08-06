@@ -79,7 +79,6 @@ const String THE_TRANSFER_HAS_BEEN_CANCELLED =
     "The transfer has been cancelled by";
 
 //Slider UI strings
-const String GET_STARTED = 'Get Started';
 const String START_HERE = 'Start Here';
 const String END_TO_END_ENCRYPTION = 'End-to-End Encryption';
 const String NO_SIGN_UP = 'No Sign-Up';

@@ -33,7 +33,7 @@ class IntroScreenState extends State<IntroScreen> {
               SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
           subTitleTextFontSize: 14.0,
           titleTextFontSize: 23.0,
-          btnTitle: GET_STARTED,
+          btnTitle: NEXT,
           pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
           heightImage: 300.0),
