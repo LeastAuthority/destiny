@@ -34,7 +34,7 @@ class IntroScreenState extends State<IntroScreen> {
           desktopActionButtonEnabled: true,
           description:
               SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
-          btnTitle: GET_STARTED,
+          btnTitle: NEXT,
           pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
           heightImage: 300.0),

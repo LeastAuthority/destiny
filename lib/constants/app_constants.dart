@@ -9,6 +9,7 @@ const String SETTINGS = "Settings";
 //ui strings
 const String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST =
     'Send and receive files securely and fast';
+const String DROP_HERE = 'Drop Here';
 const String SEND_FILES_SIMPLE_SECURE_FAST =
     'Send files simply, securely, and fast.';
 const String SENDING_IN_PROGRESS = 'Sending in progress...';
@@ -78,7 +79,6 @@ const String THE_TRANSFER_HAS_BEEN_CANCELLED =
     "The transfer has been cancelled by";
 
 //Slider UI strings
-const String GET_STARTED = 'Get Started';
 const String START_HERE = 'Start Here';
 const String END_TO_END_ENCRYPTION = 'End-to-End Encryption';
 const String NO_SIGN_UP = 'No Sign-Up';
