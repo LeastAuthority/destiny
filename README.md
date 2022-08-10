@@ -12,7 +12,7 @@ Supported platforms
 
 - [x] Linux
 - [x] Android
-- [ ] Windows
+- [x] Windows
 - [x] OSX
 
 ## Cloning
