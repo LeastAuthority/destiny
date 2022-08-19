@@ -1,4 +1,5 @@
 package com.leastauthority.dart_wormhole_gui
+import android.content.ClipData
 
 import android.Manifest
 import android.content.ContentResolver
@@ -13,6 +14,8 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import android.os.Bundle
+import android.os.Parcelable
 
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "destiny.android/file_selector"
@@ -27,6 +30,31 @@ class MainActivity : FlutterActivity() {
     private val PERMISSION_DENIED = "4"
     private val READ_FAILURE = "5"
     private val CLOSE_FAILURE = "6"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        when {
+            intent?.action == Intent.ACTION_SEND -> {
+                if ("text/plain" == intent.type) {
+                    //handleSendText(intent) // Handle text being sent
+                } else if (intent.type?.startsWith("image/") == true) {
+                    handleSendImage(intent)
+                }
+            }
+            intent?.action == Intent.ACTION_SEND_MULTIPLE
+                    && intent.type?.startsWith("image/") == true -> {
+               // handleSendMultipleImages(intent) // Handle multiple images being sent
+            }
+            else -> {
+                // Handle other intents, such as being started from the home screen
+            }
+        }
+        super.onCreate(savedInstanceState)
+    }
+
+    private fun handleSendImage(intent: Intent) {
+        val path: String = (intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) as Uri).toString()
+        Log.d("path of the shared file",  path)
+    }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
