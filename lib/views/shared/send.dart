@@ -134,7 +134,7 @@ class SendSharedState extends ChangeNotifier {
                 break;
               case ErrCodeSendFileError:
                 this.errorTitle = "Oops..";
-                this.error =  ERR_INTERRUPTION_CANCELLATION_RECEIVER;
+                this.error = ERR_INTERRUPTION_CANCELLATION_RECEIVER;
                 break;
               default:
                 errorMessage = ERR_WRONG_CODE_SENDER;
