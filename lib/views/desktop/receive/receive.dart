@@ -87,7 +87,7 @@ class ReceiveScreen extends StatelessWidget {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return DTErrorUI(
           errorTitle: state.errorTitle,
-          error: '',
+          error: state.error,
           errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
           onPressed: () {
             state.reset();

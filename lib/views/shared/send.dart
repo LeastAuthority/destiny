@@ -33,7 +33,7 @@ class SendSharedState extends ChangeNotifier {
     print("No cancel function assigned. Doing nothing");
   };
 
-  ClientError? error;
+  String? error;
   String? errorMessage;
   String? errorTitle;
   SendSharedState(this.config);
@@ -110,7 +110,6 @@ class SendSharedState extends ChangeNotifier {
           currentState = SendScreenStates.SendError;
           this.errorMessage = "Error sending file: $error";
           this.errorTitle = "Error Sending File";
-          error = error;
 
           print("Error sending file\n$error\n$stacktrace");
 
@@ -118,11 +117,26 @@ class SendSharedState extends ChangeNotifier {
             switch (error.errorCode) {
               case ErrCodeTransferRejected:
                 currentState = SendScreenStates.TransferRejected;
+                this.error = "Description description ErrCodeTransferRejected";
                 break;
               case ErrCodeTransferCancelled:
                 currentState = SendScreenStates.TransferCancelled;
+                this.error = "Description description ErrCodeTransferCancelled";
                 break;
               case ErrCodeWrongCode:
+                this.errorTitle = "Oops..";
+                this.error =
+                    "The receiver has entered the wrong code.\n\nPlease try sending the file again.";
+                break;
+              case ErrCodeSendTextError:
+                this.errorTitle = "Oops..";
+                this.error = "Description description ErrCodeSendTextError";
+                break;
+              case ErrCodeSendFileError:
+                this.errorTitle = "Oops..";
+                this.error =  ERR_INTERRUPTION_CANCELLATION_RECEIVER;
+                break;
+              default:
                 errorMessage = ERR_WRONG_CODE_SENDER;
             }
           }
