@@ -134,12 +134,27 @@ class ReceiveSharedState extends ChangeNotifier {
         switch (error.errorCode) {
           case ErrCodeTransferRejected:
             this.currentState = ReceiveScreenStates.TransferRejected;
+            this.error = "Description description ErrCodeTransferRejected";
             break;
           case ErrCodeTransferCancelled:
             this.currentState = ReceiveScreenStates.TransferCancelled;
+            this.error = "Description description TransferCancelled";
             break;
           case ErrCodeWrongCode:
-            this.errorMessage = ERR_WRONG_CODE_RECEIVER;
+            this.errorTitle = "Oops..";
+            this.error =
+                "Decryption failed either of:\n\nthe code is invalid\nthe code was already used\nthe sender is no longer connected\n\nPlease ask the sender to send again and issue a new code.";
+            break;
+          case ErrCodeReceiveFileError:
+            this.errorTitle = "Oops..";
+            this.error = "Description description ErrCodeReceiveFileError";
+            break;
+          case ErrCodeReceiveTextError:
+            this.errorTitle = "Oops..";
+            this.error = "Description description ErrCodeReceiveTextError";
+            break;
+          default:
+            errorMessage = ERR_WRONG_CODE_RECEIVER;
         }
       }
     });

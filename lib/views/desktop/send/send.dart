@@ -80,8 +80,8 @@ class SendScreen extends StatelessWidget {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return DTErrorUI(
           paddingTop: 80.0.h,
-          errorTitle: 'Please try again.',
-          error: state.error != null ? state.error?.error : '',
+          errorTitle: state.errorTitle,
+          error: state.error,
           errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
           showBoxDecoration: true,
           onPressed: () {
@@ -96,8 +96,8 @@ class SendScreen extends StatelessWidget {
       return DTErrorUI(
           paddingTop: 80.0.h,
           showBoxDecoration: true,
-          errorTitle: 'Please try again.',
-          error: state.error != null ? state.error?.error : '',
+          errorTitle: state.errorTitle,
+          error: state.error,
           errorMessage: state.errorMessage,
           onPressed: () {
             state.reset();
@@ -112,7 +112,7 @@ class SendScreen extends StatelessWidget {
           paddingTop: 80.0.h,
           showBoxDecoration: true,
           errorTitle: 'The transfer was cancelled by the receiver.',
-          error: state.error != null ? state.error?.error : '',
+          error: state.error,
           errorMessage: state.errorMessage,
           onPressed: () {
             state.reset();
