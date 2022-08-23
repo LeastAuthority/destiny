@@ -58,7 +58,7 @@ class IntroScreenState extends State<IntroScreen> {
           subTitleTextFontSize: 24.0,
           desktopActionButtonEnabled: true,
           description: SEND_AND_RECEIVE_FROM_AND_TO_YOUR_DEVICE_WITHOUT_STORING,
-          btnTitle: START_HERE,
+          btnTitle: GET_STARTED,
           maxLineTextDescription: 3,
           pathImage: DEVICE_TO_DEVICE_IMG,
           backgroundColor: Colors.black,
