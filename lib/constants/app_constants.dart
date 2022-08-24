@@ -171,7 +171,7 @@ final Config magicWormholeIO = Config(
 final Config leastAuthority = Config(
   rendezvousUrl: "wss://mailbox.w.leastauthority.com/v1",
   transitRelayUrl: "tcp:relay.w.leastauthority.com:4001",
-  appId: "myFileTransfer",
+  appId: "lothar.com/wormhole/text-or-file-xfer",
 );
 
 final Config local = Config(
