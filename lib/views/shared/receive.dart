@@ -135,13 +135,18 @@ class ReceiveSharedState extends ChangeNotifier {
           case ErrCodeTransferRejected:
             this.currentState = ReceiveScreenStates.TransferRejected;
             this.errorTitle = "Transfer cancelled";
-            this.error = "You have cancelled the transfer.";
+            this.error = "You have rejected the file.";
             break;
           case ErrCodeTransferCancelled:
             this.currentState = ReceiveScreenStates.TransferCancelled;
+            this.errorTitle = "Transfer cancelled";
+            this.error = "You have cancelled the transfer.";
+            break;
+          case ErrCodeTransferCancelledBySender:
+            this.currentState = ReceiveScreenStates.TransferCancelled;
+            this.errorTitle = "Transfer cancelled/interrupted";
             this.error =
                 "Either:\n\n- The transfer was cancelled by the sender.\n\n- Your or the sender's Internet connection was interrupted.\n\nPlease try again.";
-            this.errorTitle = "Transfer cancelled/interrupted";
             break;
           case ErrCodeWrongCode:
             this.errorTitle = "Oops..";
@@ -149,15 +154,24 @@ class ReceiveSharedState extends ChangeNotifier {
                 "Something went wrong. Possibly:\n\n- The code is wrong; or\n- The code was already used; or\n- The sender is no longer connected.\n\nPlease ask the sender for a new code and for them to stay connected until you get the file.";
             break;
           case ErrCodeReceiveFileError:
-            this.errorTitle = "Oops..";
-            this.error = "Description description ErrCodeReceiveFileError";
+            this.errorTitle = "Something went wrong.";
+            //this.error = "Something unexpected happened: ErrCodeReceiveFileError";
+            errorMessage = this.error;
+            this.error = "";
             break;
           case ErrCodeReceiveTextError:
-            this.errorTitle = "Oops..";
-            this.error = "Description description ErrCodeReceiveTextError";
+            this.errorTitle = "Something went wrong.";
+            //this.error = "Something unexpected happened: ErrCodeReceiveTextError";
+            errorMessage = this.error;
+            this.error = "";
             break;
           default:
-            errorMessage = ERR_WRONG_CODE_RECEIVER;
+            this.errorTitle = "Something went wrong.";
+            // to display error message in See Details
+            errorMessage = this.error;
+            this.error = "";
+
+          //errorMessage = ERR_WRONG_CODE_RECEIVER;
         }
       }
     });

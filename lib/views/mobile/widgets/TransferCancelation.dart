@@ -14,7 +14,7 @@ class TransferCancelation extends StatelessWidget {
         children: [
           Heading(
             title: THE_TRANSFER_HAS_BEEN_CANCELLED_BY_THE_RECEIVER,
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.center,
             textStyle: Theme.of(context).textTheme.bodyText1,
             key: Key(SEND_SCREEN_HEADING),
           ),

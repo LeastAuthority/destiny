@@ -117,14 +117,20 @@ class SendSharedState extends ChangeNotifier {
             switch (error.errorCode) {
               case ErrCodeTransferRejected:
                 currentState = SendScreenStates.TransferRejected;
-                this.errorTitle = "Transfer cancelled/interrupted";
-                this.error =
-                    "Either:\n\n - The transfer was cancelled by the receiver.\n\n- Your or the receiver's Internet connection was interrupted.\n\nPlease try again.";
+                this.errorTitle = "Transfer cancelled";
+                this.error = "The receiver rejected this transfer.";
+                //"Either:\n\n - The transfer was cancelled by the receiver.\n\n- Your or the receiver's Internet connection was interrupted.\n\nPlease try again.";
                 break;
               case ErrCodeTransferCancelled:
                 currentState = SendScreenStates.TransferCancelled;
                 this.errorTitle = "Transfer cancelled";
                 this.error = "You have cancelled the transfer.";
+                break;
+              case ErrCodeTransferCancelledByReceiver:
+                currentState = SendScreenStates.TransferCancelled;
+                this.errorTitle = "Transfer cancelled/interrupted";
+                this.error =
+                    "Either:\n\n - The transfer was cancelled by the receiver.\n\n- Your or the receiver's Internet connection was interrupted.\n\nPlease try again.";
                 break;
               case ErrCodeWrongCode:
                 this.errorTitle = "Oops...";
@@ -132,15 +138,25 @@ class SendSharedState extends ChangeNotifier {
                     "The receiver has entered the wrong code.\n\nPlease try sending the file again and provide the receiver with a new code.";
                 break;
               case ErrCodeSendTextError:
-                this.errorTitle = "Oops...";
-                this.error = "Description description ErrCodeSendTextError";
+                this.errorTitle = "Something went wrong.";
+                //this.error =
+                //    "Something unexpected happened: ErrCodeSendTextError";
+                errorMessage = this.error;
+                this.error = "";
                 break;
               case ErrCodeSendFileError:
-                this.errorTitle = "Oops...";
-                this.error = ERR_INTERRUPTION_CANCELLATION_RECEIVER;
+                this.errorTitle = "Something went wrong.";
+                //this.error =
+                //    "Something unexpected happened: ErrCodeSendFileError";
+                errorMessage = this.error;
+                this.error = "";
                 break;
               default:
-                errorMessage = ERR_WRONG_CODE_SENDER;
+                this.errorTitle = "Something went wrong.";
+                // to display error message in See Details
+                errorMessage = this.error;
+                this.error = "";
+                break;
             }
           }
         });

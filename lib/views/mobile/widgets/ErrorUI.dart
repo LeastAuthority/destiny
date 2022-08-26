@@ -28,7 +28,7 @@ class ErrorUI extends StatelessWidget {
         children: [
           Heading(
             title: errorTitle ?? errorTitle.toString(),
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.center,
             textStyle: Theme.of(context).textTheme.subtitle1,
           ),
           Heading(
