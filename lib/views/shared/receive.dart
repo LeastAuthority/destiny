@@ -134,16 +134,19 @@ class ReceiveSharedState extends ChangeNotifier {
         switch (error.errorCode) {
           case ErrCodeTransferRejected:
             this.currentState = ReceiveScreenStates.TransferRejected;
-            this.error = "Description description ErrCodeTransferRejected";
+            this.errorTitle = "Transfer cancelled";
+            this.error = "You have cancelled the transfer.";
             break;
           case ErrCodeTransferCancelled:
             this.currentState = ReceiveScreenStates.TransferCancelled;
-            this.error = "Description description TransferCancelled";
+            this.error =
+                "Either:\n\n- The transfer was cancelled by the sender.\n\n- Your or the sender's Internet connection was interrupted.\n\nPlease try again.";
+            this.errorTitle = "Transfer cancelled/interrupted";
             break;
           case ErrCodeWrongCode:
             this.errorTitle = "Oops..";
             this.error =
-                "Decryption failed either of:\n\nthe code is invalid\nthe code was already used\nthe sender is no longer connected\n\nPlease ask the sender to send again and issue a new code.";
+                "Something went wrong. Possibly:\n\n- The code is wrong; or\n- The code was already used; or\n- The sender is no longer connected.\n\nPlease ask the sender for a new code and for them to stay connected until you get the file.";
             break;
           case ErrCodeReceiveFileError:
             this.errorTitle = "Oops..";

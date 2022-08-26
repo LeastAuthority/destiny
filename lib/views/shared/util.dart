@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:flutter/cupertino.dart';

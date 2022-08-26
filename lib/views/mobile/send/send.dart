@@ -72,25 +72,24 @@ class SendScreen extends StatelessWidget {
 
   Widget transferCancelled() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
-      return AbortErrorUI(
-          handleSelectFile: state.handleSelectFile,
-          text: ERR_INTERRUPTION_CANCELLATION_SENDER,
-          subText: 'Send a file',
-          onPressed: () {
-            state.reset();
-          });
+      return ErrorUI(
+          errorTitle: state.errorTitle,
+          actionText: "Send a file",
+          error: state.error,
+          errorMessage: 'Send a file',
+          onPressed: state.handleSelectFile);
     });
   }
 
   Widget transferRejected() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
-      return AbortErrorUI(
-          handleSelectFile: state.handleSelectFile,
-          text: "$THE_TRANSFER_HAS_BEEN_CANCELLED \nthe receiver.",
-          subText: 'Send a file',
-          onPressed: () {
-            state.reset();
-          });
+      return ErrorUI(
+        onPressed: state.handleSelectFile,
+        error: state.error,
+        errorTitle: state.errorTitle,
+        actionText: "Send a file",
+        errorMessage: 'Send a file',
+      );
     });
   }
 
