@@ -1,7 +1,7 @@
 [submodule "dart_wormhole_william"]
 	path = dart_wormhole_william
-	url = https://github.com/leastauthority/dart_wormhole_william
-	branch = bryan/wip-staticlinking
+	url = git@github.com:LeastAuthority/dart_wormhole_william.git
+	branch = main
 
 [submodule "magic-wormhole-transit-relay"]
 	path = magic-wormhole-transit-relay
