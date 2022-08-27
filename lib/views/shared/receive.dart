@@ -170,7 +170,7 @@ class ReceiveSharedState extends ChangeNotifier {
             // to display error message in See Details
             errorMessage = this.error;
             this.error = "";
-
+            break;
           //errorMessage = ERR_WRONG_CODE_RECEIVER;
         }
       }
