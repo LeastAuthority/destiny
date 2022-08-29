@@ -135,7 +135,7 @@ class ReceiveSharedState extends ChangeNotifier {
           case ErrCodeTransferRejected:
             this.currentState = ReceiveScreenStates.TransferRejected;
             this.errorTitle = "Transfer cancelled";
-            this.error = "You have rejected the file.";
+            this.error = "You have cancelled the transfer.";
             break;
           case ErrCodeTransferCancelled:
             this.currentState = ReceiveScreenStates.TransferCancelled;
