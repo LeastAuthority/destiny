@@ -9,6 +9,64 @@ abstract class FilePicker {
   Future<File> showSelectFile();
 }
 
+extension AsFile on String? {
+  static const fileSelectorChannel =
+      MethodChannel("destiny.android/file_selector");
+
+  Future<File> androidUriToFile() async {
+    var targetOffset = 0;
+    var currentOffset = 0;
+
+    Future<int> readInto(Uint8List buffer) async {
+      final readResult = await fileSelectorChannel
+          .invokeMethod<List>("read_bytes", <String, dynamic>{
+        "uri": this,
+        "max": buffer.length,
+      });
+      final bytesRead = readResult?.first as int;
+      final bytes = readResult?.skip(1).first as Uint8List;
+      for (int i = 0; i < bytesRead; i++) {
+        buffer[i] = bytes[i];
+      }
+      currentOffset += bytesRead;
+      return bytesRead;
+    }
+
+    Future<int> seekAndReadInto(Uint8List buffer) async {
+      if (targetOffset > currentOffset) {
+        // Discard bytes that should be skipped
+        await readInto(Uint8List(targetOffset - currentOffset));
+      }
+
+      return readInto(buffer);
+    }
+
+    final metadata = await fileSelectorChannel
+        .invokeMethod<List>("get_metadata", <String, dynamic>{"uri": this});
+
+    return File(
+        metadata: () async {
+          return Metadata(
+              fileName: metadata!.first as String,
+              fileSize: metadata[1] as int);
+        },
+        read: seekAndReadInto,
+        close: () async {
+          await fileSelectorChannel
+              .invokeMethod<void>("close", <String, dynamic>{"uri": this});
+        },
+        setPosition: (position) async {
+          if (currentOffset > position) {
+            throw Exception("Seeking backwards on Android is not supported");
+          }
+          targetOffset = position;
+        },
+        getPosition: () async {
+          return targetOffset;
+        });
+  }
+}
+
 class _AndroidFilePicker extends FilePicker {
   static const fileSelectorChannel =
       MethodChannel("destiny.android/file_selector");
@@ -18,47 +76,7 @@ class _AndroidFilePicker extends FilePicker {
     return fileSelectorChannel
         .invokeMethod<String>("select_file")
         .then((uriString) async {
-      final readInto = (Uint8List buffer) async {
-        final readResult = await fileSelectorChannel
-            .invokeMethod<List>("read_bytes", <String, dynamic>{
-          "uri": uriString,
-          "max": buffer.length,
-        });
-        final bytesRead = readResult?.first as int;
-        final bytes = readResult?.skip(1).first as Uint8List;
-        for (int i = 0; i < bytesRead; i++) {
-          buffer[i] = bytes[i];
-        }
-        return bytesRead;
-      };
-
-      final metadata = await fileSelectorChannel.invokeMethod<List>(
-          "get_metadata", <String, dynamic>{"uri": uriString});
-
-      var fakePosition = 0;
-
-      return File(
-          metadata: () async {
-            return Metadata(
-                fileName: metadata!.first as String,
-                fileSize: metadata[1] as int);
-          },
-          read: readInto,
-          close: () async {
-            await fileSelectorChannel.invokeMethod<void>(
-                "close", <String, dynamic>{"uri": uriString});
-          },
-
-          // TODO This is an ugly workaround
-          // Seek is not supported backwards on Android
-          // Wormhole-william uses seek to determine the file size
-          // By seeking to the end of the file and back
-          setPosition: (position) async {
-            fakePosition = position;
-          },
-          getPosition: () async {
-            return fakePosition;
-          });
+      return uriString.androidUriToFile();
     });
   }
 }
