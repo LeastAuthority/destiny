@@ -46,7 +46,7 @@ class ReceiveScreen extends StatelessWidget {
                             children: [
                               DTButtonWithBackground(
                                 title: state.isRequestingConnection
-                                    ? 'Please wait...'
+                                    ? PLEASE_WAIT
                                     : NEXT,
                                 onPressed: () {
                                   state.setState(() {
@@ -88,11 +88,11 @@ class ReceiveScreen extends StatelessWidget {
       return DTErrorUI(
           errorTitle: state.errorTitle,
           error: state.error,
-          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
+          errorMessage: state.errorMessage,
           onPressed: () {
             state.reset();
           },
-          buttonTitle: 'Receive a file');
+          buttonTitle: RECEIVE_A_FILE);
     });
   }
 
@@ -114,29 +114,16 @@ class ReceiveScreen extends StatelessWidget {
     });
   }
 
-  Widget transferCancelled() {
+  Widget transferCancelledOrRejected() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return DTErrorUI(
-          errorTitle: ERR_INTERRUPTION_CANCELLATION_RECEIVER,
-          error: state.error != null ? state.error : '',
-          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
-          onPressed: () {
-            state.reset();
-          },
-          buttonTitle: 'Receive a file');
-    });
-  }
-
-  Widget transferRejected() {
-    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return DTErrorUI(
-          errorTitle: 'The transfer was cancelled by the receiver.',
-          error: state.error != null ? state.error : '',
+          errorTitle: state.errorTitle,
+          error: state.error,
           errorMessage: state.errorMessage,
           onPressed: () {
             state.reset();
           },
-          buttonTitle: 'Receive a file');
+          buttonTitle: RECEIVE_A_FILE);
     });
   }
 
@@ -167,8 +154,7 @@ class ReceiveScreen extends StatelessWidget {
                       receiveProgress,
                       enterCode,
                       receiveConfirmation,
-                      transferCancelled,
-                      transferRejected),
+                      transferCancelledOrRejected),
                 ),
               )));
     });

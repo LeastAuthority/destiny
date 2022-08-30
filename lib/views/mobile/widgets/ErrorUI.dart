@@ -16,7 +16,7 @@ class ErrorUI extends StatelessWidget {
   ErrorUI(
       {this.errorTitle = "",
       this.error = "",
-      this.errorMessage,
+      this.errorMessage = "",
       this.actionText = "",
       required this.onPressed,
       Key? key})

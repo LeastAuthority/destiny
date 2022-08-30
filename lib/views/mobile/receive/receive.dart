@@ -4,7 +4,6 @@ import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
 import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/AbortErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/ErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
@@ -83,9 +82,9 @@ class ReceiveScreen extends StatelessWidget {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return ErrorUI(
         errorTitle: state.errorTitle,
-        errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
+        errorMessage: state.errorMessage,
         error: state.error,
-        actionText: "Receive a file",
+        actionText: RECEIVE_A_FILE,
         onPressed: () {
           state.reset();
         },
@@ -93,7 +92,7 @@ class ReceiveScreen extends StatelessWidget {
     });
   }
 
-  Widget transferCancelled() {
+  Widget transferCancelledOrRejected() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return ErrorUI(
         onPressed: () {
@@ -101,22 +100,7 @@ class ReceiveScreen extends StatelessWidget {
         },
         error: state.error,
         errorTitle: state.errorTitle,
-        actionText: "Receive a file",
-        errorMessage: 'Send a file',
-      );
-    });
-  }
-
-  Widget transferRejected() {
-    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return ErrorUI(
-          error: state.error,
-          errorTitle: state.errorTitle,
-          actionText: "Receive a file",
-          errorMessage: 'Send a file',
-          onPressed: () {
-            state.reset();
-          });
+        actionText: RECEIVE_A_FILE);
     });
   }
 
@@ -143,8 +127,7 @@ class ReceiveScreen extends StatelessWidget {
                     receiveProgress,
                     enterCodeUI,
                     receiveConfirmation,
-                    transferCancelled,
-                    transferRejected)),
+                    transferCancelledOrRejected)),
           ));
     });
   }

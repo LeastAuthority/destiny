@@ -4,7 +4,6 @@ import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart'
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
 import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/AbortErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/ErrorUI.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
 import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
@@ -59,9 +58,9 @@ class SendScreen extends StatelessWidget {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return ErrorUI(
         errorTitle: state.errorTitle,
-        errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
-        error: state.error != null ? state.error : '',
-        actionText: "Send a file",
+        errorMessage: state.errorMessage,
+        error: state.error,
+        actionText: SEND_A_FILE,
         onPressed: () {
           state.reset();
           state.handleSelectFile();
@@ -70,26 +69,13 @@ class SendScreen extends StatelessWidget {
     });
   }
 
-  Widget transferCancelled() {
+  Widget transferCancelledOrRejected() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return ErrorUI(
           errorTitle: state.errorTitle,
-          actionText: "Send a file",
+          actionText: SEND_A_FILE,
           error: state.error,
-          errorMessage: 'Send a file',
           onPressed: state.handleSelectFile);
-    });
-  }
-
-  Widget transferRejected() {
-    return Consumer<SendSharedState>(builder: (context, state, _) {
-      return ErrorUI(
-        onPressed: state.handleSelectFile,
-        error: state.error,
-        errorTitle: state.errorTitle,
-        actionText: "Send a file",
-        errorMessage: 'Send a file',
-      );
     });
   }
 
@@ -118,8 +104,7 @@ class SendScreen extends StatelessWidget {
                           sendingError,
                           sendingDone,
                           sendingProgress,
-                          transferCancelled,
-                          transferRejected)))));
+                          transferCancelledOrRejected)))));
     });
   }
 }

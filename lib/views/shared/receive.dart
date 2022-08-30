@@ -11,8 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum ReceiveScreenStates {
-  TransferRejected,
-  TransferCancelled,
+  TransferCancelledOrRejected,
   FileReceived,
   ReceiveError,
   FileReceiving,
@@ -133,45 +132,40 @@ class ReceiveSharedState extends ChangeNotifier {
       if (error is ClientError) {
         switch (error.errorCode) {
           case ErrCodeTransferRejected:
-            this.currentState = ReceiveScreenStates.TransferRejected;
-            this.errorTitle = "Transfer cancelled";
-            this.error = "You have cancelled the transfer.";
+            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
+            this.errorTitle = TRANSFER_CANCELLED;
+            this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
             break;
           case ErrCodeTransferCancelled:
-            this.currentState = ReceiveScreenStates.TransferCancelled;
-            this.errorTitle = "Transfer cancelled";
-            this.error = "You have cancelled the transfer.";
+            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
+            this.errorTitle = TRANSFER_CANCELLED;
+            this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
             break;
           case ErrCodeTransferCancelledBySender:
-            this.currentState = ReceiveScreenStates.TransferCancelled;
-            this.errorTitle = "Transfer cancelled/interrupted";
-            this.error =
-                "Either:\n\n- The transfer was cancelled by the sender.\n\n- Your or the sender's Internet connection was interrupted.\n\nPlease try again.";
+            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
+            this.errorTitle = TRANSFER_CANCELLED_INTERRUPTED;
+            this.error = EITHER_THE_TRANSFER_WAS_CANCELLED_BY_SENDER;
             break;
           case ErrCodeWrongCode:
-            this.errorTitle = "Oops..";
-            this.error =
-                "Something went wrong. Possibly:\n\n- The code is wrong; or\n- The code was already used; or\n- The sender is no longer connected.\n\nPlease ask the sender for a new code and for them to stay connected until you get the file.";
+            this.errorTitle = OOPS;
+            this.error = SOMETHING_WENT_WRONG_POSSIBLY;
             break;
           case ErrCodeReceiveFileError:
-            this.errorTitle = "Something went wrong.";
-            //this.error = "Something unexpected happened: ErrCodeReceiveFileError";
+            this.errorTitle = SOMETHING_WENT_WRONG;
             errorMessage = this.error;
             this.error = "";
             break;
           case ErrCodeReceiveTextError:
-            this.errorTitle = "Something went wrong.";
-            //this.error = "Something unexpected happened: ErrCodeReceiveTextError";
+            this.errorTitle = SOMETHING_WENT_WRONG;
             errorMessage = this.error;
             this.error = "";
             break;
           default:
-            this.errorTitle = "Something went wrong.";
+            this.errorTitle = SOMETHING_WENT_WRONG;
             // to display error message in See Details
             errorMessage = this.error;
             this.error = "";
             break;
-          //errorMessage = ERR_WRONG_CODE_RECEIVER;
         }
       }
     });
@@ -234,8 +228,7 @@ class ReceiveSharedState extends ChangeNotifier {
       Widget Function() receiveProgress,
       Widget Function() enterCodeUI,
       Widget Function() receiveConfirmation,
-      Widget Function() transferCancelled,
-      Widget Function() transferRejected) {
+      Widget Function() transferCancelledOrRejected) {
     switch (currentState) {
       case ReceiveScreenStates.Initial:
         return enterCodeUI();
@@ -247,10 +240,8 @@ class ReceiveSharedState extends ChangeNotifier {
         return receivingDone();
       case ReceiveScreenStates.FileReceiving:
         return receiveProgress();
-      case ReceiveScreenStates.TransferRejected:
-        return transferRejected();
-      case ReceiveScreenStates.TransferCancelled:
-        return transferCancelled();
+      case ReceiveScreenStates.TransferCancelledOrRejected:
+        return transferCancelledOrRejected();
     }
   }
 }

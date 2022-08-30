@@ -10,8 +10,7 @@ import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 
 enum SendScreenStates {
-  TransferCancelled,
-  TransferRejected,
+  TransferCancelledOrRejected,
   CodeGenerating,
   FileSelecting,
   FileSent,
@@ -108,51 +107,44 @@ class SendSharedState extends ChangeNotifier {
       }, onError: (error, stacktrace) {
         this.setState(() {
           currentState = SendScreenStates.SendError;
-          this.errorMessage = "Error sending file: $error";
-          this.errorTitle = "Error Sending File";
+          this.errorMessage = "$ERROR_SENDING_FILE: $error";
+          this.errorTitle = ERROR_SENDING_FILE;
 
-          print("Error sending file\n$error\n$stacktrace");
+          print("$ERROR_SENDING_FILE\n$error\n$stacktrace");
 
           if (error is ClientError) {
             switch (error.errorCode) {
               case ErrCodeTransferRejected:
-                currentState = SendScreenStates.TransferRejected;
-                this.errorTitle = "Transfer cancelled";
-                this.error = "The receiver rejected this transfer.";
-                //"Either:\n\n - The transfer was cancelled by the receiver.\n\n- Your or the receiver's Internet connection was interrupted.\n\nPlease try again.";
+                currentState = SendScreenStates.TransferCancelledOrRejected;
+                this.errorTitle = TRANSFER_CANCELLED;
+                this.error = THE_RECEIVER_REJECTED_THIS_TRANSFER;
                 break;
               case ErrCodeTransferCancelled:
-                currentState = SendScreenStates.TransferCancelled;
-                this.errorTitle = "Transfer cancelled";
-                this.error = "You have cancelled the transfer.";
+                currentState = SendScreenStates.TransferCancelledOrRejected;
+                this.errorTitle = TRANSFER_CANCELLED;
+                this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
                 break;
               case ErrCodeTransferCancelledByReceiver:
-                currentState = SendScreenStates.TransferCancelled;
-                this.errorTitle = "Transfer cancelled/interrupted";
-                this.error =
-                    "Either:\n\n - The transfer was cancelled by the receiver.\n\n- Your or the receiver's Internet connection was interrupted.\n\nPlease try again.";
+                currentState = SendScreenStates.TransferCancelledOrRejected;
+                this.errorTitle = TRANSFER_CANCELLED_INTERRUPTED;
+                this.error = EITHER_THE_TRANSFER_WAS_CANCELLED_BY;
                 break;
               case ErrCodeWrongCode:
-                this.errorTitle = "Oops...";
-                this.error =
-                    "The receiver has entered the wrong code.\n\nPlease try sending the file again and provide the receiver with a new code.";
+                this.errorTitle = OOPS;
+                this.error = THE_RECEIVER_HAS_ENTERED_THE_WRONG_CODE;
                 break;
               case ErrCodeSendTextError:
-                this.errorTitle = "Something went wrong.";
-                //this.error =
-                //    "Something unexpected happened: ErrCodeSendTextError";
+                this.errorTitle = SOMETHING_WENT_WRONG;
                 errorMessage = this.error;
                 this.error = "";
                 break;
               case ErrCodeSendFileError:
-                this.errorTitle = "Something went wrong.";
-                //this.error =
-                //    "Something unexpected happened: ErrCodeSendFileError";
+                this.errorTitle = SOMETHING_WENT_WRONG;
                 errorMessage = this.error;
                 this.error = "";
                 break;
               default:
-                this.errorTitle = "Something went wrong.";
+                this.errorTitle = SOMETHING_WENT_WRONG;
                 // to display error message in See Details
                 errorMessage = this.error;
                 this.error = "";
@@ -172,8 +164,7 @@ class SendSharedState extends ChangeNotifier {
       Widget Function() sendingError,
       Widget Function() sendingDone,
       Widget Function() sendingProgress,
-      Widget Function() transferCancelled,
-      Widget Function() transferRejected) {
+      Widget Function() transferCancelledOrRejected) {
     switch (currentState) {
       case SendScreenStates.Initial:
       case SendScreenStates.FileSelecting:
@@ -189,10 +180,8 @@ class SendSharedState extends ChangeNotifier {
       case SendScreenStates.CodeGenerating:
       case SendScreenStates.CodeGenerated:
         return generateCodeUI();
-      case SendScreenStates.TransferCancelled:
-        return transferCancelled();
-      case SendScreenStates.TransferRejected:
-        return transferRejected();
+      case SendScreenStates.TransferCancelledOrRejected:
+        return transferCancelledOrRejected();
     }
   }
 
@@ -215,7 +204,7 @@ class SendSharedState extends ChangeNotifier {
   }
 
   void cancelSend() {
-    currentState = SendScreenStates.TransferCancelled;
+    currentState = SendScreenStates.TransferCancelledOrRejected;
     cancelFunc();
     notifyListeners();
   }
