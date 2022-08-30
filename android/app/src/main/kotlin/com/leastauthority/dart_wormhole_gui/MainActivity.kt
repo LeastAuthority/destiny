@@ -1,11 +1,13 @@
 package com.leastauthority.dart_wormhole_gui
-import android.content.ClipData
 
 import android.Manifest
 import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.OpenableColumns
 import android.util.Log
 import androidx.core.app.ActivityCompat
@@ -14,11 +16,13 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import android.os.Bundle
-import android.os.Parcelable
 
 class MainActivity : FlutterActivity() {
-    private val CHANNEL = "destiny.android/file_selector"
+    private val FILE_SELECTOR_CHANNEL_NAME = "destiny.android/file_selector"
+    private val SHARE_FILE_CHANNEL_NAME = "destiny.androids/share_file"
+
+    private var SHARE_FILE_CHANNEL: MethodChannel? = null
+
     private var pendingResult: MethodChannel.Result? = null
     private val FILE_SELECTOR_REQUEST = 1
     private val READ_PERMISSION_REQUEST = 2
@@ -31,36 +35,32 @@ class MainActivity : FlutterActivity() {
     private val READ_FAILURE = "5"
     private val CLOSE_FAILURE = "6"
 
+    private val LOG_TAG = "Destiny";
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        when {
-            intent?.action == Intent.ACTION_SEND -> {
-                if ("text/plain" == intent.type) {
-                    //handleSendText(intent) // Handle text being sent
-                } else if (intent.type?.startsWith("image/") == true) {
-                    handleSendImage(intent)
-                }
-            }
-            intent?.action == Intent.ACTION_SEND_MULTIPLE
-                    && intent.type?.startsWith("image/") == true -> {
-               // handleSendMultipleImages(intent) // Handle multiple images being sent
-            }
-            else -> {
-                // Handle other intents, such as being started from the home screen
-            }
-        }
         super.onCreate(savedInstanceState)
+        if (intent?.action == Intent.ACTION_SEND) {
+            sendFileFromIntent(intent);
+        }
     }
 
-    private fun handleSendImage(intent: Intent) {
-        val path: String = (intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) as Uri).toString()
-        Log.d("path of the shared file",  path)
+    private fun sendFileFromIntent(intent: Intent) {
+        val uri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) as Uri
+        if (SHARE_FILE_CHANNEL != null) {
+            pendingReaders[uri] = UriReader(contentResolver, uri)
+            Handler(Looper.getMainLooper()).post {
+                SHARE_FILE_CHANNEL?.invokeMethod("share_file", uri.toString())
+            }
+        } else {
+            Log.e(LOG_TAG, "Share file channel not set")
+        }
     }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
-            CHANNEL
+            FILE_SELECTOR_CHANNEL_NAME
         ).setMethodCallHandler { call, result ->
             if (call.method == "select_file") selectFile(call, result)
             else if (call.method == "get_metadata") getMetadata(call, result)
@@ -72,6 +72,9 @@ class MainActivity : FlutterActivity() {
                 ""
             )
         }
+
+        SHARE_FILE_CHANNEL =
+            MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SHARE_FILE_CHANNEL_NAME)
     }
 
     private fun readBytes(call: MethodCall, result: MethodChannel.Result) {
@@ -178,13 +181,13 @@ class MainActivity : FlutterActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == FILE_SELECTOR_REQUEST) {
-            Log.e("Destiny", data?.data.toString())
+            Log.e(LOG_TAG, data?.data.toString())
         }
 
-        Log.e("Destiny", data?.extras.toString())
+        Log.e(LOG_TAG, data?.extras.toString())
         if (pendingResult != null && data?.data != null) {
             val uri = data?.data as Uri
-            Log.e("Destiny", contentResolver.getType(uri).toString())
+            Log.e(LOG_TAG, contentResolver.getType(uri).toString())
             pendingReaders[uri] = UriReader(contentResolver, uri)
             pendingResult?.success(data?.data.toString());
         } else {
