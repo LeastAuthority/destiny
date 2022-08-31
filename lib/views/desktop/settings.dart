@@ -65,7 +65,7 @@ class _SettingsState extends SettingsShared<Settings> {
                               height: 45.0.h,
                             ),
                             DTButtonWithBackground(
-                              onPressed: handleSelectFile,
+                              onPressed: selectSaveDestination,
                               title: SELECT_A_FOLDER,
                               width: 150.0,
                               disabled: false,
