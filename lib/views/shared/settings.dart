@@ -41,20 +41,21 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
     }
   }
 
-  void handleSelectFile() async {
+  void selectSaveDestination() async {
     if (selectingFolder) return;
     try {
       this.setState(() {
         selectingFolder = true;
       });
-      String? directory = await FilePicker.platform.getDirectoryPath();
+      String? directory = await FilePicker.platform
+          .getDirectoryPath(initialDirectory: prefs?.getString(PATH));
       if (directory == null) {
         return;
       }
       await canWriteToDirectory(directory).then((canWrite) async {
         if (canWrite) {
           setState(() {
-            prefs?.setString(PATH, directory);
+            prefs?.setString(PATH, "$directory${Platform.pathSeparator}");
           });
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
