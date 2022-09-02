@@ -5,6 +5,9 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.OpenableColumns
 import android.util.Log
 import androidx.core.app.ActivityCompat
@@ -15,7 +18,11 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
-    private val CHANNEL = "destiny.android/file_selector"
+    private val FILE_SELECTOR_CHANNEL_NAME = "destiny.android/file_selector"
+    private val SHARE_FILE_CHANNEL_NAME = "destiny.androids/share_file"
+
+    private var SHARE_FILE_CHANNEL: MethodChannel? = null
+
     private var pendingResult: MethodChannel.Result? = null
     private val FILE_SELECTOR_REQUEST = 1
     private val READ_PERMISSION_REQUEST = 2
@@ -28,11 +35,32 @@ class MainActivity : FlutterActivity() {
     private val READ_FAILURE = "5"
     private val CLOSE_FAILURE = "6"
 
+    private val LOG_TAG = "Destiny";
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (intent?.action == Intent.ACTION_SEND) {
+            sendFileFromIntent(intent);
+        }
+    }
+
+    private fun sendFileFromIntent(intent: Intent) {
+        val uri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) as Uri
+        if (SHARE_FILE_CHANNEL != null) {
+            pendingReaders[uri] = UriReader(contentResolver, uri)
+            Handler(Looper.getMainLooper()).post {
+                SHARE_FILE_CHANNEL?.invokeMethod("share_file", uri.toString())
+            }
+        } else {
+            Log.e(LOG_TAG, "Share file channel not set")
+        }
+    }
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
-            CHANNEL
+            FILE_SELECTOR_CHANNEL_NAME
         ).setMethodCallHandler { call, result ->
             if (call.method == "select_file") selectFile(call, result)
             else if (call.method == "get_metadata") getMetadata(call, result)
@@ -44,6 +72,9 @@ class MainActivity : FlutterActivity() {
                 ""
             )
         }
+
+        SHARE_FILE_CHANNEL =
+            MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SHARE_FILE_CHANNEL_NAME)
     }
 
     private fun readBytes(call: MethodCall, result: MethodChannel.Result) {
@@ -150,13 +181,13 @@ class MainActivity : FlutterActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == FILE_SELECTOR_REQUEST) {
-            Log.e("Destiny", data?.data.toString())
+            Log.e(LOG_TAG, data?.data.toString())
         }
 
-        Log.e("Destiny", data?.extras.toString())
+        Log.e(LOG_TAG, data?.extras.toString())
         if (pendingResult != null && data?.data != null) {
             val uri = data?.data as Uri
-            Log.e("Destiny", contentResolver.getType(uri).toString())
+            Log.e(LOG_TAG, contentResolver.getType(uri).toString())
             pendingReaders[uri] = UriReader(contentResolver, uri)
             pendingResult?.success(data?.data.toString());
         } else {

@@ -41,28 +41,28 @@ abstract class SettingsShared<T extends SettingsState> extends State<T> {
     }
   }
 
-  void handleSelectFile() async {
+  void selectSaveDestination() async {
     if (selectingFolder) return;
     try {
       this.setState(() {
         selectingFolder = true;
       });
-      String? directory = await FilePicker.platform.getDirectoryPath();
+      String? directory = await FilePicker.platform
+          .getDirectoryPath(initialDirectory: prefs?.getString(PATH));
       if (directory == null) {
         return;
       }
-      await canWriteToDirectory(directory).then((canWrite) async {
-        if (canWrite) {
-          setState(() {
-            prefs?.setString(PATH, directory);
-          });
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(
-                THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
-          ));
-        }
-      });
+
+      if (await canWriteToDirectory(directory)) {
+        setState(() {
+          prefs?.setString(PATH, "$directory${Platform.pathSeparator}");
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+              THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
+        ));
+      }
     } finally {
       this.setState(() {
         selectingFolder = false;
