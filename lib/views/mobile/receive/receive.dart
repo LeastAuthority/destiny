@@ -95,12 +95,12 @@ class ReceiveScreen extends StatelessWidget {
   Widget transferCancelledOrRejected() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return ErrorUI(
-        onPressed: () {
-          state.reset();
-        },
-        error: state.error,
-        errorTitle: state.errorTitle,
-        actionText: RECEIVE_A_FILE);
+          onPressed: () {
+            state.reset();
+          },
+          error: state.error,
+          errorTitle: state.errorTitle,
+          actionText: RECEIVE_A_FILE);
     });
   }
 
