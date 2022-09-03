@@ -7,6 +7,7 @@ import 'package:destiny/views/shared/util.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,6 +36,8 @@ class ReceiveSharedState extends ChangeNotifier {
   String? error;
   String? errorMessage;
   String? errorTitle;
+  String? saveAsPath;
+  bool selectingFolder = false;
 
   late final TextEditingController controller = new TextEditingController();
   late final Client client = Client(config);
@@ -59,7 +62,9 @@ class ReceiveSharedState extends ChangeNotifier {
 
   String? get path {
     final path = prefs?.get(PATH);
-
+    if(saveAsPath != null) {
+      return saveAsPath;
+    }
     if (path != null && path is String) {
       return path;
     }
@@ -77,7 +82,7 @@ class ReceiveSharedState extends ChangeNotifier {
       error = null;
       errorMessage = null;
       errorTitle = null;
-
+      saveAsPath = null;
       progress = ProgressSharedState(setState, () {
         currentState = ReceiveScreenStates.FileReceiving;
       });
@@ -172,8 +177,6 @@ class ReceiveSharedState extends ChangeNotifier {
   }
 
   Future<ReceiveFileResult> receive() async {
-    return await canWriteToDirectory(path!).then((canWrite) async {
-      if (canWrite) {
         late final File tempFile;
         this.setState(() {
           isRequestingConnection = true;
@@ -211,13 +214,35 @@ class ReceiveSharedState extends ChangeNotifier {
 
           return result;
         }, onError: defaultErrorHandler);
+  }
+
+  void selectSaveDestination() async {
+    if (selectingFolder) return;
+    try {
+      this.setState(() {
+        selectingFolder = true;
+      });
+      String? directory = await FilePicker.platform
+          .getDirectoryPath(initialDirectory: prefs?.getString(PATH));
+      if (directory == null) {
+        return;
+      }
+      if (await canWriteToDirectory(directory)) {
+        setState(() {
+          saveAsPath = "$directory${Platform.pathSeparator}";
+          acceptDownload();
+        });
       } else {
         final error =
-            Exception("Permission denied. Could not write to ${path!}");
+        Exception("Permission denied. Could not write to ${path!}");
         defaultErrorHandler(error);
         return Future.error(error);
       }
-    });
+    } finally {
+      this.setState(() {
+        selectingFolder = false;
+      });
+    }
   }
 
   Widget widgetByState(

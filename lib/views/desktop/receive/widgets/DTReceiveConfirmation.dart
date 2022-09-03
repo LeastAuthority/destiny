@@ -10,9 +10,10 @@ class DTReceiveConfirmation extends StatelessWidget {
   final int fileSize;
   final Function acceptDownload;
   final Function rejectDownload;
+  final Function selectSaveDestination;
 
   DTReceiveConfirmation(
-      this.fileName, this.fileSize, this.acceptDownload, this.rejectDownload);
+      this.fileName, this.fileSize, this.acceptDownload, this.rejectDownload, this.selectSaveDestination);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,23 +45,38 @@ class DTReceiveConfirmation extends StatelessWidget {
               height: 40.0,
             ),
             Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Column (
                 children: [
-                  DTButton(CANCEL, rejectDownload),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DTButtonWithBackground(
+                        onPressed: () {
+                          selectSaveDestination();
+                        },
+                        title: SAVE_AS,
+                        width: 120.0,
+                        disabled: false,
+                      ),
+                      SizedBox(
+                        width: 16.0,
+                      ),
+                      DTButtonWithBackground(
+                        onPressed: () {
+                          acceptDownload();
+                        },
+                        title: DOWNLOAD,
+                        width: 120.0,
+                        disabled: false,
+                      ),
+                    ],
+                  ),
                   SizedBox(
-                    width: 10.0,
+                    height: 16.0,
                   ),
-                  DTButtonWithBackground(
-                    onPressed: () {
-                      acceptDownload();
-                    },
-                    title: DOWNLOAD,
-                    width: 120.0,
-                    disabled: false,
-                  ),
+                  DTButton(CANCEL, rejectDownload),
                 ],
-              ),
+              )
             ),
           ],
         ),
