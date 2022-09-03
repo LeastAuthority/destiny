@@ -80,44 +80,29 @@ class SendScreen extends StatelessWidget {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return DTErrorUI(
           paddingTop: 80.0.h,
-          errorTitle: 'Please try again.',
-          error: state.error != null ? state.error?.error : '',
-          errorMessage: state.errorMessage ?? UNKNOWN_ERROR,
+          errorTitle: state.errorTitle,
+          error: state.error,
+          errorMessage: state.errorMessage,
           showBoxDecoration: true,
           onPressed: () {
             state.reset();
           },
-          buttonTitle: 'Send a file');
+          buttonTitle: SEND_A_FILE);
     });
   }
 
-  Widget transferCancelled() {
+  Widget transferCancelledOrRejected() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
       return DTErrorUI(
           paddingTop: 80.0.h,
           showBoxDecoration: true,
-          errorTitle: 'Please try again.',
-          error: state.error != null ? state.error?.error : '',
+          errorTitle: state.errorTitle,
+          error: state.error,
           errorMessage: state.errorMessage,
           onPressed: () {
             state.reset();
           },
-          buttonTitle: 'Send a file');
-    });
-  }
-
-  Widget transferRejected() {
-    return Consumer<SendSharedState>(builder: (context, state, _) {
-      return DTErrorUI(
-          paddingTop: 80.0.h,
-          showBoxDecoration: true,
-          errorTitle: 'The transfer was cancelled by the receiver.',
-          error: state.error != null ? state.error?.error : '',
-          errorMessage: state.errorMessage,
-          onPressed: () {
-            state.reset();
-          },
-          buttonTitle: 'Send a file');
+          buttonTitle: SEND_A_FILE);
     });
   }
 
@@ -143,8 +128,7 @@ class SendScreen extends StatelessWidget {
                           sendingError,
                           sendingDone,
                           sendingProgress,
-                          transferCancelled,
-                          transferRejected)))));
+                          transferCancelledOrRejected)))));
     });
   }
 }

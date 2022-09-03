@@ -34,12 +34,30 @@ const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'App must remain open until the transfer is complete.';
 const String SELECT_A_FILE = 'Select a File';
 const String SELECT_A_FOLDER = 'Select Folder';
+const String SEND_A_FILE = 'Send a file';
 const String NEXT = 'Next';
 const String CANCEL = 'Cancel';
 const String COPY = 'Copy';
 const String BACK = 'Back';
 const String DONE = 'Done';
 const String FILE_RECEIVED = 'File received';
+const String TRANSFER_CANCELLED = 'Transfer cancelled';
+const String PLEASE_WAIT = 'Please wait...';
+const String THE_RECEIVER_REJECTED_THIS_TRANSFER =
+    'The receiver rejected this transfer.';
+const String YOU_HAVE_CANCELLED_THE_TRANSFER =
+    'You have cancelled the transfer.';
+const String TRANSFER_CANCELLED_INTERRUPTED = 'Transfer cancelled/interrupted';
+const String EITHER_THE_TRANSFER_WAS_CANCELLED_BY =
+    "Either:\n\n - The transfer was cancelled by the receiver.\n\n- Your or the receiver's Internet connection was interrupted.\n\nPlease try again.";
+const String EITHER_THE_TRANSFER_WAS_CANCELLED_BY_SENDER =
+    "Either:\n\n- The transfer was cancelled by the sender.\n\n- Your or the sender's Internet connection was interrupted.\n\nPlease try again.";
+const String SOMETHING_WENT_WRONG_POSSIBLY =
+    "Something went wrong. Possibly:\n\n- The code is wrong; or\n- The code was already used; or\n- The sender is no longer connected.\n\nPlease ask the sender for a new code and for them to stay connected until you get the file.";
+const String THE_RECEIVER_HAS_ENTERED_THE_WRONG_CODE =
+    "The receiver has entered the wrong code.\n\nPlease try sending the file again and provide the receiver with a new code.";
+const String SOMETHING_WENT_WRONG = "Something went wrong.";
+const String ERROR_SENDING_FILE = "Error sending file";
 const String FILE_SENT = 'File sent';
 const String SECONDS = 'Seconds';
 const String MINUTES = 'Minutes';
@@ -47,6 +65,7 @@ const String MINUTE = 'Minute';
 const String SEE_DETAILS = 'See details';
 const String UNKNOWN_ERROR = 'Unknown error';
 const String X = 'X';
+const String OOPS = 'Oops...';
 const String THREE_DOTS = '...';
 const String WAITING_FOR_RECEIVER =
     "Waiting for receiver to complete transfer...";
@@ -122,6 +141,7 @@ const String RECEIVE_SCREEN_CONTENT = 'RECEIVE_SCREEN_CONTENT';
 const String RECEIVE_SCREEN_HEADING = 'RECEIVE_SCREEN_HEADING';
 const String RECEIVE_SCREEN_ENTER_CODE = 'RECEIVE_SCREEN_ENTER_CODE';
 const String ENTER_CODE = 'Enter Code Here';
+const String ERROR_RECEIVING_FILE = 'Error receiving file';
 const String RECEIVE_SCREEN_NEXT_BTN_DISABLED =
     'RECEIVE_SCREEN_NEXT_BTN_DISABLED';
 const String RECEIVE_SCREEN_CANCEL_BTN_DISABLED =

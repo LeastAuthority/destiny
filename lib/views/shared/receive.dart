@@ -11,8 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum ReceiveScreenStates {
-  TransferRejected,
-  TransferCancelled,
+  TransferCancelledOrRejected,
   FileReceived,
   ReceiveError,
   FileReceiving,
@@ -126,20 +125,48 @@ class ReceiveSharedState extends ChangeNotifier {
   void defaultErrorHandler(Object error) {
     this.setState(() {
       this.currentState = ReceiveScreenStates.ReceiveError;
-      this.error = error.toString();
-      this.errorTitle = "Error receiving file";
-      print("Error receiving file\n$error");
+      this.error = '';
+      this.errorMessage = error.toString();
+      this.errorTitle = ERROR_RECEIVING_FILE;
+      print("$ERROR_RECEIVING_FILE\n$error");
 
       if (error is ClientError) {
         switch (error.errorCode) {
           case ErrCodeTransferRejected:
-            this.currentState = ReceiveScreenStates.TransferRejected;
+            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
+            this.errorTitle = TRANSFER_CANCELLED;
+            this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
             break;
           case ErrCodeTransferCancelled:
-            this.currentState = ReceiveScreenStates.TransferCancelled;
+            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
+            this.errorTitle = TRANSFER_CANCELLED;
+            this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
+            break;
+          case ErrCodeTransferCancelledBySender:
+            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
+            this.errorTitle = TRANSFER_CANCELLED_INTERRUPTED;
+            this.error = EITHER_THE_TRANSFER_WAS_CANCELLED_BY_SENDER;
             break;
           case ErrCodeWrongCode:
-            this.errorMessage = ERR_WRONG_CODE_RECEIVER;
+            this.errorTitle = OOPS;
+            this.error = SOMETHING_WENT_WRONG_POSSIBLY;
+            break;
+          case ErrCodeReceiveFileError:
+            this.errorTitle = SOMETHING_WENT_WRONG;
+            errorMessage = this.error;
+            this.error = "";
+            break;
+          case ErrCodeReceiveTextError:
+            this.errorTitle = SOMETHING_WENT_WRONG;
+            errorMessage = this.error;
+            this.error = "";
+            break;
+          default:
+            this.errorTitle = SOMETHING_WENT_WRONG;
+            // to display error message in See Details
+            errorMessage = this.error;
+            this.error = "";
+            break;
         }
       }
     });
@@ -202,8 +229,7 @@ class ReceiveSharedState extends ChangeNotifier {
       Widget Function() receiveProgress,
       Widget Function() enterCodeUI,
       Widget Function() receiveConfirmation,
-      Widget Function() transferCancelled,
-      Widget Function() transferRejected) {
+      Widget Function() transferCancelledOrRejected) {
     switch (currentState) {
       case ReceiveScreenStates.Initial:
         return enterCodeUI();
@@ -215,10 +241,8 @@ class ReceiveSharedState extends ChangeNotifier {
         return receivingDone();
       case ReceiveScreenStates.FileReceiving:
         return receiveProgress();
-      case ReceiveScreenStates.TransferRejected:
-        return transferRejected();
-      case ReceiveScreenStates.TransferCancelled:
-        return transferCancelled();
+      case ReceiveScreenStates.TransferCancelledOrRejected:
+        return transferCancelledOrRejected();
     }
   }
 }
