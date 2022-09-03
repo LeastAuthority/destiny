@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:dart_wormhole_gui/constants/app_constants.dart';
 import 'package:dart_wormhole_gui/views/shared/file_picker.dart';
@@ -8,6 +9,7 @@ import 'package:dart_wormhole_william/client/file.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 enum SendScreenStates {
   TransferCancelledOrRejected,
@@ -21,6 +23,8 @@ enum SendScreenStates {
 }
 
 class SendSharedState extends ChangeNotifier {
+  static const MethodChannel shareFile =
+      MethodChannel("destiny.androids/share_file");
   String? code;
   f.File? sendingFile;
 
@@ -35,7 +39,16 @@ class SendSharedState extends ChangeNotifier {
   String? error;
   String? errorMessage;
   String? errorTitle;
-  SendSharedState(this.config);
+  SendSharedState(this.config) {
+    SendSharedState.shareFile.setMethodCallHandler((call) async {
+      if (Platform.isAndroid) {
+        await (call.arguments as String).androidUriToFile().then(send);
+      } else {
+        throw Exception(
+            "Share file channel handling not implemented on ${Platform.operatingSystem}");
+      }
+    });
+  }
 
   Future<int> get fileSize =>
       sendingFile?.metadata().then((metadata) => metadata.fileSize!) ??

@@ -99,6 +99,7 @@ const String THE_TRANSFER_HAS_BEEN_CANCELLED =
 
 //Slider UI strings
 const String START_HERE = 'Start Here';
+const String GET_STARTED = 'Get Started';
 const String END_TO_END_ENCRYPTION = 'End-to-End Encryption';
 const String NO_SIGN_UP = 'No Sign-Up';
 const String DEVICE_TO_DEVICE = 'Device to Device';
@@ -190,7 +191,7 @@ final Config magicWormholeIO = Config(
 final Config leastAuthority = Config(
   rendezvousUrl: "wss://mailbox.w.leastauthority.com/v1",
   transitRelayUrl: "tcp:relay.w.leastauthority.com:4001",
-  appId: "myFileTransfer",
+  appId: "lothar.com/wormhole/text-or-file-xfer",
 );
 
 final Config local = Config(

@@ -1,5 +1,5 @@
 name: dart_wormhole_gui
-description: A new Flutter project.
+description: File transfer app based on flutter and wormhole-william
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -158,8 +158,8 @@ flutter:
 
 msix_config:
   display_name: Destiny
-  publisher_display_name: "Destiny CI"
-  publisher: "CN=Destiny CI, OID.2.25.311729368913984317654407730594956997722=1"
+  publisher_display_name: "Least Authority TFA GmbH"
+  publisher: "E=developers@leastauthority.com, CN=Least Authority TFA GmbH, O=Least Authority TFA GmbH, STREET=Thaerstr. 28 a, L=Berlin, S=Berlin, C=DE, OID.1.3.6.1.4.1.311.60.2.1.1=Berlin (Charlottenburg), OID.1.3.6.1.4.1.311.60.2.1.2=Berlin, OID.1.3.6.1.4.1.311.60.2.1.3=DE, SERIALNUMBER=HRB 183278, OID.2.5.4.15=Private Organization"
   identity_name: com.leastauthority.Destiny
   logo_path: .\assets\images\logo.png
   capabilities: internetClientServer
