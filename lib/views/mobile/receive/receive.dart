@@ -35,7 +35,7 @@ class ReceiveScreen extends StatelessWidget {
   Widget receiveConfirmation() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
       return ReceiveConfirmation(state.fileName!, state.fileSize!,
-          state.acceptDownload, state.rejectDownload);
+          state.acceptDownload, state.rejectDownload, state.selectSaveDestination);
     });
   }
 
