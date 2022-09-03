@@ -62,7 +62,7 @@ class ReceiveSharedState extends ChangeNotifier {
 
   String? get path {
     final path = prefs?.get(PATH);
-    if(saveAsPath != null) {
+    if (saveAsPath != null) {
       return saveAsPath;
     }
     if (path != null && path is String) {
@@ -177,43 +177,43 @@ class ReceiveSharedState extends ChangeNotifier {
   }
 
   Future<ReceiveFileResult> receive() async {
-        late final File tempFile;
+    late final File tempFile;
+    this.setState(() {
+      isRequestingConnection = true;
+    });
+    return client.recvFile(_code!, progress.progressHandler).then((result) {
+      result.done.then((value) async {
         this.setState(() {
-          isRequestingConnection = true;
+          currentState = ReceiveScreenStates.FileReceived;
         });
-        return client.recvFile(_code!, progress.progressHandler).then((result) {
-          result.done.then((value) async {
-            this.setState(() {
-              currentState = ReceiveScreenStates.FileReceived;
-            });
-            await tempFile.rename(nonExistingPathFor("$path" +
-                Platform.pathSeparator +
-                "${result.pendingDownload.fileName}"));
-          }, onError: defaultErrorHandler);
+        await tempFile.rename(nonExistingPathFor("$path" +
+            Platform.pathSeparator +
+            "${result.pendingDownload.fileName}"));
+      }, onError: defaultErrorHandler);
 
+      this.setState(() {
+        currentState = ReceiveScreenStates.ReceiveConfirmation;
+        acceptDownload = () {
+          controller.text = '';
+          tempFile = File(_tempPath("$path" +
+              Platform.pathSeparator +
+              "${result.pendingDownload.fileName}"));
+          var cancelFunc =
+              result.pendingDownload.accept(tempFile.writeOnlyFile());
           this.setState(() {
-            currentState = ReceiveScreenStates.ReceiveConfirmation;
-            acceptDownload = () {
-              controller.text = '';
-              tempFile = File(_tempPath("$path" +
-                  Platform.pathSeparator +
-                  "${result.pendingDownload.fileName}"));
-              var cancelFunc =
-                  result.pendingDownload.accept(tempFile.writeOnlyFile());
-              this.setState(() {
-                currentState = ReceiveScreenStates.FileReceiving;
-                this.cancelFunc = cancelFunc;
-              });
-            };
-            rejectDownload = () {
-              result.pendingDownload.reject();
-              reset();
-            };
-            pendingDownload = result.pendingDownload;
+            currentState = ReceiveScreenStates.FileReceiving;
+            this.cancelFunc = cancelFunc;
           });
+        };
+        rejectDownload = () {
+          result.pendingDownload.reject();
+          reset();
+        };
+        pendingDownload = result.pendingDownload;
+      });
 
-          return result;
-        }, onError: defaultErrorHandler);
+      return result;
+    }, onError: defaultErrorHandler);
   }
 
   void selectSaveDestination() async {
@@ -234,7 +234,7 @@ class ReceiveSharedState extends ChangeNotifier {
         });
       } else {
         final error =
-        Exception("Permission denied. Could not write to ${path!}");
+            Exception("Permission denied. Could not write to ${path!}");
         defaultErrorHandler(error);
         return Future.error(error);
       }
