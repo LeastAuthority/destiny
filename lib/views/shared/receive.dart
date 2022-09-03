@@ -125,9 +125,10 @@ class ReceiveSharedState extends ChangeNotifier {
   void defaultErrorHandler(Object error) {
     this.setState(() {
       this.currentState = ReceiveScreenStates.ReceiveError;
-      this.error = error.toString();
-      this.errorTitle = "Error receiving file";
-      print("Error receiving file\n$error");
+      this.error = '';
+      this.errorMessage = error.toString();
+      this.errorTitle = ERROR_RECEIVING_FILE;
+      print("$ERROR_RECEIVING_FILE\n$error");
 
       if (error is ClientError) {
         switch (error.errorCode) {
