@@ -13,8 +13,8 @@ class ReceiveConfirmation extends StatelessWidget {
   final Function rejectDownload;
   final Function selectSaveDestination;
 
-  ReceiveConfirmation(
-      this.fileName, this.fileSize, this.acceptDownload, this.rejectDownload, this.selectSaveDestination);
+  ReceiveConfirmation(this.fileName, this.fileSize, this.acceptDownload,
+      this.rejectDownload, this.selectSaveDestination);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,31 +33,31 @@ class ReceiveConfirmation extends StatelessWidget {
           textStyle: Theme.of(context).textTheme.headline6,
           key: Key(APP_MUST_REMAIN_OPEN),
         ),
-      Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ButtonWithBackground(
-                  handleClicked: selectSaveDestination,
-                  title: SAVE_AS,
-                  width: 120.0.w,
-                  height: 50.0.h,
-                  fontSize: 14.0.sp,
-                  disabled: false),
-              ButtonWithBackground(
-                  handleClicked: acceptDownload,
-                  title: DOWNLOAD,
-                  width: 120.0.w,
-                  height: 50.0.h,
-                  fontSize: 14.0.sp,
-                  disabled: false),
-            ],
-          ),
-          Button(
-              title: CANCEL, handleClicked: rejectDownload, disabled: false),
-        ],
-      ),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ButtonWithBackground(
+                    handleClicked: selectSaveDestination,
+                    title: SAVE_AS,
+                    width: 120.0.w,
+                    height: 50.0.h,
+                    fontSize: 14.0.sp,
+                    disabled: false),
+                ButtonWithBackground(
+                    handleClicked: acceptDownload,
+                    title: DOWNLOAD,
+                    width: 120.0.w,
+                    height: 50.0.h,
+                    fontSize: 14.0.sp,
+                    disabled: false),
+              ],
+            ),
+            Button(
+                title: CANCEL, handleClicked: rejectDownload, disabled: false),
+          ],
+        ),
         SizedBox(
           height: 8.0.h,
         )
