@@ -69,16 +69,6 @@ class SendScreen extends StatelessWidget {
     });
   }
 
-  Widget transferCancelledOrRejected() {
-    return Consumer<SendSharedState>(builder: (context, state, _) {
-      return ErrorUI(
-          errorTitle: state.errorTitle,
-          actionText: SEND_A_FILE,
-          error: state.error,
-          onPressed: state.handleSelectFile);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<SendSharedState>(builder: (context, state, _) {
@@ -98,13 +88,8 @@ class SendScreen extends StatelessWidget {
                   key: Key(SEND_SCREEN_BODY),
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Container(
-                      child: state.widgetByState(
-                          generateCodeUI,
-                          selectAFileUI,
-                          sendingError,
-                          sendingDone,
-                          sendingProgress,
-                          transferCancelledOrRejected)))));
+                      child: state.widgetByState(generateCodeUI, selectAFileUI,
+                          sendingError, sendingDone, sendingProgress)))));
     });
   }
 }

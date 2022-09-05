@@ -11,7 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum ReceiveScreenStates {
-  TransferCancelledOrRejected,
   FileReceived,
   ReceiveError,
   FileReceiving,
@@ -133,17 +132,14 @@ class ReceiveSharedState extends ChangeNotifier {
       if (error is ClientError) {
         switch (error.errorCode) {
           case ErrCodeTransferRejected:
-            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
             this.errorTitle = TRANSFER_CANCELLED;
             this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
             break;
           case ErrCodeTransferCancelled:
-            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
             this.errorTitle = TRANSFER_CANCELLED;
             this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
             break;
           case ErrCodeTransferCancelledBySender:
-            this.currentState = ReceiveScreenStates.TransferCancelledOrRejected;
             this.errorTitle = TRANSFER_CANCELLED_INTERRUPTED;
             this.error = EITHER_THE_TRANSFER_WAS_CANCELLED_BY_SENDER;
             break;
@@ -224,8 +220,7 @@ class ReceiveSharedState extends ChangeNotifier {
       Widget Function() receiveError,
       Widget Function() receiveProgress,
       Widget Function() enterCodeUI,
-      Widget Function() receiveConfirmation,
-      Widget Function() transferCancelledOrRejected) {
+      Widget Function() receiveConfirmation) {
     switch (currentState) {
       case ReceiveScreenStates.Initial:
         return enterCodeUI();
@@ -237,8 +232,6 @@ class ReceiveSharedState extends ChangeNotifier {
         return receivingDone();
       case ReceiveScreenStates.FileReceiving:
         return receiveProgress();
-      case ReceiveScreenStates.TransferCancelledOrRejected:
-        return transferCancelledOrRejected();
     }
   }
 }

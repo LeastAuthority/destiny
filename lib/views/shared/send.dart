@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 enum SendScreenStates {
-  TransferCancelledOrRejected,
   CodeGenerating,
   FileSelecting,
   FileSent,
@@ -128,17 +127,14 @@ class SendSharedState extends ChangeNotifier {
           if (error is ClientError) {
             switch (error.errorCode) {
               case ErrCodeTransferRejected:
-                currentState = SendScreenStates.TransferCancelledOrRejected;
                 this.errorTitle = TRANSFER_CANCELLED;
                 this.error = THE_RECEIVER_REJECTED_THIS_TRANSFER;
                 break;
               case ErrCodeTransferCancelled:
-                currentState = SendScreenStates.TransferCancelledOrRejected;
                 this.errorTitle = TRANSFER_CANCELLED;
                 this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
                 break;
               case ErrCodeTransferCancelledByReceiver:
-                currentState = SendScreenStates.TransferCancelledOrRejected;
                 this.errorTitle = TRANSFER_CANCELLED_INTERRUPTED;
                 this.error = EITHER_THE_TRANSFER_WAS_CANCELLED_BY;
                 break;
@@ -176,8 +172,7 @@ class SendSharedState extends ChangeNotifier {
       Widget Function() selectAFileUI,
       Widget Function() sendingError,
       Widget Function() sendingDone,
-      Widget Function() sendingProgress,
-      Widget Function() transferCancelledOrRejected) {
+      Widget Function() sendingProgress) {
     switch (currentState) {
       case SendScreenStates.Initial:
       case SendScreenStates.FileSelecting:
@@ -193,8 +188,6 @@ class SendSharedState extends ChangeNotifier {
       case SendScreenStates.CodeGenerating:
       case SendScreenStates.CodeGenerated:
         return generateCodeUI();
-      case SendScreenStates.TransferCancelledOrRejected:
-        return transferCancelledOrRejected();
     }
   }
 
@@ -217,7 +210,6 @@ class SendSharedState extends ChangeNotifier {
   }
 
   void cancelSend() {
-    currentState = SendScreenStates.TransferCancelledOrRejected;
     cancelFunc();
     notifyListeners();
   }
