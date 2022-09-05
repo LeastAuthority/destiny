@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(dart_wormhole_gui LANGUAGES CXX)
+project(destiny LANGUAGES CXX)
 
 set(BINARY_NAME "destiny")
 
