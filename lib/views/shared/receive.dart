@@ -127,7 +127,7 @@ class ReceiveSharedState extends ChangeNotifier {
       this.currentState = ReceiveScreenStates.ReceiveError;
       this.error = '';
       this.errorMessage = error.toString();
-      this.errorTitle = ERROR_RECEIVING_FILE;
+      this.errorTitle = SOMETHING_WENT_WRONG;
       print("$ERROR_RECEIVING_FILE\n$error");
 
       if (error is ClientError) {
@@ -153,19 +153,15 @@ class ReceiveSharedState extends ChangeNotifier {
             break;
           case ErrCodeReceiveFileError:
             this.errorTitle = SOMETHING_WENT_WRONG;
-            errorMessage = this.error;
-            this.error = "";
+            // TODO: map error to user friendly name (case invalid nameplate)
             break;
           case ErrCodeReceiveTextError:
             this.errorTitle = SOMETHING_WENT_WRONG;
-            errorMessage = this.error;
-            this.error = "";
+            // TODO: map error to user friendly name
             break;
           default:
             this.errorTitle = SOMETHING_WENT_WRONG;
-            // to display error message in See Details
-            errorMessage = this.error;
-            this.error = "";
+            // TODO: map error to user friendly name
             break;
         }
       }

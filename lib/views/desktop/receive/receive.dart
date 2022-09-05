@@ -119,7 +119,6 @@ class ReceiveScreen extends StatelessWidget {
       return DTErrorUI(
           errorTitle: state.errorTitle,
           error: state.error,
-          errorMessage: state.errorMessage,
           onPressed: () {
             state.reset();
           },
