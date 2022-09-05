@@ -1,4 +1,4 @@
-package com.leastauthority.dart_wormhole_gui
+package com.leastauthority.destiny
 
 import android.Manifest
 import android.content.ContentResolver
