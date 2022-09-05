@@ -1,4 +1,4 @@
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:destiny/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class NavbarTap extends StatelessWidget {

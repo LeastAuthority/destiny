@@ -1,5 +1,5 @@
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/widgets/ExpandableTextBox.dart';
+import 'package:destiny/views/widgets/Heading.dart';
+import 'package:destiny/widgets/ExpandableTextBox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../constants/app_constants.dart';

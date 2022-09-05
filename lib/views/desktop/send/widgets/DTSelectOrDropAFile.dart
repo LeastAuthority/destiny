@@ -1,5 +1,5 @@
-import 'package:dart_wormhole_gui/views/desktop/send/widgets/DTSelectAFile.dart';
-import 'package:dart_wormhole_gui/views/shared/util.dart';
+import 'package:destiny/views/desktop/send/widgets/DTSelectAFile.dart';
+import 'package:destiny/views/shared/util.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';

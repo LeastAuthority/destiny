@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/shared/progress.dart';
-import 'package:dart_wormhole_gui/views/shared/util.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/shared/progress.dart';
+import 'package:destiny/views/shared/util.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';

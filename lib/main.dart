@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:dart_wormhole_gui/views/shared/receive.dart';
-import 'package:dart_wormhole_gui/views/shared/send.dart';
+import 'package:destiny/views/shared/receive.dart';
+import 'package:destiny/views/shared/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
