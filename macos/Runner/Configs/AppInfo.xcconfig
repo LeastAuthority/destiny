@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = dart_wormhole_gui
+PRODUCT_NAME = destiny
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.leastauthority.dartWormholeGui
+PRODUCT_BUNDLE_IDENTIFIER = com.leastauthority.destiny
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = The MIT License (MIT). Copyright (c) 2021 Least Authority TFA GmbH
