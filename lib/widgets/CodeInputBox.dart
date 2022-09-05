@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:destiny/constants/app_constants.dart';
 
 class CodeInputBox extends StatelessWidget {
   final Function codeChanged;

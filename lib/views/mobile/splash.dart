@@ -1,5 +1,5 @@
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:destiny/config/routes/routes.dart';
+import 'package:destiny/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

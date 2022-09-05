@@ -1,13 +1,13 @@
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/CodeGeneration.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/SelectAFileUI.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingDone.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/widgets/SendingProgress.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/ErrorUI.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
-import 'package:dart_wormhole_gui/views/shared/send.dart';
+import 'package:destiny/config/routes/routes.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/mobile/send/widgets/CodeGeneration.dart';
+import 'package:destiny/views/mobile/send/widgets/SelectAFileUI.dart';
+import 'package:destiny/views/mobile/send/widgets/SendingDone.dart';
+import 'package:destiny/views/mobile/send/widgets/SendingProgress.dart';
+import 'package:destiny/views/mobile/widgets/ErrorUI.dart';
+import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
+import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:destiny/views/shared/send.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

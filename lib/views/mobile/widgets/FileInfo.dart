@@ -1,5 +1,5 @@
-import 'package:dart_wormhole_gui/views/shared/util.dart';
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:destiny/views/shared/util.dart';
+import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

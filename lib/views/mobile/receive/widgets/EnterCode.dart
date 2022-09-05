@@ -1,8 +1,8 @@
-import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/ButtonWithBackground.dart';
-import 'package:dart_wormhole_gui/widgets/CodeInputBox.dart';
+import 'package:destiny/views/mobile/widgets/buttons/ButtonWithBackground.dart';
+import 'package:destiny/widgets/CodeInputBox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
+import 'package:destiny/constants/app_constants.dart';
 
 class EnterCode extends StatelessWidget {
   final Function codeChanged;

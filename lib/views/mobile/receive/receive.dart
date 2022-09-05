@@ -1,14 +1,14 @@
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/EnterCode.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveConfirmation.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceiveProgress.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/widgets/ReceivingDone.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/ErrorUI.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/custom-bottom-bar.dart';
-import 'package:dart_wormhole_gui/views/shared/receive.dart';
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:destiny/config/routes/routes.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/mobile/receive/widgets/EnterCode.dart';
+import 'package:destiny/views/mobile/receive/widgets/ReceiveConfirmation.dart';
+import 'package:destiny/views/mobile/receive/widgets/ReceiveProgress.dart';
+import 'package:destiny/views/mobile/receive/widgets/ReceivingDone.dart';
+import 'package:destiny/views/mobile/widgets/ErrorUI.dart';
+import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
+import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:destiny/views/shared/receive.dart';
+import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

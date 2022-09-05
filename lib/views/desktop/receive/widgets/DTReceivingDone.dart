@@ -1,6 +1,6 @@
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/constants/asset_path.dart';
+import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/DTButton.dart';

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/shared/file_picker.dart';
-import 'package:dart_wormhole_gui/views/shared/progress.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/shared/file_picker.dart';
+import 'package:destiny/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/file.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;

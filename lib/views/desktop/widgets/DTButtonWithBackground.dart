@@ -1,4 +1,4 @@
-import 'package:dart_wormhole_gui/config/theme/colors.dart';
+import 'package:destiny/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class DTButtonWithBackground extends StatelessWidget {
