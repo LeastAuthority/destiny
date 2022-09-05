@@ -92,18 +92,6 @@ class ReceiveScreen extends StatelessWidget {
     });
   }
 
-  Widget transferCancelledOrRejected() {
-    return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return ErrorUI(
-          onPressed: () {
-            state.reset();
-          },
-          error: state.error,
-          errorTitle: state.errorTitle,
-          actionText: RECEIVE_A_FILE);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
@@ -121,13 +109,8 @@ class ReceiveScreen extends StatelessWidget {
             child: Container(
                 key: Key(RECEIVE_SCREEN_BODY),
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: state.widgetByState(
-                    receivingDone,
-                    receiveError,
-                    receiveProgress,
-                    enterCodeUI,
-                    receiveConfirmation,
-                    transferCancelledOrRejected)),
+                child: state.widgetByState(receivingDone, receiveError,
+                    receiveProgress, enterCodeUI, receiveConfirmation)),
           ));
     });
   }
