@@ -1,0 +1,8 @@
+[application]
+name = Destiny
+description = Secure file transfer
+tray_icon = flutter_wormhole_gui/assets/images/logo.png
+
+[build]
+mac_bundle_identifier = com.leastauthority.destiny
+mac_icon = flutter_wormhole_gui/assets/images/logo.png
