@@ -18,14 +18,7 @@ Supported platforms
 ## Cloning
 
 ```bash
-git clone git@github.com:LeastAuthority/flutter_wormhole_gui.git
-git submodule init
-git submodule update --recursive
-```
-or you can do it in one step:
-
-```bash
-git clone --recurse-submodules git@github.com:LeastAuthority/flutter_wormhole_gui.git
+git clone --recurse-submodules git@github.com:LeastAuthority/destiny.git
 ```
 
 ## Building
