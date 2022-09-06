@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/shared/util.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/shared/util.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';

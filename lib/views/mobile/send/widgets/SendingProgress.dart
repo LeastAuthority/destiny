@@ -1,8 +1,8 @@
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/FileInfo.dart';
-import 'package:dart_wormhole_gui/views/mobile/widgets/buttons/Button.dart';
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
-import 'package:dart_wormhole_gui/widgets/CustomLinearProgressIndicator.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/mobile/widgets/FileInfo.dart';
+import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
+import 'package:destiny/views/widgets/Heading.dart';
+import 'package:destiny/widgets/CustomLinearProgressIndicator.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

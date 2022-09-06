@@ -1,9 +1,9 @@
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/views/mobile/introduction-slider.dart';
-import 'package:dart_wormhole_gui/views/mobile/receive/receive.dart';
-import 'package:dart_wormhole_gui/views/mobile/send/send.dart';
-import 'package:dart_wormhole_gui/views/mobile/settings.dart';
-import 'package:dart_wormhole_gui/views/mobile/splash.dart';
+import 'package:destiny/config/routes/routes.dart';
+import 'package:destiny/views/mobile/introduction-slider.dart';
+import 'package:destiny/views/mobile/receive/receive.dart';
+import 'package:destiny/views/mobile/send/send.dart';
+import 'package:destiny/views/mobile/settings.dart';
+import 'package:destiny/views/mobile/splash.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/cupertino.dart';
 

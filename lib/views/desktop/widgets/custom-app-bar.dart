@@ -1,10 +1,10 @@
-import 'package:dart_wormhole_gui/config/theme/colors.dart';
-import 'package:dart_wormhole_gui/views/desktop/widgets/NavbarTap.dart';
+import 'package:destiny/config/theme/colors.dart';
+import 'package:destiny/views/desktop/widgets/NavbarTap.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/constants/asset_path.dart';
+import 'package:destiny/config/routes/routes.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/constants/asset_path.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String path;

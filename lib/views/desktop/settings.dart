@@ -1,10 +1,10 @@
-import 'package:dart_wormhole_gui/config/routes/routes.dart';
-import 'package:dart_wormhole_gui/config/theme/colors.dart';
-import 'package:dart_wormhole_gui/constants/app_constants.dart';
-import 'package:dart_wormhole_gui/views/desktop/widgets/DTButtonWithBackground.dart';
-import 'package:dart_wormhole_gui/views/desktop/widgets/custom-app-bar.dart';
-import 'package:dart_wormhole_gui/views/shared/settings.dart';
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:destiny/config/routes/routes.dart';
+import 'package:destiny/config/theme/colors.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/desktop/widgets/DTButtonWithBackground.dart';
+import 'package:destiny/views/desktop/widgets/custom-app-bar.dart';
+import 'package:destiny/views/shared/settings.dart';
+import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
