@@ -35,7 +35,8 @@ class SendingDone extends StatelessWidget {
           CHECK_ICON,
           width: 64.0.w,
         ),
-        Button(DONE, handleDoneButtonPressed, false),
+        Button(DONE, handleDoneButtonPressed, false, 50.0, 120.0,
+            Theme.of(context).scaffoldBackgroundColor),
         SizedBox(
           height: 37.0.h,
         )

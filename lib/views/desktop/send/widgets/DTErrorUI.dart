@@ -88,7 +88,7 @@ class ExtensiveDesktopErrorExpandable extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    if (error == '')
+    if (error != '')
       return Column(
         children: [
           SizedBox(
@@ -111,9 +111,10 @@ class ExtensiveDesktopErrorExpandable extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
                     child: ExpandableTextBox(
+                      bgColor: Theme.of(context).scaffoldBackgroundColor,
                       showBorders: true,
                       errorMessage: errorMessage,
-                      height: MediaQuery.of(context).size.height - 530.0.h,
+                      height: MediaQuery.of(context).size.height - 630.0.h,
                       fontSize: 17.0,
                     ),
                   )),
