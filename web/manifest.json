@@ -1,6 +1,6 @@
 {
-    "name": "dart_wormhole_gui",
-    "short_name": "dart_wormhole_gui",
+    "name": "Destiny",
+    "short_name": "destiny",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

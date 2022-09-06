@@ -1,5 +1,5 @@
-import 'package:dart_wormhole_gui/config/theme/colors.dart';
-import 'package:dart_wormhole_gui/views/widgets/GradientBorder.dart';
+import 'package:destiny/config/theme/colors.dart';
+import 'package:destiny/views/widgets/GradientBorder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

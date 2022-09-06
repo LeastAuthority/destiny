@@ -1,4 +1,4 @@
-import 'package:dart_wormhole_gui/views/widgets/Heading.dart';
+import 'package:destiny/views/widgets/Heading.dart';
 import 'package:expand_widget/expand_widget.dart';
 import 'package:flutter/material.dart';
 import '../constants/asset_path.dart';

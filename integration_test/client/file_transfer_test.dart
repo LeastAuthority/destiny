@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
-import 'package:dart_wormhole_gui/views/shared/util.dart';
+import 'package:destiny/views/shared/util.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter_test/flutter_test.dart';
