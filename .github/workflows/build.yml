@@ -179,24 +179,24 @@ jobs:
         run: "flutter config --enable-macos-desktop"
 
       - name: "Build mac app"
-        run: "flutter build macos lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
+        run: "flutter build macos lib/main_la.dart --debug -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
 
       - name: "Install create-dmg"
         run: "brew install create-dmg"
 
       - name: "Create DMG"
-        run: "create-dmg --app-drop-link 0 0 destiny_macos_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Release/Destiny.app"
+        run: "create-dmg --app-drop-link 0 0 destiny_macos_debug_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Debug/Destiny.app"
 
       - name: "Copy DMG"
         uses: "actions/upload-artifact@v2"
         with:
           name: "destiny-macos-${{ env.DESTINY_VERSION }}-unsigned"
-          path: "./destiny_macos_${{ env.DESTINY_VERSION }}.dmg"
+          path: "./destiny_macos_debug_${{ env.DESTINY_VERSION }}.dmg"
           if-no-files-found: "error"
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "./destiny_macos_${{ env.DESTINY_VERSION }}.dmg"
+          artifacts: "./destiny_macos_debug_${{ env.DESTINY_VERSION }}.dmg"
           allowUpdates: true
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
