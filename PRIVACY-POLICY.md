@@ -1,1 +1,3 @@
-PRIVACY POLICY
+# PRIVACY POLICY
+
+in progress
