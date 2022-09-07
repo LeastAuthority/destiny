@@ -155,6 +155,10 @@ class ReceiveSharedState extends ChangeNotifier {
             this.errorTitle = SOMETHING_WENT_WRONG;
             // TODO: map error to user friendly name
             break;
+          case ErrCodeConnectionRefused:
+            this.errorTitle = OOPS;
+            this.error = ERR_CONNECTION_REFUSED;
+            break;
           default:
             this.errorTitle = SOMETHING_WENT_WRONG;
             // TODO: map error to user friendly name
