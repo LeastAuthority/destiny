@@ -144,19 +144,19 @@ class SendSharedState extends ChangeNotifier {
                 break;
               case ErrCodeSendTextError:
                 this.errorTitle = SOMETHING_WENT_WRONG;
-                errorMessage = this.error;
-                this.error = "";
+                // TODO: map error to user friendly name (case invalid nameplate)
                 break;
               case ErrCodeSendFileError:
                 this.errorTitle = SOMETHING_WENT_WRONG;
-                errorMessage = this.error;
-                this.error = "";
+                // TODO: map error to user friendly name (case invalid nameplate)
+                break;
+              case ErrCodeConnectionRefused:
+                this.errorTitle = OOPS;
+                this.error = ERR_CONNECTION_REFUSED;
                 break;
               default:
                 this.errorTitle = SOMETHING_WENT_WRONG;
-                // to display error message in See Details
-                errorMessage = this.error;
-                this.error = "";
+                // TODO: map error to user friendly name (case invalid nameplate)
                 break;
             }
           }

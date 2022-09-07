@@ -56,6 +56,8 @@ const String SOMETHING_WENT_WRONG_POSSIBLY =
     "Something went wrong. Possibly:\n\n- The code is wrong; or\n- The code was already used; or\n- The sender is no longer connected.\n\nPlease ask the sender for a new code and for them to stay connected until you get the file.";
 const String THE_RECEIVER_HAS_ENTERED_THE_WRONG_CODE =
     "The receiver has entered the wrong code.\n\nPlease try sending the file again and provide the receiver with a new code.";
+const String ERR_CONNECTION_REFUSED =
+    "Unfortunately, Destiny cannot connect to the Least Authority servers.\n\n Please try again or let us know at contactus@leastauthority.com if the problem remains.";
 const String SOMETHING_WENT_WRONG = "Something went wrong.";
 const String ERROR_SENDING_FILE = "Error sending file";
 const String FILE_SENT = 'File sent';
@@ -169,19 +171,6 @@ const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
 const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
-
-const String ERR_WRONG_CODE_RECEIVER = """Oops..   
-If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
-Please ask the sender for a new code and for them to stay connected until you get the file.""";
-
-const String ERR_WRONG_CODE_SENDER = """Oops..
-The receiver has entered the wrong code.
-Please try sending the file again""";
-
-const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =
-    "The transfer was cancelled or interrupted";
-const String ERR_INTERRUPTION_CANCELLATION_SENDER =
-    "The transfer was cancelled or interrupted";
 
 final Config magicWormholeIO = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
