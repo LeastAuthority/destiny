@@ -6,7 +6,5 @@ name = "pypi"
 [packages]
 magic-wormhole-mailbox-server = "*"
 
-[dev-packages]
-
 [requires]
 python_version = "3.9"

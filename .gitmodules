@@ -2,8 +2,3 @@
 	path = dart_wormhole_william
 	url = git@github.com:LeastAuthority/dart_wormhole_william.git
 	branch = main
-
-[submodule "magic-wormhole-transit-relay"]
-	path = magic-wormhole-transit-relay
-	url = git@github.com:magic-wormhole/magic-wormhole-transit-relay.git
-	branch = master
