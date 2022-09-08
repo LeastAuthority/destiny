@@ -1,4 +1,4 @@
-# Cross-platform Magic Wormhole graphical client
+# Destiny - Cross-platform graphical client based on Magic Wormhole
 
 ⚠ This project is still a work in progress, use at your own risk ⚠
 
@@ -11,9 +11,10 @@ with a Dart API. The plugin is implemented [here](https://github.com/LeastAuthor
 Supported platforms
 
 - [x] Linux
-- [x] Android
 - [x] Windows
 - [x] OSX
+- [x] Android
+- [ ] iOS
 
 ## Cloning
 
@@ -52,7 +53,7 @@ Builds for local instances:
 flutter build linux lib/main_local.dart
 ```
 
-## Signing Android AppBundle for Google Play upload
+### Signing Android AppBundle for Google Play upload
 Improtant! First time upload key is used for signing further builds. Key should be shared with other developers if more then one person is signing app
 
 Developer upload key is necessary for upload AppBundle to store. Find out [more](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en#zippy=%2Cupload-key-requirements)
@@ -73,32 +74,6 @@ STORE_PASSWORDP=<password>
 flutter build appbundle --build-name=<build_version> --dart-define version=<build_version> --build-number=<build_number> -t lib/main_la.dart
 ```
 Note: Google Play store requires unique or incremental build-number for every upload to store.
-
-## Usage with `wormhole-william`
-
-Send a file:
-
-```bash
-wormhole-william send <file_path>
-```
-
-Receive a file:
-
-```bash
-wormhole-william receive 33-leprosy-highchair
-```
-
-Transferring files with leastauthority.com
-
-```bash
-wormhole-william receive --relay-url="wss://mailbox.w.leastauthority.com/v1" --transit-helper="wss://relay.w.leastauthority.com:443" 33-leprosy-highchair
-```
-
-Transferring files with a local backend
-
-```bash
-wormhole-william receive --relay-url="ws://0.0.0.0:4000/v1" --transit-helper="tcp:0.0.0.0:4001" 33-leprosy-highchair
-```
 
 ### Starting the wormhole services locally
 
