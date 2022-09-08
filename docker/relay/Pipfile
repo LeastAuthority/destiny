@@ -6,7 +6,7 @@ verify_ssl = true
 [packages]
 autobahn = "*"
 twisted = "*"
-magic-wormhole-transit-relay = "*"
+magic-wormhole-transit-relay = { git = 'https://github.com/magic-wormhole/magic-wormhole-transit-relay.git', ref = 'master' }
 
 [requires]
 python_version = "3.9"
