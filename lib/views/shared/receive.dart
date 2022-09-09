@@ -1,13 +1,16 @@
-import 'dart:io';
+import 'dart:io' as dartIO;
 import 'dart:math';
 
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/shared/file_picker.dart';
 import 'package:destiny/views/shared/progress.dart';
 import 'package:destiny/views/shared/util.dart';
 import 'package:dart_wormhole_william/client/client.dart';
+import 'package:dart_wormhole_william/client/file.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:file_picker/file_picker.dart' as f;
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,6 +41,7 @@ class ReceiveSharedState extends ChangeNotifier {
   String? errorTitle;
   String? saveAsPath;
   bool selectingFolder = false;
+  File? saveAsFile;
 
   late final TextEditingController controller = new TextEditingController();
   late final Client client = Client(config);
@@ -83,6 +87,7 @@ class ReceiveSharedState extends ChangeNotifier {
       errorMessage = null;
       errorTitle = null;
       saveAsPath = null;
+      saveAsFile = null;
       progress = ProgressSharedState(setState, () {
         currentState = ReceiveScreenStates.FileReceiving;
       });
@@ -95,7 +100,7 @@ class ReceiveSharedState extends ChangeNotifier {
       this.prefs = prefs;
     });
 
-    if (Platform.isAndroid) {
+    if (dartIO.Platform.isAndroid) {
       defaultPathForPlatform = ANDROID_DOWNLOADS_FOLDER_PATH;
     } else {
       getDownloadsDirectory().then((downloadsDir) {
@@ -120,7 +125,7 @@ class ReceiveSharedState extends ChangeNotifier {
   static String _tempPath(String prefix) {
     final r = Random();
     int suffix = r.nextInt(1 << 32);
-    while (File("$prefix.$suffix").existsSync()) {
+    while (dartIO.File("$prefix.$suffix").existsSync()) {
       suffix = r.nextInt(1 << 32);
     }
 
@@ -177,7 +182,7 @@ class ReceiveSharedState extends ChangeNotifier {
   }
 
   Future<ReceiveFileResult> receive() async {
-    late final File tempFile;
+    late final dartIO.File tempFile;
     this.setState(() {
       isRequestingConnection = true;
     });
@@ -186,20 +191,25 @@ class ReceiveSharedState extends ChangeNotifier {
         this.setState(() {
           currentState = ReceiveScreenStates.FileReceived;
         });
-        await tempFile.rename(nonExistingPathFor("$path" +
-            Platform.pathSeparator +
-            "${result.pendingDownload.fileName}"));
+        if (saveAsFile == null) {
+          await tempFile.rename(nonExistingPathFor("$path" +
+              dartIO.Platform.pathSeparator +
+              "${result.pendingDownload.fileName}"));
+        }
       }, onError: defaultErrorHandler);
 
       this.setState(() {
         currentState = ReceiveScreenStates.ReceiveConfirmation;
         acceptDownload = () {
           controller.text = '';
-          tempFile = File(_tempPath("$path" +
-              Platform.pathSeparator +
-              "${result.pendingDownload.fileName}"));
-          var cancelFunc =
-              result.pendingDownload.accept(tempFile.writeOnlyFile());
+          if (saveAsFile == null) {
+            tempFile = dartIO.File(_tempPath("$path" +
+                dartIO.Platform.pathSeparator +
+                "${result.pendingDownload.fileName}"));
+          }
+          var cancelFunc = saveAsFile == null
+              ? result.pendingDownload.accept(tempFile.writeOnlyFile())
+              : result.pendingDownload.accept(saveAsFile!);
           this.setState(() {
             currentState = ReceiveScreenStates.FileReceiving;
             this.cancelFunc = cancelFunc;
@@ -216,20 +226,45 @@ class ReceiveSharedState extends ChangeNotifier {
     }, onError: defaultErrorHandler);
   }
 
-  void selectSaveDestination() async {
+  Future<File> _selectSaveDestinationAndroid(String initialFileName) async {
+    final uri = await MethodChannel("destiny.android/save_as")
+        .invokeMethod<String>(
+            "save_as", <String, dynamic>{"filename": initialFileName});
+
+    print("The uri to save the file is: $uri");
+
+    if (uri != null) {
+      return uri.androidUriToWriteOnlyFile();
+    } else {
+      return Future.error("uri from save as was null");
+    }
+  }
+
+  void selectSaveDestination(String initialFileName) async {
+    if (dartIO.Platform.isAndroid) {
+      final destinationFile =
+          await _selectSaveDestinationAndroid(initialFileName);
+      setState(() {
+        saveAsFile = destinationFile;
+      });
+
+      acceptDownload();
+
+      return;
+    }
     if (selectingFolder) return;
     try {
       this.setState(() {
         selectingFolder = true;
       });
-      String? directory = await FilePicker.platform
+      String? directory = await f.FilePicker.platform
           .getDirectoryPath(initialDirectory: prefs?.getString(PATH));
       if (directory == null) {
         return;
       }
       if (await canWriteToDirectory(directory)) {
         setState(() {
-          saveAsPath = "$directory${Platform.pathSeparator}";
+          saveAsPath = "$directory${dartIO.Platform.pathSeparator}";
           acceptDownload();
         });
       } else {

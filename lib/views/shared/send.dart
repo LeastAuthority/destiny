@@ -41,7 +41,7 @@ class SendSharedState extends ChangeNotifier {
   SendSharedState(this.config) {
     SendSharedState.shareFile.setMethodCallHandler((call) async {
       if (Platform.isAndroid) {
-        await (call.arguments as String).androidUriToFile().then(send);
+        await (call.arguments as String).androidUriToReadOnlyFile().then(send);
       } else {
         throw Exception(
             "Share file channel handling not implemented on ${Platform.operatingSystem}");
