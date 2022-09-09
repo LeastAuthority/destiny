@@ -57,8 +57,8 @@ class DTErrorUI extends StatelessWidget {
               isVisible: error != '',
               textAlign: TextAlign.center,
               textStyle: TextStyle(
-                fontSize: 20.0.sp,
-                fontFamily: Theme.of(context).textTheme.headline1?.fontFamily,
+                fontSize: 17.0,
+                fontFamily: COURIER,
                 color: Theme.of(context).textTheme.headline1?.color,
               )),
           ExtensiveDesktopErrorExpandable(
