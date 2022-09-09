@@ -3,12 +3,10 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[dev-packages]
-magic-wormhole-transit-relay = {editable = true, path = "."}
-
 [packages]
 autobahn = "*"
 twisted = "*"
+magic-wormhole-transit-relay = { git = 'https://github.com/magic-wormhole/magic-wormhole-transit-relay.git', ref = 'master' }
 
 [requires]
 python_version = "3.9"
