@@ -13,7 +13,7 @@ extension AsFile on String? {
   static const fileSelectorChannel =
       MethodChannel("destiny.android/file_selector");
 
-  Future<File> androidUriToFile() async {
+  Future<File> androidUriToReadOnlyFile() async {
     var targetOffset = 0;
     var currentOffset = 0;
 
@@ -65,6 +65,20 @@ extension AsFile on String? {
           return targetOffset;
         });
   }
+
+  Future<File> androidUriToWriteOnlyFile() async {
+    final ioChannel = MethodChannel("destiny.android/file_io");
+
+    return File(write: (Uint8List bytes) async {
+      print("Writing bytes to uri at: $this");
+      //await ioChannel.invokeMethod<void>(
+          //"write_bytes", <String, dynamic>{"uri": this, "bytes": bytes});
+    }, close: () async {
+      print("Closing writer for $this");
+      //await ioChannel
+          //.invokeMethod<void>("close", <String, dynamic>{"uri": this});
+    });
+  }
 }
 
 class _AndroidFilePicker extends FilePicker {
@@ -76,7 +90,7 @@ class _AndroidFilePicker extends FilePicker {
     return fileSelectorChannel
         .invokeMethod<String>("select_file")
         .then((uriString) async {
-      return uriString.androidUriToFile();
+      return uriString.androidUriToReadOnlyFile();
     });
   }
 }

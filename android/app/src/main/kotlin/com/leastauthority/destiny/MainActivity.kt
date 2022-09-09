@@ -20,13 +20,18 @@ import io.flutter.plugin.common.MethodChannel
 class MainActivity : FlutterActivity() {
     private val FILE_SELECTOR_CHANNEL_NAME = "destiny.android/file_selector"
     private val SHARE_FILE_CHANNEL_NAME = "destiny.androids/share_file"
+    private val SAVE_AS_CHANNEL_NAME = "destiny.android/save_as"
 
     private var SHARE_FILE_CHANNEL: MethodChannel? = null
+    private var SAVE_AS_CHANNEL: MethodChannel? = null
 
     private var pendingResult: MethodChannel.Result? = null
+    private var pendingSaveAsResult: MethodChannel.Result? = null
+    private val pendingReaders: MutableMap<Uri, UriReader> = HashMap()
+
     private val FILE_SELECTOR_REQUEST = 1
     private val READ_PERMISSION_REQUEST = 2
-    private val pendingReaders: MutableMap<Uri, UriReader> = HashMap()
+    private val SAVE_AS_REQUEST = 3
 
     private val UNKNOWN_METHOD = "1"
     private val ALREADY_SELECTING = "2"
@@ -56,25 +61,57 @@ class MainActivity : FlutterActivity() {
         }
     }
 
+    private fun saveAs(call: MethodCall, result: MethodChannel.Result) {
+        val initialName = call.argument<String>("filename")
+        val saveAsIntent = Intent()
+            .setType("application/octet-stream")
+            .setAction(Intent.ACTION_CREATE_DOCUMENT)
+            .addCategory(Intent.CATEGORY_OPENABLE)
+            .putExtra(Intent.EXTRA_TITLE, initialName)
+        startActivityForResult(
+            Intent.createChooser(saveAsIntent, "Save as"),
+            SAVE_AS_REQUEST
+        )
+
+        pendingSaveAsResult = result
+    }
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             FILE_SELECTOR_CHANNEL_NAME
         ).setMethodCallHandler { call, result ->
-            if (call.method == "select_file") selectFile(call, result)
-            else if (call.method == "get_metadata") getMetadata(call, result)
-            else if (call.method == "read_bytes") readBytes(call, result)
-            else if (call.method == "close") close(call, result)
-            else result.error(
-                UNKNOWN_METHOD,
-                "Unknown method called on file picker: ${call.method}",
-                ""
-            )
+            when (call.method) {
+                "select_file" -> selectFile(call, result)
+                "get_metadata" -> getMetadata(call, result)
+                "read_bytes" -> readBytes(call, result)
+                "close" -> close(call, result)
+                else -> result.error(
+                    UNKNOWN_METHOD,
+                    "Unknown method called on file picker: ${call.method}",
+                    ""
+                )
+            }
+        }
+
+        MethodChannel(
+            flutterEngine.dartExecutor.binaryMessenger,
+            SAVE_AS_CHANNEL_NAME
+        ).setMethodCallHandler { call, result ->
+            when (call.method) {
+                "save_as" -> saveAs(call, result)
+                else -> result.error(
+                    UNKNOWN_METHOD,
+                    "Unknown method called on save as channel: ${call.method}",
+                    ""
+                )
+            }
         }
 
         SHARE_FILE_CHANNEL =
             MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SHARE_FILE_CHANNEL_NAME)
+
     }
 
     private fun readBytes(call: MethodCall, result: MethodChannel.Result) {
@@ -182,19 +219,28 @@ class MainActivity : FlutterActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == FILE_SELECTOR_REQUEST) {
             Log.e(LOG_TAG, data?.data.toString())
+
+            Log.e(LOG_TAG, data?.extras.toString())
+            if (pendingResult != null && data?.data != null) {
+                val uri = data?.data as Uri
+                Log.e(LOG_TAG, contentResolver.getType(uri).toString())
+                pendingReaders[uri] = UriReader(contentResolver, uri)
+                pendingResult?.success(data?.data.toString());
+            } else {
+                pendingResult?.error(NO_DATA, "File selector did not return a URI", "")
+            }
+
+            pendingResult = null;
+        } else if (requestCode == SAVE_AS_REQUEST) {
+            if (pendingSaveAsResult != null && data?.data != null) {
+                // TODO create a writer to write to
+                pendingSaveAsResult?.success(data?.data.toString());
+            } else {
+                pendingSaveAsResult?.error(NO_DATA, "Save as dialog did not return a URI", "")
+            }
+
         }
 
-        Log.e(LOG_TAG, data?.extras.toString())
-        if (pendingResult != null && data?.data != null) {
-            val uri = data?.data as Uri
-            Log.e(LOG_TAG, contentResolver.getType(uri).toString())
-            pendingReaders[uri] = UriReader(contentResolver, uri)
-            pendingResult?.success(data?.data.toString());
-        } else {
-            pendingResult?.error(NO_DATA, "File selector did not return a URI", "bla")
-        }
-
-        pendingResult = null;
     }
 
     class UriReader(contentResolver: ContentResolver, uri: Uri) {

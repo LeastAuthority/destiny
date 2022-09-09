@@ -39,7 +39,7 @@ class ReceiveConfirmation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ButtonWithBackground(
-                    handleClicked: selectSaveDestination,
+                    handleClicked: () => selectSaveDestination(fileName),
                     title: SAVE_AS,
                     width: 120.0.w,
                     height: 50.0.h,
