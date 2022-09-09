@@ -1,5 +1,4 @@
 import 'dart:io' as io;
-import 'dart:typed_data';
 
 import 'package:dart_wormhole_william/client/file.dart';
 import 'package:file_picker/file_picker.dart' as file_picker_plugin;
@@ -10,15 +9,14 @@ abstract class FilePicker {
 }
 
 extension AsFile on String? {
-  static const fileSelectorChannel =
-      MethodChannel("destiny.android/file_selector");
+  static const fileIOChannel = MethodChannel("destiny.android/file_io");
 
   Future<File> androidUriToReadOnlyFile() async {
     var targetOffset = 0;
     var currentOffset = 0;
 
     Future<int> readInto(Uint8List buffer) async {
-      final readResult = await fileSelectorChannel
+      final readResult = await fileIOChannel
           .invokeMethod<List>("read_bytes", <String, dynamic>{
         "uri": this,
         "max": buffer.length,
@@ -41,7 +39,7 @@ extension AsFile on String? {
       return readInto(buffer);
     }
 
-    final metadata = await fileSelectorChannel
+    final metadata = await fileIOChannel
         .invokeMethod<List>("get_metadata", <String, dynamic>{"uri": this});
 
     return File(
@@ -52,8 +50,8 @@ extension AsFile on String? {
         },
         read: seekAndReadInto,
         close: () async {
-          await fileSelectorChannel
-              .invokeMethod<void>("close", <String, dynamic>{"uri": this});
+          await fileIOChannel.invokeMethod<void>(
+              "close_reader", <String, dynamic>{"uri": this});
         },
         setPosition: (position) async {
           if (currentOffset > position) {
@@ -67,16 +65,14 @@ extension AsFile on String? {
   }
 
   Future<File> androidUriToWriteOnlyFile() async {
-    final ioChannel = MethodChannel("destiny.android/file_io");
-
     return File(write: (Uint8List bytes) async {
       print("Writing bytes to uri at: $this");
-      //await ioChannel.invokeMethod<void>(
-          //"write_bytes", <String, dynamic>{"uri": this, "bytes": bytes});
+      await fileIOChannel.invokeMethod<void>(
+          "write_bytes", <String, dynamic>{"uri": this, "bytes": bytes});
     }, close: () async {
       print("Closing writer for $this");
-      //await ioChannel
-          //.invokeMethod<void>("close", <String, dynamic>{"uri": this});
+      await fileIOChannel
+          .invokeMethod<void>("close_writer", <String, dynamic>{"uri": this});
     });
   }
 }

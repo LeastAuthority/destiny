@@ -1,14 +1,12 @@
 package com.leastauthority.destiny
 
 import android.Manifest
-import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.OpenableColumns
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -23,11 +21,10 @@ class MainActivity : FlutterActivity() {
     private val SAVE_AS_CHANNEL_NAME = "destiny.android/save_as"
 
     private var SHARE_FILE_CHANNEL: MethodChannel? = null
-    private var SAVE_AS_CHANNEL: MethodChannel? = null
 
-    private var pendingResult: MethodChannel.Result? = null
+    private var pendingSelectFileResult: MethodChannel.Result? = null
     private var pendingSaveAsResult: MethodChannel.Result? = null
-    private val pendingReaders: MutableMap<Uri, UriReader> = HashMap()
+    private val fileIOHandler = FileIOHandler()
 
     private val FILE_SELECTOR_REQUEST = 1
     private val READ_PERMISSION_REQUEST = 2
@@ -37,8 +34,6 @@ class MainActivity : FlutterActivity() {
     private val ALREADY_SELECTING = "2"
     private val NO_DATA = "3"
     private val PERMISSION_DENIED = "4"
-    private val READ_FAILURE = "5"
-    private val CLOSE_FAILURE = "6"
 
     private val LOG_TAG = "Destiny";
 
@@ -52,7 +47,7 @@ class MainActivity : FlutterActivity() {
     private fun sendFileFromIntent(intent: Intent) {
         val uri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) as Uri
         if (SHARE_FILE_CHANNEL != null) {
-            pendingReaders[uri] = UriReader(contentResolver, uri)
+            fileIOHandler.createReader(contentResolver, uri)
             Handler(Looper.getMainLooper()).post {
                 SHARE_FILE_CHANNEL?.invokeMethod("share_file", uri.toString())
             }
@@ -84,9 +79,6 @@ class MainActivity : FlutterActivity() {
         ).setMethodCallHandler { call, result ->
             when (call.method) {
                 "select_file" -> selectFile(call, result)
-                "get_metadata" -> getMetadata(call, result)
-                "read_bytes" -> readBytes(call, result)
-                "close" -> close(call, result)
                 else -> result.error(
                     UNKNOWN_METHOD,
                     "Unknown method called on file picker: ${call.method}",
@@ -112,65 +104,14 @@ class MainActivity : FlutterActivity() {
         SHARE_FILE_CHANNEL =
             MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SHARE_FILE_CHANNEL_NAME)
 
-    }
-
-    private fun readBytes(call: MethodCall, result: MethodChannel.Result) {
-        val uri = Uri.parse(
-            call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
-        )
-        val maxBytes = call.argument<Int>("max")
-            ?: throw java.lang.RuntimeException("Missing max bytes for read")
-
-        if (!pendingReaders.containsKey(uri)) {
-            throw java.lang.RuntimeException("No reader for URI: $uri")
-        }
-
-        try {
-            result.success(pendingReaders[uri]?.read(maxBytes)?.toList())
-        } catch (error: Exception) {
-            result.error(READ_FAILURE, error.message, "");
-        }
-    }
-
-    private fun close(call: MethodCall, result: MethodChannel.Result) {
-        val uri = Uri.parse(
-            call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
-        )
-        if (!pendingReaders.containsKey(uri)) {
-            throw java.lang.RuntimeException("No reader for URI: $uri")
-        }
-
-        try {
-            pendingReaders[uri]?.close()
-            result.success(null)
-            pendingReaders.remove(uri)
-        } catch (error: Exception) {
-            result.error(CLOSE_FAILURE, error.message, "")
-        }
-    }
-
-    private fun getMetadata(call: MethodCall, result: MethodChannel.Result) {
-        val uri = Uri.parse(
-            call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
-        )
-
-        if (!pendingReaders.containsKey(uri)) {
-            throw java.lang.RuntimeException("No reader for URI: $uri")
-        }
-
-        var l = java.util.ArrayList<Object>(2)
-
-        l.add(pendingReaders.getValue(uri).fileName as Object)
-        l.add(pendingReaders.getValue(uri).fileSize as Object)
-
-        result.success(l)
+        fileIOHandler.configureFlutterEngine(flutterEngine)
     }
 
     private fun selectFile(call: MethodCall, result: MethodChannel.Result) {
-        if (pendingResult != null) {
+        if (pendingSelectFileResult != null) {
             result.error(ALREADY_SELECTING, "Already selecting a file", "");
         } else {
-            pendingResult = result;
+            pendingSelectFileResult = result;
             if (!hasPermission()) {
                 ActivityCompat.requestPermissions(
                     this,
@@ -205,7 +146,11 @@ class MainActivity : FlutterActivity() {
         if (requestCode == READ_PERMISSION_REQUEST && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             startFileSelector()
         } else {
-            pendingResult?.error(PERMISSION_DENIED, "Permission to read files not granted", "")
+            pendingSelectFileResult?.error(
+                PERMISSION_DENIED,
+                "Permission to read files not granted",
+                ""
+            )
         }
     }
 
@@ -221,19 +166,20 @@ class MainActivity : FlutterActivity() {
             Log.e(LOG_TAG, data?.data.toString())
 
             Log.e(LOG_TAG, data?.extras.toString())
-            if (pendingResult != null && data?.data != null) {
+            if (pendingSelectFileResult != null && data?.data != null) {
                 val uri = data?.data as Uri
                 Log.e(LOG_TAG, contentResolver.getType(uri).toString())
-                pendingReaders[uri] = UriReader(contentResolver, uri)
-                pendingResult?.success(data?.data.toString());
+                fileIOHandler.createReader(contentResolver, uri)
+                pendingSelectFileResult?.success(data?.data.toString());
             } else {
-                pendingResult?.error(NO_DATA, "File selector did not return a URI", "")
+                pendingSelectFileResult?.error(NO_DATA, "File selector did not return a URI", "")
             }
 
-            pendingResult = null;
+            pendingSelectFileResult = null;
         } else if (requestCode == SAVE_AS_REQUEST) {
             if (pendingSaveAsResult != null && data?.data != null) {
-                // TODO create a writer to write to
+                val uri = data?.data as Uri
+                fileIOHandler.createWriter(contentResolver, uri)
                 pendingSaveAsResult?.success(data?.data.toString());
             } else {
                 pendingSaveAsResult?.error(NO_DATA, "Save as dialog did not return a URI", "")
@@ -243,45 +189,4 @@ class MainActivity : FlutterActivity() {
 
     }
 
-    class UriReader(contentResolver: ContentResolver, uri: Uri) {
-        private lateinit var _fileName: String
-        var fileName: String
-            get() = _fileName
-            set(value) {
-                throw RuntimeException("Nope")
-            }
-
-        private var _fileSize: Long = -1
-        var fileSize: Long
-            get() = _fileSize
-            set(value) {
-                throw RuntimeException("Nope")
-            }
-
-        private val stream = contentResolver.openInputStream(uri)
-        private var buffer = ByteArray(16000)
-
-        init {
-            contentResolver.query(uri, null, null, null, null)?.use { cursor ->
-                val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
-                cursor.moveToFirst()
-                _fileName = cursor.getString(nameIndex)
-                _fileSize = cursor.getLong(sizeIndex)
-            }
-        }
-
-        fun read(max: Int): Pair<Int, ByteArray> {
-            if (buffer.size <= max) {
-                buffer = ByteArray(max)
-            }
-            val bytesReadCount = stream?.read(buffer)
-                ?: throw RuntimeException("Read did not return a byte count")
-            return Pair(bytesReadCount, buffer)
-        }
-
-        fun close() {
-            (stream ?: throw RuntimeException("No stream")).close()
-        }
-    }
 }
