@@ -4,9 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-magic-wormhole-mailbox-server = "*"
-
-[dev-packages]
+magic-wormhole-mailbox-server = { git = 'https://github.com/magic-wormhole/magic-wormhole-mailbox-server', ref = 'master' }
 
 [requires]
 python_version = "3.9"

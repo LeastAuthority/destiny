@@ -70,7 +70,7 @@ STORE_PASSWORDP=<password>
 3. Set key.properties path in gradle.properties file for parameter AndroidProject.signing=/your/path/key.properties
 4. Run build manually
 ```bash
-flutter build appbundle --build-name=<build_version> --build-number=<build_number> -t lib/main_la.dart
+flutter build appbundle --build-name=<build_version> --dart-define version=<build_version> --build-number=<build_number> -t lib/main_la.dart
 ```
 Note: Google Play store requires unique or incremental build-number for every upload to store.
 
