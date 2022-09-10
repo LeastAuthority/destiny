@@ -2,23 +2,16 @@ import 'package:destiny/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Button extends StatefulWidget {
-  final String title;
-  final Function handleSelectFile;
-  final bool? disabled;
-  Button(this.title, this.handleSelectFile, this.disabled);
-  @override
-  _CustomAppBarState createState() =>
-      _CustomAppBarState(title, handleSelectFile, disabled);
-}
-
-class _CustomAppBarState extends State<Button> {
-  final String title;
+class Button extends StatelessWidget {
+  String? title;
   Function handleSelectFile;
   Widget? icon;
   bool? disabled;
-  _CustomAppBarState(this.title, this.handleSelectFile, this.disabled);
-
+  double? width;
+  double? height;
+  Color? bgColor;
+  Button(this.title, this.handleSelectFile, this.disabled, this.height,
+      this.width, this.bgColor);
   @override
   Widget build(BuildContext context) {
     Color? color = disabled == true
@@ -30,12 +23,12 @@ class _CustomAppBarState extends State<Button> {
         borderRadius: BorderRadius.all(Radius.circular(4.0)),
         border: Border.all(width: 1.0, color: CustomColors.babyPowder),
       ),
-      width: 120.0.w,
-      height: 50.0.h,
+      width: width,
+      height: height,
       child: TextButton(
-        onPressed: () => handleSelectFile(),
+        onPressed: () => this.handleSelectFile(),
         style: TextButton.styleFrom(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor),
+            backgroundColor: bgColor, padding: EdgeInsets.all(0)),
         child: Text('$title',
             style: TextStyle(
               color: color,
