@@ -5,6 +5,7 @@ const String HOME = "Home";
 const String SEND = "Send";
 const String RECEIVE = "Receive";
 const String SETTINGS = "Settings";
+const String INFO = "Info";
 
 //ui strings
 const String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST =
@@ -171,6 +172,33 @@ const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
 const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
+
+const String APP_ID = "AppID:";
+const String TRANSIT_RELAY = "Transit Relay URL:";
+const String MAILBOX_URL = "Mailbox URL:";
+const String ENV_SETTINGS = 'Environment settings:';
+const String VERSION = 'Version:';
+const String DEFAULT_SAVE_DESTINATION = 'Default save destination:';
+const String FEEDBACK = 'Feedback';
+const String FQA = 'FAQ';
+const String PRIVACY = 'Privacy Policy';
+
+const String FEEDBACK_LINK = 'https://www.google.com';
+const String FQA_LINK = 'https://www.google.com';
+const String PRIVACY_LINK = 'https://www.google.com';
+
+const String ERR_WRONG_CODE_RECEIVER = """Oops..   
+If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
+Please ask the sender for a new code and for them to stay connected until you get the file.""";
+
+const String ERR_WRONG_CODE_SENDER = """Oops..
+The receiver has entered the wrong code.
+Please try sending the file again""";
+
+const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =
+    "The transfer was cancelled or interrupted";
+const String ERR_INTERRUPTION_CANCELLATION_SENDER =
+    "The transfer was cancelled or interrupted";
 
 final Config magicWormholeIO = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",

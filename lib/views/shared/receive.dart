@@ -70,6 +70,7 @@ class ReceiveSharedState extends ChangeNotifier {
   void reset() {
     setState(() {
       _code = null;
+      controller.text = '';
       pendingDownload = null;
       isRequestingConnection = false;
       currentState = ReceiveScreenStates.Initial;
