@@ -5,6 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   dart_wormhole_william
   desktop_drop
+  url_launcher_linux
   window_size
 )
 

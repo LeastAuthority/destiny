@@ -13,6 +13,7 @@ class CustomColors {
   static const Color superLightPurple = Color(0x339e79b1);
   static const Color lightPurple = Color(0xffc98ae6);
   static const Color lightBlue = Color(0xff33B6FF);
+  static const Color lighterBlue = Color(0xff00D9FF);
   static const Color babyPowder = Color(0xFFFDFAFA);
   static const Color babyPowderLight = Color(0xFFFCFAFA);
   static const Color transparent = Color(0xFFbfbfbf);
