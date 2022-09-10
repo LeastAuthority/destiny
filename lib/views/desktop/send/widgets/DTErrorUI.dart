@@ -123,6 +123,8 @@ class ExtensiveDesktopErrorExpandable extends StatelessWidget {
         ],
       );
 
-    return Container();
+    return Container(
+      height: 150.0,
+    );
   }
 }

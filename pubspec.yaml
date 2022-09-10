@@ -129,10 +129,12 @@ flutter:
     - assets/images/intro-logo.png
     - assets/images/file-sent-white.png
     - assets/images/icons/SETTINGS-WHITE.png
+    - assets/images/icons/SETTINGS-WHITE-with-circle.png
+    - assets/images/icons/INFO-WHITE-with-circle.png
+    - assets/images/icons/INFO-WHITE.png
     - assets/images/icons/Paste-white.png
     - assets/images/icons/Phone-Icon.png
     - assets/images/icons/Plus-Button-Large.png
-    - assets/images/icons/SETTINGS-WHITE-with-circle.png
     - assets/images/icons/WHITE-ARROW.png
     - assets/images/icons/Hamburger-Menu-White.png
   # An image asset can refer to one or more resolution-specific "variants", see
