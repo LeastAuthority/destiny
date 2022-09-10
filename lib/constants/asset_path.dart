@@ -18,8 +18,8 @@ const String LAPTOP_TO_MOBILE = 'assets/images/Laptop-to-mobile-transfer.png';
 const String SEND_ICON = 'assets/images/icons/send.png';
 const String RECEIVE_ICON = 'assets/images/icons/receive.png';
 const String CHECK_ICON = 'assets/images/icons/CHECK.png';
-const String SETTINGS_ICON = 'assets/images/icons/SETTINGS-WHITE.png';
-const String SETTINGS_ICON_WITH_CIRCLE =
+const String INFO_ICON = 'assets/images/icons/SETTINGS-WHITE.png';
+const String INFO_ICON_WITH_CIRCLE =
     'assets/images/icons/SETTINGS-WHITE-with-circle.png';
 const String PHONE_ICON = 'assets/images/icons/Phone-Icon.png';
 const String PLUS_ICON = 'assets/images/icons/Plus-Button-Large.png';

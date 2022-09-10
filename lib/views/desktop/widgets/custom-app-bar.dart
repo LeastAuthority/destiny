@@ -81,7 +81,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       route: SETTINGS_ROUTE,
                       title: SETTINGS,
                       currentRoute: path,
-                      icon: SETTINGS_ICON,
+                      icon: INFO_ICON,
                       alignment: CrossAxisAlignment.end,
                     ),
                   ],

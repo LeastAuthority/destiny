@@ -3,7 +3,7 @@ import 'package:destiny/config/theme/custom_theme.dart';
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/views/mobile/receive/receive.dart';
 import 'package:destiny/views/mobile/send/send.dart';
-import 'package:destiny/views/mobile/settings.dart';
+import 'package:destiny/views/mobile/Info.dart';
 import 'package:destiny/views/mobile/splash.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
@@ -90,7 +90,7 @@ void main() {
 
   testWidgets('Settings screen', (WidgetTester tester) async {
     await tester.pumpWidget(getScreenUtilInit(
-        Settings(), CustomTheme.darkThemeMobile, mobileScreenSize));
+        Info(), CustomTheme.darkThemeMobile, mobileScreenSize));
     final settingsScreenBody = find.byKey(Key(SETTINGS_SCREEN_BODY));
 
     expect(settingsScreenBody, findsOneWidget);
