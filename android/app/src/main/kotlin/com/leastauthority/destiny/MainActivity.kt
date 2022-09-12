@@ -104,7 +104,7 @@ class MainActivity : FlutterActivity() {
         SHARE_FILE_CHANNEL =
             MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SHARE_FILE_CHANNEL_NAME)
 
-        fileIOHandler.configureFlutterEngine(flutterEngine)
+        fileIOHandler.configureFlutterEngine(flutterEngine, contentResolver)
     }
 
     private fun selectFile(call: MethodCall, result: MethodChannel.Result) {

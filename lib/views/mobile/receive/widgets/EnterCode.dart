@@ -15,7 +15,7 @@ class EnterCode extends StatelessWidget {
       required this.codeChanged,
       required this.handleNextClicked,
       required this.isRequestingConnection,
-      required final this.controller,
+      required this.controller,
       required this.onEnterPressed})
       : super(key: key);
   @override

@@ -15,7 +15,8 @@ import 'package:provider/provider.dart';
 class ReceiveScreen extends StatelessWidget {
   Widget receivingDone() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return ReceivingDone(state.fileSize!, state.fileName!, state.path!, () {
+      return ReceivingDone(
+          state.fileSize!, state.fileName!, state.currentDestinationPath!, () {
         state.reset();
       });
     });
