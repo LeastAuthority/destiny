@@ -75,7 +75,8 @@ class ReceiveScreen extends StatelessWidget {
 
   Widget receivingDone() {
     return Consumer<ReceiveSharedState>(builder: (context, state, _) {
-      return DTReceivingDone(state.fileSize!, state.fileName!, state.path!, () {
+      return DTReceivingDone(
+          state.fileSize!, state.fileName!, state.currentDestinationPath!, () {
         state.setState(() {
           state.reset();
         });

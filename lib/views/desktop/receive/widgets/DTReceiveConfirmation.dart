@@ -52,7 +52,7 @@ class DTReceiveConfirmation extends StatelessWidget {
                   children: [
                     DTButtonWithBackground(
                       onPressed: () {
-                        selectSaveDestination();
+                        selectSaveDestination(fileName);
                       },
                       title: SAVE_AS,
                       width: 120.0,
