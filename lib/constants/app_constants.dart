@@ -45,6 +45,7 @@ const String DONE = 'Done';
 const String FILE_RECEIVED = 'File received';
 const String TRANSFER_CANCELLED = 'Transfer cancelled';
 const String PLEASE_WAIT = 'Please wait...';
+const String DIRECTORIES_ARE_NOT_ALLOWED = 'Directories are not allowed';
 const String THE_RECEIVER_REJECTED_THIS_TRANSFER =
     'The receiver rejected this transfer.';
 const String YOU_HAVE_CANCELLED_THE_TRANSFER =
