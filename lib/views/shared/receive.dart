@@ -252,6 +252,9 @@ class ReceiveSharedState extends ChangeNotifier {
       if (dartIO.Platform.isAndroid) {
         final destinationFile =
             await _selectSaveDestinationAndroid(initialFileName);
+        final metadata = await destinationFile.metadata();
+        currentDestinationPath = metadata.parentPath!;
+        pendingDownload?.fileName = metadata.fileName!;
         setState(() {
           saveAsFile = destinationFile;
         });

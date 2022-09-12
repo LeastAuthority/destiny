@@ -2,11 +2,13 @@ package com.leastauthority.destiny
 
 import android.content.ContentResolver
 import android.net.Uri
+import android.provider.OpenableColumns
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import java.io.File
 
-class Metadata(val fileName: String, val fileSize: Long)
+class Metadata(val fileName: String, val parentPath: String, val fileSize: Long)
 
 class FileIOHandler {
     private val pendingReaders: MutableMap<Uri, UriReader> = HashMap()
@@ -19,7 +21,9 @@ class FileIOHandler {
     private val CLOSE_FAILURE = "3"
     private val WRITE_FAILURE = "4"
 
-    fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+    private var contentResolver: ContentResolver? = null
+
+    fun configureFlutterEngine(flutterEngine: FlutterEngine, contentResolver: ContentResolver) {
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             FILE_IO_CHANNEL_NAME
@@ -37,6 +41,7 @@ class FileIOHandler {
                 )
             }
         }
+        this.contentResolver = contentResolver
     }
 
     fun createReader(contentResolver: ContentResolver, uri: Uri): UriReader? {
@@ -54,11 +59,12 @@ class FileIOHandler {
             call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
         )
 
-        val metadata = getReaderMetadata(uri)
+        val metadata = getMetadata(uri)
 
         var l = java.util.ArrayList<Object>(2)
 
         l.add(metadata.fileName as Object)
+        l.add(metadata.parentPath as Object)
         l.add(metadata.fileSize as Object)
 
         result.success(l)
@@ -121,13 +127,39 @@ class FileIOHandler {
         }
     }
 
-    private fun getReaderMetadata(uri: Uri): Metadata {
-        val reader = pendingReaders[uri]
+    private fun getMetadata(uri: Uri): Metadata {
+        contentResolver?.query(uri, null, null, null, null)?.use { cursor ->
+            val nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+            val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
 
-        if (reader != null)
-            return Metadata(reader.fileName, reader.fileSize)
-        else
-            throw java.lang.RuntimeException("No reader for URI: $uri")
+            cursor.moveToFirst()
+
+            val path = when (uri.authority) {
+                "com.android.externalstorage.documents" -> {
+                    val directory =
+                        uri.path?.split(File.separator)?.reversed()?.drop(1)?.reversed()
+                            ?.joinToString(separator = File.separator)
+                    val parts = directory?.split(":")
+                    if (parts != null) {
+                        if (parts?.size > 1) {
+                            "sdcard/${parts.drop(1).joinToString(separator = File.separator)}"
+                        } else {
+                            "sdcard/$directory"
+                        }
+                    } else uri.path
+                }
+                "com.android.providers.downloads.documents" -> "Downloads"
+                else -> uri.path
+            }
+
+            return Metadata(
+                cursor.getString(nameIndex),
+                path.toString(),
+                cursor.getLong(sizeIndex)
+            )
+        }
+
+        throw java.lang.RuntimeException("Failed to get metadata");
     }
 
     private fun closeReader(uri: Uri) {

@@ -45,8 +45,9 @@ extension AsFile on String? {
     return File(
         metadata: () async {
           return Metadata(
-              fileName: metadata!.first as String,
-              fileSize: metadata[1] as int);
+              fileName: metadata![0] as String,
+              parentPath: metadata[1] as String,
+              fileSize: metadata[2] as int);
         },
         read: seekAndReadInto,
         close: () async {
@@ -66,13 +67,19 @@ extension AsFile on String? {
 
   Future<File> androidUriToWriteOnlyFile() async {
     return File(write: (Uint8List bytes) async {
-      print("Writing bytes to uri at: $this");
       await fileIOChannel.invokeMethod<void>(
           "write_bytes", <String, dynamic>{"uri": this, "bytes": bytes});
     }, close: () async {
-      print("Closing writer for $this");
       await fileIOChannel
           .invokeMethod<void>("close_writer", <String, dynamic>{"uri": this});
+    }, metadata: () async {
+      final metadata = await fileIOChannel
+          .invokeMethod<List>("get_metadata", <String, dynamic>{"uri": this});
+
+      return Metadata(
+          fileName: metadata![0] as String,
+          parentPath: metadata[1] as String,
+          fileSize: metadata[2] as int);
     });
   }
 }
