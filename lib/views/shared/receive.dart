@@ -39,9 +39,9 @@ class ReceiveSharedState extends ChangeNotifier {
   String? error;
   String? errorMessage;
   String? errorTitle;
-  String? saveAsPath;
   bool selectingFolder = false;
   File? saveAsFile;
+  late String? currentDestinationPath = path;
 
   late final TextEditingController controller = new TextEditingController();
   late final Client client = Client(config);
@@ -66,9 +66,7 @@ class ReceiveSharedState extends ChangeNotifier {
 
   String? get path {
     final path = prefs?.get(PATH);
-    if (saveAsPath != null) {
-      return saveAsPath;
-    }
+
     if (path != null && path is String) {
       return path;
     }
@@ -86,11 +84,11 @@ class ReceiveSharedState extends ChangeNotifier {
       error = null;
       errorMessage = null;
       errorTitle = null;
-      saveAsPath = null;
       saveAsFile = null;
       progress = ProgressSharedState(setState, () {
         currentState = ReceiveScreenStates.FileReceiving;
       });
+      currentDestinationPath = path;
       cancelFunc = failWith("No cancel transfer function set");
     });
   }
@@ -231,8 +229,6 @@ class ReceiveSharedState extends ChangeNotifier {
         .invokeMethod<String>(
             "save_as", <String, dynamic>{"filename": initialFileName});
 
-    print("The uri to save the file is: $uri");
-
     if (uri != null) {
       return uri.androidUriToWriteOnlyFile();
     } else {
@@ -241,40 +237,45 @@ class ReceiveSharedState extends ChangeNotifier {
   }
 
   void selectSaveDestination(String initialFileName) async {
-    if (dartIO.Platform.isAndroid) {
-      final destinationFile =
-          await _selectSaveDestinationAndroid(initialFileName);
-      setState(() {
-        saveAsFile = destinationFile;
-      });
-
-      acceptDownload();
-
-      return;
-    }
-    if (selectingFolder) return;
     try {
-      this.setState(() {
+      if (selectingFolder) return;
+
+      setState(() {
         selectingFolder = true;
       });
-      String? directory = await f.FilePicker.platform
-          .getDirectoryPath(initialDirectory: prefs?.getString(PATH));
-      if (directory == null) {
-        return;
-      }
-      if (await canWriteToDirectory(directory)) {
+
+      if (dartIO.Platform.isAndroid) {
+        final destinationFile =
+            await _selectSaveDestinationAndroid(initialFileName);
         setState(() {
-          saveAsPath = "$directory${dartIO.Platform.pathSeparator}";
-          acceptDownload();
+          saveAsFile = destinationFile;
         });
       } else {
-        final error =
-            Exception("Permission denied. Could not write to ${path!}");
-        defaultErrorHandler(error);
-        return Future.error(error);
+        final destinationPath =
+            await f.FilePicker.platform.saveFile(fileName: initialFileName);
+        if (destinationPath == null) {
+          throw Exception("Save as dialog returned null");
+        }
+        final file = await dartIO.File(destinationPath)
+            .open(mode: dartIO.FileMode.write);
+        final pathParts = destinationPath.split(dartIO.Platform.pathSeparator);
+        setState(() {
+          pendingDownload?.fileName = pathParts.reversed.first;
+          currentDestinationPath = pathParts.reversed
+              .skip(1)
+              .toList()
+              .reversed
+              .join(dartIO.Platform.pathSeparator);
+          saveAsFile = File(
+            write: file.writeFrom,
+            close: file.close,
+          );
+        });
       }
+
+      acceptDownload();
     } finally {
-      this.setState(() {
+      setState(() {
         selectingFolder = false;
       });
     }
