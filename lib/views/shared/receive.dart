@@ -180,6 +180,11 @@ class ReceiveSharedState extends ChangeNotifier {
   }
 
   Future<ReceiveFileResult> receive() async {
+    if (saveAsFile == null && !(await canWriteToDirectory(path!))) {
+      final error = Exception("Permission denied. Could not write to ${path!}");
+      defaultErrorHandler(error);
+      return Future.error(error);
+    }
     late final dartIO.File tempFile;
     this.setState(() {
       isRequestingConnection = true;
