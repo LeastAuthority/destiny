@@ -23,30 +23,28 @@ class DTSelectOrDropAFile extends StatefulWidget {
 class _DTSelectOrDropAFile extends State<DTSelectOrDropAFile> {
   @override
   Widget build(BuildContext context) {
-    bool flag = false;
+    bool isCalledForFirstTime = false;
     return Container(
       color: widget.dragEntered
           ? Color(0xff3A2655)
           : Theme.of(context).dialogBackgroundColor,
       child: DropTarget(
         onDragDone: (detail) async {
-          if (flag == true) return;
+          if (isCalledForFirstTime) return;
           try {
             File file = detail.files.first.readOnlyFile();
             await widget.onFileDropped(file);
-            flag = true;
           } catch (e) {
             bool isFile = detail.files.first.path.split('.').length == 0;
-            flag = true;
             if (isFile) return;
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(DIRECTORIES_ARE_NOT_ALLOWED),
             ));
           }
-          flag = true;
+          isCalledForFirstTime = true;
         },
         onDragEntered: (detail) async {
-          flag = false;
+          isCalledForFirstTime = false;
           this.setState(() {
             widget.dragEntered = true;
           });
