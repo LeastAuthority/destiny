@@ -134,6 +134,10 @@ class SendSharedState extends ChangeNotifier {
             this.errorTitle = OOPS;
             this.error = ERR_CONNECTION_REFUSED;
             break;
+          case ErrCodeGenerationFailed:
+            this.errorTitle = OOPS;
+            this.error = ERR_CONNECTION_REFUSED;
+            break;
           default:
             this.errorTitle = SOMETHING_WENT_WRONG;
             // TODO: map error to user friendly name (case invalid nameplate)
