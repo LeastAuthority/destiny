@@ -134,27 +134,36 @@ class FileIOHandler {
 
             cursor.moveToFirst()
 
-            val path = when (uri.authority) {
-                "com.android.externalstorage.documents" -> {
-                    val directory =
-                        uri.path?.split(File.separator)?.reversed()?.drop(1)?.reversed()
-                            ?.joinToString(separator = File.separator)
-                    val parts = directory?.split(":")
-                    if (parts != null) {
-                        if (parts?.size > 1) {
-                            "sdcard/${parts.drop(1).joinToString(separator = File.separator)}"
-                        } else {
-                            "sdcard/$directory"
-                        }
-                    } else uri.path
+            val cleanedPath = {
+                val directory =
+                    uri.path?.split(File.separator)?.reversed()?.drop(1)?.reversed()
+                        ?.joinToString(separator = File.separator)
+                val parts = directory?.split(":")
+                if (parts != null) {
+                    if (parts?.size > 1) {
+                        "${parts.drop(1).joinToString(separator = ":")}"
+                    } else {
+                        "$directory"
+                    }
+                } else directory
+            }()
+
+            val parentPath = when (uri.authority) {
+                "com.android.externalstorage.documents" ->
+                    "sdcard/$cleanedPath"
+                "com.android.providers.downloads.documents" -> {
+                    if (uri.path?.startsWith(prefix = "/document/raw:") == true) {
+                        cleanedPath
+                    } else {
+                        "Downloads"
+                    }
                 }
-                "com.android.providers.downloads.documents" -> "Downloads"
-                else -> uri.path
+                else -> cleanedPath
             }
 
             return Metadata(
                 cursor.getString(nameIndex),
-                path.toString(),
+                parentPath ?: "Unknown location",
                 cursor.getLong(sizeIndex)
             )
         }
