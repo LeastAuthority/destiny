@@ -30,7 +30,6 @@ const String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT =
     'Send the selected file by sharing the code with the recipient.';
 const String READY_TO_DOWNLOAD = 'Ready to download';
 const String DOWNLOAD = 'Download';
-const String SAVE_AS = 'Save As...';
 const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'App must remain open until the transfer is complete.';
@@ -89,7 +88,7 @@ const String FILE_DOWNLOAD_SUCCESSFUL = 'File download successful.';
 
 const String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE =
     'Select default save destination for this device.';
-const String CURRENT_SAVE_DESTINATION = 'Current save destination:';
+const String CURRENT_SAVE_DESTINATION = 'Current Save Destination:';
 const String GENERATION_CODE = 'Generating Code';
 const String SEEN = 'seen';
 const String PATH = 'path';
@@ -178,12 +177,13 @@ const String WINDOW_TITLE = "Destiny";
 const String APP_ID = "AppID:";
 const String TRANSIT_RELAY = "Transit Relay URL:";
 const String MAILBOX_URL = "Mailbox URL:";
-const String ENV_SETTINGS = 'Environment settings:';
+const String ENV_SETTINGS = 'Environment Settings:';
 const String VERSION = 'Version:';
 const String DEFAULT_SAVE_DESTINATION = 'Default save destination:';
 const String FEEDBACK = 'Feedback';
 const String FQA = 'FAQ';
 const String PRIVACY = 'Privacy Policy';
+const String TERMS = 'Terms';
 
 const String FEEDBACK_LINK =
     'https://github.com/LeastAuthority/destiny/blob/main/README.md';
@@ -191,6 +191,7 @@ const String FQA_LINK =
     'https://github.com/LeastAuthority/destiny/blob/main/README.md';
 const String PRIVACY_LINK =
     'https://github.com/LeastAuthority/destiny/blob/main/README.md';
+const String TERMS_LINK = 'https://www.google.com';
 
 const String ERR_WRONG_CODE_RECEIVER = """Oops..   
 If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
