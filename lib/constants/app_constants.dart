@@ -30,6 +30,7 @@ const String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT =
     'Send the selected file by sharing the code with the recipient.';
 const String READY_TO_DOWNLOAD = 'Ready to download';
 const String DOWNLOAD = 'Download';
+const String SAVE_AS = 'Save As...';
 const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'App must remain open until the transfer is complete.';
@@ -169,7 +170,6 @@ const String SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON =
     'SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON';
 const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
     'SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER';
-
 const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
