@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 16.0.0
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <3.4.0"
 
 dependencies:
   dart_wormhole_william:
@@ -29,38 +29,29 @@ dependencies:
     git:
       url: https://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
-  basic_utils:
-    git:
-      url: https://github.com/Ephenodrom/Dart-Basic-Utils
+      ref: 17d4710c17f4913137e7ec931f6e71eaef443363
   file_picker: ^4.5.0
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider
+      ref: a9bb492412c68419900750fe12e0487e3a1168fb
   expand_widget:
     git:
       url: https://github.com/shareef-dweikat/expand_widget
+      ref: 52dc9fa9cc62191de4724b46edae29143c18a059
   flutter:
     sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  app_settings: ^4.1.1
-  filepicker_windows: ^2.0.0
-  page_transition: ^2.0.4
   path_provider: ^2.0.0
   dotted_border: ^2.0.0+1
   desktop_drop: ^0.3.0
-  permission_handler: ^9.2.0
+  permission_handler: ^10.0.0
   flutter_spinkit: ^5.1.0
-  device_info_plus: ^3.2.3
   provider: ^6.0.0
-  shared_storage: ^0.2.0
   url_launcher: ^6.1.5
-window_size:
-  git:
-    url: git://github.com/google/flutter-desktop-embedding.git
-    path: plugins/window_size
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
