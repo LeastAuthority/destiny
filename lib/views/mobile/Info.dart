@@ -7,7 +7,7 @@ import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../widgets/Linkes.dart';
+import '../widgets/Links.dart';
 
 class Info extends SettingsState {
   Info({Key? key}) : super(key: key);
