@@ -7,14 +7,14 @@ APPDIR=$(pwd)/$parent/$APPNAME.AppDir
 mkdir -p $APPDIR/usr/share/icons $APPDIR
 
 cp -v build/linux/x64/release/bundle/destiny $APPDIR/AppRun
-cp -v build/linux/x64/release/bundle/data/flutter_assets/assets/images/logo.png $APPDIR/destiny.png
-cp -v build/linux/x64/release/bundle/data/flutter_assets/assets/images/logo.png $APPDIR/usr/share/icons/destiny.png
-cp -v $APPDIR/destiny.png $APPDIR/.DirIcon
+cp -v assets/images/icons/destiny_icon.svg $APPDIR/
+cp -v assets/images/icons/destiny_icon.svg $APPDIR/usr/share/icons/
+cp -v $APPDIR/destiny_icon.svg $APPDIR/.DirIcon
 
 cat >$APPDIR/destiny.desktop <<EOL
 [Desktop Entry]
 Type=Application
-Icon=destiny
+Icon=destiny_icon
 Exec=AppRun
 Name=Destiny
 Categories=Network;

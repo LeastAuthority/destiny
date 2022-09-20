@@ -57,16 +57,13 @@ class DTErrorUI extends StatelessWidget {
               isVisible: error != '',
               textAlign: TextAlign.center,
               textStyle: TextStyle(
-                fontSize: 20.0.sp,
-                fontFamily: Theme.of(context).textTheme.headline1?.fontFamily,
+                fontSize: 17.0,
+                fontFamily: COURIER,
                 color: Theme.of(context).textTheme.headline1?.color,
               )),
           ExtensiveDesktopErrorExpandable(
             error: this.error,
             errorMessage: this.errorMessage,
-          ),
-          SizedBox(
-            height: this.error != '' ? 100.0.h : 16.0.h,
           ),
           DTButtonWithBackground(
             onPressed: onPressed,
@@ -111,18 +108,24 @@ class ExtensiveDesktopErrorExpandable extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 0),
                     child: ExpandableTextBox(
+                      bgColor: Theme.of(context).scaffoldBackgroundColor,
                       showBorders: true,
                       errorMessage: errorMessage,
-                      height: MediaQuery.of(context).size.height - 530.0.h,
+                      height: MediaQuery.of(context).size.height - 630.0.h,
                       fontSize: 17.0,
                     ),
                   )),
               Expanded(flex: 1, child: Container()),
             ],
-          )
+          ),
+          SizedBox(
+            height: 16.0.h,
+          ),
         ],
       );
 
-    return Container();
+    return Container(
+      height: 150.0,
+    );
   }
 }

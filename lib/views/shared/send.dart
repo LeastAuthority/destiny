@@ -41,7 +41,7 @@ class SendSharedState extends ChangeNotifier {
   SendSharedState(this.config) {
     SendSharedState.shareFile.setMethodCallHandler((call) async {
       if (Platform.isAndroid) {
-        await (call.arguments as String).androidUriToFile().then(send);
+        await (call.arguments as String).androidUriToReadOnlyFile().then(send);
       } else {
         throw Exception(
             "Share file channel handling not implemented on ${Platform.operatingSystem}");
@@ -144,19 +144,19 @@ class SendSharedState extends ChangeNotifier {
                 break;
               case ErrCodeSendTextError:
                 this.errorTitle = SOMETHING_WENT_WRONG;
-                errorMessage = this.error;
-                this.error = "";
+                // TODO: map error to user friendly name (case invalid nameplate)
                 break;
               case ErrCodeSendFileError:
                 this.errorTitle = SOMETHING_WENT_WRONG;
-                errorMessage = this.error;
-                this.error = "";
+                // TODO: map error to user friendly name (case invalid nameplate)
+                break;
+              case ErrCodeConnectionRefused:
+                this.errorTitle = OOPS;
+                this.error = ERR_CONNECTION_REFUSED;
                 break;
               default:
                 this.errorTitle = SOMETHING_WENT_WRONG;
-                // to display error message in See Details
-                errorMessage = this.error;
-                this.error = "";
+                // TODO: map error to user friendly name (case invalid nameplate)
                 break;
             }
           }

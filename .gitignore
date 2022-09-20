@@ -52,3 +52,4 @@ app.*.map.json
 **/ww_cli.exe
 
 integration_test/client/test_files/test_dest/
+pubspec.lock

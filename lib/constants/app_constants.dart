@@ -5,6 +5,7 @@ const String HOME = "Home";
 const String SEND = "Send";
 const String RECEIVE = "Receive";
 const String SETTINGS = "Settings";
+const String INFO = "Info";
 
 //ui strings
 const String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST =
@@ -29,6 +30,7 @@ const String SEND_THE_SELECTED_CODE_BY_SHARING_THE_CODE_WITH_RECIPIENT =
     'Send the selected file by sharing the code with the recipient.';
 const String READY_TO_DOWNLOAD = 'Ready to download';
 const String DOWNLOAD = 'Download';
+const String SAVE_AS = 'Save As...';
 const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'App must remain open until the transfer is complete.';
@@ -43,6 +45,7 @@ const String DONE = 'Done';
 const String FILE_RECEIVED = 'File received';
 const String TRANSFER_CANCELLED = 'Transfer cancelled';
 const String PLEASE_WAIT = 'Please wait...';
+const String DIRECTORIES_ARE_NOT_ALLOWED = 'Directories are not allowed';
 const String THE_RECEIVER_REJECTED_THIS_TRANSFER =
     'The receiver rejected this transfer.';
 const String YOU_HAVE_CANCELLED_THE_TRANSFER =
@@ -56,6 +59,8 @@ const String SOMETHING_WENT_WRONG_POSSIBLY =
     "Something went wrong. Possibly:\n\n- The code is wrong; or\n- The code was already used; or\n- The sender is no longer connected.\n\nPlease ask the sender for a new code and for them to stay connected until you get the file.";
 const String THE_RECEIVER_HAS_ENTERED_THE_WRONG_CODE =
     "The receiver has entered the wrong code.\n\nPlease try sending the file again and provide the receiver with a new code.";
+const String ERR_CONNECTION_REFUSED =
+    "Unfortunately, Destiny cannot connect to the Least Authority servers.\n\n Please try again or let us know at contactus@leastauthority.com if the problem remains.";
 const String SOMETHING_WENT_WRONG = "Something went wrong.";
 const String ERROR_SENDING_FILE = "Error sending file";
 const String FILE_SENT = 'File sent';
@@ -169,6 +174,23 @@ const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
 const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
+
+const String APP_ID = "AppID:";
+const String TRANSIT_RELAY = "Transit Relay URL:";
+const String MAILBOX_URL = "Mailbox URL:";
+const String ENV_SETTINGS = 'Environment settings:';
+const String VERSION = 'Version:';
+const String DEFAULT_SAVE_DESTINATION = 'Default save destination:';
+const String FEEDBACK = 'Feedback';
+const String FQA = 'FAQ';
+const String PRIVACY = 'Privacy Policy';
+
+const String FEEDBACK_LINK =
+    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
+const String FQA_LINK =
+    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
+const String PRIVACY_LINK =
+    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
 
 const String ERR_WRONG_CODE_RECEIVER = """Oops..   
 If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.

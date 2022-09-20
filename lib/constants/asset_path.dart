@@ -21,6 +21,9 @@ const String CHECK_ICON = 'assets/images/icons/CHECK.png';
 const String SETTINGS_ICON = 'assets/images/icons/SETTINGS-WHITE.png';
 const String SETTINGS_ICON_WITH_CIRCLE =
     'assets/images/icons/SETTINGS-WHITE-with-circle.png';
+const String INFO_ICON = 'assets/images/icons/INFO-WHITE.png';
+const String INFO_ICON_WITH_CIRCLE =
+    'assets/images/icons/INFO-WHITE-with-circle.png';
 const String PHONE_ICON = 'assets/images/icons/Phone-Icon.png';
 const String PLUS_ICON = 'assets/images/icons/Plus-Button-Large.png';
 const String COPY_ICON = 'assets/images/icons/Paste-white.png';
