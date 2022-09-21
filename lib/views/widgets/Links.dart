@@ -30,7 +30,7 @@ class Links extends StatelessWidget {
         SizedBox(
           width: 24.0,
         ),
-        getLink(FQA, FQA_LINK),
+        getLink(FAQ, FAQ_LINK),
         SizedBox(
           width: 24.0,
         ),

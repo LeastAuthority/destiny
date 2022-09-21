@@ -39,9 +39,7 @@ class _SettingsState extends SettingsShared<Info> {
                     children: [
                   Column(
                     children: [
-                      Links(
-                        fontSize: 16.0,
-                      ),
+                      Links(fontSize: 16.0),
                       SizedBox(
                         height: 10.0,
                       ),

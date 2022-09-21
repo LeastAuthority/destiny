@@ -181,16 +181,16 @@ const String ENV_SETTINGS = 'Environment Settings:';
 const String VERSION = 'Version:';
 const String DEFAULT_SAVE_DESTINATION = 'Default save destination:';
 const String FEEDBACK = 'Feedback';
-const String FQA = 'FAQ';
+const String FAQ = 'FAQ';
 const String PRIVACY = 'Privacy Policy';
 const String TERMS = 'Terms';
 
 const String FEEDBACK_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
-const String FQA_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
+    'https://github.com/LeastAuthority/destiny/blob/main/FAQ.md#contact';
+const String FAQ_LINK =
+    'https://github.com/LeastAuthority/destiny/blob/main/FAQ.md';
 const String PRIVACY_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
+    'https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md';
 const String TERMS_LINK =
     'https://github.com/LeastAuthority/destiny/blob/main/TERMS.md';
 
