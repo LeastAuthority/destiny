@@ -1,4 +1,4 @@
-# Destiny - Cross-platform graphical client based on Magic Wormhole
+# Destiny - Cross-platform Magic Wormhole graphical client
 
 ⚠ This project is still a work in progress, use at your own risk ⚠
 
