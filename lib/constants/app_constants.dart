@@ -207,7 +207,7 @@ const String ERR_INTERRUPTION_CANCELLATION_SENDER =
 
 final Config magicWormholeIO = Config(
   rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
-  transitRelayUrl: "tcp:transit.magic-wormhole.io:4001",
+  transitRelayUrl: "tcp://transit.magic-wormhole.io:4001",
 );
 
 final Config leastAuthority = Config(
