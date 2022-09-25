@@ -18,7 +18,7 @@ class DTInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 16.0),
+        margin: EdgeInsets.only(top: 16.0),
         padding: EdgeInsets.all(16.0),
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height / 3,
