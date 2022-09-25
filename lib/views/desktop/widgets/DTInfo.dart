@@ -18,13 +18,14 @@ class DTInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.fromLTRB(100.0, 16.0, 100.0, 140.0),
+      margin: EdgeInsets.only(top: 16.0),
         padding: EdgeInsets.all(16.0),
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height / 3,
+          maxWidth: 900,
         ),
         decoration: BoxDecoration(
-          color: Theme.of(context).dialogBackgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(4.0)),
           border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
