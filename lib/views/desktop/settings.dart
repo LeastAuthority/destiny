@@ -45,11 +45,12 @@ class _SettingsState extends SettingsShared<Settings> {
                     padding:
                         EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0.h),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
                           margin: EdgeInsets.only(top: 25.0, bottom: 25.0),
                           child: Links(
-                            fontSize: 25.0,
+                            fontSize: 17.0,
                           ),
                         ),
                         Heading(
