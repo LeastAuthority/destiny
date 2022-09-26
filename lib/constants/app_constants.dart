@@ -91,7 +91,10 @@ const String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE =
     'Select default save destination for this device.';
 const String CURRENT_SAVE_DESTINATION = 'Current Save Destination:';
 const String GENERATION_CODE = 'Generating Code';
-const String SEEN = 'seen';
+
+// The date here is to indicate the last date the T&C has changed
+const String SEEN = 'seen-28-09-2022';
+
 const String PATH = 'path';
 const String LOADING = 'Loading...';
 const String CODE_COPIED = 'Code Copied';
