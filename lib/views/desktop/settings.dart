@@ -2,9 +2,11 @@ import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/config/theme/colors.dart';
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/views/desktop/widgets/DTButtonWithBackground.dart';
+import 'package:destiny/views/desktop/widgets/DTInfo.dart';
 import 'package:destiny/views/desktop/widgets/custom-app-bar.dart';
 import 'package:destiny/views/shared/settings.dart';
 import 'package:destiny/views/widgets/Heading.dart';
+import 'package:destiny/views/widgets/Links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,9 +43,16 @@ class _SettingsState extends SettingsShared<Settings> {
                     height: double.infinity,
                     color: Theme.of(context).dialogBackgroundColor,
                     padding:
-                        EdgeInsets.only(left: 8.0, right: 8.0, top: 80.0.h),
+                        EdgeInsets.only(left: 8.0, right: 8.0, top: 16.0.h),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Container(
+                          margin: EdgeInsets.only(top: 25.0, bottom: 25.0),
+                          child: Links(
+                            fontSize: 17.0,
+                          ),
+                        ),
                         Heading(
                           title:
                               SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE,
@@ -53,30 +62,18 @@ class _SettingsState extends SettingsShared<Settings> {
                         ),
                         Column(
                           children: [
-                            Heading(
-                              title: '$CURRENT_SAVE_DESTINATION',
-                              textAlign: TextAlign.center,
-                              marginTop: 110.0.h,
-                              path: path,
-                              textStyle: Theme.of(context).textTheme.headline6,
-                              key: Key(SETTINGS_SCREEN_HEADING),
-                            ),
                             SizedBox(
-                              height: 45.0.h,
+                              height: 16.0,
                             ),
                             DTButtonWithBackground(
                               onPressed: selectSaveDestination,
                               title: SELECT_A_FOLDER,
                               width: 150.0,
                               disabled: false,
-                            )
+                            ),
+                            DTInfo(path: path, version: version)
                           ],
                         ),
-                        Text("version: $version",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(color: Colors.white)),
                       ],
                     )),
               ),

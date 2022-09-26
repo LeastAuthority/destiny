@@ -89,7 +89,7 @@ const String FILE_DOWNLOAD_SUCCESSFUL = 'File download successful.';
 
 const String SELECT_DEFAULT_SAVE_DESTINATION_FOR_THIS_DEVICE =
     'Select default save destination for this device.';
-const String CURRENT_SAVE_DESTINATION = 'Current save destination:';
+const String CURRENT_SAVE_DESTINATION = 'Current Save Destination:';
 const String GENERATION_CODE = 'Generating Code';
 
 // The date here is to indicate the last date the T&C has changed
@@ -173,7 +173,6 @@ const String SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON =
     'SETTINGS_SCREEN_SELECT_A_FOLDER_BUTTON';
 const String SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
     'SETTINGS_SCREEN_BOTTOM_SPACE_PLACEHOLDER';
-
 const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
@@ -181,19 +180,22 @@ const String WINDOW_TITLE = "Destiny";
 const String APP_ID = "AppID:";
 const String TRANSIT_RELAY = "Transit Relay URL:";
 const String MAILBOX_URL = "Mailbox URL:";
-const String ENV_SETTINGS = 'Environment settings:';
+const String ENV_SETTINGS = 'Environment Settings:';
 const String VERSION = 'Version:';
 const String DEFAULT_SAVE_DESTINATION = 'Default save destination:';
 const String FEEDBACK = 'Feedback';
-const String FQA = 'FAQ';
+const String FAQ = 'FAQ';
 const String PRIVACY = 'Privacy Policy';
+const String TERMS = 'Terms';
 
 const String FEEDBACK_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
-const String FQA_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
+    'https://github.com/LeastAuthority/destiny/blob/main/FAQ.md#contact';
+const String FAQ_LINK =
+    'https://github.com/LeastAuthority/destiny/blob/main/FAQ.md';
 const String PRIVACY_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/README.md';
+    'https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md';
+const String TERMS_LINK =
+    'https://github.com/LeastAuthority/destiny/blob/main/TERMS.md';
 
 const String ERR_WRONG_CODE_RECEIVER = """Oops..   
 If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
