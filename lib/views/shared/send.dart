@@ -97,15 +97,66 @@ class SendSharedState extends ChangeNotifier {
         });
   }
 
+  void defaultErrorHandler(Object error) {
+    this.setState(() {
+      currentState = SendScreenStates.SendError;
+      this.errorMessage = "$ERROR_SENDING_FILE: $error";
+      this.error = '';
+      this.errorTitle = ERROR_SENDING_FILE;
+
+      if (error is ClientError) {
+        switch (error.errorCode) {
+          case ErrCodeTransferRejected:
+            this.errorTitle = TRANSFER_CANCELLED;
+            this.error = THE_RECEIVER_REJECTED_THIS_TRANSFER;
+            break;
+          case ErrCodeTransferCancelled:
+            this.errorTitle = TRANSFER_CANCELLED;
+            this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
+            break;
+          case ErrCodeTransferCancelledByReceiver:
+            this.errorTitle = TRANSFER_CANCELLED_INTERRUPTED;
+            this.error = EITHER_THE_TRANSFER_WAS_CANCELLED_BY;
+            break;
+          case ErrCodeWrongCode:
+            this.errorTitle = OOPS;
+            this.error = THE_RECEIVER_HAS_ENTERED_THE_WRONG_CODE;
+            break;
+          case ErrCodeSendTextError:
+            this.errorTitle = SOMETHING_WENT_WRONG;
+            // TODO: map error to user friendly name (case invalid nameplate)
+            break;
+          case ErrCodeSendFileError:
+            this.errorTitle = SOMETHING_WENT_WRONG;
+            // TODO: map error to user friendly name (case invalid nameplate)
+            break;
+          case ErrCodeConnectionRefused:
+            this.errorTitle = OOPS;
+            this.error = ERR_CONNECTION_REFUSED;
+            break;
+          case ErrCodeGenerationFailed:
+            this.errorTitle = OOPS;
+            this.error = ERR_CONNECTION_REFUSED;
+            break;
+          default:
+            this.errorTitle = SOMETHING_WENT_WRONG;
+            // TODO: map error to user friendly name (case invalid nameplate)
+            break;
+        }
+      }
+    });
+
+    throw error;
+  }
+
   Future<void> send(f.File file) async {
     setState(() {
       sendingFile = file;
       currentState = SendScreenStates.CodeGenerating;
     });
 
-    return await client
-        .sendFile(file, progress.progressHandler)
-        .then((result) async {
+    return await client.sendFile(file, progress.progressHandler).then(
+        (result) async {
       setState(() {
         code = result.code;
         currentState = SendScreenStates.CodeGenerated;
@@ -116,55 +167,8 @@ class SendSharedState extends ChangeNotifier {
         setState(() {
           currentState = SendScreenStates.FileSent;
         });
-      }, onError: (error, stacktrace) {
-        this.setState(() {
-          currentState = SendScreenStates.SendError;
-          this.errorMessage = "$ERROR_SENDING_FILE: $error";
-          this.errorTitle = ERROR_SENDING_FILE;
-
-          print("$ERROR_SENDING_FILE\n$error\n$stacktrace");
-
-          if (error is ClientError) {
-            switch (error.errorCode) {
-              case ErrCodeTransferRejected:
-                this.errorTitle = TRANSFER_CANCELLED;
-                this.error = THE_RECEIVER_REJECTED_THIS_TRANSFER;
-                break;
-              case ErrCodeTransferCancelled:
-                this.errorTitle = TRANSFER_CANCELLED;
-                this.error = YOU_HAVE_CANCELLED_THE_TRANSFER;
-                break;
-              case ErrCodeTransferCancelledByReceiver:
-                this.errorTitle = TRANSFER_CANCELLED_INTERRUPTED;
-                this.error = EITHER_THE_TRANSFER_WAS_CANCELLED_BY;
-                break;
-              case ErrCodeWrongCode:
-                this.errorTitle = OOPS;
-                this.error = THE_RECEIVER_HAS_ENTERED_THE_WRONG_CODE;
-                break;
-              case ErrCodeSendTextError:
-                this.errorTitle = SOMETHING_WENT_WRONG;
-                // TODO: map error to user friendly name (case invalid nameplate)
-                break;
-              case ErrCodeSendFileError:
-                this.errorTitle = SOMETHING_WENT_WRONG;
-                // TODO: map error to user friendly name (case invalid nameplate)
-                break;
-              case ErrCodeConnectionRefused:
-                this.errorTitle = OOPS;
-                this.error = ERR_CONNECTION_REFUSED;
-                break;
-              default:
-                this.errorTitle = SOMETHING_WENT_WRONG;
-                // TODO: map error to user friendly name (case invalid nameplate)
-                break;
-            }
-          }
-        });
-
-        throw error;
-      });
-    });
+      }, onError: defaultErrorHandler);
+    }, onError: defaultErrorHandler);
   }
 
   Widget widgetByState(
@@ -197,7 +201,6 @@ class SendSharedState extends ChangeNotifier {
         selectingFile = true;
       });
       await getFilePicker().showSelectFile().onError((error, stackTrace) {
-        print(error);
         throw error!;
       }).then((file) async {
         await send(file);

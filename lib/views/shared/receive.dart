@@ -136,7 +136,6 @@ class ReceiveSharedState extends ChangeNotifier {
       this.error = '';
       this.errorMessage = error.toString();
       this.errorTitle = SOMETHING_WENT_WRONG;
-      print("$ERROR_RECEIVING_FILE\n$error");
 
       if (error is ClientError) {
         switch (error.errorCode) {
@@ -165,6 +164,10 @@ class ReceiveSharedState extends ChangeNotifier {
             // TODO: map error to user friendly name
             break;
           case ErrCodeConnectionRefused:
+            this.errorTitle = OOPS;
+            this.error = ERR_CONNECTION_REFUSED;
+            break;
+          case ErrCodeGenerationFailed:
             this.errorTitle = OOPS;
             this.error = ERR_CONNECTION_REFUSED;
             break;

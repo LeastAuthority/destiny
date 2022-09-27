@@ -1,4 +1,3 @@
-import 'package:destiny/config/theme/colors.dart';
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
 import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
@@ -7,7 +6,8 @@ import 'package:destiny/views/shared/settings.dart';
 import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import '../widgets/Links.dart';
 
 class Info extends SettingsState {
   Info({Key? key}) : super(key: key);
@@ -39,50 +39,7 @@ class _SettingsState extends SettingsShared<Info> {
                     children: [
                   Column(
                     children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            child: Text(FEEDBACK,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: CustomColors.lighterBlue,
-                                  fontSize: 16.0,
-                                )),
-                            onTap: () async {
-                              const url = FEEDBACK_LINK;
-                              launch(url);
-                            },
-                          ),
-                          SizedBox(
-                            width: 24.0,
-                          ),
-                          GestureDetector(
-                            child: Text(FQA,
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: CustomColors.lighterBlue,
-                                    fontSize: 16.0)),
-                            onTap: () async {
-                              const url = FQA_LINK;
-                              launch(url);
-                            },
-                          ),
-                          SizedBox(
-                            width: 24.0,
-                          ),
-                          GestureDetector(
-                            child: Text(PRIVACY,
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: CustomColors.lighterBlue,
-                                    fontSize: 16.0)),
-                            onTap: () async {
-                              const url = PRIVACY_LINK;
-                              launch(url);
-                            },
-                          ),
-                        ],
-                      ),
+                      Links(fontSize: 16.0),
                       SizedBox(
                         height: 10.0,
                       ),
