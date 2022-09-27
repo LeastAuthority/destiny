@@ -188,14 +188,15 @@ const String FAQ = 'FAQ';
 const String PRIVACY = 'Privacy Policy';
 const String TERMS = 'Terms';
 
-String projectLink(String path) {
-  final blob = const String.fromEnvironment("version", defaultValue: "main");
-  return 'https://github.com/LeastAuthority/destiny/blob/$blob/$path';
+String projectLink(String path, {String? blob}) {
+  final finalBlob =
+      blob ?? const String.fromEnvironment("version", defaultValue: "main");
+  return 'https://github.com/LeastAuthority/destiny/blob/$finalBlob/$path';
 }
 
-final String FEEDBACK_LINK = projectLink('FAQ.md#contact');
-final String FAQ_LINK = projectLink('FAQ.md');
-final String PRIVACY_LINK = projectLink('PRIVACY-POLICY.md');
+final String FEEDBACK_LINK = projectLink('FAQ.md#contact', blob: "main");
+final String FAQ_LINK = projectLink('FAQ.md', blob: "main");
+final String PRIVACY_LINK = projectLink('PRIVACY-POLICY.md', blob: "main");
 final String TERMS_LINK = projectLink('TERMS.md');
 
 const String ERR_WRONG_CODE_RECEIVER = """Oops..   
