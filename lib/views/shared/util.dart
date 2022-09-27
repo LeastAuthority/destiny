@@ -113,7 +113,7 @@ extension WriteOnlyFileFile on File {
     }, close: () async {
       await (await openFile).close();
     }, setPosition: (int position) async {
-      (await openFile).setPosition(position);
+      await (await openFile).setPosition(position);
     }, getPosition: () async {
       return await (await openFile).position();
     }, metadata: () async {
