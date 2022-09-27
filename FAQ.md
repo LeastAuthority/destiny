@@ -1,6 +1,6 @@
 # FAQ
 
-# **General:**
+##  **General:**
 
 **What is Destiny?**
 Destiny is a secure file transfer application that allows people to transfer files without needing to reveal their identity to each other or the service provider. All files are end-to-end encrypted, meaning we cannot see their contents. Users can select a file on their device, and share the generated code with the intended recipient for safe delivery. No sign-up needed.  
@@ -8,9 +8,11 @@ Destiny is a secure file transfer application that allows people to transfer fil
 Destiny is available on Android, Mac, Windows, and Linux. 
 
 **What does Destiny cost?**
+
 You can download and use Destiny for free.
 
 **How does Destiny work?** 
+
 Destiny uses the ["Magic Wormhole"](https://github.com/magic-wormhole/magic-wormhole) protocol. Magic Wormhole is designed to be the easiest possible way to get a file or directory safely from one device to another.  
 
 Destiny generates a short "invitation code", consisting of a few simple words. The sender sends this single-use code to the recipient, for example verbally or by using a secure channel (e.g. Signal), who enters it into their own device. This gives the two devices enough information to connect with each other. 
@@ -18,10 +20,12 @@ Destiny generates a short "invitation code", consisting of a few simple words. T
 Destiny attempts to send the encrypted file through a direct connection between the two devices. But this is not always possible, for example when a device is behind a firewall. In that case, the file is streamed through our servers to the recipient instead. To be clear, the file is encrypted and we cannot view or modify it.
 
 **Where can I learn more about Magic Wormhole?**  
+
 You can learn more about it here: 
 https://github.com/magic-wormhole/magic-wormhole and https://magic-wormhole.readthedocs.io/
 
 **Is Destiny open source?**
+
 Yes. The code used for Destiny is available in the following repositories:
 Flutter app/front-end: https://github.com/LeastAuthority/destiny 
 Client Library: https://github.com/LeastAuthority/wormhole-william
@@ -29,10 +33,11 @@ Native extension library: https://github.com/LeastAuthority/dart_wormhole_willia
 Mailbox (rendezvous) server: https://github.com/magic-wormhole/magic-wormhole- mailbox-server
 Transit relay: https://github.com/magic-wormhole/magic-wormhole-transit-relay
 
-**Who is Least Authority?  **
+**Who is Least Authority?**
+
 Least Authority is a technology company supporting people’s right to privacy through security consulting and building secure solutions. Least Authority developed Destiny with the goal of developing user-friendly applications of Magic Wormhole that would be suitable for human rights defenders and other vulnerable communities. 
 
-# **Getting Started:**
+## **Getting Started:**
 
 **Can you walk me through the process from beginning to end?**
 
@@ -53,7 +58,7 @@ See step 5 and 6 above.
 **Where are the files I received being saved?** 
 The files are by default downloaded to the Download folder of your operating system. However, in the Desktop application you can change the download location by navigating to the Settings tab, and choosing the Select Folder button to choose a new destination for your files. 
 
-# Privacy/Security: 
+## **Privacy/Security:** 
 
 **What makes Destiny secure?** 
 Identity-less: no need to disclose identity information (such as name, email address or phone number) to be able to transfer files.
@@ -62,7 +67,9 @@ Peer-to-peer file sharing: Destiny attempts to make a direct network connection 
 Full-strength keys: although our codes are short and human-memorable, they are part of an online “Password Authenticated Key Exchange” (PAKE) which only allows a single guess – and yields a 256-bit full-strength symmetric key.
 
 In more technical detail:
+
 Password authenticated key exchange: A strong encryption key is derived from a short human pronounceable password using Diffie–Hellman key exchange algorithm to establish a shared "mailbox" between two parties. 
+ 
 Encryption via relay servers use Salsa20 stream cipher and Poly1305 MAC algorithm via the NaCl Secretbox abstraction.
 
 **Are my files being stored somewhere?**  
@@ -77,27 +84,33 @@ Also note that if a file is sent to another device directly, the two parties cou
 
 For more details, see our [privacy policy](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md). 
 
-Has Destiny undergone a security audit?
+**Has Destiny undergone a security audit?**
 
-Destiny has been audited by an independent security audit company, Radically Open Security. You can find their findings and our remediation here. 
+Destiny has been audited by an independent security audit company, Radically Open Security. You can find their findings and our remediation [here]. 
 
-**More help:** 
-Why does the app need to stay open for both the sender and the receiver for the transfer to be completed? 
+## **More help:** 
+
+**Why does the app need to stay open for both the sender and the receiver for the transfer to be completed?**
+ 
 Destiny is meant for synchronous file transfers. Files are sent from a sender’s device to a recipient’s device. Unlike some other services, they are not uploaded to and stored on a central server. This means that if the sender is no longer connected, they can no longer offer the file for the receiver to get. 
 
-How can a simple code like 7-guitarist-revenge be secure? And why can a code only be used once? 
+**How can a simple code like 7-guitarist-revenge be secure? And why can a code only be used once?**
+ 
 There are 65,536 different combinations of the current wordlist used by Destiny. Anyone who tries to guess the right word combination has a 1 in 65,536 chance to guess right, which is a very small chance. If they guess wrong, the transfer is invalidated. This is tough luck for the sender, but also a safety feature: It prevents people from being able to keep guessing until they hit the right word combination. 
 
 This also explains why codes are single use. Once a code is used ‘successfully’ (sender and recipient connect) or ‘unsuccessfully’ (a wrong code combination is guessed), the code is cleared for new usage. If the code would stay ‘alive’ for other recipients, it would lose the security of being hard to guess.
 
-Can I send multiple files at the same time?  
+**Can I send multiple files at the same time?**
+  
 If you would like to send multiple files at the same time, you can compress them, for example, as a single ZIP file. But you cannot upload an unzipped folder or select multiple files to upload at once. You will need to send them separately and provide the receiver with a new code each time. 
 
 
 **At what point can I retract a file that I am sending?** 
+
 As a sender you can first cancel a transfer before sharing the code by pressing the Cancel button. After sharing the code you can still press Cancel if the other party has not yet started downloading the file. If you press Cancel while the transfer is ongoing, it is possible for the receiver to already have a portion of the file.
 
 **Can I use Destiny to send/receive files to/from other Magic Wormhole applications?**  
+
 Yes. Make sure to configure the other Magic Wormhole application to use the same environment settings set in Destiny. These are currently:
 
 	Mailbox URL: wss://mailbox.w.leastauthority.com/v1
@@ -105,6 +118,7 @@ Yes. Make sure to configure the other Magic Wormhole application to use the same
 	AppID: lothar.com/wormhole/text-or-file-xfer
 
 **What are the known issues or limitations of Destiny?** 
+
 Error messages: we are not always able to determine the exact reason for an error occurring and therefore not able to provide the exact troubleshooting steps. For example, it is difficult to know whether an error occurred due to a network interruption or due to a cancellation.
 
 Cancellation: Canceling a transfer may lead to the application getting stuck during the transfer. And as previously mentioned, if the sender presses Cancel while the transfer is ongoing, it is possible for the receiver to already have a portion of the file.
@@ -120,7 +134,7 @@ Interoperability challenges: While we are striving to ensure interoperability be
 We will work on addressing these issues in V2 of the application. We welcome external contributions to the code and improvements. In the meantime, please report any other bugs and suggestions to destiny@leastauthority.com. 
 
 
-**Contact**
+## CONTACT
 I have another question
 If your question is not answered here or in the public documentation about Magic Wormhole, feel free to reach out to us on destiny@leastauthority.com.
 
