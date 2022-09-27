@@ -96,6 +96,7 @@ class IntroScreenState extends State<IntroScreen> {
       showPrevBtn: false,
       showDoneBtn: false,
       desktopActionButtonEnabled: true,
+      termsLink: TERMS_LINK,
       onDonePress: this.onDonePress,
       colorDot: Theme.of(context).scaffoldBackgroundColor,
       colorActiveDot: Theme.of(context).colorScheme.secondary,
