@@ -1,8 +1,7 @@
 # PRIVACY POLICY
 
-Destiny Privacy Policy
 
-**Who we are**
+## Who we are
 
 The Destiny code is maintained and the infrastructure  is operated by Least Authority TFA GmbH (‘Least Authority’, ‘we’, ‘us’), located at Thaerstraße 28a, 10249 Berlin in Germany.
 
@@ -10,9 +9,9 @@ Least Authority is a technology company supporting people’s right to privacy t
 
 Read more about us on leastauthority.com.
 
-**What data we collect**
+## What data we collect
 
-_When downloading the application_
+### When downloading the application
 
 We do not collect information about people who download the software via GitHub. On Github, we only have access to traffic data for the repository such as number of visitors and number of views of the repository. 
 
@@ -36,7 +35,7 @@ Time of a transfer
 
 The legal basis for the processing of this data is our legitimate interest to ensure the functionality, the integrity and security of the application (Art. 6 para. 1 (f) GDPR). 
 
-_When using the services_
+### When using the services
 We do not collect contact information (name, email address, phone number) about people who send/receive files. 
 
 We do not store and cannot open files that are sent using Destiny. 
@@ -45,11 +44,11 @@ When you send/receive a file directly, the two parties involved can learn each o
 
 Files sent using Destiny are end-to-end encrypted. 
 
-Destiny is built on Magic Wormhole, which uses the SPAKE2 cryptographic algorithm to establish a strong high-entropy shared key with a short low-entropy password (the code). All data is encrypted (with nacl/libsodium “secretbox”) using this key. 
+Destiny is built on [Magic Wormhole](https://magic-wormhole.readthedocs.io/en/latest/welcome.html), which uses the SPAKE2 cryptographic algorithm to establish a strong high-entropy shared key with a short low-entropy password (the code). All data is encrypted (with nacl/libsodium “secretbox”) using this key. 
 
-For more details see our FAQ.
+For more details see our [FAQ](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md).
 
-_When contacting us_
+### When contacting us
 When you email us, we will inevitably collect the content of your email, your email address, the sender name, and anything else included in the email header.
 
 Emails are currently stored with our email provider Google. 
@@ -58,13 +57,13 @@ We keep emails received for as long as necessary to handle the issue.  Six month
 
 Data processing for the purpose of contacting us is based on your voluntarily given consent (Art. 6 para. 1 (a) GDPR), or  - in case of general issues with our system - based on our legitime interest in the function of our service (Art. 6 para. 1 (f) GDPR).
 
-**With whom do we share this data**
+## With whom do we share this data
 
 We do not share any of your personal data with anyone outside of Least Authority or, by default, the sub-processors mentioned above. 
 
 
 
-**Exercising your rights**
+### Exercising your rights
 In line with the European Union’s General Data Protection Regulation, you have rights related to any personal data of yours that we process.  You have the right to request from us at any time: 
 Information as to whether or not personal data concerning you is being processed, and, where that is the case, access to this personal data;
 Rectification of inaccurate personal data concerning you, subject to relevant legal requirements;
@@ -84,10 +83,10 @@ Please send any requests or questions related to exercising your rights to priva
 
 You have the right to lodge a complaint with the competent data protection supervisory authority. The supervisory authority responsible for Berlin, Germany is: Berliner Beauftragte für Datenschutz und Informationsfreiheit, with its address Friedrichstr. 219, 10969 Berlin, Germany, and its phone number: +49 (0)30/138 89-0. Please find its website here:  http://www.datenschutz-berlin.de.
 
-**Questions**
+### Questions
 If you have questions about this privacy policy or exercising your privacy rights, please contact us as at destiny@leastauthority.com 
 
-**Changes to this privacy policy**
+### Changes to this privacy policy
 This privacy policy was last updated on September 22, 2022.
 
 
