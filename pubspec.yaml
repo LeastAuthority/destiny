@@ -34,7 +34,7 @@ dependencies:
   intro_slider:
     git:
       url: https://github.com/shareef-dweikat/flutter-intro-slider
-      ref: fb79b4ded0fc915d14b482737b18aa948838c1f9
+      ref: f7ce84e8314f79acd57ffce7d52464ec0052e041
   expand_widget:
     git:
       url: https://github.com/shareef-dweikat/expand_widget
