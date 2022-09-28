@@ -33,7 +33,7 @@ You can find detailed instructions on how to install applications on various pla
 
 [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [macOS](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg) files can be downloaded from latest [release](https://github.com/LeastAuthority/destiny/releases/latest).
 
-Android will be available in (Google Play store)[]. Alternatively can be downloaded manually from [here](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk)
+Android will be available in (Google Play store)[https://play.google.com/store/apps/details?id=com.leastauthority.destiny]. Alternatively can be downloaded manually from [here](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk)
 
 
 
