@@ -7,7 +7,9 @@ Destiny is a secure file transfer application that allows people to transfer fil
 Key security features: 
 
 - **Identity-less**: no need to disclose identity information (such as name, email address or phone number) to be able to transfer files.
-- **End-to-end encryption**: files are encrypted-at-rest and only the sender and recipient can decrypt them.
+- **End-to-end encryption**: files are end-to-end encrypted and only the sender and recipient can read them.
+- **Peer-to-peer** file sharing: Destiny attempts to make a direct network connection to the other party. If both parties are on the same local network they should connect without any traffic leaving that network, for example. When this isn’t possible (e.g. if neither party has a public IP address) then our relay server is used (however, that server sees only encrypted packets).
+- **Full-strength keys**: although our codes are short and human-memorable, they are part of an online “Password Authenticated Key Exchange” (PAKE) which only allows a single guess – and yields a 256-bit full-strength symmetric key.
 
 
 Based on the [wormhole-william](https://github.com/LeastAuthority/wormhole-william)
@@ -37,7 +39,7 @@ Android will be available in (Google Play store)[]. Alternatively can be downloa
 
 ### Verification
 
-We recommend verifying every downloaded file. Instructions [here](https://github.com/LeastAuthority/destiny/blob/v1.0.0/doc/releases.md). 
+We recommend verifying every downloaded file. Instructions [here](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md). 
 
 ## Cloning
 
@@ -94,4 +96,4 @@ so x86 emulators or devices are not supported.
 
 - **FAQ** can be found [here](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md).
 - **Private Policy** can be found [here](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md).
-- **Terms & Conditions** can be found [here](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md.
+- **Terms & Conditions** can be found [here](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md).
