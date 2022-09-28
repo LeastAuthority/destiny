@@ -150,6 +150,7 @@ class SendSharedState extends ChangeNotifier {
   }
 
   Future<void> send(f.File file) async {
+    if (currentState == SendScreenStates.CodeGenerating) return;
     setState(() {
       sendingFile = file;
       currentState = SendScreenStates.CodeGenerating;
