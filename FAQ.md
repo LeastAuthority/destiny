@@ -27,11 +27,13 @@ https://github.com/magic-wormhole/magic-wormhole and https://magic-wormhole.read
 **Is Destiny open source?**
 
 Yes. The code used for Destiny is available in the following repositories:
-Flutter app/front-end: https://github.com/LeastAuthority/destiny 
-Client Library: https://github.com/LeastAuthority/wormhole-william
-Native extension library: https://github.com/LeastAuthority/dart_wormhole_william 
-Mailbox (rendezvous) server: https://github.com/magic-wormhole/magic-wormhole- mailbox-server
-Transit relay: https://github.com/magic-wormhole/magic-wormhole-transit-relay
+
+- Flutter app/front-end: https://github.com/LeastAuthority/destiny 
+- Client Library: https://github.com/LeastAuthority/wormhole-william
+- Native extension library: https://github.com/LeastAuthority/dart_wormhole_william
+- Mailbox (rendezvous) server: https://github.com/magic-wormhole/magic-wormhole-mailbox-server
+- Transit relay: https://github.com/magic-wormhole/magic-wormhole-transit-relay
+
 
 **Who is Least Authority?**
 
@@ -113,9 +115,9 @@ As a sender you can first cancel a transfer before sharing the code by pressing 
 
 Yes. Make sure to configure the other Magic Wormhole application to use the same environment settings set in Destiny. These are currently:
 
-	Mailbox URL: wss://mailbox.w.leastauthority.com/v1
-	Transit relay URL: tcp://relay.w.leastauthority.com:4001
-	AppID: lothar.com/wormhole/text-or-file-xfer
+- Mailbox URL: wss://mailbox.mw.leastauthority.com/v1
+- Transit relay URL: tcp://relay.mw.leastauthority.com:4001
+- AppID: lothar.com/wormhole/text-or-file-xfer
 
 **What are the known issues or limitations of Destiny?** 
 
@@ -134,7 +136,7 @@ Interoperability challenges: While we are striving to ensure interoperability be
 We will work on addressing these issues in V2 of the application. We welcome external contributions to the code and improvements. In the meantime, please report any other bugs and suggestions to destiny@leastauthority.com. 
 
 
-## CONTACT
+# CONTACT
 I have another question
 If your question is not answered here or in the public documentation about Magic Wormhole, feel free to reach out to us on destiny@leastauthority.com.
 
