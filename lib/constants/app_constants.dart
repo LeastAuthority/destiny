@@ -62,6 +62,8 @@ const String THE_RECEIVER_HAS_ENTERED_THE_WRONG_CODE =
 const String ERR_CONNECTION_REFUSED =
     "Unfortunately, Destiny cannot connect to the Least Authority servers.\n\n Please try again or let us know at contactus@leastauthority.com if the problem remains.";
 const String SOMETHING_WENT_WRONG = "Something went wrong.";
+const String GENERATING_MORE_THAN_ONE_CODE_AT_THE_SAME_TIME =
+    "You are trying to generate more than one code at the same time.";
 const String ERROR_SENDING_FILE = "Error sending file";
 const String FILE_SENT = 'File sent';
 const String SECONDS = 'Seconds';
