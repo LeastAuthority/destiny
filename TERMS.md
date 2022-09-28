@@ -30,17 +30,17 @@ Thank you for choosing our service which allows people to transfer data ("Servic
 
 3.1 Misusing the Service or helping others to do so is strictly prohibited. You therefore agree that you will not use the Service in any harmful or malicious way. In particular, but not exclusively, you shall not do one of the following: 
 
-    3.1.1 transferring content that violates applicable law;
+3.1.1 transferring content that violates applicable law;
 
-    3.1.2 transferring content that depict the sexual exploitation of children and adolescents, extreme violence, promotion of terrorist acts,, as well as hatred or discrimination of persons or groups of persons;
+3.1.2 transferring content that depict the sexual exploitation of children and adolescents, extreme violence, promotion of terrorist acts,, as well as hatred or discrimination of persons or groups of persons;
 
-    3.1.3 disrupting the Service or interfering with other users, e.g. by using viruses or any other forms of attacks; 
+3.1.3 disrupting the Service or interfering with other users, e.g. by using viruses or any other forms of attacks; 
 
-    3.1.4 infringing data protection and/or the privacy and/or further rights of others, in particular their intellectual property rights;
+3.1.4 infringing data protection and/or the privacy and/or further rights of others, in particular their intellectual property rights;
 
-    3.1.5 modifying or otherwise altering our Service; 
+3.1.5 modifying or otherwise altering our Service; 
 
-    3.1.6 circumventing or otherwise interfering with the security measures of our Service. 
+3.1.6 circumventing or otherwise interfering with the security measures of our Service. 
 
 **4. Blocking or limiting**
 
@@ -63,8 +63,8 @@ Thank you for choosing our service which allows people to transfer data ("Servic
 
 6.1 We are only liable to you as stated hereinafter. 
 
-      6.1.1 We are liable for damages which we or our vicarious agents (Erfüllungsgehilfen) caused intentionally and grossly negligent or which we caused by violating a guarantee undertaken by us. 
-      6.1.2 We are further liable for damages which we caused by a slightly negligent breach of an essential obligation necessary for the performance of these Terms (wesentliche Vertragspflichten). In this case, our liability shall be limited to typical and foreseeable damages. 
+6.1.1 We are liable for damages which we or our vicarious agents (Erfüllungsgehilfen) caused intentionally and grossly negligent or which we caused by violating a guarantee undertaken by us. 
+6.1.2 We are further liable for damages which we caused by a slightly negligent breach of an essential obligation necessary for the performance of these Terms (wesentliche Vertragspflichten). In this case, our liability shall be limited to typical and foreseeable damages. 
       
 6.2 A limitation period (Verjährungsfrist) of one year applies to any liability claims against us. This begins at the end of the year in which the claim arose and you became aware or should have become aware of the circumstances giving rise to the claim.
 
@@ -92,9 +92,9 @@ Thank you for choosing our service which allows people to transfer data ("Servic
 
 9.2 For clarity but not as a limitation to the aforementioned exclusion of warranty, we point you to the following:
 
-        9.2.1 We do especially not warrant any particular form, functionality and/or availability of the Service, neither for Senders nor for Receivers; 
-        9.2.2 If you are a Sender, we especially do not warrant that the Service is fit for any purpose or any of your specific requirements, that the Service can be used uninterrupted, timely or error-free. 
-        9.2.3 If you are a Receiver, we explicitly do not warrant that the content which you receive through the Service is complete, correct, lawful, error-free and/or virus-free.
+9.2.1 We do especially not warrant any particular form, functionality and/or availability of the Service, neither for Senders nor for Receivers; 
+9.2.2 If you are a Sender, we especially do not warrant that the Service is fit for any purpose or any of your specific requirements, that the Service can be used uninterrupted, timely or error-free. 
+9.2.3 If you are a Receiver, we explicitly do not warrant that the content which you receive through the Service is complete, correct, lawful, error-free and/or virus-free.
 
 **10. Choice of law and jurisdiction**
 
