@@ -53,7 +53,7 @@ When you email us, we will inevitably collect the content of your email, your em
 
 Emails are currently stored with our email provider Google. 
 
-We keep emails received for as long as necessary to handle the issue.  Six months after an issue has been handled or solved, we erase the email.
+We keep emails received for as long as necessary to handle the issue.  Six months after an issue has been handled or solved, we erase the email unless keeping it is necessary for our legitimate business or operational interests. 
 
 Data processing for the purpose of contacting us is based on your voluntarily given consent (Art. 6 para. 1 (a) GDPR), or  - in case of general issues with our system - based on our legitime interest in the function of our service (Art. 6 para. 1 (f) GDPR).
 
