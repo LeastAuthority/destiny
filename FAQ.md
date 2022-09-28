@@ -43,12 +43,18 @@ Least Authority is a technology company supporting people’s right to privacy t
 
 **Can you walk me through the process from beginning to end?**
 
-Download the application  for Android via the Google Play Store and for Linux, Windows, or Mac via Github. Both the sender and the receiver must have the application downloaded. 
+Download the application via Github for [Android](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), or [Mac](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg) (the Android application will also soon be available for download on the Google Play Store). Both the sender and the receiver must have the application downloaded. 
+
 Quick onboarding: Walk through the onboarding process (this will only appear once, when you first download the application).
+
 Send a file: Click on the + sign or drag and drop a file into the dotted zone to select a file to send. 
+
 Pass on the code: The application will automatically generate a one-time code. Pass on the code to the intended recipient verbally, digitally, or by any other means that you deem safe. For ease of use you can copy the code using the Copy button. Note that anyone with access to the code can receive your file.
-Receive: the recipient can navigate to the Receive tab and enter the code in the “Enter Code Here” field and click the Next button.
-Download the file: Press Download to begin downloading the file to your device. If there are no interruptions or cancellations the file will be delivered successfully and you will see a screen that says “File download successful”. The page will also include information about where your file has been downloaded to. 
+
+Receive: the recipient can navigate to the Receive tab and enter the code in the “Enter Code Here” field and click the Next button. 
+
+Download the file: Press Download to begin downloading the file to your device. If there are no interruptions or cancellations the file will be delivered successfully and you will see a screen that says “File download successful”. The page will also include information about where your file has been downloaded to.  
+
 Done: the code is now no longer usable. No one else can receive the file with this code.
 
 **How can I securely share the code with someone?** 
@@ -64,8 +70,11 @@ The files are by default downloaded to the Download folder of your operating sys
 
 **What makes Destiny secure?** 
 Identity-less: no need to disclose identity information (such as name, email address or phone number) to be able to transfer files.
+
 End-to-end encryption: files are end-to-end encrypted and only the sender and recipient can read them.
+
 Peer-to-peer file sharing: Destiny attempts to make a direct network connection to the other party. If both parties are on the same local network they should connect without any traffic leaving that network, for example. When this isn’t possible (e.g. if neither party has a public IP address) then our relay server is used (however, that server sees only encrypted packets).
+
 Full-strength keys: although our codes are short and human-memorable, they are part of an online “Password Authenticated Key Exchange” (PAKE) which only allows a single guess – and yields a 256-bit full-strength symmetric key.
 
 In more technical detail:
@@ -141,5 +150,6 @@ I have another question
 If your question is not answered here or in the public documentation about Magic Wormhole, feel free to reach out to us on destiny@leastauthority.com.
 
 **I would like to give feedback**
+
 We’d love to hear from you! Please send us a message at destiny@leastauthority.com. 
 
