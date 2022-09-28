@@ -19,9 +19,9 @@ void startApp(Config c) {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowMinSize(const Size(700, 700));
+    setWindowMinSize(const Size(900, 800));
     setWindowMaxSize(const Size(1600, 1200));
-    setWindowFrame(Rect.fromLTWH(0, 0, 700, 700));
+    setWindowFrame(Rect.fromLTWH(0, 0, 900, 800));
   }
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => SendSharedState(c)),
