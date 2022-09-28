@@ -188,14 +188,16 @@ const String FAQ = 'FAQ';
 const String PRIVACY = 'Privacy Policy';
 const String TERMS = 'Terms';
 
-const String FEEDBACK_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/FAQ.md#contact';
-const String FAQ_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/FAQ.md';
-const String PRIVACY_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md';
-const String TERMS_LINK =
-    'https://github.com/LeastAuthority/destiny/blob/main/TERMS.md';
+String projectLink(String path, {String? blob}) {
+  final finalBlob =
+      blob ?? const String.fromEnvironment("version", defaultValue: "main");
+  return 'https://github.com/LeastAuthority/destiny/blob/$finalBlob/$path';
+}
+
+final String FEEDBACK_LINK = projectLink('FAQ.md#contact', blob: "main");
+final String FAQ_LINK = projectLink('FAQ.md', blob: "main");
+final String PRIVACY_LINK = projectLink('PRIVACY-POLICY.md', blob: "main");
+final String TERMS_LINK = projectLink('TERMS.md');
 
 const String ERR_WRONG_CODE_RECEIVER = """Oops..   
 If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.
