@@ -29,7 +29,7 @@ Supported platforms
 
 ### Installation
 
-You can find detailed instructions on how to install applications on various platforms [here](https://github.com/LeastAuthority/destiny/blob/v1.0.0/doc/installation.md)
+You can find detailed instructions on how to install applications on various platforms [here](https://github.com/LeastAuthority/destiny/blob/main/doc/installation.md)
 
 [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [macOS](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg) files can be downloaded from the latest [release](https://github.com/LeastAuthority/destiny/releases/latest).
 
