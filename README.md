@@ -2,7 +2,7 @@
 
 ## An end-to-end encrypted app to share files without revealing your identity 
 
-Destiny is a secure file transfer application that allows people to transfer files without needing to reveal their identities to each other or the service provider. All files are end-to-end encrypted, meaning no one except the sender and the receiver we cannot see their contents. Users select a file on their device and then share the generated code with the intended recipient for safe delivery. No sign-up is needed.
+Destiny is a secure file transfer application that allows people to transfer files without needing to reveal their identities to each other or the service provider. All files are end-to-end encrypted, meaning no one except the sender and the receiver can decrypt the contents. Users select a file on their device and then share the generated code with the intended recipient for safe delivery. No sign-up is needed.
 
 Key security features: 
 
@@ -14,8 +14,8 @@ Key security features:
 
 Based on the [wormhole-william](https://github.com/LeastAuthority/wormhole-william)
 implementation of the [Magic Wormhole protocol](https://github.com/magic-wormhole/magic-wormhole).
-This application relies on a plugin that wraps the wormhole-william client
-with a Dart API. The plugin is implemented [here](https://github.com/LeastAuthority/dart_wormhole_william).
+This application relies on [a plugin that wraps the wormhole-william client](https://github.com/LeastAuthority/dart_wormhole_william)
+with a Dart API.
 
 Supported platforms
 
