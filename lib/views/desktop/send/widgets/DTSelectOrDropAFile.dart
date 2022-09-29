@@ -37,11 +37,8 @@ class _DTSelectOrDropAFile extends State<DTSelectOrDropAFile> {
           } catch (e) {
             bool isFile = detail.files.first.path.split('.').length == 0;
             if (isFile) return;
-            //ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //  content: Text(DIRECTORIES_ARE_NOT_ALLOWED),
-            //));
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(e.getMessage()),
+              content: Text(DIRECTORIES_ARE_NOT_ALLOWED),
             ));
           }
           isCalledForFirstTime = true;
