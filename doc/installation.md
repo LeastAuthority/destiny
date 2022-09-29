@@ -44,8 +44,8 @@
 2. Run chmod u+x `destiny_linux_amd64.AppImage && ./destiny_linux_amd64.AppImage`
 **Note**: If your system does not have FUSE you can [extract the appimage](https://github.com/AppImage/AppImageKit/wiki/FUSE#type-2-appimage):
      ```
-     ./nvim.appimage --appimage-extract
-     ./squashfs-root/usr/bin/nvim
+     ./destiny_linux_amd64.AppImage --appimage-extract
+     ./squashfs-root/AppRun
     ```
 
 ### Tarball

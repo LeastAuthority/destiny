@@ -29,17 +29,19 @@ Supported platforms
 
 ### Installation
 
-You can find detailed instructions on how to install applications on various platforms [here](https://github.com/LeastAuthority/destiny/blob/main/doc/installation.md)
+You can find detailed instructions on how to install applications on various [platforms](https://github.com/LeastAuthority/destiny/blob/main/doc/installation.md)
 
 [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [macOS](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg) files can be downloaded from the latest [release](https://github.com/LeastAuthority/destiny/releases/latest).
 
-Android will be available in (Google Play store)[https://play.google.com/store/apps/details?id=com.leastauthority.destiny]. Alternatively can be downloaded manually from [here](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk)
-
+Android will be available in (Google Play store)[https://play.google.com/store/apps/details?id=com.leastauthority.destiny]. Alternatively can be downloaded directly from release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk).
 
 
 ### Verification
 
-We recommend verifying every downloaded file. Instructions [here](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md). 
+We recommend to [verify every downloaded file](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md) against the corresponding signature.
+
+### Please check our [**FAQ**](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md), [**Privacy Policy**](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md) and [**Terms & Conditions**](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md) to find more information before to using applications.
+
 
 ## Cloning
 
@@ -78,7 +80,7 @@ Builds for local instances:
 flutter build linux -t lib/main_local.dart
 ```
 
-More information on signing releases can be found [here](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md)
+Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
 
 ### Starting the wormhole services locally
 
@@ -92,8 +94,4 @@ docker-compose up -d
 so x86 emulators or devices are not supported.
 - MacOS M1 chip build is not supported.
 
-## Other
 
-- **FAQ** can be found [here](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md).
-- **Private Policy** can be found [here](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md).
-- **Terms & Conditions** can be found [here](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md).
