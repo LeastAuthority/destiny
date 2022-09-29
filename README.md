@@ -1,4 +1,8 @@
-# Destiny - Cross-platform Magic Wormhole graphical client
+<h1 align="center">
+  <img src="https://github.com/LeastAuthority/destiny/raw/readme-update/assets/images/intro-logo.png" alt="Destiny">
+</h1>
+
+# Cross-platform Magic Wormhole graphical client
 
 ## An end-to-end encrypted app to share files without revealing your identity 
 
