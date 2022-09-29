@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://github.com/LeastAuthority/destiny/raw/readme-update/assets/images/intro-logo.png" alt="Destiny">
+  <img src="https://github.com/LeastAuthority/destiny/raw/readme-update/assets/images/intro-logo.png" height="150" alt="Destiny">
 </h1>
 
 # Cross-platform Magic Wormhole graphical client
