@@ -41,7 +41,7 @@ class _DTSelectOrDropAFile extends State<DTSelectOrDropAFile> {
             //  content: Text(DIRECTORIES_ARE_NOT_ALLOWED),
             //));
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(e),
+              content: Text(e.getMessage()),
             ));
           }
           isCalledForFirstTime = true;
