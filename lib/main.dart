@@ -40,17 +40,19 @@ class MyApp extends StatelessWidget {
 
   Widget onGenerateRoute() {
     return ScreenUtilInit(
-      designSize: Platform.isAndroid ? Size(375, 590) : Size(1280, 800),
+      designSize: (Platform.isAndroid || Platform.isIOS)
+          ? Size(375, 590)
+          : Size(1280, 800),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => MaterialApp(
-        onGenerateRoute: Platform.isAndroid
+        onGenerateRoute: (Platform.isAndroid || Platform.isIOS)
             ? getMobileRoutes(config)
             : getDesktopRoutes(config),
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           WidgetsFlutterBinding.ensureInitialized();
-          if (!Platform.isAndroid) {
+          if (!Platform.isAndroid && !Platform.isIOS) {
             setWindowTitle(WINDOW_TITLE);
           }
           return MediaQuery(
@@ -59,7 +61,7 @@ class MyApp extends StatelessWidget {
             child: widget!,
           );
         },
-        theme: Platform.isAndroid
+        theme: (Platform.isAndroid || Platform.isIOS)
             ? CustomTheme.darkThemeMobile
             : CustomTheme.darkThemeDesktop,
       ),

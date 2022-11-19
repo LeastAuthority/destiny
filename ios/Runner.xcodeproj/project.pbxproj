@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01C2036029141999009C347C /* libbindings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034C2914162A009C347C /* libbindings.a */; };
-		01C2036129141999009C347C /* libdart_wormhole_william_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034F2914162A009C347C /* libdart_wormhole_william_plugin.a */; };
-		01C2036229141999009C347C /* libwormhole_william.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034D2914162A009C347C /* libwormhole_william.a */; };
+		01F5C8042927CBE60091AD8C /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E59EFAEA48B3BE798D59A81 /* Pods_Runner.framework */; };
+		01F5C8052927CBE60091AD8C /* Pods_Runner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E59EFAEA48B3BE798D59A81 /* Pods_Runner.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		01F5C8212927FB220091AD8C /* libbindings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034C2914162A009C347C /* libbindings.a */; };
+		01F5C8222927FB220091AD8C /* libdart_wormhole_william_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034F2914162A009C347C /* libdart_wormhole_william_plugin.a */; };
+		01F5C8232927FB220091AD8C /* libwormhole_william.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034D2914162A009C347C /* libwormhole_william.a */; };
+		01F5C8242927FB220091AD8C /* libwormhole_william.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034E2914162A009C347C /* libwormhole_william.h */; };
+		01F5C8262928B4520091AD8C /* libbindings.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034C2914162A009C347C /* libbindings.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		01F5C8272928B4520091AD8C /* libdart_wormhole_william_plugin.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034F2914162A009C347C /* libdart_wormhole_william_plugin.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		01F5C8282928B4520091AD8C /* libwormhole_william.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034D2914162A009C347C /* libwormhole_william.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		01F5C8292928B4520091AD8C /* libwormhole_william.h in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034E2914162A009C347C /* libwormhole_william.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		6DDC5C95FB3884DA1F4E261F /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E59EFAEA48B3BE798D59A81 /* Pods_Runner.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -22,13 +28,18 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				01F5C8262928B4520091AD8C /* libbindings.a in Embed Frameworks */,
+				01F5C8272928B4520091AD8C /* libdart_wormhole_william_plugin.a in Embed Frameworks */,
+				01F5C8282928B4520091AD8C /* libwormhole_william.a in Embed Frameworks */,
+				01F5C8292928B4520091AD8C /* libwormhole_william.h in Embed Frameworks */,
+				01F5C8052927CBE60091AD8C /* Pods_Runner.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -38,6 +49,8 @@
 		01C2034D2914162A009C347C /* libwormhole_william.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwormhole_william.a; path = ../dart_wormhole_william/ios/build/libwormhole_william.a; sourceTree = "<group>"; };
 		01C2034E2914162A009C347C /* libwormhole_william.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = libwormhole_william.h; path = ../dart_wormhole_william/ios/build/libwormhole_william.h; sourceTree = "<group>"; };
 		01C2034F2914162A009C347C /* libdart_wormhole_william_plugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdart_wormhole_william_plugin.a; path = ../dart_wormhole_william/ios/build/libdart_wormhole_william_plugin.a; sourceTree = "<group>"; };
+		01F5C80A2927D0880091AD8C /* dart_wormhole_william.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = dart_wormhole_william.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		01F5C8162927F9CE0091AD8C /* dart_wormhole_william.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = dart_wormhole_william.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		2E59EFAEA48B3BE798D59A81 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,10 +74,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DDC5C95FB3884DA1F4E261F /* Pods_Runner.framework in Frameworks */,
-				01C2036129141999009C347C /* libdart_wormhole_william_plugin.a in Frameworks */,
-				01C2036229141999009C347C /* libwormhole_william.a in Frameworks */,
-				01C2036029141999009C347C /* libbindings.a in Frameworks */,
+				01F5C8212927FB220091AD8C /* libbindings.a in Frameworks */,
+				01F5C8222927FB220091AD8C /* libdart_wormhole_william_plugin.a in Frameworks */,
+				01F5C8232927FB220091AD8C /* libwormhole_william.a in Frameworks */,
+				01F5C8242927FB220091AD8C /* libwormhole_william.h in Frameworks */,
+				01F5C8042927CBE60091AD8C /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +88,8 @@
 		3626410161627CE0DF95B898 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01F5C8162927F9CE0091AD8C /* dart_wormhole_william.framework */,
+				01F5C80A2927D0880091AD8C /* dart_wormhole_william.framework */,
 				01C2034C2914162A009C347C /* libbindings.a */,
 				01C2034F2914162A009C347C /* libdart_wormhole_william_plugin.a */,
 				01C2034D2914162A009C347C /* libwormhole_william.a */,
@@ -245,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n";
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -259,7 +275,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
 		F6E1867316D90D57348CB18F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -383,7 +399,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leastauthority.destiny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_STYLE = debugging;
+				STRIP_STYLE = "non-global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -433,6 +449,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -485,6 +502,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -514,7 +532,6 @@
 				DEVELOPMENT_TEAM = 69PWZ9G2S4;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphoneos*]" = "";
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -531,7 +548,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.leastauthority.destiny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				STRIP_STYLE = debugging;
+				STRIP_STYLE = "non-global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -565,7 +582,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leastauthority.destiny;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRIP_STYLE = debugging;
+				STRIP_STYLE = "non-global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
