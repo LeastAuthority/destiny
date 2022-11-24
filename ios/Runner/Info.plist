@@ -41,7 +41,25 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Share media with receiver</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>NSCameraUsageDescription</key>
+	<string>Share live photo with receiver</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To share photos, please allow permission to access your photo library.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Share photos with receiver</string>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>	
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>UISupportsDocumentBrowser</key>
+	<string>yes</string>
 </dict>
 </plist>

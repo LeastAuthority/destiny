@@ -214,6 +214,24 @@ class SendSharedState extends ChangeNotifier {
     }
   }
 
+  // Media picker explicit for iOS
+  Future<void> handleSelectMedia() async {
+    if (!selectingFile) {
+      this.setState(() {
+        selectingFile = true;
+      });
+      await getMediaPicker().showSelectFile().onError((error, stackTrace) {
+        throw error!;
+      }).then((file) async {
+        await send(file);
+      }).whenComplete(() {
+        this.setState(() {
+          selectingFile = false;
+        });
+      });
+    }
+  }
+
   void cancelSend() {
     cancelFunc();
     notifyListeners();

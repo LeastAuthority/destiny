@@ -35,6 +35,7 @@ const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'App must remain open until the transfer is complete.';
 const String SELECT_A_FILE = 'Select a File';
+const String SELECT_A_MEDIA = 'Select a Media';
 const String SELECT_A_FOLDER = 'Select Folder';
 const String SEND_A_FILE = 'Send a file';
 const String NEXT = 'Next';

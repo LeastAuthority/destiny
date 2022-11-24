@@ -1,3 +1,4 @@
+import 'dart:io' as dartIO;
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/views/mobile/widgets/FileInfo.dart';
 import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
@@ -38,13 +39,15 @@ class ReceiveConfirmation extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ButtonWithBackground(
-                    handleClicked: () => selectSaveDestination(fileName),
-                    title: SAVE_AS,
-                    width: 120.0.w,
-                    height: 50.0.h,
-                    fontSize: 14.0.sp,
-                    disabled: false),
+                // Visible only for Android, as iOS is not supported by file_picker
+                if (dartIO.Platform.isAndroid)
+                  ButtonWithBackground(
+                      handleClicked: () => selectSaveDestination(fileName),
+                      title: SAVE_AS,
+                      width: 120.0.w,
+                      height: 50.0.h,
+                      fontSize: 14.0.sp,
+                      disabled: false),
                 ButtonWithBackground(
                     handleClicked: acceptDownload,
                     title: DOWNLOAD,

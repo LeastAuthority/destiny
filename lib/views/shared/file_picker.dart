@@ -102,10 +102,37 @@ class _DesktopFilePicker extends FilePicker {
   @override
   Future<File> showSelectFile() {
     return file_picker_plugin.FilePicker.platform
-        .pickFiles(allowMultiple: false)
+        .pickFiles(type: file_picker_plugin.FileType.any, allowMultiple: false)
         .then((result) async {
       assert(result?.files.length == 1);
       final openFile = await io.File((result?.files.first.path)!).open();
+
+      return File(
+          metadata: () async {
+            return Metadata(
+                fileName: result?.files.first.name,
+                fileSize: result?.files.first.size);
+          },
+          read: openFile.readInto,
+          getPosition: openFile.position,
+          setPosition: openFile.setPosition,
+          close: openFile.close);
+    });
+  }
+}
+
+// Allows to open Photos app on iOS
+// API https://github.com/miguelpruivo/flutter_file_picker/wiki/API#filepickergetmultifilepath
+class _MediaPicker extends FilePicker {
+  @override
+  Future<File> showSelectFile() {
+    return file_picker_plugin.FilePicker.platform
+        .pickFiles(
+            type: file_picker_plugin.FileType.media, allowMultiple: false)
+        .then((result) async {
+      assert(result?.files.length == 1);
+      final openFile = await io.File((result?.files.first.path)!).open();
+
       return File(
           metadata: () async {
             return Metadata(
@@ -122,4 +149,8 @@ class _DesktopFilePicker extends FilePicker {
 
 FilePicker getFilePicker() {
   return io.Platform.isAndroid ? _AndroidFilePicker() : _DesktopFilePicker();
+}
+
+FilePicker getMediaPicker() {
+  return _MediaPicker();
 }
