@@ -2,3 +2,7 @@
 	path = dart_wormhole_william
 	url = git@github.com:LeastAuthority/dart_wormhole_william.git
 	branch = main
+[submodule ".flutter"]
+	path = .flutter
+	url = https://github.com/flutter/flutter.git
+	branch = stable
