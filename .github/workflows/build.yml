@@ -100,7 +100,7 @@ jobs:
         run: "sudo apt update && sudo apt install ninja-build libgtk-3-dev libgtkmm-3.0-dev libfuse2"
 
       - name: "Build for linux"
-        run: "flutter build linux lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }}"
+        run: "./flutterw build linux lib/main_la.dart -v --dart-define version=${{ env.DESTINY_VERSION }}"
 
       - name: "rpath workaround"
         run: |
@@ -159,27 +159,24 @@ jobs:
         run: echo DESTINY_VERSION=${{ github.head_ref }} >> $GITHUB_ENV
         if: ${{ github.ref_type != 'tag' }}
 
-      - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
-
       - name: "Fetch flutter dependencies"
-        run: "flutter pub get"
+        run: "./flutterw pub get"
 
       # TODO remove the || true when this should be enforced
       # Right now it is just informational
       - name: "Lint"
-        run: "flutter analyze || true"
+        run: "./flutterw analyze || true"
 
       - name: "Style check"
-        run: "flutter format --set-exit-if-changed lib test"
+        run: "./flutterw format --set-exit-if-changed lib test"
 
       # TODO maybe this can be avoided by some project configuration,
       # but running it locally doesn't change any files either.
       - name: "Enable macos desktop builds"
-        run: "flutter config --enable-macos-desktop"
+        run: "./flutterw config --enable-macos-desktop"
 
       - name: "Build mac app"
-        run: "flutter build macos lib/main_la.dart --debug -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
+        run: "./flutterw build macos lib/main_la.dart --debug -v --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
 
       - name: "Install create-dmg"
         run: "brew install create-dmg"
