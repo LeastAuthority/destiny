@@ -61,9 +61,14 @@ class SendScreen extends StatelessWidget {
         errorMessage: state.errorMessage,
         error: state.error,
         actionText: SELECT_A_FILE,
+        actionMedia: SELECT_A_MEDIA,
         onPressed: () {
           state.reset();
           state.handleSelectFile();
+        },
+        onPressedMedia: () {
+          state.reset();
+          state.handleSelectMedia();
         },
       );
     });

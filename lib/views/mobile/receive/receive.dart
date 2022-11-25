@@ -93,6 +93,9 @@ class ReceiveScreen extends StatelessWidget {
         onPressed: () {
           state.reset();
         },
+        onPressedMedia: () {
+          state.reset();
+        },
       );
     });
   }

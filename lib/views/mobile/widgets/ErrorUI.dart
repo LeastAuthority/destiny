@@ -1,3 +1,4 @@
+import 'dart:io' as dartIO;
 import 'package:destiny/views/widgets/Heading.dart';
 import 'package:destiny/widgets/ExpandableTextBox.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +12,18 @@ class ErrorUI extends StatelessWidget {
   final String? error;
   final String? errorMessage;
   final String actionText;
-  final void Function() onPressed;
+  final String actionMedia;
+  final void Function() onPressed, onPressedMedia;
+  //final void Function() onPressedMedia;
 
   ErrorUI(
       {this.errorTitle = "",
       this.error = "",
       this.errorMessage = "",
       this.actionText = "",
+      this.actionMedia = "",
       required this.onPressed,
+      required this.onPressedMedia,
       Key? key})
       : super(key: key);
   @override
@@ -49,16 +54,29 @@ class ErrorUI extends StatelessWidget {
         ],
       ),
       Container(
-        margin: EdgeInsets.only(bottom: 70.0.h),
-        child: ButtonWithBackground(
-            width: 200.0.w,
-            height: 60.0.h,
-            title: actionText,
-            handleClicked: () {
-              onPressed();
-            },
-            fontSize: 18.0.sp),
-      )
+          margin: EdgeInsets.only(bottom: 70.0.h),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ButtonWithBackground(
+                    width: 200.0.w,
+                    height: 60.0.h,
+                    title: actionText,
+                    handleClicked: () {
+                      onPressed();
+                    },
+                    fontSize: 18.0.sp),
+                // Visible only for Android, as iOS is not supported by file_picker
+                if (dartIO.Platform.isIOS)
+                  ButtonWithBackground(
+                      width: 200.0.w,
+                      height: 60.0.h,
+                      title: actionMedia,
+                      handleClicked: () {
+                        onPressedMedia();
+                      },
+                      fontSize: 18.0.sp)
+              ]))
     ]);
   }
 }

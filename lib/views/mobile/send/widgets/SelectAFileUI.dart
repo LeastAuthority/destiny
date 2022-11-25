@@ -27,7 +27,21 @@ class SelectAFileUI extends StatelessWidget {
             key: Key(SEND_SCREEN_HEADING),
           ),
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            ButtonWithIcon(
+                fontSize: Theme.of(context).textTheme.headline2!.fontSize,
+                fontFamily: Theme.of(context).textTheme.headline2!.fontFamily,
+                label: SELECT_A_FILE,
+                handleSelectFile: handleSelectFile,
+                icon: Image.asset(
+                  PHONE_ICON,
+                  width: 30.0.w,
+                ),
+                height: 60.0.h,
+                width: 205.0.w,
+                isVertical: false,
+                key: Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)),
             // Visible only for Android, as iOS is not supported by file_picker
+
             if (dartIO.Platform.isIOS)
               ButtonWithIcon(
                   fontSize: Theme.of(context).textTheme.headline2!.fontSize,
@@ -41,20 +55,7 @@ class SelectAFileUI extends StatelessWidget {
                   height: 60.0.h,
                   width: 205.0.w,
                   isVertical: false,
-                  key: Key(SEND_SCREEN_SELECT_A_FILE_BUTTON)),
-            ButtonWithIcon(
-                fontSize: Theme.of(context).textTheme.headline2!.fontSize,
-                fontFamily: Theme.of(context).textTheme.headline2!.fontFamily,
-                label: SELECT_A_FILE,
-                handleSelectFile: handleSelectFile,
-                icon: Image.asset(
-                  PHONE_ICON,
-                  width: 30.0.w,
-                ),
-                height: 60.0.h,
-                width: 205.0.w,
-                isVertical: false,
-                key: Key(SEND_SCREEN_SELECT_A_FILE_BUTTON))
+                  key: Key(SEND_SCREEN_SELECT_A_FILE_BUTTON))
           ]),
           SizedBox(
             key: Key(SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER),

@@ -7,18 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01F5C8042927CBE60091AD8C /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E59EFAEA48B3BE798D59A81 /* Pods_Runner.framework */; };
-		01F5C8052927CBE60091AD8C /* Pods_Runner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E59EFAEA48B3BE798D59A81 /* Pods_Runner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		01F5C8212927FB220091AD8C /* libbindings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034C2914162A009C347C /* libbindings.a */; };
-		01F5C8222927FB220091AD8C /* libdart_wormhole_william_plugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034F2914162A009C347C /* libdart_wormhole_william_plugin.a */; };
-		01F5C8232927FB220091AD8C /* libwormhole_william.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034D2914162A009C347C /* libwormhole_william.a */; };
-		01F5C8242927FB220091AD8C /* libwormhole_william.h in Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034E2914162A009C347C /* libwormhole_william.h */; };
-		01F5C8262928B4520091AD8C /* libbindings.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034C2914162A009C347C /* libbindings.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		01F5C8272928B4520091AD8C /* libdart_wormhole_william_plugin.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034F2914162A009C347C /* libdart_wormhole_william_plugin.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		01F5C8282928B4520091AD8C /* libwormhole_william.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034D2914162A009C347C /* libwormhole_william.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		01F5C8292928B4520091AD8C /* libwormhole_william.h in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 01C2034E2914162A009C347C /* libwormhole_william.h */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
+		69590008C1C10DC2F9147FC7 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E59EFAEA48B3BE798D59A81 /* Pods_Runner.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -32,11 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				01F5C8262928B4520091AD8C /* libbindings.a in Embed Frameworks */,
-				01F5C8272928B4520091AD8C /* libdart_wormhole_william_plugin.a in Embed Frameworks */,
-				01F5C8282928B4520091AD8C /* libwormhole_william.a in Embed Frameworks */,
-				01F5C8292928B4520091AD8C /* libwormhole_william.h in Embed Frameworks */,
-				01F5C8052927CBE60091AD8C /* Pods_Runner.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 1;
@@ -74,11 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01F5C8212927FB220091AD8C /* libbindings.a in Frameworks */,
-				01F5C8222927FB220091AD8C /* libdart_wormhole_william_plugin.a in Frameworks */,
-				01F5C8232927FB220091AD8C /* libwormhole_william.a in Frameworks */,
-				01F5C8242927FB220091AD8C /* libwormhole_william.h in Frameworks */,
-				01F5C8042927CBE60091AD8C /* Pods_Runner.framework in Frameworks */,
+				69590008C1C10DC2F9147FC7 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +526,7 @@
 				DEVELOPMENT_TEAM = 69PWZ9G2S4;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphoneos*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Destiny;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
