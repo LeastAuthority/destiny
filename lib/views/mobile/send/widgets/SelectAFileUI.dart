@@ -12,8 +12,6 @@ class SelectAFileUI extends StatelessWidget {
 
   SelectAFileUI(this.handleSelectFile, this.handleSelectMedia);
 
-  //SelectAFileUI(this.handleSelectMedia);
-
   @override
   Widget build(BuildContext context) {
     return Column(
