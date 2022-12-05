@@ -1,7 +1,9 @@
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
+import 'package:destiny/generated/locale_keys.g.dart';
 import 'package:destiny/views/desktop/send/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
@@ -34,7 +36,7 @@ class IntroScreenState extends State<IntroScreen> {
           desktopActionButtonEnabled: true,
           description:
               SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
-          btnTitle: NEXT,
+          btnTitle: LocaleKeys.generic_next.tr(),
           pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
           heightImage: 300.0),
@@ -48,7 +50,7 @@ class IntroScreenState extends State<IntroScreen> {
           description: SEND_AND_RECEIVE_FILES_WITH_NO_NEED_TO_SIGN_UP,
           pathImage: PRIVACY_IMG,
           backgroundColor: Colors.black,
-          btnTitle: NEXT,
+          btnTitle: LocaleKeys.generic_next.tr(),
           heightImage: 300.0),
     );
     slides.add(

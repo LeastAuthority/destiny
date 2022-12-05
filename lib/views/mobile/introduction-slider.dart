@@ -2,11 +2,14 @@ import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
 import 'package:destiny/views/mobile/send/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
 import 'package:intro_slider/slide_object.dart';
+
+import '../../generated/locale_keys.g.dart';
 
 class IntroScreen extends StatefulWidget {
   final Config config;
@@ -33,7 +36,7 @@ class IntroScreenState extends State<IntroScreen> {
               SEND_AND_RECEIVE_FILES_SECURELY_WITH_SIMPLICITY_AND_SPEED,
           subTitleTextFontSize: 14.0,
           titleTextFontSize: 23.0,
-          btnTitle: NEXT,
+          btnTitle: LocaleKeys.generic_next.tr(),
           pathImage: INTRO_LOGO,
           backgroundColor: Colors.black,
           heightImage: 300.0),
@@ -46,7 +49,7 @@ class IntroScreenState extends State<IntroScreen> {
           titleTextFontSize: 23.0,
           pathImage: PRIVACY_IMG,
           backgroundColor: Colors.black,
-          btnTitle: NEXT,
+          btnTitle: LocaleKeys.generic_next.tr(),
           heightImage: 300.0),
     );
     slides.add(

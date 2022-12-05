@@ -1,8 +1,11 @@
 import 'package:destiny/views/mobile/widgets/buttons/ButtonWithBackground.dart';
 import 'package:destiny/widgets/CodeInputBox.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:destiny/constants/app_constants.dart';
+
+import '../../../../generated/locale_keys.g.dart';
 
 class EnterCode extends StatelessWidget {
   final Function codeChanged;
@@ -36,7 +39,7 @@ class EnterCode extends StatelessWidget {
           controller.text.length > 0 && !isRequestingConnection
               ? ButtonWithBackground(
                   fontSize: 14.0.sp,
-                  title: NEXT,
+                  title: LocaleKeys.generic_next.tr(),
                   handleClicked: handleNextClicked,
                   disabled: false,
                   width: 120.0.w,
@@ -44,7 +47,7 @@ class EnterCode extends StatelessWidget {
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED))
               : ButtonWithBackground(
                   fontSize: 14.0.sp,
-                  title: isRequestingConnection ? 'Please wait...' : NEXT,
+                  title: isRequestingConnection ? 'Please wait...' : LocaleKeys.generic_next.tr(),
                   handleClicked: handleNextClicked,
                   disabled: true,
                   width: 120.0.w,

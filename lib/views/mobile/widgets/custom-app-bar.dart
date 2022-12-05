@@ -1,9 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
+
+import '../../../generated/locale_keys.g.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String? title;
@@ -67,7 +70,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   key: Key(CUSTOM_NAV_BAR_RIGHT_ITEM),
                   child: GestureDetector(
                       onTap: () {
-                        if (title != SETTINGS)
+                        if (title != LocaleKeys.menu_settings.tr())
                           Navigator.pushNamed(context, SETTINGS_ROUTE);
                       },
                       child: Container(

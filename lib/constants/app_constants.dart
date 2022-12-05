@@ -2,26 +2,17 @@
 import 'package:dart_wormhole_william/client/native_client.dart';
 
 const String HOME = "Home";
-const String SEND = "Send";
-const String RECEIVE = "Receive";
-const String SETTINGS = "Settings";
 const String INFO = "Info";
 
 //ui strings
 const String SEND_AND_RECEIVE_FILES_SECURLY_AND_FAST =
     'Send and receive files securely and fast';
 const String DROP_HERE = 'Drop Here';
-const String SEND_FILES_SIMPLE_SECURE_FAST =
-    'Send files simply, securely, and fast.';
 const String SENDING_IN_PROGRESS = 'Sending in progress...';
-const String DROP_A_FILE = 'Drag and drop a file';
-const String OR = 'or';
 const String PLEASE_KEEP_THE_APP_OPEN_UNTIL_FILE_IS_DOWNLOADED =
     'Please keep the app open until the file is downloaded.';
 const String THE_APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETED =
     'The app must remain open until the transfer is completed.';
-const String ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE =
-    'Enter the code in order to receive the file.';
 const String SHARE_CODE_WITH_RECIPIENT_AND_WAIT_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'Share code with recipient & wait until the transfer is complete.';
 const String THE_TRANSFER_WILL_AUTO =
@@ -34,7 +25,6 @@ const String SAVE_AS = 'Save As...';
 const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'App must remain open until the transfer is complete.';
-const String SELECT_A_FILE = 'Select a File';
 const String SELECT_A_FOLDER = 'Select Folder';
 const String SEND_A_FILE = 'Send a file';
 const String NEXT = 'Next';

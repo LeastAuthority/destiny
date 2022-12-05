@@ -9,8 +9,11 @@ import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:destiny/views/shared/receive.dart';
 import 'package:destiny/views/widgets/Heading.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../generated/locale_keys.g.dart';
 
 class ReceiveScreen extends StatelessWidget {
   Widget receivingDone() {
@@ -54,7 +57,7 @@ class ReceiveScreen extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Heading(
-              title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+              title: LocaleKeys.receive_topic.tr(),
               textAlign: TextAlign.left,
               marginTop: 0,
               textStyle: Theme.of(context).textTheme.headline6,
@@ -106,7 +109,7 @@ class ReceiveScreen extends StatelessWidget {
             key: Key(BOTTOM_NAV_BAR),
           ),
           appBar: CustomAppBar(
-            title: RECEIVE,
+            title: LocaleKeys.receive_title.tr(),
             key: Key(CUSTOM_NAV_BAR),
           ),
           body: WillPopScope(

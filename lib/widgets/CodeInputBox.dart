@@ -1,3 +1,5 @@
+import 'package:destiny/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:destiny/constants/app_constants.dart';
 
@@ -41,7 +43,7 @@ class CodeInputBox extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.symmetric(vertical: 30.0),
                 hintStyle: style,
-                hintText: ENTER_CODE,
+                hintText: LocaleKeys.receive_enter_code.tr(),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Color(0x000000), width: 0.0),
                 ),

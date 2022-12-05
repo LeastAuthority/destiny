@@ -1,6 +1,8 @@
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
+import 'package:destiny/generated/locale_keys.g.dart';
 import 'package:destiny/views/widgets/Heading.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,17 +17,17 @@ class DTSelectAFile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Heading(
-            title: SEND_FILES_SIMPLE_SECURE_FAST,
+            title: LocaleKeys.send_topic.tr(),
             textStyle: Theme.of(context).textTheme.headline1,
           ),
           Column(
             children: [
               Heading(
-                title: DROP_A_FILE,
+                title: LocaleKeys.send_drop_file.tr(),
                 textStyle: Theme.of(context).textTheme.headline5,
               ),
               Heading(
-                title: OR,
+                title: LocaleKeys.generic_or.tr(),
                 textStyle: Theme.of(context).textTheme.headline5,
                 marginTop: 26.0,
               ),

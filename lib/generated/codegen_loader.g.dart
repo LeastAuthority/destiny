@@ -19,9 +19,22 @@ class CodegenLoader extends AssetLoader{
     "title": "Destiny"
   },
   "menu": {
-    "send": "Senden",
-    "receive": "Empfangen",
     "settings": "Einstellungen"
+  },
+  "send": {
+    "title": "Senden",
+    "topic": "Dateien einfach, sicher und schnell versenden.",
+    "drop_file": "Datei hier ablegen"
+  },
+  "receive": {
+    "title": "Empfangen",
+    "topic": "Code eingeben, um die Datei zu empfangen.",
+    "enter_code": "Hier den Code eingeben"
+  },
+  "generic": {
+    "select_file": "Datei auswählen",
+    "or": "oder",
+    "next": "Weiter"
   }
 };
 static const Map<String,dynamic> en = {
@@ -29,9 +42,22 @@ static const Map<String,dynamic> en = {
     "title": "Destiny"
   },
   "menu": {
-    "send": "Send",
-    "receive": "Receive",
     "settings": "Settings"
+  },
+  "send": {
+    "title": "Send",
+    "topic": "Send files simply, securely, and fast.",
+    "drop_file": "Drag and drop a file"
+  },
+  "receive": {
+    "title": "Receive",
+    "topic": "Enter the code in order to receive the file.",
+    "enter_code": "Enter Code Here"
+  },
+  "generic": {
+    "select_file": "Select a File",
+    "or": "or",
+    "next": "Next"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"de": de, "en": en};

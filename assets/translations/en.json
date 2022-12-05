@@ -3,8 +3,21 @@
     "title": "Destiny"
   },
   "menu": {
-    "send": "Send",
-    "receive": "Receive",
     "settings": "Settings"
+  },
+  "send": {
+    "title": "Send",
+    "topic": "Send files simply, securely, and fast.",
+    "drop_file": "Drag and drop a file"
+  },
+  "receive": {
+    "title": "Receive",
+    "topic": "Enter the code in order to receive the file.",
+    "enter_code": "Enter Code Here"
+  },
+  "generic": {
+    "select_file": "Select a File",
+    "or": "or",
+    "next": "Next"
   }
 }

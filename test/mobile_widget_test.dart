@@ -1,12 +1,14 @@
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/config/theme/custom_theme.dart';
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/generated/locale_keys.g.dart';
 import 'package:destiny/views/mobile/receive/receive.dart';
 import 'package:destiny/views/mobile/send/send.dart';
 import 'package:destiny/views/mobile/Info.dart';
 import 'package:destiny/views/mobile/splash.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -99,7 +101,7 @@ void main() {
   testWidgets('Custom App Bar', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-      appBar: CustomAppBar(key: Key(CUSTOM_NAV_BAR), title: SETTINGS),
+      appBar: CustomAppBar(key: Key(CUSTOM_NAV_BAR), title: LocaleKeys.menu_settings.tr()),
     )));
     final customNavbarBody = find.byKey(Key(CUSTOM_NAV_BAR_BODY));
     final customNavbarContainer = find.byKey(Key(CUSTOM_NAV_BAR_CONTAINER));

@@ -8,8 +8,11 @@ import 'package:destiny/views/mobile/widgets/ErrorUI.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
 import 'package:destiny/views/shared/send.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../generated/locale_keys.g.dart';
 
 class SendScreen extends StatelessWidget {
   Widget generateCodeUI() {
@@ -78,7 +81,7 @@ class SendScreen extends StatelessWidget {
             key: Key(BOTTOM_NAV_BAR),
           ),
           appBar: CustomAppBar(
-            title: SEND,
+            title: LocaleKeys.send_title.tr(),
             key: Key(CUSTOM_NAV_BAR),
           ),
           body: WillPopScope(

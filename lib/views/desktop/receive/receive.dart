@@ -10,9 +10,12 @@ import 'package:destiny/views/desktop/widgets/custom-app-bar.dart';
 import 'package:destiny/views/shared/receive.dart';
 import 'package:destiny/views/widgets/Heading.dart';
 import 'package:destiny/widgets/CodeInputBox.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
+import '../../../generated/locale_keys.g.dart';
 
 class ReceiveScreen extends StatelessWidget {
   Widget enterCode() {
@@ -23,7 +26,7 @@ class ReceiveScreen extends StatelessWidget {
           child: Column(
             children: [
               Heading(
-                title: ENTER_THE_CODE_IN_ORDER_TO_RECEIVE_THE_FILE,
+                title: LocaleKeys.receive_topic.tr(),
                 textStyle: Theme.of(context).textTheme.headline1,
               ),
               Expanded(
@@ -47,7 +50,7 @@ class ReceiveScreen extends StatelessWidget {
                               DTButtonWithBackground(
                                 title: state.isRequestingConnection
                                     ? PLEASE_WAIT
-                                    : NEXT,
+                                    : LocaleKeys.generic_next.tr(),
                                 onPressed: () {
                                   state.setState(() {
                                     state.receive();
