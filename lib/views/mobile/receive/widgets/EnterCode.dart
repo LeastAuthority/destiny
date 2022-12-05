@@ -47,7 +47,9 @@ class EnterCode extends StatelessWidget {
                   key: Key(RECEIVE_SCREEN_NEXT_BTN_ENABLED))
               : ButtonWithBackground(
                   fontSize: 14.0.sp,
-                  title: isRequestingConnection ? 'Please wait...' : LocaleKeys.generic_next.tr(),
+                  title: isRequestingConnection
+                      ? 'Please wait...'
+                      : LocaleKeys.generic_next.tr(),
                   handleClicked: handleNextClicked,
                   disabled: true,
                   width: 120.0.w,

@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const window_title = 'window.title';
   static const window = 'window';
   static const menu_settings = 'menu.settings';
@@ -17,5 +17,4 @@ abstract class  LocaleKeys {
   static const generic_or = 'generic.or';
   static const generic_next = 'generic.next';
   static const generic = 'generic';
-
 }

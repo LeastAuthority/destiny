@@ -101,7 +101,8 @@ void main() {
   testWidgets('Custom App Bar', (WidgetTester tester) async {
     await tester.pumpWidget(MaterialApp(
         home: Scaffold(
-      appBar: CustomAppBar(key: Key(CUSTOM_NAV_BAR), title: LocaleKeys.menu_settings.tr()),
+      appBar: CustomAppBar(
+          key: Key(CUSTOM_NAV_BAR), title: LocaleKeys.menu_settings.tr()),
     )));
     final customNavbarBody = find.byKey(Key(CUSTOM_NAV_BAR_BODY));
     final customNavbarContainer = find.byKey(Key(CUSTOM_NAV_BAR_CONTAINER));
