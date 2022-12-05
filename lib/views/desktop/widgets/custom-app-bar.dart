@@ -1,10 +1,13 @@
 import 'package:destiny/config/theme/colors.dart';
 import 'package:destiny/views/desktop/widgets/NavbarTap.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
+
+import '../../../generated/locale_keys.g.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String path;
@@ -64,14 +67,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
                       route: DESKTOP_SEND_ROUTE,
                       currentRoute: path,
-                      title: SEND,
+                      title: LocaleKeys.menu_send.tr(),
                       icon: SEND_ICON,
                       alignment: CrossAxisAlignment.start,
                     ),
                     NavbarTap(
                       // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
                       route: RECEIVE_ROUTE,
-                      title: RECEIVE,
+                      title: LocaleKeys.menu_receive.tr(),
                       currentRoute: path,
                       icon: RECEIVE_ICON,
                       alignment: CrossAxisAlignment.center,
@@ -79,7 +82,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     NavbarTap(
                       // key: Key(BOTTOM_NAV_BAR_RIGHT_ITEM),
                       route: SETTINGS_ROUTE,
-                      title: SETTINGS,
+                      title: LocaleKeys.menu_settings.tr(),
                       currentRoute: path,
                       icon: SETTINGS_ICON,
                       alignment: CrossAxisAlignment.end,

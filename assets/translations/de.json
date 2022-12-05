@@ -1,0 +1,10 @@
+{
+  "window": {
+    "title": "Destiny"
+  },
+  "menu": {
+    "send": "Senden",
+    "receive": "Empfangen",
+    "settings": "Einstellungen"
+  }
+}

@@ -86,6 +86,15 @@ flutter build linux -t lib/main_local.dart
 
 Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
 
+### i18n & l10n
+
+For translation and localization we use the [Easy Localization](https://pub.dev/packages/easy_localization) plugin.
+
+To regenerate configuration and key classes please run
+```shell script
+./update_locale.sh
+```
+
 ### Starting the wormhole services locally
 
 ```bash

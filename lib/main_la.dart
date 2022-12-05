@@ -2,6 +2,6 @@ import 'package:destiny/constants/app_constants.dart';
 
 import 'main.dart';
 
-void main() {
+Future<void> main() async {
   startApp(leastAuthority);
 }
