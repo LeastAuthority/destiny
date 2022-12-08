@@ -66,7 +66,8 @@ class ErrorUI extends StatelessWidget {
                     },
                     fontSize: 18.0.sp),
                 // Visible only for Android, as iOS is not supported by file_picker
-                if (dartIO.Platform.isIOS)
+                // Disable second button show on Receive windows, as we need only one button to go back
+                if (dartIO.Platform.isIOS && actionText != RECEIVE_A_FILE)
                   ButtonWithBackground(
                       width: 200.0.w,
                       height: 60.0.h,

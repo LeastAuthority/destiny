@@ -23,6 +23,21 @@ flutter build appbundle --build-name=<build_version> --dart-define version=<buil
 Note: Google Play store requires unique or incremental build-number for every upload to store.
 
 
+## iOS bundle upload to App Store
+
+TBD
+
+Prerequisite: Apple Developer account is mandatory
+
+Validate
+```bash
+xcrun altool --validate-app -f build/ios/ipa/Destiny.ipa -t ios -u <username> -p <app passowd>
+```
+Upload
+```bash
+xcrun altool --upload-app -f build/ios/ipa/Destiny.ipa -t ios -u <username> -p <app passowd>
+```
+
 ## MacOS
 
 In order to build signed macos releases, a valid code signing certificate needs to be added to the key chain.

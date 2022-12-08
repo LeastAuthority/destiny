@@ -27,7 +27,7 @@ Supported platforms
 - [x] Windows
 - [x] macOS
 - [x] Android
-- [ ] iOS
+- [x] iOS
 
 ## Usage
 
@@ -63,13 +63,14 @@ git clone --recurse-submodules git@github.com:LeastAuthority/destiny.git
 
 ### Unsigned release builds
 
-Builds for magic-wormhole.io:
+Builds for magic-wormhole.io by default:
 
 ```bash
 flutter build linux
 flutter build apk
 flutter build appbundle
 flutter build macos
+flutter build ipa
 ```
 
 Builds for Least Authority servers:
