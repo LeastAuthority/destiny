@@ -226,6 +226,12 @@ final Config leastAuthority = Config(
   appId: "lothar.com/wormhole/text-or-file-xfer",
 );
 
+final Config stageLeastAuthority = Config(
+  rendezvousUrl: "wss://mailbox.stage.mw.leastauthority.com/v1",
+  transitRelayUrl: "tcp://relay.stage.mw.leastauthority.com:4001",
+  appId: "lothar.com/wormhole/text-or-file-xfer",
+);
+
 final Config local = Config(
     rendezvousUrl: "ws://localhost:4000/v1",
     transitRelayUrl: "tcp://localhost:4001");

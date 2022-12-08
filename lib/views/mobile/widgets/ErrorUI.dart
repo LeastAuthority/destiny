@@ -14,7 +14,6 @@ class ErrorUI extends StatelessWidget {
   final String actionText;
   final String actionMedia;
   final void Function() onPressed, onPressedMedia;
-  //final void Function() onPressedMedia;
 
   ErrorUI(
       {this.errorTitle = "",
