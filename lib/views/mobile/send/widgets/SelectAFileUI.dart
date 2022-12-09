@@ -55,7 +55,7 @@ class SelectAFileUI extends StatelessWidget {
                   height: 60.0.h,
                   width: 205.0.w,
                   isVertical: false,
-                  key: Key(SEND_SCREEN_SELECT_A_FILE_BUTTON))
+                  key: Key(SEND_SCREEN_SELECT_A_MEDIA_BUTTON))
           ]),
           SizedBox(
             key: Key(SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER),
