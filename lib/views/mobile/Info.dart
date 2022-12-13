@@ -4,7 +4,6 @@ import 'package:destiny/settings.dart';
 import 'package:destiny/views/mobile/widgets/PreferenceEditor.dart';
 import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
-import 'package:destiny/views/shared/settings.dart';
 import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,21 +12,25 @@ import '../../main.dart';
 import '../../version.dart';
 import '../widgets/Links.dart';
 
-class Info extends SettingsState {
-  Info({Key? key}) : super(key: key);
-
+class Info extends StatefulWidget {
   @override
-  _SettingsState createState() => _SettingsState();
+  _InfoState createState() {
+    final appSettings = getIt<AppSettings>();
+    final version = getIt<Version>();
+    return _InfoState(appSettings, version);
+  }
 }
 
-class _SettingsState extends SettingsShared<Info> {
-  _SettingsState() : super();
+class _InfoState extends State<Info> {
+  final AppSettings appSettings;
+  late String folderValue;
+  final Version version;
+
+  _InfoState(this.appSettings, this.version)
+      : this.folderValue = appSettings.folder.getValue();
 
   @override
   Widget build(BuildContext context) {
-    final appSettings = getIt<AppSettings>();
-    final version = getIt<Version>();
-
     final headingStyle = TextStyle(
       fontFamily: MONTSERRAT,
       fontSize: Theme.of(context).textTheme.headline6?.fontSize,
@@ -66,7 +69,7 @@ class _SettingsState extends SettingsShared<Info> {
                       Heading(
                         textAlign: TextAlign.left,
                         marginTop: 5.0,
-                        path: path,
+                        path: this.folderValue,
                       ),
                       SizedBox(
                         height: 10.0,

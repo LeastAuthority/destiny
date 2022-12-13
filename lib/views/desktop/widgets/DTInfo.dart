@@ -11,6 +11,7 @@ import '../../widgets/Heading.dart';
 class DTInfo extends StatelessWidget {
   final String? path;
   final String version;
+
   DTInfo({
     Key? key,
     required this.path,
@@ -20,6 +21,13 @@ class DTInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appSettings = getIt<AppSettings>();
+
+    var dataStyle = Theme.of(context).textTheme.headline6;
+    var titleStyle = TextStyle(
+      fontFamily: MONTSERRAT,
+      fontSize: dataStyle?.fontSize,
+      color: dataStyle?.color,
+    );
 
     return Container(
         margin: EdgeInsets.only(top: 16.0),
@@ -45,16 +53,12 @@ class DTInfo extends StatelessWidget {
                     title: CURRENT_SAVE_DESTINATION,
                     textAlign: TextAlign.left,
                     marginTop: 10.0.h,
-                    textStyle: TextStyle(
-                      fontFamily: MONTSERRAT,
-                      fontSize: Theme.of(context).textTheme.headline6?.fontSize,
-                      color: Theme.of(context).textTheme.headline6?.color,
-                    ),
+                    textStyle: titleStyle,
                   ),
                   Heading(
                     textAlign: TextAlign.left,
                     title: path,
-                    textStyle: Theme.of(context).textTheme.headline6,
+                    textStyle: dataStyle,
                     key: Key(SETTINGS_SCREEN_HEADING),
                   ),
                   SizedBox(
@@ -65,17 +69,13 @@ class DTInfo extends StatelessWidget {
                     title: VERSION,
                     textAlign: TextAlign.left,
                     marginTop: 10.0.h,
-                    textStyle: TextStyle(
-                      fontFamily: MONTSERRAT,
-                      fontSize: Theme.of(context).textTheme.headline6?.fontSize,
-                      color: Theme.of(context).textTheme.headline6?.color,
-                    ),
+                    textStyle: titleStyle,
                   ),
                   Heading(
                     textAlign: TextAlign.left,
                     marginTop: 5.0,
                     title: version,
-                    textStyle: Theme.of(context).textTheme.headline6,
+                    textStyle: dataStyle,
                   ),
                   SizedBox(
                     height: 10.0,
@@ -85,28 +85,25 @@ class DTInfo extends StatelessWidget {
                     title: ENV_SETTINGS,
                     textAlign: TextAlign.left,
                     marginTop: 10.0.h,
-                    textStyle: TextStyle(
-                      fontFamily: MONTSERRAT,
-                      fontSize: Theme.of(context).textTheme.headline6?.fontSize,
-                      color: Theme.of(context).textTheme.headline6?.color,
-                    ),
+                    textStyle: titleStyle,
                   ),
                   Heading(
                       title:
                           '$MAILBOX_URL ${appSettings.mailboxUrl.getValue()}',
                       textAlign: TextAlign.left,
                       marginTop: 10.0.h,
-                      textStyle: Theme.of(context).textTheme.headline6),
+                      textStyle: dataStyle),
                   Heading(
-                      title: '$TRANSIT_RELAY ${appSettings.transitRelayUrl}',
+                      title:
+                          '$TRANSIT_RELAY ${appSettings.transitRelayUrl.getValue()}',
                       textAlign: TextAlign.left,
                       marginTop: 10.0.h,
-                      textStyle: Theme.of(context).textTheme.headline6),
+                      textStyle: dataStyle),
                   Heading(
                       title: '$APP_ID ${appSettings.appId}',
                       textAlign: TextAlign.left,
                       marginTop: 10.0.h,
-                      textStyle: Theme.of(context).textTheme.headline6),
+                      textStyle: dataStyle),
                   SizedBox(
                     height: 132.0,
                   ),

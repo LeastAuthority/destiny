@@ -1,27 +1,40 @@
+import 'dart:io';
+
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/config/theme/colors.dart';
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/views/desktop/widgets/DTButtonWithBackground.dart';
 import 'package:destiny/views/desktop/widgets/DTInfo.dart';
 import 'package:destiny/views/desktop/widgets/custom-app-bar.dart';
-import 'package:destiny/views/shared/settings.dart';
 import 'package:destiny/views/widgets/Heading.dart';
 import 'package:destiny/views/widgets/Links.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
-class Settings extends SettingsState {
-  Settings({Key? key}) : super(key: key);
+import '../../main.dart';
+import '../../settings.dart';
+import '../../version.dart';
+import '../shared/util.dart';
 
+class Settings extends StatefulWidget {
   @override
-  _SettingsState createState() => _SettingsState();
+  _SettingsState createState() {
+    final appSettings = getIt<AppSettings>();
+    return _SettingsState(appSettings.folder);
+  }
 }
 
-class _SettingsState extends SettingsShared<Settings> {
-  _SettingsState() : super();
+class _SettingsState extends State<Settings> {
+  final Preference<String> folder;
+  bool selectingFolder = false;
+
+  _SettingsState(this.folder);
 
   @override
   Widget build(BuildContext context) {
+    final version = getIt<Version>();
     return Scaffold(
         appBar: CustomAppBar(
           path: SETTINGS_ROUTE,
@@ -71,12 +84,43 @@ class _SettingsState extends SettingsShared<Settings> {
                               width: 150.0,
                               disabled: false,
                             ),
-                            DTInfo(path: path, version: version)
+                            DTInfo(
+                                path: this.folder.getValue(),
+                                version: version.getFullVersion())
                           ],
                         ),
                       ],
                     )),
               ),
             )));
+  }
+
+  void selectSaveDestination() async {
+    if (selectingFolder) return;
+    try {
+      this.setState(() {
+        selectingFolder = true;
+      });
+      String? directory = await FilePicker.platform
+          .getDirectoryPath(initialDirectory: this.folder.getValue());
+      if (directory == null) {
+        return;
+      }
+
+      if (await canWriteToDirectory(directory)) {
+        setState(() {
+          this.folder.setValue("$directory${Platform.pathSeparator}");
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+              THE_APP_DOES_NOT_HAVE_THE_PREMISSION_TO_STORE_FILES_IN_THE_DIR),
+        ));
+      }
+    } finally {
+      this.setState(() {
+        selectingFolder = false;
+      });
+    }
   }
 }

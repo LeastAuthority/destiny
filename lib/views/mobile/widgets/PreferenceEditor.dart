@@ -45,8 +45,10 @@ class _PopupEditTextState extends State<PopupEditText> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      Text("Value:"),
                       TextFormField(
                         controller: _textEditingController,
+                        autofocus: true,
                         validator: (value) {
                           return (value != null && value.isNotEmpty)
                               ? null
@@ -55,13 +57,15 @@ class _PopupEditTextState extends State<PopupEditText> {
                         decoration:
                             InputDecoration(hintText: "Please Enter Text"),
                       ),
+                      SizedBox(height: 10.0),
+                      Text("Default value:"),
                       ElevatedButton(
                           onPressed: () {
                             var defaultValue = preference.defaultValue;
                             update(defaultValue);
                             _textEditingController.text = defaultValue;
                           },
-                          child: Text("Set: " + preference.defaultValue))
+                          child: Text("" + preference.defaultValue))
                     ],
                   )),
               title: Text(title),
