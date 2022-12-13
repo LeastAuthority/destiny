@@ -25,6 +25,7 @@ dependencies:
     path: ./dart_wormhole_william
   flutter_screenutil: 5.2.0
   shared_preferences: ^2.0.6
+  streaming_shared_preferences: ^2.0.0
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding.git
@@ -44,6 +45,9 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  fimber: ^0.6.6
+  get_it: ^7.2.0
+  package_info: ^2.0.0
   path_provider: ^2.0.0
   dotted_border: ^2.0.0+1
   desktop_drop: ^0.3.0

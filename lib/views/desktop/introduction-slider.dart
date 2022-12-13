@@ -9,17 +9,15 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
-  final Config config;
-  IntroScreen(this.config);
+  IntroScreen();
 
   @override
-  IntroScreenState createState() => new IntroScreenState(config);
+  IntroScreenState createState() => new IntroScreenState();
 }
 
 // ------------------ Custom config ------------------
 class IntroScreenState extends State<IntroScreen> {
-  final Config config;
-  IntroScreenState(this.config);
+  IntroScreenState();
 
   List<Slide> slides = [];
 

@@ -1,5 +1,4 @@
 //screens titles
-import 'package:dart_wormhole_william/client/native_client.dart';
 
 const String HOME = "Home";
 const String SEND = "Send";
@@ -213,18 +212,3 @@ const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =
     "The transfer was cancelled or interrupted";
 const String ERR_INTERRUPTION_CANCELLATION_SENDER =
     "The transfer was cancelled or interrupted";
-
-final Config magicWormholeIO = Config(
-  rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
-  transitRelayUrl: "tcp://transit.magic-wormhole.io:4001",
-);
-
-final Config leastAuthority = Config(
-  rendezvousUrl: "wss://mailbox.mw.leastauthority.com/v1",
-  transitRelayUrl: "tcp://relay.mw.leastauthority.com:4001",
-  appId: "lothar.com/wormhole/text-or-file-xfer",
-);
-
-final Config local = Config(
-    rendezvousUrl: "ws://localhost:4000/v1",
-    transitRelayUrl: "tcp://localhost:4001");

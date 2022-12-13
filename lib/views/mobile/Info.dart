@@ -1,5 +1,7 @@
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
+import 'package:destiny/settings.dart';
+import 'package:destiny/views/mobile/widgets/PreferenceEditor.dart';
 import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/shared/settings.dart';
@@ -7,6 +9,8 @@ import 'package:destiny/views/widgets/Heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../main.dart';
+import '../../version.dart';
 import '../widgets/Links.dart';
 
 class Info extends SettingsState {
@@ -21,6 +25,15 @@ class _SettingsState extends SettingsShared<Info> {
 
   @override
   Widget build(BuildContext context) {
+    final appSettings = getIt<AppSettings>();
+    final version = getIt<Version>();
+
+    final headingStyle = TextStyle(
+      fontFamily: MONTSERRAT,
+      fontSize: Theme.of(context).textTheme.headline6?.fontSize,
+      color: Theme.of(context).textTheme.headline6?.color,
+    );
+
     return Scaffold(
         appBar: CustomAppBar(
           title: INFO,
@@ -68,7 +81,7 @@ class _SettingsState extends SettingsShared<Info> {
                       Heading(
                         textAlign: TextAlign.left,
                         marginTop: 5.0,
-                        path: version,
+                        path: version.getFullVersion(),
                       ),
                       SizedBox(
                         height: 10.0,
@@ -84,50 +97,31 @@ class _SettingsState extends SettingsShared<Info> {
                         title: MAILBOX_URL,
                         textAlign: TextAlign.left,
                         marginTop: 10.0.h,
-                        textStyle: TextStyle(
-                          fontFamily: MONTSERRAT,
-                          fontSize:
-                              Theme.of(context).textTheme.headline6?.fontSize,
-                          color: Theme.of(context).textTheme.headline6?.color,
-                        ),
+                        textStyle: headingStyle,
                       ),
-                      Heading(
-                        textAlign: TextAlign.left,
+                      PopupEditText(
+                        appSettings.mailboxUrl,
+                        title: TRANSIT_RELAY,
                         marginTop: 5.0,
-                        path: leastAuthority.rendezvousUrl,
                       ),
                       Heading(
                         title: TRANSIT_RELAY,
                         textAlign: TextAlign.left,
                         marginTop: 10.0.h,
-                        textStyle: TextStyle(
-                          fontFamily: MONTSERRAT,
-                          fontSize:
-                              Theme.of(context).textTheme.headline6?.fontSize,
-                          color: Theme.of(context).textTheme.headline6?.color,
-                        ),
+                        textStyle: headingStyle,
                       ),
-                      Heading(
-                        textAlign: TextAlign.left,
+                      PopupEditText(
+                        appSettings.transitRelayUrl,
+                        title: TRANSIT_RELAY,
                         marginTop: 5.0,
-                        path: leastAuthority.transitRelayUrl,
                       ),
                       Heading(
                         title: APP_ID,
                         textAlign: TextAlign.left,
                         marginTop: 10.0.h,
-                        textStyle: TextStyle(
-                          fontFamily: MONTSERRAT,
-                          fontSize:
-                              Theme.of(context).textTheme.headline6?.fontSize,
-                          color: Theme.of(context).textTheme.headline6?.color,
-                        ),
+                        textStyle: headingStyle,
                       ),
-                      Heading(
-                        textAlign: TextAlign.left,
-                        marginTop: 5.0,
-                        path: leastAuthority.appId,
-                      ),
+                      PopupEditText(appSettings.appId, marginTop: 5.0),
                       SizedBox(
                         height: 10.0,
                       ),

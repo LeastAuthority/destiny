@@ -2,13 +2,12 @@ import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/views/desktop/receive/receive.dart';
 import 'package:destiny/views/desktop/send/send.dart';
 import 'package:destiny/views/desktop/settings.dart';
-import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../views/desktop/introduction-slider.dart';
 import '../../views/desktop/splash.dart';
 
-PageRouteBuilder? Function(RouteSettings) getDesktopRoutes(Config config) {
+PageRouteBuilder? Function(RouteSettings) getDesktopRoutes() {
   return (RouteSettings settings) {
     switch (settings.name) {
       case SPLASH_ROUTE:
@@ -17,8 +16,7 @@ PageRouteBuilder? Function(RouteSettings) getDesktopRoutes(Config config) {
         }
       case INTRO_ROUTE:
         {
-          return PageRouteBuilder(
-              pageBuilder: (_, __, ___) => IntroScreen(config));
+          return PageRouteBuilder(pageBuilder: (_, __, ___) => IntroScreen());
         }
       case DESKTOP_SEND_ROUTE:
         {

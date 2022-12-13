@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../config/theme/colors.dart';
 import '../../../constants/asset_path.dart';
+import '../../../main.dart';
+import '../../../settings.dart';
 import '../../widgets/Heading.dart';
 
 class DTInfo extends StatelessWidget {
@@ -17,6 +19,8 @@ class DTInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appSettings = getIt<AppSettings>();
+
     return Container(
         margin: EdgeInsets.only(top: 16.0),
         padding: EdgeInsets.all(16.0),
@@ -88,17 +92,18 @@ class DTInfo extends StatelessWidget {
                     ),
                   ),
                   Heading(
-                      title: '$MAILBOX_URL ${leastAuthority.rendezvousUrl}',
+                      title:
+                          '$MAILBOX_URL ${appSettings.mailboxUrl.getValue()}',
                       textAlign: TextAlign.left,
                       marginTop: 10.0.h,
                       textStyle: Theme.of(context).textTheme.headline6),
                   Heading(
-                      title: '$TRANSIT_RELAY ${leastAuthority.transitRelayUrl}',
+                      title: '$TRANSIT_RELAY ${appSettings.transitRelayUrl}',
                       textAlign: TextAlign.left,
                       marginTop: 10.0.h,
                       textStyle: Theme.of(context).textTheme.headline6),
                   Heading(
-                      title: '$APP_ID ${leastAuthority.appId}',
+                      title: '$APP_ID ${appSettings.appId}',
                       textAlign: TextAlign.left,
                       marginTop: 10.0.h,
                       textStyle: Theme.of(context).textTheme.headline6),
