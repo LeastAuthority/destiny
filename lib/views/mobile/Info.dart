@@ -21,6 +21,16 @@ class Info extends StatefulWidget {
   }
 }
 
+List<String> expandTransitRelayDefaultValues(String defaultValue) {
+  final uri = Uri.parse(defaultValue);
+  if (uri.scheme == "tcp" && uri.port == 4001) {
+    var alternative = uri.replace(scheme: "wss", port: 0);
+    return List.of([defaultValue, alternative.toString()]);
+  } else {
+    return List.of([defaultValue]);
+  }
+}
+
 class _InfoState extends State<Info> {
   final AppSettings appSettings;
   late String folderValue;
@@ -115,6 +125,7 @@ class _InfoState extends State<Info> {
                       ),
                       PopupEditText(
                         appSettings.transitRelayUrl,
+                        expandDefaults: expandTransitRelayDefaultValues,
                         title: TRANSIT_RELAY,
                         marginTop: 5.0,
                       ),

@@ -28,7 +28,7 @@ class AppSettings {
     return config;
   }
 
-  AppSettings(this.preferences, Config defaults)
+  AppSettings(this.preferences, Config defaults, PathConfig pathConfig)
       : this.mailboxUrl = preferences.getString(MAILBOX_URL,
             defaultValue: defaults.rendezvousUrl),
         this.transitRelayUrl = preferences.getString(TRANSIT_RELAY_URL,
