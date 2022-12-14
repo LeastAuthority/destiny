@@ -1,0 +1,15 @@
+Destiny is an end-to-end encrypted file transfer app. It allows people to securely send files without needing to reveal their identity to each other, or the service provider. No sign-up is needed.
+
+The user selects a file on their device and shares the generated code with the intended recipient for safe delivery.
+
+Destiny is based on the Magic Wormhole protocol.
+
+Key security features:
+
+- End-to-end encryption: Files are end-to-end encrypted and only the sender and recipient can read them.
+
+- Identity-less: No need to disclose identity information (such as name, email address, or phone number) to be able to transfer files.
+
+- Peer-to-peer file transfer: Destiny attempts to make a direct network connection to the other party. When this isn’t possible (for example, if neither party has a public IP address), then our relay server is used. However, that server sees only encrypted packets.
+
+- Full-strength keys: Although our codes are short and human-memorable, they are part of an online “Password Authenticated Key Exchange” (PAKE) which only allows a single guess – and yields a 256-bit full-strength symmetric key.
