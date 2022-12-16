@@ -64,6 +64,8 @@ class MyApp extends StatelessWidget {
         theme: (Platform.isAndroid || Platform.isIOS)
             ? CustomTheme.darkThemeMobile
             : CustomTheme.darkThemeDesktop,
+        // this allows to disable debug label
+        debugShowCheckedModeBanner: true,
       ),
     );
   }

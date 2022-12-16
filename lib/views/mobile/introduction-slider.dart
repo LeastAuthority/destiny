@@ -100,6 +100,8 @@ class IntroScreenState extends State<IntroScreen> {
           backgroundColorAllSlides: Colors.grey,
           verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
         ),
+        // this allows to disable debug label
+        debugShowCheckedModeBanner: true,
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           return MediaQuery(

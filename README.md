@@ -99,4 +99,6 @@ docker-compose up -d
 so x86 emulators or devices are not supported.
 - MacOS M1 chip build is not supported.
 
+### Other configuration
 
+To disable debug label on app in emulater, set debugShowCheckedModeBanner: false (two places)
