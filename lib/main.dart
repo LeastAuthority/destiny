@@ -38,7 +38,7 @@ Widget localized(Widget widget) {
     supportedLocales: [Locale('de'), Locale('en')],
     path: 'assets/translations',
     assetLoader: CodegenLoader(),
-    fallbackLocale: Locale('en', 'US'),
+    fallbackLocale: Locale('en'),
     child: widget,
   );
 }
