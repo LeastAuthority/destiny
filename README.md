@@ -95,6 +95,9 @@ To regenerate configuration and key classes please run
 ./update_locale.sh
 ```
 
+Add new language support in lib/main.dart `supportedLocales: [Locale('de'), Locale('en')],`
+
+
 ### Starting the wormhole services locally
 
 ```bash

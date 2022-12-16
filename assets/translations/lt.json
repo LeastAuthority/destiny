@@ -1,0 +1,23 @@
+{
+  "window": {
+    "title": "Destiny"
+  },
+  "menu": {
+    "settings": "Nustatymai"
+  },
+  "send": {
+    "title": "Siųsti",
+    "topic": "Dalinkitės failais paprastai, saugiai ir gretai.",
+    "drop_file": "Vilk ir numesk"
+  },
+  "receive": {
+    "title": "Gauti",
+    "topic": "Įveskite kodą, kad gautumėte failą bylą.",
+    "enter_code": "Veskite kodą"
+  },
+  "generic": {
+    "select_file": "Pasirinkite failą",
+    "or": "arba",
+    "next": "Kitas"
+  }
+}

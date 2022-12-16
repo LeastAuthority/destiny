@@ -35,7 +35,7 @@ Future<void> startApp(Config c) async {
 
 Widget localized(Widget widget) {
   return EasyLocalization(
-    supportedLocales: [Locale('de'), Locale('en')],
+    supportedLocales: [Locale('de'), Locale('en'), Locale('lt')],
     path: 'assets/translations',
     assetLoader: CodegenLoader(),
     fallbackLocale: Locale('en', 'US'),
