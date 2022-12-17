@@ -108,7 +108,9 @@ class _PopupEditTextState extends State<PopupEditText> {
                         Navigator.of(context).pop();
                       }
                     },
-                    style: theme.elevatedButtonTheme.style?.copyWith(backgroundColor: MaterialStateProperty.all(theme.primaryColor)),
+                    style: theme.elevatedButtonTheme.style?.copyWith(
+                        backgroundColor:
+                            MaterialStateProperty.all(theme.primaryColor)),
                     child: Text(OK, style: theme.textTheme.bodyText2)),
               ],
             );

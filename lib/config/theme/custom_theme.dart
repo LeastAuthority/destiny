@@ -35,8 +35,7 @@ class CustomTheme {
       primaryColorDark: CustomColors.darkPurple,
       scaffoldBackgroundColor: CustomColors.darkBlue,
       progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: primaryColor,
-          linearTrackColor: CustomColors.superLightPurple),
+          color: primaryColor, linearTrackColor: CustomColors.superLightPurple),
       disabledColor: CustomColors.babyPowderLight,
       bottomAppBarTheme: BottomAppBarTheme(color: CustomColors.lighterBlack),
       colorScheme:
