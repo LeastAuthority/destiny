@@ -1,4 +1,4 @@
 [submodule "dart_wormhole_william"]
 	path = dart_wormhole_william
 	url = git@github.com:LeastAuthority/dart_wormhole_william.git
-	branch = main
+	branch = update_ffi

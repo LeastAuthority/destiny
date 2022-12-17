@@ -3,7 +3,7 @@ import 'package:destiny/settings.dart';
 import 'package:destiny/version.dart';
 import 'package:destiny/views/shared/file_picker.dart';
 import 'package:get_it/get_it.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 void register(GetIt getIt, Config defaults) {

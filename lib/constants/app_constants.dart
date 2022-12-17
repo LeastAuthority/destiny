@@ -41,6 +41,7 @@ const String CANCEL = 'Cancel';
 const String COPY = 'Copy';
 const String BACK = 'Back';
 const String DONE = 'Done';
+const String EDIT = 'Edit';
 const String FILE_RECEIVED = 'File received';
 const String TRANSFER_CANCELLED = 'Transfer cancelled';
 const String PLEASE_WAIT = 'Please wait...';

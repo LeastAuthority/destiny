@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
+import '../../../constants/app_constants.dart';
 import 'buttons/Button.dart';
 
 List<String> singleDefault(String defaultValue) {
@@ -46,13 +47,14 @@ class _PopupEditTextState extends State<PopupEditText> {
         this.defaultValues = expandDefaults(preference.defaultValue);
 
   Future<void> showInformationDialog(BuildContext context) async {
+    var theme = Theme.of(context);
     final List<Widget> defaultButtons = defaultValues
         .map((value) => ElevatedButton(
             onPressed: () {
               update(value);
               _textEditingController.text = value;
             },
-            child: Text(value)))
+            child: Text(value, style: theme.textTheme.bodySmall)))
         .toList();
 
     return await showDialog(
@@ -60,7 +62,6 @@ class _PopupEditTextState extends State<PopupEditText> {
         builder: (context) {
           bool isChecked = false;
           return StatefulBuilder(builder: (context, setState) {
-            var theme = Theme.of(context);
             return AlertDialog(
               backgroundColor: theme.scaffoldBackgroundColor,
               content: Form(
@@ -87,6 +88,19 @@ class _PopupEditTextState extends State<PopupEditText> {
                   )),
               title: Text(title),
               actions: <Widget>[
+                Container(
+                    margin: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(color: theme.primaryColorDark),
+                    child: InkWell(
+                      child: Container(
+                          margin: EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 20.0),
+                          child:
+                              Text('Cancel', style: theme.textTheme.bodyText2)),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    )),
                 Container(
                     margin: EdgeInsets.all(10.0),
                     decoration: BoxDecoration(color: theme.primaryColor),
@@ -121,9 +135,9 @@ class _PopupEditTextState extends State<PopupEditText> {
           Spacer(flex: 1),
           Button(
             width: 50.0,
-            height: 22.0,
+            height: 24.0,
             topMargin: 2.0,
-            title: "edit",
+            title: EDIT,
             handleClicked: () async {
               _textEditingController.text = this.preference.getValue();
               await showInformationDialog(context);
