@@ -41,11 +41,8 @@ class _InfoState extends State<Info> {
 
   @override
   Widget build(BuildContext context) {
-    final headingStyle = TextStyle(
-      fontFamily: MONTSERRAT,
-      fontSize: Theme.of(context).textTheme.headline6?.fontSize,
-      color: Theme.of(context).textTheme.headline6?.color,
-    );
+    final headingStyle =
+        Theme.of(context).textTheme.headline6?.copyWith(fontFamily: MONTSERRAT);
 
     return Scaffold(
         appBar: CustomAppBar(
@@ -106,22 +103,10 @@ class _InfoState extends State<Info> {
                         marginTop: 10.0.h,
                         textStyle: Theme.of(context).textTheme.headline6,
                       ),
-                      Heading(
-                        title: MAILBOX_URL,
-                        textAlign: TextAlign.left,
-                        marginTop: 10.0.h,
-                        textStyle: headingStyle,
-                      ),
                       PopupEditText(
                         appSettings.mailboxUrl,
-                        title: TRANSIT_RELAY,
+                        title: MAILBOX_URL,
                         marginTop: 5.0,
-                      ),
-                      Heading(
-                        title: TRANSIT_RELAY,
-                        textAlign: TextAlign.left,
-                        marginTop: 10.0.h,
-                        textStyle: headingStyle,
                       ),
                       PopupEditText(
                         appSettings.transitRelayUrl,
@@ -129,13 +114,11 @@ class _InfoState extends State<Info> {
                         title: TRANSIT_RELAY,
                         marginTop: 5.0,
                       ),
-                      Heading(
+                      PopupEditText(
+                        appSettings.appId,
                         title: APP_ID,
-                        textAlign: TextAlign.left,
-                        marginTop: 10.0.h,
-                        textStyle: headingStyle,
+                        marginTop: 5.0,
                       ),
-                      PopupEditText(appSettings.appId, marginTop: 5.0),
                       SizedBox(
                         height: 10.0,
                       ),

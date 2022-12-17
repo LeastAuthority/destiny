@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 import '../../../constants/app_constants.dart';
+import '../../../constants/asset_path.dart';
+import '../../widgets/Heading.dart';
 import 'buttons/Button.dart';
 
 List<String> singleDefault(String defaultValue) {
@@ -120,27 +123,38 @@ class _PopupEditTextState extends State<PopupEditText> {
 
   @override
   Widget build(BuildContext context) {
-    var dialogBackgroundColor = Theme.of(context).dialogBackgroundColor;
+    final headingStyle = Theme.of(context).textTheme.headline6?.copyWith(fontFamily: MONTSERRAT);
+
     return Container(
-      width: double.infinity,
       margin: EdgeInsets.only(top: this.marginTop),
-      child: Row(
+      child: Column(
         children: [
-          Text(this.value),
-          Spacer(flex: 1),
-          Button(
-            width: 50.0,
-            height: 24.0,
-            topMargin: 2.0,
-            title: EDIT,
-            handleClicked: () async {
-              _textEditingController.text = this.preference.getValue();
-              await showInformationDialog(context);
-            },
-            disabled: false,
+          Heading(
+            title: this.title,
+            textAlign: TextAlign.left,
+            marginTop: 10.0.h,
+            textStyle: headingStyle,
           ),
+          Row(
+            children: [
+              Text(this.value),
+              Spacer(flex: 1),
+              Button(
+                width: 50.0,
+                height: 24.0,
+                topMargin: 2.0,
+                title: EDIT,
+                handleClicked: () async {
+                  _textEditingController.text = this.preference.getValue();
+                  await showInformationDialog(context);
+                },
+                disabled: false,
+              ),
+            ],
+          ),
+
         ],
-      ),
+      )
     );
   }
 

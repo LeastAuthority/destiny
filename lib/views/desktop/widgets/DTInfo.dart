@@ -6,6 +6,7 @@ import '../../../config/theme/colors.dart';
 import '../../../constants/asset_path.dart';
 import '../../../main.dart';
 import '../../../settings.dart';
+import '../../mobile/widgets/PreferenceEditor.dart';
 import '../../widgets/Heading.dart';
 
 class DTInfo extends StatelessWidget {
@@ -33,7 +34,7 @@ class DTInfo extends StatelessWidget {
         margin: EdgeInsets.only(top: 16.0),
         padding: EdgeInsets.all(16.0),
         constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height / 3,
+          maxHeight: MediaQuery.of(context).size.height / 2,
           maxWidth: 900,
         ),
         decoration: BoxDecoration(
@@ -100,7 +101,7 @@ class DTInfo extends StatelessWidget {
                       marginTop: 10.0.h,
                       textStyle: dataStyle),
                   Heading(
-                      title: '$APP_ID ${appSettings.appId}',
+                      title: '$APP_ID ${appSettings.appId.getValue()}',
                       textAlign: TextAlign.left,
                       marginTop: 10.0.h,
                       textStyle: dataStyle),
