@@ -68,14 +68,6 @@ class IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  ButtonStyle myButtonStyle() {
-    return ButtonStyle(
-      shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
-      backgroundColor: MaterialStateProperty.all<Color>(Color(0x33F3B4BA)),
-      overlayColor: MaterialStateProperty.all<Color>(Color(0x33FFA8B0)),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

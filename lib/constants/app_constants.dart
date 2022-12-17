@@ -38,6 +38,7 @@ const String SELECT_A_FOLDER = 'Select Folder';
 const String SEND_A_FILE = 'Send a file';
 const String NEXT = 'Next';
 const String CANCEL = 'Cancel';
+const String OK = 'OK';
 const String COPY = 'Copy';
 const String BACK = 'Back';
 const String DONE = 'Done';

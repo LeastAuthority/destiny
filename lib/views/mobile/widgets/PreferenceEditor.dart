@@ -54,7 +54,8 @@ class _PopupEditTextState extends State<PopupEditText> {
               update(value);
               _textEditingController.text = value;
             },
-            child: Text(value, style: theme.textTheme.bodySmall)))
+            child: Text(value,
+                style: theme.textTheme.bodyText2?.copyWith(fontSize: 11.0))))
         .toList();
 
     return await showDialog(
@@ -72,51 +73,43 @@ class _PopupEditTextState extends State<PopupEditText> {
                           Text("Value:"),
                           TextFormField(
                             controller: _textEditingController,
+                            style: theme.textTheme.bodyText2,
                             autofocus: true,
                             validator: (value) {
                               return (value != null && value.isNotEmpty)
                                   ? null
                                   : "Enter any text";
                             },
-                            decoration:
-                                InputDecoration(hintText: "Please Enter Text"),
+                            decoration: InputDecoration(
+                              hintText: "Please Enter Text",
+                            ),
                           ),
                           SizedBox(height: 10.0),
-                          Text("Default value(s):"),
+                          Text(
+                              "Default value${defaultButtons.length > 1 ? "s" : ""}:"),
                         ] +
                         defaultButtons,
                   )),
-              title: Text(title),
+              title: Text(
+                title,
+                style: theme.textTheme.headline3,
+              ),
               actions: <Widget>[
-                Container(
-                    margin: EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(color: theme.primaryColorDark),
-                    child: InkWell(
-                      child: Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 20.0),
-                          child:
-                              Text('Cancel', style: theme.textTheme.bodyText2)),
-                      onTap: () {
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(CANCEL, style: theme.textTheme.bodyText2)),
+                ElevatedButton(
+                    onPressed: () {
+                      var currentState = _formKey.currentState;
+                      if (currentState != null && currentState.validate()) {
+                        update(_textEditingController.value.text);
                         Navigator.of(context).pop();
-                      },
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(color: theme.primaryColor),
-                    child: InkWell(
-                      child: Container(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 20.0),
-                          child: Text('OK', style: theme.textTheme.bodyText2)),
-                      onTap: () {
-                        var currentState = _formKey.currentState;
-                        if (currentState != null && currentState.validate()) {
-                          update(_textEditingController.value.text);
-                          Navigator.of(context).pop();
-                        }
-                      },
-                    )),
+                      }
+                    },
+                    style: theme.elevatedButtonTheme.style?.copyWith(backgroundColor: MaterialStateProperty.all(theme.primaryColor)),
+                    child: Text(OK, style: theme.textTheme.bodyText2)),
               ],
             );
           });

@@ -1,17 +1,41 @@
 import 'package:destiny/constants/asset_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'colors.dart';
 
 class CustomTheme {
   static ThemeData get darkThemeMobile {
+    const primaryColor = CustomColors.purple;
+    const primaryColorLight = CustomColors.lightPurple;
+
+    final ButtonStyle textButtonStyle = TextButton.styleFrom(
+      foregroundColor: CustomColors.darkPurple,
+      backgroundColor: CustomColors.darkBlue,
+      minimumSize: Size(88, 36),
+      // padding: EdgeInsets.symmetric(horizontal: 16.0),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2.0)),
+      ),
+    );
+
+    final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
+      foregroundColor: CustomColors.purple,
+      backgroundColor: CustomColors.darkPurple,
+      minimumSize: Size(88, 36),
+      //padding: EdgeInsets.symmetric(horizontal: 16),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2)),
+      ),
+    );
+
     return ThemeData(
-      primaryColor: CustomColors.purple,
-      primaryColorLight: CustomColors.lightPurple,
+      primaryColor: primaryColor,
+      primaryColorLight: primaryColorLight,
       primaryColorDark: CustomColors.darkPurple,
       scaffoldBackgroundColor: CustomColors.darkBlue,
       progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: CustomColors.purple,
+          color: primaryColor,
           linearTrackColor: CustomColors.superLightPurple),
       disabledColor: CustomColors.babyPowderLight,
       bottomAppBarTheme: BottomAppBarTheme(color: CustomColors.lighterBlack),
@@ -63,6 +87,19 @@ class CustomTheme {
           fontFamily: MONTSERRAT,
         ),
       ),
+      textButtonTheme: TextButtonThemeData(style: textButtonStyle),
+      elevatedButtonTheme: ElevatedButtonThemeData(style: elevatedButtonStyle),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: primaryColor,
+        selectionColor: CustomColors.darkPurple,
+        selectionHandleColor: primaryColor,
+      ),
+      focusColor: primaryColor,
+      hintColor: primaryColorLight,
+      inputDecorationTheme: const InputDecorationTheme(
+          focusedBorder: const UnderlineInputBorder(
+        borderSide: BorderSide(color: primaryColor),
+      )),
     );
   }
 
