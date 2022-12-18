@@ -56,19 +56,19 @@ class _PopupEditTextState extends State<PopupEditText> {
 
   Future<void> showInformationDialog(BuildContext context) async {
     var theme = Theme.of(context);
-    final List<Widget> defaultButtons = defaultValues
-        .expand((value) => [
-              SizedBox(height: 5.0),
-              ElevatedButton(
-                  onPressed: () {
-                    update(value);
-                    _textEditingController.text = value;
-                  },
-                  child: Text(value,
-                      style:
-                          theme.textTheme.bodyText2?.copyWith(fontSize: 11.0)))
-            ])
-        .toList();
+    var smallTextStyle = theme.textTheme.bodyText2?.copyWith(fontSize: 11.0);
+
+    final List<Widget> defaultButtons = defaultValues.expand((value) {
+      return [
+        SizedBox(height: 5.0),
+        ElevatedButton(
+            onPressed: () {
+              update(value);
+              _textEditingController.text = value;
+            },
+            child: Text(value, style: smallTextStyle))
+      ];
+    }).toList();
 
     return await showDialog(
         context: context,
@@ -96,9 +96,11 @@ class _PopupEditTextState extends State<PopupEditText> {
                               hintText: "Please Enter Text",
                             ),
                           ),
-                          SizedBox(height: 20.0),
+                          SizedBox(height: 24.0),
                           Text(
-                              "Set default${defaultValues.length > 1 ? "s" : ""}"),
+                            "Choose default:",
+                            style: smallTextStyle,
+                          ),
                         ] +
                         defaultButtons,
                   )),
