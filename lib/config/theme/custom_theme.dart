@@ -39,7 +39,7 @@ class CustomTheme {
       disabledColor: CustomColors.babyPowderLight,
       bottomAppBarTheme: BottomAppBarTheme(color: CustomColors.lighterBlack),
       colorScheme:
-          ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder),
+          ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder, brightness: Brightness.dark),
       textTheme: TextTheme(
         headline1: TextStyle(
             fontSize: 25.0.sp,
@@ -47,7 +47,7 @@ class CustomTheme {
             fontFamily: MONTSERRAT_EXTRA_BOLD),
         headline2: TextStyle(
             fontSize: 20.0.sp,
-            color: CustomColors.black,
+            color: CustomColors.babyPowder,
             fontFamily: MONTSERRAT_MEDIUM),
         headline3: TextStyle(
             fontSize: 20.0.sp,
@@ -86,6 +86,7 @@ class CustomTheme {
           fontFamily: MONTSERRAT,
         ),
       ),
+      buttonTheme: ButtonThemeData(focusColor: primaryColor),
       textButtonTheme: TextButtonThemeData(style: textButtonStyle),
       elevatedButtonTheme: ElevatedButtonThemeData(style: elevatedButtonStyle),
       textSelectionTheme: const TextSelectionThemeData(
