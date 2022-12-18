@@ -63,7 +63,6 @@ class _PopupEditTextState extends State<PopupEditText> {
         SizedBox(height: 5.0),
         ElevatedButton(
             onPressed: () {
-              update(value);
               _textEditingController.text = value;
             },
             child: Text(value, style: smallTextStyle))
