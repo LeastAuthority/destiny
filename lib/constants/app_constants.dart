@@ -180,12 +180,12 @@ const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
 
-const String APP_ID = "AppID:";
-const String TRANSIT_RELAY = "Transit Relay URL:";
-const String MAILBOX_URL = "Mailbox URL:";
+const String APP_ID = "AppID";
+const String TRANSIT_RELAY = "Transit Relay URL";
+const String MAILBOX_URL = "Mailbox URL";
 const String ENV_SETTINGS = 'Environment Settings:';
-const String VERSION = 'Version:';
-const String DEFAULT_SAVE_DESTINATION = 'Default save destination:';
+const String VERSION = 'Version';
+const String DEFAULT_SAVE_DESTINATION = 'Default save destination';
 const String FEEDBACK = 'Feedback';
 const String FAQ = 'FAQ';
 const String PRIVACY = 'Privacy Policy';

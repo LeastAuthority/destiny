@@ -80,6 +80,7 @@ class _PopupEditTextState extends State<PopupEditText> {
                   key: _formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                           TextFormField(
@@ -95,9 +96,9 @@ class _PopupEditTextState extends State<PopupEditText> {
                               hintText: "Please Enter Text",
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          SizedBox(height: 20.0),
                           Text(
-                              "Set default${defaultButtons.length > 2 ? "s" : ""}:"),
+                              "Set default${defaultValues.length > 1 ? "s" : ""}"),
                         ] +
                         defaultButtons,
                   )),

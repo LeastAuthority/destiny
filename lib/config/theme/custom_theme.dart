@@ -38,8 +38,8 @@ class CustomTheme {
           color: primaryColor, linearTrackColor: CustomColors.superLightPurple),
       disabledColor: CustomColors.babyPowderLight,
       bottomAppBarTheme: BottomAppBarTheme(color: CustomColors.lighterBlack),
-      colorScheme:
-          ColorScheme.fromSwatch().copyWith(secondary: CustomColors.babyPowder, brightness: Brightness.dark),
+      colorScheme: ColorScheme.fromSwatch().copyWith(
+          secondary: CustomColors.babyPowder, brightness: Brightness.dark),
       textTheme: TextTheme(
         headline1: TextStyle(
             fontSize: 25.0.sp,

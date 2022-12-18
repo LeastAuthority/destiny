@@ -96,7 +96,6 @@ class DTInfo extends StatelessWidget {
                 marginTop: 5.0,
                 editButtonWidth: 70.0,
               ),
-              //Spacer(),
             ]));
   }
 }

@@ -7,6 +7,7 @@ class NavbarTap extends StatelessWidget {
   final String title;
   final String icon;
   final CrossAxisAlignment alignment;
+
   NavbarTap(
       {Key? key,
       required this.route,
