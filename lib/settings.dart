@@ -1,6 +1,5 @@
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:destiny/views/shared/file_picker.dart';
-import 'package:fimber/fimber.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 class AppSettings {
@@ -24,7 +23,6 @@ class AppSettings {
         rendezvousUrl: mailboxUrl.getValue(),
         transitRelayUrl: transitRelayUrl.getValue(),
         passPhraseComponentLength: passphraseComponentLength.getValue());
-    Fimber.i("config: ${config.rendezvousUrl} and ${config.transitRelayUrl}");
     return config;
   }
 

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:destiny/views/shared/receive.dart';
 import 'package:destiny/views/shared/send.dart';
 import 'package:dart_wormhole_william/client/native_client.dart';
-import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +21,6 @@ GetIt getIt = GetIt.instance;
 
 void startApp(Config c) {
   WidgetsFlutterBinding.ensureInitialized();
-  Fimber.plantTree(DebugTree());
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
