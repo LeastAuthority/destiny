@@ -6,6 +6,7 @@ import '../../../config/theme/colors.dart';
 import '../../../constants/asset_path.dart';
 import '../../../main.dart';
 import '../../../settings.dart';
+import '../../mobile/Info.dart';
 import '../../mobile/widgets/PreferenceEditor.dart';
 import '../../widgets/Heading.dart';
 
@@ -24,92 +25,78 @@ class DTInfo extends StatelessWidget {
     final appSettings = getIt<AppSettings>();
 
     var dataStyle = Theme.of(context).textTheme.headline6;
-    var titleStyle = TextStyle(
-      fontFamily: MONTSERRAT,
-      fontSize: dataStyle?.fontSize,
-      color: dataStyle?.color,
-    );
+    var titleStyle = dataStyle?.copyWith(fontFamily: MONTSERRAT);
 
     return Container(
         margin: EdgeInsets.only(top: 16.0),
         padding: EdgeInsets.all(16.0),
-        constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height / 2,
-          maxWidth: 900,
-        ),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(4.0)),
           border: Border.all(width: 2.0, color: CustomColors.purple),
         ),
-        child: SingleChildScrollView(
-            child: Column(
-                key: Key(SETTINGS_SCREEN_CONTENT),
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-              Column(
-                children: [
-                  Heading(
-                    title: CURRENT_SAVE_DESTINATION,
-                    textAlign: TextAlign.left,
-                    marginTop: 10.0.h,
-                    textStyle: titleStyle,
-                  ),
-                  Heading(
-                    textAlign: TextAlign.left,
-                    title: path,
-                    textStyle: dataStyle,
-                    key: Key(SETTINGS_SCREEN_HEADING),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Divider(height: 1.0, color: Colors.white),
-                  Heading(
-                    title: VERSION,
-                    textAlign: TextAlign.left,
-                    marginTop: 10.0.h,
-                    textStyle: titleStyle,
-                  ),
-                  Heading(
-                    textAlign: TextAlign.left,
-                    marginTop: 5.0,
-                    title: version,
-                    textStyle: dataStyle,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Divider(height: 1.0, color: Colors.white),
-                  Heading(
-                    title: ENV_SETTINGS,
-                    textAlign: TextAlign.left,
-                    marginTop: 10.0.h,
-                    textStyle: titleStyle,
-                  ),
-                  Heading(
-                      title:
-                          '$MAILBOX_URL ${appSettings.mailboxUrl.getValue()}',
-                      textAlign: TextAlign.left,
-                      marginTop: 10.0.h,
-                      textStyle: dataStyle),
-                  Heading(
-                      title:
-                          '$TRANSIT_RELAY ${appSettings.transitRelayUrl.getValue()}',
-                      textAlign: TextAlign.left,
-                      marginTop: 10.0.h,
-                      textStyle: dataStyle),
-                  Heading(
-                      title: '$APP_ID ${appSettings.appId.getValue()}',
-                      textAlign: TextAlign.left,
-                      marginTop: 10.0.h,
-                      textStyle: dataStyle),
-                  SizedBox(
-                    height: 132.0,
-                  ),
-                ],
+        child: Column(
+            key: Key(SETTINGS_SCREEN_CONTENT),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Heading(
+                title: CURRENT_SAVE_DESTINATION,
+                textAlign: TextAlign.left,
+                marginTop: 10.0.h,
+                textStyle: titleStyle,
               ),
-            ])));
+              Heading(
+                textAlign: TextAlign.left,
+                title: path,
+                textStyle: dataStyle,
+                key: Key(SETTINGS_SCREEN_HEADING),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Divider(height: 1.0, color: Colors.white),
+              Heading(
+                title: VERSION,
+                textAlign: TextAlign.left,
+                marginTop: 10.0.h,
+                textStyle: titleStyle,
+              ),
+              Heading(
+                textAlign: TextAlign.left,
+                marginTop: 5.0,
+                title: version,
+                textStyle: dataStyle,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Divider(height: 1.0, color: Colors.white),
+              Heading(
+                title: ENV_SETTINGS,
+                textAlign: TextAlign.left,
+                marginTop: 10.0.h,
+                textStyle: titleStyle,
+              ),
+              PopupEditText(
+                appSettings.mailboxUrl,
+                title: MAILBOX_URL,
+                marginTop: 5.0,
+                editButtonWidth: 70.0,
+              ),
+              PopupEditText(
+                appSettings.transitRelayUrl,
+                expandDefaults: expandTransitRelayDefaultValues,
+                title: TRANSIT_RELAY,
+                marginTop: 5.0,
+                editButtonWidth: 70.0,
+              ),
+              PopupEditText(
+                appSettings.appId,
+                title: APP_ID,
+                marginTop: 5.0,
+                editButtonWidth: 70.0,
+              ),
+              //Spacer(),
+            ]));
   }
 }

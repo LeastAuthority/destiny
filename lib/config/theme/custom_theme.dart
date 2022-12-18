@@ -103,20 +103,10 @@ class CustomTheme {
   }
 
   static ThemeData get darkThemeDesktop {
-    return ThemeData(
-      primaryColor: CustomColors.purple,
+    return darkThemeMobile.copyWith(
       cardColor: CustomColors.lightBlue,
-      primaryColorDark: CustomColors.darkPurple,
-      primaryColorLight: CustomColors.mediumPurple,
-      scaffoldBackgroundColor: CustomColors.darkBlue,
       dialogBackgroundColor: CustomColors.lightBlack,
       backgroundColor: CustomColors.darkBlue,
-      progressIndicatorTheme: ProgressIndicatorThemeData(
-          color: CustomColors.purple,
-          linearTrackColor: CustomColors.superLightPurple),
-      colorScheme: ColorScheme.fromSwatch().copyWith(
-        secondary: CustomColors.babyPowder,
-      ),
       textTheme: TextTheme(
         headline1: TextStyle(
           color: CustomColors.babyPowder,

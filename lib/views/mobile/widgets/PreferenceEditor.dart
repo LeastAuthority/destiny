@@ -17,16 +17,19 @@ class PopupEditText extends StatefulWidget {
 
   final String title;
   final double marginTop;
+  final double editButtonWidth;
 
   PopupEditText(this.preference,
       {this.marginTop = 0.0,
       this.title = "",
+      this.editButtonWidth = 50.0,
       this.expandDefaults = singleDefault});
 
   @override
   State<StatefulWidget> createState() => _PopupEditTextState(this.preference,
       expandDefaults: this.expandDefaults,
       marginTop: this.marginTop,
+      editButtonWidth: this.editButtonWidth,
       title: this.title);
 }
 
@@ -37,6 +40,7 @@ class _PopupEditTextState extends State<PopupEditText> {
 
   final title;
   final double marginTop;
+  final double editButtonWidth;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -44,6 +48,7 @@ class _PopupEditTextState extends State<PopupEditText> {
 
   _PopupEditTextState(this.preference,
       {required this.marginTop,
+      required this.editButtonWidth,
       required this.title,
       required List<String> Function(String) expandDefaults})
       : this.value = preference.getValue(),
@@ -52,19 +57,22 @@ class _PopupEditTextState extends State<PopupEditText> {
   Future<void> showInformationDialog(BuildContext context) async {
     var theme = Theme.of(context);
     final List<Widget> defaultButtons = defaultValues
-        .map((value) => ElevatedButton(
-            onPressed: () {
-              update(value);
-              _textEditingController.text = value;
-            },
-            child: Text(value,
-                style: theme.textTheme.bodyText2?.copyWith(fontSize: 11.0))))
+        .expand((value) => [
+              SizedBox(height: 5.0),
+              ElevatedButton(
+                  onPressed: () {
+                    update(value);
+                    _textEditingController.text = value;
+                  },
+                  child: Text(value,
+                      style:
+                          theme.textTheme.bodyText2?.copyWith(fontSize: 11.0)))
+            ])
         .toList();
 
     return await showDialog(
         context: context,
         builder: (context) {
-          bool isChecked = false;
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
               backgroundColor: theme.scaffoldBackgroundColor,
@@ -72,8 +80,8 @@ class _PopupEditTextState extends State<PopupEditText> {
                   key: _formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                          Text("Value:"),
                           TextFormField(
                             controller: _textEditingController,
                             style: theme.textTheme.bodyText2,
@@ -89,12 +97,12 @@ class _PopupEditTextState extends State<PopupEditText> {
                           ),
                           SizedBox(height: 10.0),
                           Text(
-                              "Default value${defaultButtons.length > 1 ? "s" : ""}:"),
+                              "Set default${defaultButtons.length > 2 ? "s" : ""}:"),
                         ] +
                         defaultButtons,
                   )),
               title: Text(
-                title,
+                EDIT + " " + title,
                 style: theme.textTheme.headline3,
               ),
               actions: <Widget>[
@@ -123,39 +131,38 @@ class _PopupEditTextState extends State<PopupEditText> {
 
   @override
   Widget build(BuildContext context) {
-    final headingStyle = Theme.of(context).textTheme.headline6?.copyWith(fontFamily: MONTSERRAT);
+    final headingStyle =
+        Theme.of(context).textTheme.headline6?.copyWith(fontFamily: MONTSERRAT);
 
     return Container(
-      margin: EdgeInsets.only(top: this.marginTop),
-      child: Column(
-        children: [
-          Heading(
-            title: this.title,
-            textAlign: TextAlign.left,
-            marginTop: 10.0.h,
-            textStyle: headingStyle,
-          ),
-          Row(
-            children: [
-              Text(this.value),
-              Spacer(flex: 1),
-              Button(
-                width: 50.0,
-                height: 24.0,
-                topMargin: 2.0,
-                title: EDIT,
-                handleClicked: () async {
-                  _textEditingController.text = this.preference.getValue();
-                  await showInformationDialog(context);
-                },
-                disabled: false,
-              ),
-            ],
-          ),
-
-        ],
-      )
-    );
+        margin: EdgeInsets.only(top: this.marginTop),
+        child: Column(
+          children: [
+            Heading(
+              title: this.title,
+              textAlign: TextAlign.left,
+              marginTop: 10.0.h,
+              textStyle: headingStyle,
+            ),
+            Row(
+              children: [
+                Text(this.value),
+                Spacer(flex: 1),
+                Button(
+                  width: this.editButtonWidth,
+                  height: 24.0,
+                  topMargin: 2.0,
+                  title: EDIT,
+                  handleClicked: () async {
+                    _textEditingController.text = this.preference.getValue();
+                    await showInformationDialog(context);
+                  },
+                  disabled: false,
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 
   void update(String newValue) {

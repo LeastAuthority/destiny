@@ -46,7 +46,7 @@ class _SettingsState extends State<Settings> {
               width: double.infinity,
               padding: EdgeInsets.only(left: 125.0.w, right: 125.0.w),
               child: Container(
-                margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 22.0.h),
+                margin: EdgeInsets.fromLTRB(16.0.w, 30.0.h, 16.0.w, 16.0.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(4.0)),
                     border: Border.all(width: 2.0, color: CustomColors.purple)),
@@ -73,22 +73,18 @@ class _SettingsState extends State<Settings> {
                           textStyle: Theme.of(context).textTheme.headline1,
                           // key: Key('Timing_Progress'),
                         ),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 16.0,
-                            ),
-                            DTButtonWithBackground(
-                              onPressed: selectSaveDestination,
-                              title: SELECT_A_FOLDER,
-                              width: 150.0,
-                              disabled: false,
-                            ),
-                            DTInfo(
-                                path: this.folder.getValue(),
-                                version: version.getFullVersion())
-                          ],
+                        SizedBox(
+                          height: 16.0,
                         ),
+                        DTButtonWithBackground(
+                          onPressed: selectSaveDestination,
+                          title: SELECT_A_FOLDER,
+                          width: 150.0,
+                          disabled: false,
+                        ),
+                        DTInfo(
+                            path: this.folder.getValue(),
+                            version: version.getFullVersion()),
                       ],
                     )),
               ),
