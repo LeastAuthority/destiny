@@ -43,7 +43,7 @@ Least Authority is a technology company supporting people’s right to privacy t
 
 **Can you walk me through the process from beginning to end?**
 
-Download the application via Github for [Android](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), or [Mac](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg) (the Android application will also soon be available for download on the Google Play Store). Both the sender and the receiver must have the application downloaded. 
+Download the application via Github for [Android](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), or [Mac](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg), or [Google Play Store](https://play.google.com/store/apps/details?id=com.leastauthority.destiny) and [F-Droid](https://f-droid.org/en/packages/com.leastauthority.destiny/). Both the sender and the receiver must have the application downloaded. 
 
 Quick onboarding: Walk through the onboarding process (this will only appear once, when you first download the application).
 
