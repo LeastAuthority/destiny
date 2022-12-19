@@ -8,6 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
+import '../ui_support.dart';
+
 void main() {
   late StreamingSharedPreferences streamingSharedPreferences;
 
@@ -168,17 +170,3 @@ void main() {
   });
 }
 
-ScreenUtilInit testApp(EditableStringPrefs widget) {
-  return ScreenUtilInit(
-      designSize: Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      //allowFontScaling: false,
-      builder: () {
-        WidgetsFlutterBinding.ensureInitialized();
-        return MaterialApp(
-          theme: CustomTheme.darkThemeMobile,
-          home: widget,
-        );
-      });
-}

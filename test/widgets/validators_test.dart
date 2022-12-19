@@ -44,7 +44,7 @@ void main() {
     test('fail invalid URI', () {
       final result = uriStringValidator("foo");
 
-      expect(result, "<scheme> should be one of wss, tcp");
+      expect(result, "<scheme> should be one of ws, wss, tcp");
     });
   });
 }

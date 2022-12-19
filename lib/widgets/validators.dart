@@ -15,7 +15,7 @@ String? uriStringValidator(String? value) {
     return result;
   }
   var uri = Uri.parse(value!);
-  final allowedSchemes = ["wss", "tcp"];
+  final allowedSchemes = ["ws", "wss", "tcp"];
   if (!allowedSchemes.contains(uri.scheme)) {
     return "<scheme> should be one of ${allowedSchemes.join(", ")}";
   }
