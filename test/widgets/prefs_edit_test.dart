@@ -104,7 +104,7 @@ void main() {
       await tester.pumpWidget(testApp(EditableStringPrefs(
         prefs,
         title: title,
-        expandDefaults: (value) => ["${value}1","${value}2"],
+        expandDefaults: (value) => ["${value}1", "${value}2"],
       )));
 
       await tester.tap(find.byKey(editKey));
@@ -121,7 +121,8 @@ void main() {
       assert(prefs.getValue() == "default2");
     });
 
-    testWidgets('ignores setting default value when pressing cancel', (tester) async {
+    testWidgets('ignores setting default value when pressing cancel',
+        (tester) async {
       const title = "Title";
 
       await tester.pumpWidget(testApp(EditableStringPrefs(
