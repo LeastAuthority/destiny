@@ -1,35 +1,62 @@
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/config/theme/custom_theme.dart';
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/locator.dart';
+import 'package:destiny/main.dart';
+import 'package:destiny/views/mobile/Info.dart';
 import 'package:destiny/views/mobile/receive/receive.dart';
 import 'package:destiny/views/mobile/send/send.dart';
-import 'package:destiny/views/mobile/Info.dart';
 import 'package:destiny/views/mobile/splash.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
+import 'package:destiny/views/shared/receive.dart';
+import 'package:destiny/views/shared/send.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'ui_support.dart';
 
 void main() {
   Size mobileScreenSize = Size(375, 590);
-  ScreenUtilInit getScreenUtilInit(Widget? screen, ThemeData theme, Size size) {
-    return ScreenUtilInit(
-      designSize: size,
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: () => MaterialApp(
-        home: screen,
-        builder: (context, widget) {
-          ScreenUtil.setContext(context);
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 0.5),
-            child: widget!,
-          );
-        },
-        theme: theme,
-      ),
-    );
+
+  setUpAll(() async {
+    PackageInfo.setMockInitialValues(appName: "abc", packageName: "com.example.example", version: "1.0", buildNumber: "2", buildSignature: "buildSignature", installerStore: "asdf");
+    SharedPreferences.setMockInitialValues({});
+    final Config local = Config(
+        rendezvousUrl: "ws://localhost:4000/v1",
+        transitRelayUrl: "tcp://localhost:4001");
+    register(getIt, local);
+    await getIt.allReady();
+  });
+
+  Widget getScreenUtilInit(
+      Widget? Function() screenBuilder, ThemeData theme, Size size) {
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => SendSharedState()),
+          ChangeNotifierProvider(create: (context) => ReceiveSharedState())
+        ],
+        child: ScreenUtilInit(
+          designSize: size,
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: () => MaterialApp(
+            home: screenBuilder(),
+            builder: (context, widget) {
+              ScreenUtil.setContext(context);
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 0.5),
+                child: widget!,
+              );
+            },
+            theme: theme,
+          ),
+        ));
   }
 
   testWidgets('Splash screen', (WidgetTester tester) async {
@@ -47,7 +74,7 @@ void main() {
 
   testWidgets('Send screen', (WidgetTester tester) async {
     await tester.pumpWidget(getScreenUtilInit(
-        SendScreen(), CustomTheme.darkThemeMobile, Size(375, 590)));
+        () => SendScreen(), CustomTheme.darkThemeMobile, Size(375, 590)));
 
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
@@ -70,7 +97,7 @@ void main() {
   //
   testWidgets('Receive screen', (WidgetTester tester) async {
     await tester.pumpWidget(getScreenUtilInit(
-        ReceiveScreen(), CustomTheme.darkThemeMobile, mobileScreenSize));
+        () => ReceiveScreen(), CustomTheme.darkThemeMobile, mobileScreenSize));
     // Create the Finders.
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
@@ -90,17 +117,15 @@ void main() {
 
   testWidgets('Settings screen', (WidgetTester tester) async {
     await tester.pumpWidget(getScreenUtilInit(
-        Info(), CustomTheme.darkThemeMobile, mobileScreenSize));
+        () => Info(), CustomTheme.darkThemeMobile, mobileScreenSize));
     final settingsScreenBody = find.byKey(Key(SETTINGS_SCREEN_BODY));
 
     expect(settingsScreenBody, findsOneWidget);
   });
 
   testWidgets('Custom App Bar', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-      appBar: CustomAppBar(key: Key(CUSTOM_NAV_BAR), title: SETTINGS),
-    )));
+    await tester.pumpWidget(testAppBuild(
+        () => CustomAppBar(key: Key(CUSTOM_NAV_BAR), title: SETTINGS)));
     final customNavbarBody = find.byKey(Key(CUSTOM_NAV_BAR_BODY));
     final customNavbarContainer = find.byKey(Key(CUSTOM_NAV_BAR_CONTAINER));
     final customNavbarLeftItem = find.byKey(Key(CUSTOM_NAV_BAR_LEFT_ITEM));
@@ -116,11 +141,11 @@ void main() {
 
   testWidgets('Custom BottomBar', (WidgetTester tester) async {
     await tester.pumpWidget(getScreenUtilInit(
-        Scaffold(
-            bottomNavigationBar: CustomBottomBar(
-          path: SEND_ROUTE,
-          key: Key(BOTTOM_NAV_BAR),
-        )),
+        () => Scaffold(
+                bottomNavigationBar: CustomBottomBar(
+              path: SEND_ROUTE,
+              key: Key(BOTTOM_NAV_BAR),
+            )),
         CustomTheme.darkThemeMobile,
         mobileScreenSize));
 
