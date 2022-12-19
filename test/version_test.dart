@@ -4,7 +4,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-// Annotation which generates the cat.mocks.dart library and the MockCat class.
 @GenerateNiceMocks([MockSpec<PackageInfo>()])
 import 'version_test.mocks.dart';
 
