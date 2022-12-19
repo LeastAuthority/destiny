@@ -25,7 +25,13 @@ void main() {
   Size mobileScreenSize = Size(375, 590);
 
   setUpAll(() async {
-    PackageInfo.setMockInitialValues(appName: "abc", packageName: "com.example.example", version: "1.0", buildNumber: "2", buildSignature: "buildSignature", installerStore: "asdf");
+    PackageInfo.setMockInitialValues(
+        appName: "abc",
+        packageName: "com.example.example",
+        version: "1.0",
+        buildNumber: "2",
+        buildSignature: "buildSignature",
+        installerStore: "asdf");
     SharedPreferences.setMockInitialValues({});
     final Config local = Config(
         rendezvousUrl: "ws://localhost:4000/v1",
