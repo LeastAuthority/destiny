@@ -9,6 +9,6 @@ class Version {
         versionCode = info.buildNumber;
 
   getFullVersion() {
-    return "$version" +  (versionCode != "" ? "($versionCode)" : "");
+    return "$version" + (versionCode != "" ? "($versionCode)" : "");
   }
 }
