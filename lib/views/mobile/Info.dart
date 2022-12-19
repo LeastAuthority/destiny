@@ -1,7 +1,7 @@
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
 import 'package:destiny/settings.dart';
-import 'package:destiny/views/mobile/widgets/PreferenceEditor.dart';
+import 'package:destiny/widgets/prefs_edit.dart';
 import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/widgets/Heading.dart';
@@ -103,18 +103,18 @@ class _InfoState extends State<Info> {
                         marginTop: 10.0.h,
                         textStyle: Theme.of(context).textTheme.headline6,
                       ),
-                      PopupEditText(
+                      EditableStringPrefs(
                         appSettings.mailboxUrl,
                         title: MAILBOX_URL,
                         marginTop: 5.0,
                       ),
-                      PopupEditText(
+                      EditableStringPrefs(
                         appSettings.transitRelayUrl,
                         expandDefaults: expandTransitRelayDefaultValues,
                         title: TRANSIT_RELAY,
                         marginTop: 5.0,
                       ),
-                      PopupEditText(
+                      EditableStringPrefs(
                         appSettings.appId,
                         title: APP_ID,
                         marginTop: 5.0,

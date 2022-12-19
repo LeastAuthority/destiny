@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
+import 'package:tuple/tuple.dart';
 
-import '../../../constants/app_constants.dart';
-import '../../../constants/asset_path.dart';
-import '../../widgets/Heading.dart';
-import 'buttons/Button.dart';
+import '../constants/app_constants.dart';
+import '../constants/asset_path.dart';
+import '../views/mobile/widgets/buttons/Button.dart';
+import '../views/widgets/Heading.dart';
 
 List<String> singleDefault(String defaultValue) {
   return [defaultValue];
 }
 
-class PopupEditText extends StatefulWidget {
+class EditableStringPrefs extends StatefulWidget {
   final Preference<String> preference;
   final List<String> Function(String) expandDefaults;
 
@@ -19,21 +20,22 @@ class PopupEditText extends StatefulWidget {
   final double marginTop;
   final double editButtonWidth;
 
-  PopupEditText(this.preference,
+  EditableStringPrefs(this.preference,
       {this.marginTop = 0.0,
       this.title = "",
       this.editButtonWidth = 50.0,
       this.expandDefaults = singleDefault});
 
   @override
-  State<StatefulWidget> createState() => _PopupEditTextState(this.preference,
-      expandDefaults: this.expandDefaults,
-      marginTop: this.marginTop,
-      editButtonWidth: this.editButtonWidth,
-      title: this.title);
+  State<StatefulWidget> createState() =>
+      _EditableStringPrefsState(this.preference,
+          expandDefaults: this.expandDefaults,
+          marginTop: this.marginTop,
+          editButtonWidth: this.editButtonWidth,
+          title: this.title);
 }
 
-class _PopupEditTextState extends State<PopupEditText> {
+class _EditableStringPrefsState extends State<EditableStringPrefs> {
   final Preference<String> preference;
   late String value;
   late List<String> defaultValues;
@@ -46,7 +48,7 @@ class _PopupEditTextState extends State<PopupEditText> {
 
   final TextEditingController _textEditingController = TextEditingController();
 
-  _PopupEditTextState(this.preference,
+  _EditableStringPrefsState(this.preference,
       {required this.marginTop,
       required this.editButtonWidth,
       required this.title,
@@ -58,14 +60,15 @@ class _PopupEditTextState extends State<PopupEditText> {
     var theme = Theme.of(context);
     var smallTextStyle = theme.textTheme.bodyText2?.copyWith(fontSize: 11.0);
 
-    final List<Widget> defaultButtons = defaultValues.expand((value) {
+    final List<Widget> defaultButtons = indexed(defaultValues).expand((value) {
       return [
         SizedBox(height: 5.0),
         ElevatedButton(
             onPressed: () {
-              _textEditingController.text = value;
+              _textEditingController.text = value.item2;
             },
-            child: Text(value, style: smallTextStyle))
+            child: Text(value.item2,
+                key: Key("default${value.item1}"), style: smallTextStyle))
       ];
     }).toList();
 
@@ -74,6 +77,7 @@ class _PopupEditTextState extends State<PopupEditText> {
         builder: (context) {
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
+              key: Key("dialog"),
               backgroundColor: theme.scaffoldBackgroundColor,
               content: Form(
                   key: _formKey,
@@ -83,6 +87,7 @@ class _PopupEditTextState extends State<PopupEditText> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                           TextFormField(
+                            key: Key("formField"),
                             controller: _textEditingController,
                             style: theme.textTheme.bodyText2,
                             autofocus: true,
@@ -99,6 +104,7 @@ class _PopupEditTextState extends State<PopupEditText> {
                           Text(
                             "Choose default:",
                             style: smallTextStyle,
+                            key: Key("defaultTitle"),
                           ),
                         ] +
                         defaultButtons,
@@ -109,26 +115,37 @@ class _PopupEditTextState extends State<PopupEditText> {
               ),
               actions: <Widget>[
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(CANCEL, style: theme.textTheme.bodyText2)),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(CANCEL, style: theme.textTheme.bodyText2),
+                  key: Key("cancel"),
+                ),
                 ElevatedButton(
-                    onPressed: () {
-                      var currentState = _formKey.currentState;
-                      if (currentState != null && currentState.validate()) {
-                        update(_textEditingController.value.text);
-                        Navigator.of(context).pop();
-                      }
-                    },
-                    style: theme.elevatedButtonTheme.style?.copyWith(
-                        backgroundColor:
-                            MaterialStateProperty.all(theme.primaryColor)),
-                    child: Text(OK, style: theme.textTheme.bodyText2)),
+                  onPressed: () {
+                    var currentState = _formKey.currentState;
+                    if (currentState != null && currentState.validate()) {
+                      update(_textEditingController.value.text);
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  style: theme.elevatedButtonTheme.style?.copyWith(
+                      backgroundColor:
+                          MaterialStateProperty.all(theme.primaryColor)),
+                  child: Text(OK, style: theme.textTheme.bodyText2),
+                  key: Key("ok"),
+                ),
               ],
             );
           });
         });
+  }
+
+  Iterable<Tuple2<int, T>> indexed<T>(List<T> values) {
+    return values
+        .asMap()
+        .map((index, value) => MapEntry(index, Tuple2<int, T>(0, value)))
+        .values;
   }
 
   @override
@@ -141,6 +158,7 @@ class _PopupEditTextState extends State<PopupEditText> {
         child: Column(
           children: [
             Heading(
+              key: Key("entryTitle"),
               title: this.title,
               textAlign: TextAlign.left,
               marginTop: 10.0.h,
@@ -148,9 +166,13 @@ class _PopupEditTextState extends State<PopupEditText> {
             ),
             Row(
               children: [
-                Text(this.value),
+                Text(
+                  this.value,
+                  key: Key("entryValue"),
+                ),
                 Spacer(flex: 1),
                 Button(
+                  key: Key("entryEditButton"),
                   width: this.editButtonWidth,
                   height: 24.0,
                   topMargin: 2.0,

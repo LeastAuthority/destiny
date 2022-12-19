@@ -7,7 +7,7 @@ import '../../../constants/asset_path.dart';
 import '../../../main.dart';
 import '../../../settings.dart';
 import '../../mobile/Info.dart';
-import '../../mobile/widgets/PreferenceEditor.dart';
+import '../../../widgets/prefs_edit.dart';
 import '../../widgets/Heading.dart';
 
 class DTInfo extends StatelessWidget {
@@ -77,20 +77,20 @@ class DTInfo extends StatelessWidget {
                 marginTop: 10.0.h,
                 textStyle: titleStyle,
               ),
-              PopupEditText(
+              EditableStringPrefs(
                 appSettings.mailboxUrl,
                 title: MAILBOX_URL,
                 marginTop: 5.0,
                 editButtonWidth: 70.0,
               ),
-              PopupEditText(
+              EditableStringPrefs(
                 appSettings.transitRelayUrl,
                 expandDefaults: expandTransitRelayDefaultValues,
                 title: TRANSIT_RELAY,
                 marginTop: 5.0,
                 editButtonWidth: 70.0,
               ),
-              PopupEditText(
+              EditableStringPrefs(
                 appSettings.appId,
                 title: APP_ID,
                 marginTop: 5.0,
