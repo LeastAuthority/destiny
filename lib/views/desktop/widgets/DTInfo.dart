@@ -1,4 +1,5 @@
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/widgets/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,8 +7,8 @@ import '../../../config/theme/colors.dart';
 import '../../../constants/asset_path.dart';
 import '../../../main.dart';
 import '../../../settings.dart';
-import '../../mobile/Info.dart';
 import '../../../widgets/prefs_edit.dart';
+import '../../mobile/Info.dart';
 import '../../widgets/Heading.dart';
 
 class DTInfo extends StatelessWidget {
@@ -27,6 +28,7 @@ class DTInfo extends StatelessWidget {
     var dataStyle = Theme.of(context).textTheme.headline6;
     var titleStyle = dataStyle?.copyWith(fontFamily: MONTSERRAT);
 
+    const editButtonWidth = 80.0;
     return Container(
         margin: EdgeInsets.only(top: 16.0),
         padding: EdgeInsets.all(16.0),
@@ -80,21 +82,24 @@ class DTInfo extends StatelessWidget {
               EditableStringPrefs(
                 appSettings.mailboxUrl,
                 title: MAILBOX_URL,
+                validator: uriStringValidator,
                 marginTop: 5.0,
-                editButtonWidth: 70.0,
+                editButtonWidth: editButtonWidth,
               ),
               EditableStringPrefs(
                 appSettings.transitRelayUrl,
                 expandDefaults: expandTransitRelayDefaultValues,
                 title: TRANSIT_RELAY,
+                validator: uriStringValidator,
                 marginTop: 5.0,
-                editButtonWidth: 70.0,
+                editButtonWidth: editButtonWidth,
               ),
               EditableStringPrefs(
                 appSettings.appId,
                 title: APP_ID,
+                validator: stringValidator,
                 marginTop: 5.0,
-                editButtonWidth: 70.0,
+                editButtonWidth: editButtonWidth,
               ),
             ]));
   }

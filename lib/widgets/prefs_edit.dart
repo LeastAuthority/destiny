@@ -12,24 +12,33 @@ List<String> singleDefault(String defaultValue) {
   return [defaultValue];
 }
 
+String? defaultValidator(String? value) {
+  return (value != null && value.isNotEmpty) ? null : "Enter any text";
+}
+
 class EditableStringPrefs extends StatefulWidget {
   final Preference<String> preference;
   final List<String> Function(String) expandDefaults;
+  final String? Function(String?) validator;
 
   final String title;
   final double marginTop;
   final double editButtonWidth;
 
-  EditableStringPrefs(this.preference,
-      {this.marginTop = 0.0,
-      this.title = "",
-      this.editButtonWidth = 50.0,
-      this.expandDefaults = singleDefault});
+  EditableStringPrefs(
+    this.preference, {
+    this.marginTop = 0.0,
+    this.title = "",
+    this.editButtonWidth = 50.0,
+    this.expandDefaults = singleDefault,
+    this.validator = defaultValidator,
+  });
 
   @override
   State<StatefulWidget> createState() =>
       _EditableStringPrefsState(this.preference,
           expandDefaults: this.expandDefaults,
+          validator: this.validator,
           marginTop: this.marginTop,
           editButtonWidth: this.editButtonWidth,
           title: this.title);
@@ -39,6 +48,7 @@ class _EditableStringPrefsState extends State<EditableStringPrefs> {
   final Preference<String> preference;
   late String value;
   late List<String> defaultValues;
+  final String? Function(String?) validator;
 
   final title;
   final double marginTop;
@@ -48,12 +58,14 @@ class _EditableStringPrefsState extends State<EditableStringPrefs> {
 
   final TextEditingController _textEditingController = TextEditingController();
 
-  _EditableStringPrefsState(this.preference,
-      {required this.marginTop,
-      required this.editButtonWidth,
-      required this.title,
-      required List<String> Function(String) expandDefaults})
-      : this.value = preference.getValue(),
+  _EditableStringPrefsState(
+    this.preference, {
+    required this.marginTop,
+    required this.editButtonWidth,
+    required this.title,
+    required List<String> Function(String) expandDefaults,
+    required this.validator,
+  })  : this.value = preference.getValue(),
         this.defaultValues = expandDefaults(preference.defaultValue);
 
   Future<void> showInformationDialog(BuildContext context) async {
@@ -91,11 +103,7 @@ class _EditableStringPrefsState extends State<EditableStringPrefs> {
                             controller: _textEditingController,
                             style: theme.textTheme.bodyText2,
                             autofocus: true,
-                            validator: (value) {
-                              return (value != null && value.isNotEmpty)
-                                  ? null
-                                  : "Enter any text";
-                            },
+                            validator: this.validator,
                             decoration: InputDecoration(
                               hintText: "Please Enter Text",
                             ),

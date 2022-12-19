@@ -5,6 +5,7 @@ import 'package:destiny/widgets/prefs_edit.dart';
 import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/widgets/Heading.dart';
+import 'package:destiny/widgets/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -106,18 +107,21 @@ class _InfoState extends State<Info> {
                       EditableStringPrefs(
                         appSettings.mailboxUrl,
                         title: MAILBOX_URL,
+                        validator: uriStringValidator,
                         marginTop: 5.0,
                       ),
                       EditableStringPrefs(
                         appSettings.transitRelayUrl,
                         expandDefaults: expandTransitRelayDefaultValues,
                         title: TRANSIT_RELAY,
+                        validator: uriStringValidator,
                         marginTop: 5.0,
                       ),
                       EditableStringPrefs(
                         appSettings.appId,
                         title: APP_ID,
                         marginTop: 5.0,
+                        validator: stringValidator,
                       ),
                       SizedBox(
                         height: 10.0,
