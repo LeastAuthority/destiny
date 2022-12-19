@@ -18,6 +18,7 @@ void main() {
   const valueKey = Key("entryValue");
   const editKey = Key("entryEditButton");
   const firstDefaultKey = Key("default0");
+  const secondDefaultKey = Key("default1");
   const okKey = Key("ok");
   const cancelKey = Key("cancel");
 
@@ -95,6 +96,29 @@ void main() {
       await tester.tap(submit);
 
       assert(prefs.getValue() == "default");
+    });
+
+    testWidgets('handles multiple default values', (tester) async {
+      const title = "Title";
+
+      await tester.pumpWidget(testApp(EditableStringPrefs(
+        prefs,
+        title: title,
+        expandDefaults: (value) => ["${value}1","${value}2"],
+      )));
+
+      await tester.tap(find.byKey(editKey));
+
+      await tester.pump();
+
+      final secondDefault = find.byKey(secondDefaultKey);
+      final submit = find.byKey(okKey);
+
+      await tester.tap(secondDefault);
+
+      await tester.tap(submit);
+
+      assert(prefs.getValue() == "default2");
     });
 
     testWidgets('ignores setting default value when pressing cancel', (tester) async {

@@ -67,8 +67,8 @@ class _EditableStringPrefsState extends State<EditableStringPrefs> {
             onPressed: () {
               _textEditingController.text = value.item2;
             },
-            child: Text(value.item2,
-                key: Key("default${value.item1}"), style: smallTextStyle))
+            key: Key("default${value.item1}"),
+            child: Text(value.item2, style: smallTextStyle))
       ];
     }).toList();
 
@@ -144,7 +144,7 @@ class _EditableStringPrefsState extends State<EditableStringPrefs> {
   Iterable<Tuple2<int, T>> indexed<T>(List<T> values) {
     return values
         .asMap()
-        .map((index, value) => MapEntry(index, Tuple2<int, T>(0, value)))
+        .map((index, value) => MapEntry(index, Tuple2<int, T>(index, value)))
         .values;
   }
 
