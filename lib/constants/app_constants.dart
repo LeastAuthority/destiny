@@ -192,9 +192,10 @@ const String PRIVACY = 'Privacy Policy';
 const String TERMS = 'Terms';
 
 String projectLink(String path, {String? blob}) {
-  final finalBlob =
+  final blobOrDefault =
       blob ?? const String.fromEnvironment("version", defaultValue: "main");
-  return 'https://github.com/LeastAuthority/destiny/blob/$finalBlob/$path';
+  final targetBlob = blobOrDefault.split("-").first;
+  return 'https://github.com/LeastAuthority/destiny/blob/$targetBlob/$path';
 }
 
 final String FEEDBACK_LINK = projectLink('FAQ.md#contact', blob: "main");
