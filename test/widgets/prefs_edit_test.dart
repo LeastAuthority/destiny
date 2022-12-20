@@ -15,6 +15,7 @@ void main() {
 
   const key = "test";
   const originalValue = "value";
+  const title = "Title";
 
   const titleKey = Key("entryTitle");
   const valueKey = Key("entryValue");
@@ -36,8 +37,6 @@ void main() {
 
   group('EditableStringPrefs Widget Test:', () {
     testWidgets('has a title and value', (tester) async {
-      const title = "Title";
-
       await tester.pumpWidget(testApp(EditableStringPrefs(
         prefs,
         title: title,
@@ -53,8 +52,6 @@ void main() {
     });
 
     testWidgets('allows editing value', (tester) async {
-      const title = "Title";
-
       await tester.pumpWidget(testApp(EditableStringPrefs(
         prefs,
         title: title,
@@ -74,9 +71,27 @@ void main() {
       expect(prefs.getValue(), "update");
     });
 
-    testWidgets('allows editing long value', (tester) async {
-      const title = "Title";
+    testWidgets('removes leading and trailing whitespace', (tester) async {
+      await tester.pumpWidget(testApp(EditableStringPrefs(
+        prefs,
+        title: title,
+      )));
 
+      await tester.tap(find.byKey(editKey));
+
+      await tester.pump();
+
+      final field = find.byKey(Key("formField"));
+      final submit = find.byKey(Key("ok"));
+
+      await tester.enterText(field, " update\t");
+
+      await tester.tap(submit);
+
+      expect(prefs.getValue(), "update");
+    });
+
+    testWidgets('allows editing long value', (tester) async {
       prefs.setValue("value" * 100);
 
       await tester.pumpWidget(testApp(EditableStringPrefs(
@@ -90,8 +105,6 @@ void main() {
     });
 
     testWidgets('allows setting default value', (tester) async {
-      const title = "Title";
-
       await tester.pumpWidget(testApp(EditableStringPrefs(
         prefs,
         title: title,
@@ -116,8 +129,6 @@ void main() {
     });
 
     testWidgets('handles multiple default values', (tester) async {
-      const title = "Title";
-
       await tester.pumpWidget(testApp(EditableStringPrefs(
         prefs,
         title: title,
@@ -140,8 +151,6 @@ void main() {
 
     testWidgets('ignores setting default value when pressing cancel',
         (tester) async {
-      const title = "Title";
-
       await tester.pumpWidget(testApp(EditableStringPrefs(
         prefs,
         title: title,
@@ -162,8 +171,6 @@ void main() {
     });
 
     testWidgets('ignores edit on pressing cancel', (tester) async {
-      const title = "Title";
-
       await tester.pumpWidget(testApp(EditableStringPrefs(
         prefs,
         title: title,

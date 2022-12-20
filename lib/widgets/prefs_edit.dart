@@ -204,6 +204,7 @@ class _EditableStringPrefsState extends State<EditableStringPrefs> {
   }
 
   void update(String newValue) {
+    newValue = newValue.trim();
     this.preference.setValue(newValue);
     setState(() {
       this.value = newValue;
