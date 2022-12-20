@@ -71,7 +71,22 @@ void main() {
 
       await tester.tap(submit);
 
-      assert(prefs.getValue() == "update");
+      expect(prefs.getValue(), "update");
+    });
+
+    testWidgets('allows editing long value', (tester) async {
+      const title = "Title";
+
+      prefs.setValue("value" * 100);
+
+      await tester.pumpWidget(testApp(EditableStringPrefs(
+        prefs,
+        title: title,
+      )));
+
+      var editButton = find.byKey(editKey).hitTestable();
+
+      expect(editButton, findsOneWidget);
     });
 
     testWidgets('allows setting default value', (tester) async {
@@ -93,11 +108,11 @@ void main() {
 
       final field = find.byKey(Key("formField"));
       TextFormField entry = tester.firstWidget(field);
-      assert(entry.controller?.value.text == "default");
+      expect(entry.controller?.value.text, "default");
 
       await tester.tap(submit);
 
-      assert(prefs.getValue() == "default");
+      expect(prefs.getValue(), "default");
     });
 
     testWidgets('handles multiple default values', (tester) async {
@@ -120,7 +135,7 @@ void main() {
 
       await tester.tap(submit);
 
-      assert(prefs.getValue() == "default2");
+      expect(prefs.getValue(), "default2");
     });
 
     testWidgets('ignores setting default value when pressing cancel',
@@ -143,7 +158,7 @@ void main() {
 
       await tester.tap(cancel);
 
-      assert(prefs.getValue() == originalValue);
+      expect(prefs.getValue(), originalValue);
     });
 
     testWidgets('ignores edit on pressing cancel', (tester) async {
@@ -165,7 +180,7 @@ void main() {
 
       await tester.tap(cancel);
 
-      assert(prefs.getValue() == originalValue);
+      expect(prefs.getValue(), originalValue);
     });
   });
 }

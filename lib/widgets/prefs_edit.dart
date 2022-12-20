@@ -174,11 +174,17 @@ class _EditableStringPrefsState extends State<EditableStringPrefs> {
             ),
             Row(
               children: [
-                Text(
-                  this.value,
-                  key: Key("entryValue"),
+                Flexible(
+                  fit: FlexFit.tight,
+                  flex: 1,
+                  child: Text(
+                    this.value,
+                    key: Key("entryValue"),
+                    overflow: TextOverflow.fade,
+                    maxLines: 1,
+                    softWrap: false,
+                  ),
                 ),
-                Spacer(flex: 1),
                 Button(
                   key: Key("entryEditButton"),
                   width: this.editButtonWidth,
