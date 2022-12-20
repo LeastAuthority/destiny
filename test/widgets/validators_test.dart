@@ -41,10 +41,15 @@ void main() {
 
       expect(result, null);
     });
-    test('fail invalid URI', () {
+    test('fail invalid scheme', () {
       final result = uriStringValidator("foo");
 
       expect(result, "<scheme> should be one of ws, wss, tcp");
+    });
+    test('fail invalid port', () {
+      final result = uriStringValidator("wss://foo:bar");
+
+      expect(result, "Invalid port");
     });
   });
 }
