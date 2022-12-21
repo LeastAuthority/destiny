@@ -26,8 +26,9 @@ Supported platforms
 - [x] Linux (amd64)
 - [x] Windows
 - [x] macOS
-- [x] Android
+- [x] Android (Google Play & F-Droid)
 - [x] iOS
+
 
 ## Usage
 
@@ -37,7 +38,12 @@ You can find detailed instructions on how to install applications on various [pl
 
 [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [macOS](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg) files can be downloaded from the latest [release](https://github.com/LeastAuthority/destiny/releases/latest).
 
-Android is available in (Google Play store)[https://play.google.com/store/apps/details?id=com.leastauthority.destiny]. Alternatively, app can be downloaded directly from release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk) and installed manually.
+Available on external stores:
+
+[<img src="assets/images/google-play-store-label.png" height="40" alt="Google Play store">](https://play.google.com/store/apps/details?id=com.leastauthority.destiny)
+[<img src="assets/images/f-droid-store-label.png" height="40" alt="F-Droid  store">](https://f-droid.org/en/packages/com.leastauthority.destiny/)
+
+Alternatively, apps can be downloaded directly from Github release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk) and installed manually.
 
 
 ### Verification

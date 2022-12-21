@@ -3,9 +3,15 @@
 ## Android 
 ### Via Google Play Store (*recommended*)
 1. Open Play Store app
-2. Search for an app with the name *Destiny*
+2. Search for an app with the name *Destiny Secure File Transfer*
    or open a direct link to the [Play store](https://play.google.com/store/apps/details?id=com.leastauthority.destiny).
 3. Press Install
+
+### Via F-Droid Store (*privacy friendly*)
+1. Open F-Droid Store app or if you don't have, go to (F-Droid.org)[https://f-droid.org/] to install it
+2. Search for an app with the name *Destiny*
+   or open a direct link to the [F-Droid store](https://f-droid.org/en/packages/com.leastauthority.destiny/).
+3. Press Download APK
 
 ### Manual APK file install 
 1. Download [**destiny_android.apk**](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk)
