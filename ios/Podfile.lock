@@ -87,7 +87,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  dart_wormhole_william: aa34cc6c6805f0a5f0dd082f8a886ae51487bc5f
+  dart_wormhole_william: a270e984f928b2f98692a275a1a01e315c666a1c
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95
