@@ -1,5 +1,4 @@
 //screens titles
-import 'package:dart_wormhole_william/client/native_client.dart';
 
 const String HOME = "Home";
 const String SEND = "Send";
@@ -40,9 +39,11 @@ const String SELECT_A_FOLDER = 'Select Folder';
 const String SEND_A_FILE = 'Send a file';
 const String NEXT = 'Next';
 const String CANCEL = 'Cancel';
+const String OK = 'OK';
 const String COPY = 'Copy';
 const String BACK = 'Back';
 const String DONE = 'Done';
+const String EDIT = 'Edit';
 const String FILE_RECEIVED = 'File received';
 const String TRANSFER_CANCELLED = 'Transfer cancelled';
 const String PLEASE_WAIT = 'Please wait...';
@@ -182,12 +183,12 @@ const String ANDROID_DOWNLOADS_FOLDER_PATH = '/storage/emulated/0/Download';
 
 const String WINDOW_TITLE = "Destiny";
 
-const String APP_ID = "AppID:";
-const String TRANSIT_RELAY = "Transit Relay URL:";
-const String MAILBOX_URL = "Mailbox URL:";
+const String APP_ID = "AppID";
+const String TRANSIT_RELAY = "Transit Relay URL";
+const String MAILBOX_URL = "Mailbox URL";
 const String ENV_SETTINGS = 'Environment Settings:';
-const String VERSION = 'Version:';
-const String DEFAULT_SAVE_DESTINATION = 'Default save destination:';
+const String VERSION = 'Version';
+const String DEFAULT_SAVE_DESTINATION = 'Default save destination';
 const String FEEDBACK = 'Feedback';
 const String FAQ = 'FAQ';
 const String PRIVACY = 'Privacy Policy';
@@ -217,24 +218,3 @@ const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =
     "The transfer was cancelled or interrupted";
 const String ERR_INTERRUPTION_CANCELLATION_SENDER =
     "The transfer was cancelled or interrupted";
-
-final Config magicWormholeIO = Config(
-  rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
-  transitRelayUrl: "tcp://transit.magic-wormhole.io:4001",
-);
-
-final Config leastAuthority = Config(
-  rendezvousUrl: "wss://mailbox.mw.leastauthority.com/v1",
-  transitRelayUrl: "tcp://relay.mw.leastauthority.com:4001",
-  appId: "lothar.com/wormhole/text-or-file-xfer",
-);
-
-final Config stageLeastAuthority = Config(
-  rendezvousUrl: "wss://mailbox.stage.mw.leastauthority.com/v1",
-  transitRelayUrl: "tcp://relay.stage.mw.leastauthority.com:4001",
-  appId: "lothar.com/wormhole/text-or-file-xfer",
-);
-
-final Config local = Config(
-    rendezvousUrl: "ws://localhost:4000/v1",
-    transitRelayUrl: "tcp://localhost:4001");

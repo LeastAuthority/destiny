@@ -1,8 +1,12 @@
 import 'dart:io' as io;
+import 'dart:io';
 
 import 'package:dart_wormhole_william/client/file.dart';
 import 'package:file_picker/file_picker.dart' as file_picker_plugin;
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '../../constants/app_constants.dart';
 
 abstract class FilePicker {
   Future<File> showSelectFile();
@@ -153,4 +157,32 @@ FilePicker getFilePicker() {
 
 FilePicker getMediaPicker() {
   return _MediaPicker();
+  
+Future<String> getDownloadPath() async {
+  Directory? directory;
+  try {
+    if (Platform.isIOS) {
+      directory = await getApplicationDocumentsDirectory();
+    } else if (Platform.isAndroid) {
+      directory = Directory(ANDROID_DOWNLOADS_FOLDER_PATH);
+      if (!await directory.exists()) {
+        directory = await getExternalStorageDirectory();
+      }
+    } else {
+      directory = await getDownloadsDirectory();
+    }
+  } catch (err, stack) {
+    print("Cannot get download folder path");
+  }
+  return directory!.path;
+}
+
+Future<PathConfig> getPathConfig() async {
+  return PathConfig(await getDownloadPath());
+}
+
+class PathConfig {
+  final String downloadPath;
+
+  PathConfig(this.downloadPath);
 }

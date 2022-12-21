@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../constants/app_constants.dart';
 
 class BottomBarTap extends StatelessWidget {
@@ -18,18 +19,17 @@ class BottomBarTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     Decoration getTapBottomBorder(String screen) {
       if (path == screen)
         return BoxDecoration(
           border: Border(
-            bottom:
-                BorderSide(width: 6.0, color: Theme.of(context).primaryColor),
+            bottom: BorderSide(width: 6.0, color: theme.primaryColor),
           ),
         );
       return BoxDecoration(
         border: Border(
-          bottom: BorderSide(
-              width: 6.0, color: Theme.of(context).bottomAppBarTheme.color!),
+          bottom: BorderSide(width: 6.0, color: theme.bottomAppBarTheme.color!),
         ),
       );
     }
@@ -49,6 +49,9 @@ class BottomBarTap extends StatelessWidget {
                       route,
                     );
                   },
+                  style: theme.textButtonTheme.style?.copyWith(
+                      backgroundColor: MaterialStateProperty.all(
+                          theme.bottomAppBarTheme.color)),
                   child: Column(
                     children: [
                       Image.asset(
@@ -58,7 +61,7 @@ class BottomBarTap extends StatelessWidget {
                       ),
                       Text(
                         label,
-                        style: Theme.of(context).textTheme.subtitle2,
+                        style: theme.textTheme.subtitle2,
                       )
                     ],
                   )),
