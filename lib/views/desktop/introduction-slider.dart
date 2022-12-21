@@ -1,7 +1,6 @@
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
 import 'package:destiny/views/desktop/send/send.dart';
-import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/scrollbar_behavior_enum.dart';
@@ -9,17 +8,15 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
-  final Config config;
-  IntroScreen(this.config);
+  IntroScreen();
 
   @override
-  IntroScreenState createState() => new IntroScreenState(config);
+  IntroScreenState createState() => new IntroScreenState();
 }
 
 // ------------------ Custom config ------------------
 class IntroScreenState extends State<IntroScreen> {
-  final Config config;
-  IntroScreenState(this.config);
+  IntroScreenState();
 
   List<Slide> slides = [];
 
@@ -76,14 +73,6 @@ class IntroScreenState extends State<IntroScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SendScreen()),
-    );
-  }
-
-  ButtonStyle myButtonStyle() {
-    return ButtonStyle(
-      shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
-      backgroundColor: MaterialStateProperty.all<Color>(Color(0x33F3B4BA)),
-      overlayColor: MaterialStateProperty.all<Color>(Color(0x33FFA8B0)),
     );
   }
 

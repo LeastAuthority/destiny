@@ -7,6 +7,7 @@ class NavbarTap extends StatelessWidget {
   final String title;
   final String icon;
   final CrossAxisAlignment alignment;
+
   NavbarTap(
       {Key? key,
       required this.route,
@@ -27,33 +28,37 @@ class NavbarTap extends StatelessWidget {
             crossAxisAlignment: alignment,
             children: [
               TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      route,
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        icon,
-                        width: 45.0,
-                        height: 25.0,
-                      ),
-                      Text(title, style: Theme.of(context).textTheme.headline4),
-                      route == currentRoute
-                          ? Container(
-                              height: 2.0,
-                              width: 50.0,
-                              margin: EdgeInsets.only(top: 4.0),
-                              color: Theme.of(context).colorScheme.secondary)
-                          : Container(
-                              width: 50.0,
-                              height: 2.0,
-                              margin: EdgeInsets.only(top: 4.0),
-                            )
-                    ],
-                  )),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    route,
+                  );
+                },
+                child: Column(
+                  children: [
+                    Image.asset(
+                      icon,
+                      width: 45.0,
+                      height: 25.0,
+                    ),
+                    Text(title, style: Theme.of(context).textTheme.headline4),
+                    route == currentRoute
+                        ? Container(
+                            height: 2.0,
+                            width: 50.0,
+                            margin: EdgeInsets.only(top: 4.0),
+                            color: Theme.of(context).colorScheme.secondary)
+                        : Container(
+                            width: 50.0,
+                            height: 2.0,
+                            margin: EdgeInsets.only(top: 4.0),
+                          )
+                  ],
+                ),
+                style: Theme.of(context).textButtonTheme.style?.copyWith(
+                    backgroundColor:
+                        MaterialStateProperty.all(Color.fromARGB(0, 0, 0, 0))),
+              ),
             ],
           ),
         ));
