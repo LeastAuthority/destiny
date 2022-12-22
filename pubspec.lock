@@ -162,13 +162,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0"
-  console:
-    dependency: transitive
-    description:
-      name: console
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.1.0"
   cross_file:
     dependency: transitive
     description:
@@ -196,7 +189,6 @@ packages:
       path: dart_wormhole_william
       relative: true
     source: path
-    version: "0.1.1"
     version: "0.1.1"
   desktop_drop:
     dependency: "direct main"
@@ -234,7 +226,6 @@ packages:
       name: ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
     version: "2.0.1"
   file:
     dependency: transitive
@@ -443,7 +434,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.7.0"
-    version: "3.7.0"
   nested:
     dependency: transitive
     description:
@@ -548,7 +538,6 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.3"
     version: "2.1.3"
   permission_handler:
     dependency: "direct main"

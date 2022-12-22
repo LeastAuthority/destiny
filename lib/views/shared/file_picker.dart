@@ -157,7 +157,8 @@ FilePicker getFilePicker() {
 
 FilePicker getMediaPicker() {
   return _MediaPicker();
-  
+}
+
 Future<String> getDownloadPath() async {
   Directory? directory;
   try {
