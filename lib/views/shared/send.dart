@@ -10,6 +10,7 @@ import 'package:destiny/views/shared/file_picker.dart';
 import 'package:destiny/views/shared/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wakelock/wakelock.dart';
 
 import '../../main.dart';
 import '../../settings.dart';
@@ -192,14 +193,27 @@ class SendSharedState extends ChangeNotifier {
         return selectAFileUI();
 
       case SendScreenStates.FileSent:
+        // Disable Android and iOS screens if success
+        if (Platform.isAndroid || Platform.isIOS) {
+          Wakelock.disable();
+        }
+        Wakelock.disable();
         return sendingDone();
 
       case SendScreenStates.SendError:
+        // Disable Android and iOS screens if failure
+        if (Platform.isAndroid || Platform.isIOS) {
+          Wakelock.disable();
+        }
         return sendingError();
       case SendScreenStates.FileSending:
         return sendingProgress();
       case SendScreenStates.CodeGenerating:
       case SendScreenStates.CodeGenerated:
+        // Keep Android and iOS screens awake after code generation till success or failure
+        if (Platform.isAndroid || Platform.isIOS) {
+          Wakelock.enable();
+        }
         return generateCodeUI();
     }
   }
