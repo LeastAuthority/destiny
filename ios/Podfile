@@ -25,22 +25,23 @@ end
 
 require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
 
-flutter_ios_podfile_setup
 
-#target 'Runner' do
-use_frameworks!
-use_modular_headers!
+target 'Runner' do
+  flutter_ios_podfile_setup
 
-flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
-#end
+  use_frameworks!
+  use_modular_headers!
 
-target 'Runner'
-post_install do |installer|
-  installer.pods_project.build_configurations.each do |config|
-    config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-    config.build_settings["STRIP_STYLE"] = "non-global"
-  end
-  installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      # config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = ""
+      config.build_settings["STRIP_STYLE"] = "non-global"
+    end
+
+    installer.pods_project.targets.each do |target|
+      flutter_additional_ios_build_settings(target)
+    end
   end
 end
