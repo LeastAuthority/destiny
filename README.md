@@ -63,7 +63,7 @@ git clone --recurse-submodules git@github.com:LeastAuthority/destiny.git
 
 ### Dependencies
 
-- Go >= 1.15
+- Go >= 1.19
 - Flutter >= 3.0.0
 - Android SDK for Android builds (>= SDK 24)
 
@@ -90,6 +90,8 @@ Builds for local instances:
 ```bash
 flutter build linux -t lib/main_local.dart
 ```
+
+Checkout detail instructions for [building](https://github.com/LeastAuthority/destiny/blob/main/doc/building.md).
 
 Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
 

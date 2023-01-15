@@ -25,7 +25,10 @@ Note: Google Play store requires unique or incremental build-number for every up
 
 ## iOS bundle upload to App Store
 
-TBD
+To build for production, use command:
+```bash
+flutter build ipa --build-name=<version> --dart-define version=v<version> -t lib/main_la.dart --release
+```
 
 Prerequisite: Apple Developer account is mandatory
 
