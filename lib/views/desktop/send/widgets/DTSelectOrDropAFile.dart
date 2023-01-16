@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import '../../../../constants/app_constants.dart';
 import 'DTDropAFile.dart';
 
+// ignore: must_be_immutable
 class DTSelectOrDropAFile extends StatefulWidget {
   final Future<void> Function() onFileSelected;
   final Future<void> Function(f.File) onFileDropped;
