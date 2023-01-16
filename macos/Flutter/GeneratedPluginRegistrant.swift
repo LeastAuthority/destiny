@@ -8,7 +8,7 @@ import Foundation
 import dart_wormhole_william
 import desktop_drop
 import path_provider_macos
-import shared_preferences_macos
+import shared_preferences_foundation
 import url_launcher_macos
 import window_size
 
