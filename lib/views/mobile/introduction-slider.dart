@@ -79,7 +79,7 @@ class IntroScreenState extends State<IntroScreen> {
           slides: this.slides,
           showSkipBtn: false,
           showNextBtn: false,
-          termsLink: TERMS_LINK,
+          termsLink: termsLink,
           showPrevBtn: false,
           showDoneBtn: false,
           onDonePress: this.onDonePress,

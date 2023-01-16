@@ -26,19 +26,19 @@ class Links extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        getLink(FEEDBACK, FEEDBACK_LINK),
+        getLink(FEEDBACK, feedbackLink),
         SizedBox(
           width: 24.0,
         ),
-        getLink(FAQ, FAQ_LINK),
+        getLink(FAQ, fagLink),
         SizedBox(
           width: 24.0,
         ),
-        getLink(PRIVACY, PRIVACY_LINK),
+        getLink(PRIVACY, privacyLink),
         SizedBox(
           width: 24.0,
         ),
-        getLink(TERMS, TERMS_LINK),
+        getLink(TERMS, termsLink),
       ],
     );
   }

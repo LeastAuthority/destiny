@@ -89,6 +89,11 @@ Builds for local instances:
 flutter build linux -t lib/main_local.dart
 ```
 
+If flutter is not used for web application, worth to set:
+```bash
+flutter config --no-enable-web
+```
+
 Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
 
 ### Starting the wormhole services locally
