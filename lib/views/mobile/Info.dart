@@ -42,9 +42,6 @@ class _InfoState extends State<Info> {
 
   @override
   Widget build(BuildContext context) {
-    final headingStyle =
-        Theme.of(context).textTheme.headline6?.copyWith(fontFamily: MONTSERRAT);
-
     return Scaffold(
         appBar: CustomAppBar(
           title: INFO,
