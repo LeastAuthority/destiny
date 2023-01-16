@@ -18,7 +18,13 @@ class Links extends StatelessWidget {
               fontSize: fontSize,
             )),
         onTap: () async {
-          launch(url);
+          // parse url string and convert to Uri
+          try {
+            var uri = Uri.parse(url);
+            launchUrl(uri);
+          } catch (e) {
+            print("Failed to parse url: $e");
+          }
         },
       );
     }
