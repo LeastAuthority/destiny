@@ -47,7 +47,7 @@ class DTButtonWithIcon extends StatelessWidget {
               }
             },
             style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).scaffoldBackgroundColor,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               minimumSize: Size.zero,
               maximumSize: Size.zero,
               padding: EdgeInsets.zero,
