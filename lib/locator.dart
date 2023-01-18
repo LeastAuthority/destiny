@@ -7,20 +7,24 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';
 
 void register(GetIt getIt, Config defaults) {
-  getIt.registerSingletonAsync(() => StreamingSharedPreferences.instance);
+  if (!GetIt.instance.isRegistered<StreamingSharedPreferences>()) {
+    getIt.registerSingletonAsync(() => StreamingSharedPreferences.instance);
+  }
+  if (!GetIt.instance.isRegistered<PackageInfo>()) {
+    getIt.registerSingletonAsync(() => PackageInfo.fromPlatform());
+    getIt.registerSingletonWithDependencies(
+      () => Version(getIt<PackageInfo>()),
+      dependsOn: [PackageInfo],
+    );
+  }
 
-  getIt.registerSingletonAsync(() => PackageInfo.fromPlatform());
+  if (!GetIt.instance.isRegistered<PathConfig>()) {
+    getIt.registerSingletonAsync(() => getPathConfig());
 
-  getIt.registerSingletonAsync(() => getPathConfig());
-
-  getIt.registerSingletonWithDependencies(
-    () => AppSettings(
-        getIt<StreamingSharedPreferences>(), defaults, getIt<PathConfig>()),
-    dependsOn: [StreamingSharedPreferences, PathConfig],
-  );
-
-  getIt.registerSingletonWithDependencies(
-    () => Version(getIt<PackageInfo>()),
-    dependsOn: [PackageInfo],
-  );
+    getIt.registerSingletonWithDependencies(
+      () => AppSettings(
+          getIt<StreamingSharedPreferences>(), defaults, getIt<PathConfig>()),
+      dependsOn: [StreamingSharedPreferences, PathConfig],
+    );
+  }
 }

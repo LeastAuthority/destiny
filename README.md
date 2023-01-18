@@ -91,6 +91,19 @@ flutter build linux -t lib/main_local.dart
 
 Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
 
+### Run integration test
+
+Simple run integration test file:
+```bash
+flutter test integration_test/simple_file_transfer_test.dart
+```
+
+For Android emulator:
+```bash
+flutter driver --driver=integration_test/test_driver.dart --target=integration_test/simple_file_transfer_test.dart
+```
+Additional parameters: -d <device_id>
+
 ### Starting the wormhole services locally
 
 ```bash
