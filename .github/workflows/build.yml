@@ -35,7 +35,7 @@ jobs:
       # TODO remove the || true when this should be enforced
       # Right now it is just informational
       - name: "Lint"
-        run: "flutter analyze || true"
+        run: "flutter analyze"
 
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
