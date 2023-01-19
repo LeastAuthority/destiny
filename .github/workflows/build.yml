@@ -32,8 +32,6 @@ jobs:
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
 
-      # TODO remove the || true when this should be enforced
-      # Right now it is just informational
       - name: "Lint"
         run: "flutter analyze"
 
@@ -85,10 +83,8 @@ jobs:
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
 
-      # TODO remove the || true when this should be enforced
-      # Right now it is just informational
       - name: "Lint"
-        run: "flutter analyze || true"
+        run: "flutter analyze"
 
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
@@ -165,10 +161,8 @@ jobs:
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
 
-      # TODO remove the || true when this should be enforced
-      # Right now it is just informational
       - name: "Lint"
-        run: "flutter analyze || true"
+        run: "flutter analyze"
 
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
@@ -225,10 +219,8 @@ jobs:
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
 
-      # TODO remove the || true when this should be enforced
-      # Right now it is just informational
       - name: "Lint"
-        run: "flutter analyze || true"
+        run: "flutter analyze"
 
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
