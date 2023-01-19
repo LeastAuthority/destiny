@@ -1,6 +1,5 @@
 import 'package:dart_wormhole_william/client/native_client.dart';
 
-import 'constants/app_constants.dart';
 import 'main.dart';
 
 void main() {

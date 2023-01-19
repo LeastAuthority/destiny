@@ -92,7 +92,13 @@ Builds for local instances:
 flutter build linux -t lib/main_local.dart
 ```
 
+
 Checkout detail instructions for [building](https://github.com/LeastAuthority/destiny/blob/main/doc/building.md).
+
+If flutter is not used for web application, worth to set to avoid additional files generation and static analysis warnings:
+```bash
+flutter config --no-enable-web
+```
 
 Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
 

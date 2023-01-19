@@ -1,9 +1,5 @@
-import 'dart:ui';
-
-import 'package:destiny/config/theme/custom_theme.dart';
 import 'package:destiny/widgets/prefs_edit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:streaming_shared_preferences/streaming_shared_preferences.dart';

@@ -24,4 +24,5 @@ String? uriStringValidator(String? value) {
   if (!allowedSchemes.contains(uri.scheme)) {
     return "<scheme> should be one of ${allowedSchemes.join(", ")}";
   }
+  return null;
 }

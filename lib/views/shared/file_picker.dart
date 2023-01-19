@@ -172,7 +172,7 @@ Future<String> getDownloadPath() async {
     } else {
       directory = await getDownloadsDirectory();
     }
-  } catch (err, stack) {
+  } catch (err) {
     print("Cannot get download folder path");
   }
   return directory!.path;
