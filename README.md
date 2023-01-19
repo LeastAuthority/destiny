@@ -8,7 +8,7 @@
 
 Destiny is a secure file transfer application that allows people to transfer files without needing to reveal their identities to each other or the service provider. All files are end-to-end encrypted, meaning no one except the sender and the receiver can decrypt the contents. Users select a file on their device and then share the generated code with the intended recipient for safe delivery. No sign-up is needed.
 
-Key security features: 
+Key security features:
 
 - **Identity-less**: no need to disclose identity information (such as name, email address, or phone number) to be able to transfer files.
 - **End-to-end encryption**: files are end-to-end encrypted and only the sender and recipient can read them.
@@ -27,7 +27,8 @@ Supported platforms
 - [x] Windows
 - [x] macOS
 - [x] Android (Google Play & F-Droid)
-- [ ] iOS
+- [x] iOS
+
 
 ## Usage
 
@@ -42,12 +43,12 @@ Available on external stores:
 [<img src="assets/images/google-play-store-label.png" height="40" alt="Google Play store">](https://play.google.com/store/apps/details?id=com.leastauthority.destiny)
 [<img src="assets/images/f-droid-store-label.png" height="40" alt="F-Droid  store">](https://f-droid.org/en/packages/com.leastauthority.destiny/)
 
-Alternatively, apps can be downloaded directly from Github release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk) and installed manually.
+Alternatively, apps can be downloaded directly from GitHub release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk)](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk) and installed manually.
 
 
 ### Verification
 
-We recommend to [verify every downloaded file](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md) against the corresponding signature.
+We recommend [verifying every downloaded file](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md) against the corresponding signature.
 
 ### Please check our [**FAQ**](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md), [**Privacy Policy**](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md) and [**Terms & Conditions**](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md) to find more information before to using applications.
 
@@ -62,19 +63,20 @@ git clone --recurse-submodules git@github.com:LeastAuthority/destiny.git
 
 ### Dependencies
 
-- Go >= 1.15
+- Go >= 1.19
 - Flutter >= 3.0.0
 - Android SDK for Android builds (>= SDK 24)
 
 ### Unsigned release builds
 
-Builds for magic-wormhole.io:
+Builds for magic-wormhole.io by default:
 
 ```bash
 flutter build linux
 flutter build apk
 flutter build appbundle
 flutter build macos
+flutter build ipa
 ```
 
 Builds for Least Authority servers:
@@ -85,16 +87,21 @@ flutter build linux -t lib/main_la.dart
 
 Builds for local instances:
 
+
 ```bash
 flutter build linux -t lib/main_local.dart
 ```
 
-If flutter is not used for web application, worth to set:
+
+Checkout detail instructions for [building](https://github.com/LeastAuthority/destiny/blob/main/doc/building.md).
+
+If flutter is not used for web application, worth to set to avoid additional files generation and static analysis warnings:
 ```bash
 flutter config --no-enable-web
 ```
 
 Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
+
 
 ### Starting the wormhole services locally
 
@@ -108,4 +115,9 @@ docker-compose up -d
 so x86 emulators or devices are not supported.
 - MacOS M1 chip build is not supported.
 
+### Other configuration/ notes
 
+- To disable debug label on the app in the emulator, set debugShowCheckedModeBanner: false (two places)
+
+- iOS downloaded files are stored in app/Documents folder, which is displayed in Files App as a dedicated application folder. If Files doesn't display the application folder, try restart phone.
+Note, that if App is deleted, all downloaded files in the same App folder will be deleted too.

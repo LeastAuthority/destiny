@@ -27,7 +27,7 @@ class SendScreen extends StatelessWidget {
 
   Widget selectAFileUI() {
     return Consumer<SendSharedState>(builder: (context, state, _) {
-      return SelectAFileUI(state.handleSelectFile);
+      return SelectAFileUI(state.handleSelectFile, state.handleSelectMedia);
     });
   }
 
@@ -60,10 +60,15 @@ class SendScreen extends StatelessWidget {
         errorTitle: state.errorTitle,
         errorMessage: state.errorMessage,
         error: state.error,
-        actionText: SEND_A_FILE,
+        actionText: SELECT_A_FILE,
+        actionMedia: SELECT_A_MEDIA,
         onPressed: () {
           state.reset();
           state.handleSelectFile();
+        },
+        onPressedMedia: () {
+          state.reset();
+          state.handleSelectMedia();
         },
       );
     });

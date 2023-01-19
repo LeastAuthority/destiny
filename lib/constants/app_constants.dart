@@ -34,6 +34,7 @@ const String DOWNLOADED_TO = 'Downloaded to: ';
 const String APP_MUST_REMAIN_OPEN_UNTIL_THE_TRANSFER_IS_COMPLETE =
     'App must remain open until the transfer is complete.';
 const String SELECT_A_FILE = 'Select a File';
+const String SELECT_A_MEDIA = 'Select a Media';
 const String SELECT_A_FOLDER = 'Select Folder';
 const String SEND_A_FILE = 'Send a file';
 const String NEXT = 'Next';
@@ -144,6 +145,8 @@ const String SEND_SCREEN_BOTTOM_SPACE_PLACEHOLDER =
 const String SEND_SCREEN_CODE_GENERATION_UI = 'SEND_SCREEN_CODE_GENERATION_UI';
 const String SEND_SCREEN_SELECT_A_FILE_BUTTON =
     'SEND_SCREEN_SELECT_A_FILE_BUTTON';
+const String SEND_SCREEN_SELECT_A_MEDIA_BUTTON =
+    'SEND_SCREEN_SELECT_A_MEDIA_BUTTON';
 const String GENERATION_DESCRIPTION = 'Generation_Description';
 
 //-Receive screen
