@@ -186,6 +186,4 @@ class PathConfig {
   final String downloadPath;
 
   PathConfig(this.downloadPath);
-
 }
-
