@@ -22,9 +22,5 @@
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>
 	<string>12.0</string>
-	<key>UISupportsDocumentBrowser</key>
-	<string>yes</string>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<string>yes</string>
 </dict>
 </plist>
