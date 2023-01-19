@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Button extends StatelessWidget {
-  String? title;
-  Function handleSelectFile;
-  Widget? icon;
-  bool? disabled;
-  double? width;
-  double? height;
-  Color? bgColor;
+  final String? title;
+  final Function handleSelectFile;
+  final bool? disabled;
+  final double? width;
+  final double? height;
+  final Color? bgColor;
 
   Button(this.title, this.handleSelectFile, this.disabled, this.height,
       this.width, this.bgColor);

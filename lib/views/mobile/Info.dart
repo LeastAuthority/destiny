@@ -1,5 +1,4 @@
 import 'package:destiny/constants/app_constants.dart';
-import 'package:destiny/constants/asset_path.dart';
 import 'package:destiny/settings.dart';
 import 'package:destiny/widgets/prefs_edit.dart';
 import 'package:destiny/views/mobile/widgets/buttons/Button.dart';
@@ -42,9 +41,6 @@ class _InfoState extends State<Info> {
 
   @override
   Widget build(BuildContext context) {
-    final headingStyle =
-        Theme.of(context).textTheme.headline6?.copyWith(fontFamily: MONTSERRAT);
-
     return Scaffold(
         appBar: CustomAppBar(
           title: INFO,

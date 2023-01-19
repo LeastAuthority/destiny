@@ -33,7 +33,7 @@ class ButtonWithIcon extends StatelessWidget {
               }
             },
             style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).scaffoldBackgroundColor,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

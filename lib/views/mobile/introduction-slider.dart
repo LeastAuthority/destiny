@@ -1,7 +1,6 @@
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/constants/asset_path.dart';
 import 'package:destiny/views/mobile/send/send.dart';
-import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intro_slider/intro_slider.dart';
@@ -79,7 +78,7 @@ class IntroScreenState extends State<IntroScreen> {
           slides: this.slides,
           showSkipBtn: false,
           showNextBtn: false,
-          termsLink: TERMS_LINK,
+          termsLink: termsLink,
           showPrevBtn: false,
           showDoneBtn: false,
           onDonePress: this.onDonePress,

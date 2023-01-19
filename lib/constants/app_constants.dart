@@ -198,10 +198,10 @@ String projectLink(String path, {String? blob}) {
   return 'https://github.com/LeastAuthority/destiny/blob/$targetBlob/$path';
 }
 
-final String FEEDBACK_LINK = projectLink('FAQ.md#contact', blob: "main");
-final String FAQ_LINK = projectLink('FAQ.md', blob: "main");
-final String PRIVACY_LINK = projectLink('PRIVACY-POLICY.md', blob: "main");
-final String TERMS_LINK = projectLink('TERMS.md');
+final String feedbackLink = projectLink('FAQ.md#contact', blob: "main");
+final String fagLink = projectLink('FAQ.md', blob: "main");
+final String privacyLink = projectLink('PRIVACY-POLICY.md', blob: "main");
+final String termsLink = projectLink('TERMS.md');
 
 const String ERR_WRONG_CODE_RECEIVER = """Oops..   
 If you’re sure this is the right code: Either the sender is no longer connected, or the code was already used.

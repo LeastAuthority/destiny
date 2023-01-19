@@ -3,6 +3,7 @@ import 'package:destiny/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class Splash extends StatelessWidget {
   SharedPreferences? prefs;
   Future isItAppFirstLunch() async {
