@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:destiny/constants/app_constants.dart';
-import 'package:destiny/views/shared/file_picker.dart';
-import 'package:destiny/views/shared/progress.dart';
 import 'package:dart_wormhole_william/client/client.dart';
 import 'package:dart_wormhole_william/client/file.dart';
 import 'package:dart_wormhole_william/client/file.dart' as f;
 import 'package:dart_wormhole_william/client/native_client.dart';
+import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/views/shared/file_picker.dart';
+import 'package:destiny/views/shared/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../main.dart';
+import '../../settings.dart';
 
 enum SendScreenStates {
   CodeGenerating,
@@ -29,8 +32,8 @@ class SendSharedState extends ChangeNotifier {
 
   SendScreenStates currentState = SendScreenStates.Initial;
 
-  final Config config;
-  late final Client client = Client(config);
+  final appSettings = getIt<AppSettings>();
+
   CancelFunc cancelFunc = () {
     print("No cancel function assigned. Doing nothing");
   };
@@ -38,7 +41,8 @@ class SendSharedState extends ChangeNotifier {
   String? error;
   String? errorMessage;
   String? errorTitle;
-  SendSharedState(this.config) {
+
+  SendSharedState() {
     SendSharedState.shareFile.setMethodCallHandler((call) async {
       if (Platform.isAndroid) {
         await (call.arguments as String).androidUriToReadOnlyFile().then(send);
@@ -157,6 +161,7 @@ class SendSharedState extends ChangeNotifier {
       currentState = SendScreenStates.CodeGenerating;
     });
 
+    final client = createClient();
     return await client.sendFile(file, progress.progressHandler).then(
         (result) async {
       setState(() {
@@ -172,6 +177,8 @@ class SendSharedState extends ChangeNotifier {
       }, onError: defaultErrorHandler);
     }, onError: defaultErrorHandler);
   }
+
+  Client createClient() => Client(appSettings.config());
 
   Widget widgetByState(
       Widget Function() generateCodeUI,

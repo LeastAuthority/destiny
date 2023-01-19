@@ -9,17 +9,15 @@ import 'package:intro_slider/scrollbar_behavior_enum.dart';
 import 'package:intro_slider/slide_object.dart';
 
 class IntroScreen extends StatefulWidget {
-  final Config config;
-  IntroScreen(this.config);
+  IntroScreen();
 
   @override
-  IntroScreenState createState() => new IntroScreenState(config);
+  IntroScreenState createState() => new IntroScreenState();
 }
 
 // ------------------ Custom config ------------------
 class IntroScreenState extends State<IntroScreen> {
-  final Config config;
-  IntroScreenState(this.config);
+  IntroScreenState();
 
   List<Slide> slides = [];
 
@@ -67,14 +65,6 @@ class IntroScreenState extends State<IntroScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SendScreen()),
-    );
-  }
-
-  ButtonStyle myButtonStyle() {
-    return ButtonStyle(
-      shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
-      backgroundColor: MaterialStateProperty.all<Color>(Color(0x33F3B4BA)),
-      overlayColor: MaterialStateProperty.all<Color>(Color(0x33FFA8B0)),
     );
   }
 

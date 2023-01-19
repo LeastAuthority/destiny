@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../main.dart';
+import '../../settings.dart';
+
 enum ReceiveScreenStates {
   FileReceived,
   ReceiveError,
@@ -34,7 +37,6 @@ class ReceiveSharedState extends ChangeNotifier {
 
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
-  final Config config;
   late final String? defaultPathForPlatform;
   String? error;
   String? errorMessage;
@@ -44,7 +46,8 @@ class ReceiveSharedState extends ChangeNotifier {
   late String? currentDestinationPath = path;
 
   late final TextEditingController controller = new TextEditingController();
-  late final Client client = Client(config);
+
+  final appSettings = getIt<AppSettings>();
 
   void Function() failWith(String errorMessage) {
     return () {
@@ -93,7 +96,7 @@ class ReceiveSharedState extends ChangeNotifier {
     });
   }
 
-  ReceiveSharedState(this.config) {
+  ReceiveSharedState() {
     SharedPreferences.getInstance().then((prefs) {
       this.prefs = prefs;
     });
@@ -198,6 +201,8 @@ class ReceiveSharedState extends ChangeNotifier {
     this.setState(() {
       isRequestingConnection = true;
     });
+
+    final Client client = createClient();
     return client.recvFile(_code!, progress.progressHandler).then((result) {
       result.done.then((value) async {
         this.setState(() {
@@ -237,6 +242,8 @@ class ReceiveSharedState extends ChangeNotifier {
       return result;
     }, onError: defaultErrorHandler);
   }
+
+  Client createClient() => Client(appSettings.config());
 
   Future<File> _selectSaveDestinationAndroid(String initialFileName) async {
     final uri = await MethodChannel("destiny.android/save_as")
