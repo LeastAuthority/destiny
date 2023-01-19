@@ -218,9 +218,3 @@ const String ERR_INTERRUPTION_CANCELLATION_RECEIVER =
     "The transfer was cancelled or interrupted";
 const String ERR_INTERRUPTION_CANCELLATION_SENDER =
     "The transfer was cancelled or interrupted";
-  appId: "lothar.com/wormhole/text-or-file-xfer",
-);
-
-final Config stageLeastAuthority = Config(
-  rendezvousUrl: "wss://mailbox.stage.mw.leastauthority.com/v1",
-  transitRelayUrl: "tcp://relay.stage.mw.leastauthority.com:4001",
