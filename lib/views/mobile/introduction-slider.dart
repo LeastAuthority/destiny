@@ -73,8 +73,8 @@ class IntroScreenState extends State<IntroScreen> {
       designSize: Size(375, 590),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: () => MaterialApp(
-        home: new IntroSlider(
+      builder: () => Scaffold(
+        body: new IntroSlider(
           slides: this.slides,
           showSkipBtn: false,
           showNextBtn: false,
@@ -89,15 +89,6 @@ class IntroScreenState extends State<IntroScreen> {
           backgroundColorAllSlides: Colors.grey,
           verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
         ),
-        // this allows to disable debug label
-        debugShowCheckedModeBanner: true,
-        builder: (context, widget) {
-          ScreenUtil.setContext(context);
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: widget!,
-          );
-        },
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:destiny/config/routes/routes.dart';
-import 'package:destiny/config/theme/custom_theme.dart';
 import 'package:destiny/constants/app_constants.dart';
 import 'package:destiny/locator.dart';
 import 'package:destiny/main.dart';
@@ -10,21 +9,27 @@ import 'package:destiny/views/mobile/send/send.dart';
 import 'package:destiny/views/mobile/splash.dart';
 import 'package:destiny/views/mobile/widgets/custom-app-bar.dart';
 import 'package:destiny/views/mobile/widgets/custom-bottom-bar.dart';
-import 'package:destiny/views/shared/receive.dart';
-import 'package:destiny/views/shared/send.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
+import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'ui_support.dart';
 
-void main() {
-  Size mobileScreenSize = Size(375, 590);
+class FakePathProviderPlatform extends Fake
+    with MockPlatformInterfaceMixin
+    implements PathProviderPlatform {
+  @override
+  Future<String?> getDownloadsPath() async {
+    return "downloads";
+  }
+}
 
+void main() {
   setUpAll(() async {
+    PathProviderPlatform.instance = FakePathProviderPlatform();
     PackageInfo.setMockInitialValues(
         appName: "abc",
         packageName: "com.example.example",
@@ -40,38 +45,8 @@ void main() {
     await getIt.allReady();
   });
 
-  Widget getScreenUtilInit(
-      Widget? Function() screenBuilder, ThemeData theme, Size size) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (context) => SendSharedState()),
-          ChangeNotifierProvider(create: (context) => ReceiveSharedState())
-        ],
-        child: ScreenUtilInit(
-          designSize: size,
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: () => MaterialApp(
-            home: screenBuilder(),
-            builder: (context, widget) {
-              ScreenUtil.setContext(context);
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 0.5),
-                child: widget!,
-              );
-            },
-            theme: theme,
-          ),
-        ));
-  }
-
   testWidgets('Splash screen', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: ScreenUtilInit(
-            designSize: mobileScreenSize, builder: () => Splash()),
-      ),
-    );
+    await tester.pumpWidget(testAppBuild(() => Splash()));
     final splashScreenBody = find.byKey(Key(SPLASH_SCREEN_BODY));
     final splashScreenLoading = find.byKey(Key(SPLASH_SCREEN_LOADING));
     expect(splashScreenBody, findsOneWidget);
@@ -79,8 +54,7 @@ void main() {
   });
 
   testWidgets('Send screen', (WidgetTester tester) async {
-    await tester.pumpWidget(getScreenUtilInit(
-        () => SendScreen(), CustomTheme.darkThemeMobile, Size(375, 590)));
+    await tester.pumpWidget(testAppBuild(() => SendScreen()));
 
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
@@ -100,10 +74,9 @@ void main() {
     expect(sendScreenSelectAFileButton, findsOneWidget);
     // expect(sendScreenCodeGenerationUI, findsOneWidget);
   });
-  //
+
   testWidgets('Receive screen', (WidgetTester tester) async {
-    await tester.pumpWidget(getScreenUtilInit(
-        () => ReceiveScreen(), CustomTheme.darkThemeMobile, mobileScreenSize));
+    await tester.pumpWidget(testAppBuild(() => ReceiveScreen()));
     // Create the Finders.
     final bottomNav = find.byKey(Key(BOTTOM_NAV_BAR));
     final navbar = find.byKey(Key(CUSTOM_NAV_BAR));
@@ -122,8 +95,7 @@ void main() {
   });
 
   testWidgets('Settings screen', (WidgetTester tester) async {
-    await tester.pumpWidget(getScreenUtilInit(
-        () => Info(), CustomTheme.darkThemeMobile, mobileScreenSize));
+    await tester.pumpWidget(testAppBuild(() => Info()));
     final settingsScreenBody = find.byKey(Key(SETTINGS_SCREEN_BODY));
 
     expect(settingsScreenBody, findsOneWidget);
@@ -146,14 +118,13 @@ void main() {
   });
 
   testWidgets('Custom BottomBar', (WidgetTester tester) async {
-    await tester.pumpWidget(getScreenUtilInit(
-        () => Scaffold(
-                bottomNavigationBar: CustomBottomBar(
-              path: SEND_ROUTE,
-              key: Key(BOTTOM_NAV_BAR),
-            )),
-        CustomTheme.darkThemeMobile,
-        mobileScreenSize));
+    await tester.pumpWidget(testAppBuild(
+      () => Scaffold(
+          bottomNavigationBar: CustomBottomBar(
+        path: SEND_ROUTE,
+        key: Key(BOTTOM_NAV_BAR),
+      )),
+    ));
 
     final bottomBarBody = find.byKey(Key(BOTTOM_NAV_BAR_BODY));
     final bottomNavbarContainer = find.byKey(Key(BOTTOM_NAV_BAR_CONTAINER));
