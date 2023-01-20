@@ -38,7 +38,10 @@ jobs:
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
 
-      # We are building debug version APK which can be manually install, however it cannot be reused for upload to store 
+      - name: "Run tests"
+        run: "flutter test --coverage"
+
+      # We are building debug version APK which can be manually install, however it cannot be reused for upload to store
       - name: "Build debug apk"
         run: "flutter build apk lib/main_la.dart --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }} --debug"
 
@@ -88,6 +91,9 @@ jobs:
 
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
+
+      - name: "Run tests"
+        run: "flutter test --coverage"
 
       - name: "Enable linux builds"
         run: "flutter config --enable-linux-desktop"
@@ -167,6 +173,9 @@ jobs:
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
 
+      - name: "Run tests"
+        run: "flutter test --coverage"
+
       # TODO maybe this can be avoided by some project configuration,
       # but running it locally doesn't change any files either.
       - name: "Enable macos desktop builds"
@@ -227,6 +236,9 @@ jobs:
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
 
+      - name: "Run tests"
+        run: "flutter test --coverage"
+
       - name: "Build ios app (only for simulator)"
         run: |
           export GOROOT=`go env GOROOT` 
@@ -260,6 +272,9 @@ jobs:
 
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
+
+      - name: "Run tests"
+        run: "flutter test --coverage"
 
       - name: "Build windows"
         run: "flutter build windows lib/main_la.dart --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
