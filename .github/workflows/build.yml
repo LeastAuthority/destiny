@@ -262,7 +262,7 @@ jobs:
         run: "flutter format --set-exit-if-changed lib test"
 
       - name: "Build windows"
-        run: "flutter build windows lib/main_la.dart --dart-define version=${{ env.DESTINY_VERSION }}"
+        run: "flutter build windows lib/main_la.dart --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }}"
 
       - name: "Copy VC++ redistributables"
         run: |
