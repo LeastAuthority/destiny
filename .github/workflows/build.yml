@@ -33,7 +33,8 @@ jobs:
           # set fixed stable version, to avoid surprises, when flutter upgrades
           flutter-version: '3.3.10'
           channel: 'stable'
-        run: flutter --version
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
