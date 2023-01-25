@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - "main"
-      
+
 # https://docs.flutter.dev/development/tools/sdk/releases?tab=linux
 env:
   FLUTTER_VERSION: "3.3.10"
@@ -35,8 +35,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           # set fixed stable version, to avoid surprises, when flutter upgrades
-          flutter-version: $FLUTTER_VERSION
-          channel: $FLUTTER_BRANCH
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
         
       - run: flutter --version
 
@@ -92,8 +92,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           # set fixed stable version, to avoid surprises, when flutter upgrades
-          flutter-version: $FLUTTER_VERSION
-          channel: $FLUTTER_BRANCH
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
         
       - run: flutter --version
 
@@ -176,8 +176,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           # set fixed stable version, to avoid surprises, when flutter upgrades
-          flutter-version: $FLUTTER_VERSION
-          channel: $FLUTTER_BRANCH
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
         
       - run: flutter --version
 
@@ -240,8 +240,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           # set fixed stable version, to avoid surprises, when flutter upgrades
-          flutter-version: $FLUTTER_VERSION
-          channel: $FLUTTER_BRANCH
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
         
       - run: flutter --version
 
@@ -282,8 +282,8 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           # set fixed stable version, to avoid surprises, when flutter upgrades
-          flutter-version: $FLUTTER_VERSION
-          channel: $FLUTTER_BRANCH
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
         
       - run: flutter --version
 
