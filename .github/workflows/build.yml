@@ -84,8 +84,15 @@ jobs:
         run: echo DESTINY_VERSION=${{ github.head_ref }} >> $GITHUB_ENV
         if: ${{ github.ref_type != 'tag' }}
 
+      # https://docs.flutter.dev/development/tools/sdk/releases?tab=linux
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: '3.3.10'
+          channel: 'stable'
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -162,8 +169,15 @@ jobs:
         run: echo DESTINY_VERSION=${{ github.head_ref }} >> $GITHUB_ENV
         if: ${{ github.ref_type != 'tag' }}
 
+      # https://docs.flutter.dev/development/tools/sdk/releases?tab=linux
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: '3.3.10'
+          channel: 'stable'
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -220,8 +234,15 @@ jobs:
         run: echo DESTINY_VERSION=${{ github.head_ref }} >> $GITHUB_ENV
         if: ${{ github.ref_type != 'tag' }}
 
+      # https://docs.flutter.dev/development/tools/sdk/releases?tab=linux
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: '3.3.10'
+          channel: 'stable'
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -256,8 +277,15 @@ jobs:
         run: 'echo "DESTINY_VERSION=${{ github.head_ref }}" >> $env:GITHUB_ENV'
         if: ${{ github.ref_type != 'tag' }}
 
+      # https://docs.flutter.dev/development/tools/sdk/releases?tab=linux
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: '3.3.10'
+          channel: 'stable'
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
