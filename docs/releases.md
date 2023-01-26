@@ -70,7 +70,7 @@ gpg2 -b -u 7E1D9E7CEB26F3EA0E746B6031634243DCDBDED7 destiny-v0.24.1-src.tar.gz
 
 ## Verifying a download
 
-Import all public keys under `doc/signing_keys`
+Import all public keys under `docs/signing_keys`
 
 To verify a download, download the `.sig` file corresponding to your download
 and run `gpg2 --verify <path of the sig file>`

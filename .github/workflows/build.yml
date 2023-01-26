@@ -8,6 +8,11 @@ on:
     branches:
       - "main"
 
+# https://docs.flutter.dev/development/tools/sdk/releases?tab=linux
+env:
+  FLUTTER_VERSION: "3.3.10"
+  FLUTTER_BRANCH: "stable"
+
 jobs:
   android:
     runs-on: ubuntu-latest
@@ -27,7 +32,13 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -81,7 +92,13 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -162,7 +179,13 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -223,7 +246,13 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -262,7 +291,13 @@ jobs:
         if: ${{ github.ref_type != 'tag' }}
 
       - name: "Setup flutter"
-        uses: "subosito/flutter-action@v2.4.0"
+        uses: subosito/flutter-action@v2
+        with:
+          # set fixed stable version, to avoid surprises, when flutter upgrades
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_BRANCH }}
+        
+      - run: flutter --version
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
