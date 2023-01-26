@@ -42,7 +42,7 @@ Available on external stores:
 
 [<img src="assets/images/google-play-store-label.png" height="40" alt="Google Play store">](https://play.google.com/store/apps/details?id=com.leastauthority.destiny)
 [<img src="assets/images/f-droid-store-label.png" height="40" alt="F-Droid  store">](https://f-droid.org/en/packages/com.leastauthority.destiny/)
-[[<img src="assets/images/apple-store-label.png" height="40" alt="App store">](https://apps.apple.com/us/app/destiny-secure-file-transfer/id6444721954)
+[<img src="assets/images/apple-store-label.png" height="40" alt="App store">](https://apps.apple.com/us/app/destiny-secure-file-transfer/id6444721954)
 
 Alternatively, apps can be downloaded directly from GitHub release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk) and installed manually.
 
@@ -51,7 +51,7 @@ Alternatively, apps can be downloaded directly from GitHub release [assets](http
 
 We recommend [verifying every downloaded file](https://github.com/LeastAuthority/destiny/blob/main/docs/releases.md) against the corresponding signature.
 
-### Please check our [**FAQ**](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md), [**Privacy Policy**](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md) and [**Terms & Conditions**](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md) to find more information before to using applications.
+### Please check our [**FAQ**](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md), [**Privacy Policy**](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md) and [**Terms & Conditions**](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md) to find more information before using applications.
 
 
 ## Cloning
@@ -93,15 +93,14 @@ Builds for local instances:
 flutter build linux -t lib/main_local.dart
 ```
 
-
-Checkout detail instructions for [building](https://github.com/LeastAuthority/destiny/blob/main/docs/building.md).
+Checkout detailed instructions for [building](https://github.com/LeastAuthority/destiny/blob/main/docs/building.md).
 
 If flutter is not used for web application, worth to set to avoid additional files generation and static analysis warnings:
 ```bash
 flutter config --no-enable-web
 ```
 
-Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/docs/releases.md).
+Checkout detailed instructions on how to [sign](https://github.com/LeastAuthority/destiny/blob/main/docs/releases.md) releases](https://github.com/LeastAuthority/destiny/blob/main/docs/releases.md).
 
 
 ### Starting the wormhole services locally
@@ -120,8 +119,8 @@ so x86 emulators or devices are not supported.
 
 - To disable debug label on the app in the emulator, set debugShowCheckedModeBanner: false (two places)
 
-- iOS downloaded files are stored in app/Documents folder, which is displayed in Files App as a dedicated application folder. If Files doesn't display the application folder, try restart phone.
-Note, that if App is deleted, all downloaded files in the same App folder will be deleted too.
+- iOS downloaded files are stored in the app/Documents folder, which is displayed in Files App as a dedicated application folder. If Files doesn't display the application folder, try restarting the phone.
+Note, that if the App is deleted, all downloaded files in the same App folder will be deleted too.
 
 - Delete default settings:
   - for macOS: `defaults delete com.leastauthority.destiny`
