@@ -102,21 +102,11 @@ class ReceiveSharedState extends ChangeNotifier {
       this.prefs = prefs;
     });
 
-    if (dartIO.Platform.isAndroid) {
-      defaultPathForPlatform = ANDROID_DOWNLOADS_FOLDER_PATH;
-    } else if (dartIO.Platform.isIOS) {
-      getApplicationDocumentsDirectory().then((downloadsDir) {
-        setState(() {
-          defaultPathForPlatform = downloadsDir.path;
-        });
+    getDownloadPath().then((downloadPath) {
+      setState(() {
+        defaultPathForPlatform = downloadPath;
       });
-    } else {
-      getDownloadsDirectory().then((downloadsDir) {
-        setState(() {
-          defaultPathForPlatform = downloadsDir?.path;
-        });
-      });
-    }
+    });
   }
 
   late ProgressSharedState progress = ProgressSharedState(setState, () {
@@ -247,14 +237,18 @@ class ReceiveSharedState extends ChangeNotifier {
   Client createClient() => Client(appSettings.config());
 
   Future<File> _selectSaveDestinationAndroid(String initialFileName) async {
-    final uri = await MethodChannel("destiny.android/save_as")
-        .invokeMethod<String>(
-            "save_as", <String, dynamic>{"filename": initialFileName});
+    try {
+      final uri = await MethodChannel("destiny.android/save_as")
+          .invokeMethod<String>(
+              "save_as", <String, dynamic>{"filename": initialFileName});
 
-    if (uri != null) {
-      return uri.androidUriToWriteOnlyFile();
-    } else {
-      return Future.error("uri from save as was null");
+      if (uri != null) {
+        return uri.androidUriToWriteOnlyFile();
+      } else {
+        return Future.error("uri from save as was null");
+      }
+    } catch (e) {
+      return Future.error(e);
     }
   }
 

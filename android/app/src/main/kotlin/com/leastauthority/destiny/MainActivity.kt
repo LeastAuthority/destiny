@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.UserManager
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -19,6 +20,7 @@ class MainActivity : FlutterActivity() {
     private val FILE_SELECTOR_CHANNEL_NAME = "destiny.android/file_selector"
     private val SHARE_FILE_CHANNEL_NAME = "destiny.androids/share_file"
     private val SAVE_AS_CHANNEL_NAME = "destiny.android/save_as"
+    private val USER_ID_CHANNEL_NAME = "destiny.android/user_id"
 
     private var SHARE_FILE_CHANNEL: MethodChannel? = null
 
@@ -42,6 +44,15 @@ class MainActivity : FlutterActivity() {
         if (intent?.action == Intent.ACTION_SEND) {
             sendFileFromIntent(intent);
         }
+    }
+
+    // Get emphmeral user id to be used in accessing a directory name
+    private fun getUserID(call: MethodCall, result: MethodChannel.Result) {
+        val userManager = getContext().getSystemService(UserManager::class.java)
+        
+        val ephemeralUserId = userManager!!.getSerialNumberForUser(android.os.Process.myUserHandle())
+        
+        result.success(ephemeralUserId);
     }
 
     private fun sendFileFromIntent(intent: Intent) {
@@ -93,6 +104,20 @@ class MainActivity : FlutterActivity() {
         ).setMethodCallHandler { call, result ->
             when (call.method) {
                 "save_as" -> saveAs(call, result)
+                else -> result.error(
+                    UNKNOWN_METHOD,
+                    "Unknown method called on save as channel: ${call.method}",
+                    ""
+                )
+            }
+        }
+
+        MethodChannel(
+            flutterEngine.dartExecutor.binaryMessenger, 
+            USER_ID_CHANNEL_NAME
+        ).setMethodCallHandler { call, result -> 
+            when (call.method) {
+                "getUserID" -> getUserID(call, result)
                 else -> result.error(
                     UNKNOWN_METHOD,
                     "Unknown method called on save as channel: ${call.method}",

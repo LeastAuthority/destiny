@@ -165,7 +165,19 @@ Future<String> getDownloadPath() async {
     if (Platform.isIOS) {
       directory = await getApplicationDocumentsDirectory();
     } else if (Platform.isAndroid) {
-      directory = Directory(ANDROID_DOWNLOADS_FOLDER_PATH);
+      const userData = const MethodChannel('destiny.android/user_id');
+      int userId = DEFAULT_ANDROID_USER;
+
+      // try determinate emphemeral user id, to select download folder for multiple users
+      try {
+        userId = await userData.invokeMethod("getUserID");
+        print("USER ID:" + userId.toString());
+      } on PlatformException catch (e) {
+        print(e);
+      }
+      directory = Directory(ANDROID_DOWNLOADS_PATH +
+          userId.toString() +
+          ANDROID_DOWNLOADS_FOLDER);
       if (!await directory.exists()) {
         directory = await getExternalStorageDirectory();
       }
