@@ -33,8 +33,6 @@ class SendSharedState extends ChangeNotifier {
 
   SendScreenStates currentState = SendScreenStates.Initial;
 
-  final appSettings = getIt<AppSettings>();
-
   CancelFunc cancelFunc = () {
     print("No cancel function assigned. Doing nothing");
   };
@@ -178,6 +176,8 @@ class SendSharedState extends ChangeNotifier {
       }, onError: defaultErrorHandler);
     }, onError: defaultErrorHandler);
   }
+
+  final appSettings = getIt<AppSettings>();
 
   Client createClient() => Client(appSettings.config());
 

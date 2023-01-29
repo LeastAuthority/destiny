@@ -19,18 +19,21 @@ import 'locator.dart';
 // This is our global ServiceLocator
 GetIt getIt = GetIt.instance;
 
-void startApp(Config c) {
+void startApp(Config c) async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   register(getIt, c);
+  // Wait for all preferences to be loaded. Getting UserID leads to a crash if
+  await getIt.allReady();
 
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowMinSize(const Size(900, 800));
     setWindowMaxSize(const Size(1600, 1200));
     setWindowFrame(Rect.fromLTWH(0, 0, 900, 800));
   }
+
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => SendSharedState()),
     ChangeNotifierProvider(create: (context) => ReceiveSharedState())

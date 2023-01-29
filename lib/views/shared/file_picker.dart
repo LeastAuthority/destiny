@@ -161,23 +161,23 @@ FilePicker getMediaPicker() {
 
 Future<String> getDownloadPath() async {
   Directory? directory;
+
   try {
     if (Platform.isIOS) {
       directory = await getApplicationDocumentsDirectory();
     } else if (Platform.isAndroid) {
-      const userData = const MethodChannel('destiny.android/user_id');
+      final userData = MethodChannel('destiny.android/user_id');
       int userId = DEFAULT_ANDROID_USER;
 
       // try determinate emphemeral user id, to select download folder for multiple users
-      try {
-        userId = await userData.invokeMethod("getUserID");
-        print("USER ID:" + userId.toString());
-      } on PlatformException catch (e) {
-        print(e);
-      }
+      userId = await userData.invokeMethod("getUserID");
+
       directory = Directory(ANDROID_DOWNLOADS_PATH +
           userId.toString() +
           ANDROID_DOWNLOADS_FOLDER);
+
+      print("Download path:" + directory.path);
+
       if (!await directory.exists()) {
         directory = await getExternalStorageDirectory();
       }
@@ -185,9 +185,10 @@ Future<String> getDownloadPath() async {
       directory = await getDownloadsDirectory();
     }
   } catch (err) {
-    print("Cannot get download folder path");
+    print("Cannot get download folder path" + err.toString());
   }
-  return directory!.path;
+  print("DIRECTORY:" + directory!.path);
+  return directory.path;
 }
 
 Future<PathConfig> getPathConfig() async {

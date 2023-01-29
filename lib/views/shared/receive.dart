@@ -237,18 +237,14 @@ class ReceiveSharedState extends ChangeNotifier {
   Client createClient() => Client(appSettings.config());
 
   Future<File> _selectSaveDestinationAndroid(String initialFileName) async {
-    try {
-      final uri = await MethodChannel("destiny.android/save_as")
-          .invokeMethod<String>(
-              "save_as", <String, dynamic>{"filename": initialFileName});
+    final uri = await MethodChannel("destiny.android/save_as")
+        .invokeMethod<String>(
+            "save_as", <String, dynamic>{"filename": initialFileName});
 
-      if (uri != null) {
-        return uri.androidUriToWriteOnlyFile();
-      } else {
-        return Future.error("uri from save as was null");
-      }
-    } catch (e) {
-      return Future.error(e);
+    if (uri != null) {
+      return uri.androidUriToWriteOnlyFile();
+    } else {
+      return Future.error("uri from save as was null");
     }
   }
 

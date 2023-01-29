@@ -51,7 +51,6 @@ class MainActivity : FlutterActivity() {
         val userManager = getContext().getSystemService(UserManager::class.java)
         
         val ephemeralUserId = userManager!!.getSerialNumberForUser(android.os.Process.myUserHandle())
-        
         result.success(ephemeralUserId);
     }
 
