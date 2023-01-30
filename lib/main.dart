@@ -53,15 +53,11 @@ class MyApp extends StatelessWidget {
 
   Widget onGenerateRoute() {
     return ScreenUtilInit(
-      designSize: (Platform.isAndroid || Platform.isIOS)
-          ? Size(375, 590)
-          : Size(1280, 800),
+      designSize: selectSize(),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => MaterialApp(
-        onGenerateRoute: (Platform.isAndroid || Platform.isIOS)
-            ? getMobileRoutes()
-            : getDesktopRoutes(),
+        onGenerateRoute: selectRoutes(),
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           WidgetsFlutterBinding.ensureInitialized();
@@ -87,4 +83,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return onGenerateRoute();
   }
+}
+
+Size selectSize() {
+  return (Platform.isAndroid || Platform.isIOS)
+      ? Size(375, 690)
+      : Size(1280, 800);
+}
+
+PageRouteBuilder? Function(RouteSettings p1) selectRoutes() {
+  return (Platform.isAndroid || Platform.isIOS)
+      ? getMobileRoutes()
+      : getDesktopRoutes();
 }
