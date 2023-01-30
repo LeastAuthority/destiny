@@ -176,8 +176,6 @@ Future<String> getDownloadPath() async {
           userId.toString() +
           ANDROID_DOWNLOADS_FOLDER);
 
-      print("Download path:" + directory.path);
-
       if (!await directory.exists()) {
         directory = await getExternalStorageDirectory();
       }
@@ -187,8 +185,7 @@ Future<String> getDownloadPath() async {
   } catch (err) {
     print("Cannot get download folder path" + err.toString());
   }
-  print("DIRECTORY:" + directory!.path);
-  return directory.path;
+  return directory!.path;
 }
 
 Future<PathConfig> getPathConfig() async {
