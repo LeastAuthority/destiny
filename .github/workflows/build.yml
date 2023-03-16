@@ -43,7 +43,7 @@ jobs:
         
       - name: "Flutter info"
         run: |
-          flutter --doctor
+          flutter doctor
           which flutter
 
       - name: "Fetch flutter dependencies"
