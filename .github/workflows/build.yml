@@ -43,6 +43,10 @@ jobs:
         
       - run: flutter --version
 
+      - run: |
+          flutter --doctor
+          which flutter
+
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
 
