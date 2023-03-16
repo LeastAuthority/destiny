@@ -41,9 +41,8 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_BRANCH }}
         
-      - run: flutter --version
-
-      - run: |
+      - name: "Flutter info"
+        run: |
           flutter --doctor
           which flutter
 
