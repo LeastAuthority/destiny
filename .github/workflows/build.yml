@@ -42,9 +42,7 @@ jobs:
           channel: ${{ env.FLUTTER_BRANCH }}
         
       - name: "Flutter info"
-        run: |
-          flutter doctor
-          which flutter
+        run: flutter doctor
 
       - name: "Fetch flutter dependencies"
         run: "flutter pub get"
@@ -58,15 +56,15 @@ jobs:
       - name: "Run tests"
         run: "flutter test --machine --coverage | tee tests.output"
 
-      # We are building debug version APK which can be manually install, however it cannot be reused for upload to store
-      - name: "Build debug apk"
-        run: "flutter build apk lib/main_la.dart --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }} --debug"
-
       - uses: sonarsource/sonarqube-scan-action@master
         #        if: github.ref_name == 'main' && github.event_name == 'push'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+      # We are building debug version APK which can be manually install, however it cannot be reused for upload to store
+      - name: "Build debug apk"
+        run: "flutter build apk lib/main_la.dart --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }} --debug"
 
       - name: "Move apk"
         run: mv ./build/app/outputs/flutter-apk/app-debug.apk destiny_android_${{ env.DESTINY_VERSION }}.apk
