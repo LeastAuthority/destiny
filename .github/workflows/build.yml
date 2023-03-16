@@ -57,7 +57,7 @@ jobs:
         run: "flutter test --machine --coverage | tee tests.output"
 
       - uses: sonarsource/sonarqube-scan-action@master
-        #        if: github.ref_name == 'main' && github.event_name == 'push'
+        if: github.ref_name == 'main' && github.event_name == 'push'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
