@@ -63,6 +63,12 @@ jobs:
       - name: "Build debug apk"
         run: "flutter build apk lib/main_la.dart --dart-define version=${{ env.DESTINY_VERSION }} --build-name ${{ env.DESTINY_VERSION }} --debug"
 
+      - uses: sonarsource/sonarqube-scan-action@master
+        #        if: github.ref_name == 'main' && github.event_name == 'push'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
       - name: "Move apk"
         run: mv ./build/app/outputs/flutter-apk/app-debug.apk destiny_android_${{ env.DESTINY_VERSION }}.apk
 
@@ -80,12 +86,6 @@ jobs:
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ github.ref_type == 'tag' }}
-
-      - uses: sonarsource/sonarqube-scan-action@master
-#        if: github.ref_name == 'main' && github.event_name == 'push'
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   linux:
     runs-on: ubuntu-latest
