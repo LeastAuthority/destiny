@@ -48,7 +48,7 @@ jobs:
         run: "flutter pub get"
 
       - name: "Lint"
-        run: "flutter analyze"
+        run: "flutter analyze --write analyze.output"
 
       - name: "Style check"
         run: "flutter format --set-exit-if-changed lib test"
