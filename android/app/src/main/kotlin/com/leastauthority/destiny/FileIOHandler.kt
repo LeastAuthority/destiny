@@ -10,6 +10,8 @@ import java.io.File
 
 class Metadata(val fileName: String, val parentPath: String, val fileSize: Long)
 
+private const val MISSING_URI_FOR_READ_ERROR_MESSAGE = "Missing URI for read"
+
 class FileIOHandler {
     private val pendingReaders: MutableMap<Uri, UriReader> = HashMap()
     private val pendingWriters: MutableMap<Uri, UriWriter> = HashMap()
@@ -56,7 +58,9 @@ class FileIOHandler {
 
     private fun getMetadata(call: MethodCall, result: MethodChannel.Result) {
         val uri = Uri.parse(
-            call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
+            call.argument<String>("uri") ?: throw java.lang.RuntimeException(
+                MISSING_URI_FOR_READ_ERROR_MESSAGE
+            )
         )
 
         val metadata = getMetadata(uri)
@@ -72,7 +76,9 @@ class FileIOHandler {
 
     private fun readBytes(call: MethodCall, result: MethodChannel.Result) {
         val uri = Uri.parse(
-            call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
+            call.argument<String>("uri") ?: throw java.lang.RuntimeException(
+                MISSING_URI_FOR_READ_ERROR_MESSAGE
+            )
         )
         val maxBytes = call.argument<Int>("max")
             ?: throw java.lang.RuntimeException("Missing max bytes for read")
@@ -86,7 +92,9 @@ class FileIOHandler {
 
     private fun closeReader(call: MethodCall, result: MethodChannel.Result) {
         val uri = Uri.parse(
-            call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
+            call.argument<String>("uri") ?: throw java.lang.RuntimeException(
+                MISSING_URI_FOR_READ_ERROR_MESSAGE
+            )
         )
 
         try {
@@ -99,7 +107,9 @@ class FileIOHandler {
 
     private fun closeWriter(call: MethodCall, result: MethodChannel.Result) {
         val uri = Uri.parse(
-            call.argument<String>("uri") ?: throw java.lang.RuntimeException("Missing URI for read")
+            call.argument<String>("uri") ?: throw java.lang.RuntimeException(
+                MISSING_URI_FOR_READ_ERROR_MESSAGE
+            )
         )
 
         try {
