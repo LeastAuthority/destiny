@@ -1,11 +1,6 @@
-
----
-
-## Code Review Checklist
-
-- [ ] Description accurately reflects what changes are being made.
-- [ ] Description explains why the changes are being made (or references an issue containing one).
-- [ ] The PR appropriately sized.
-- [ ] New code has enough tests. 
-- [ ] New code has enough documentation to answer "how do I use it?" and "what does it do?".
-- [ ] Existing documentation is up-to-date, if impacted.
+<!-- It is usually helpful to link this request to an open issue -->
+Closes #<!-- issue number goes here -->
+<!-- Tips:
+    - Remove or replace `Closes` by `Relates to` if this PR does not close the issue
+    - If the issue is no in the local repository, `#` can be prefixed with org/repo
+-->
