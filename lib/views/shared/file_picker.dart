@@ -1,8 +1,12 @@
 import 'dart:io' as io;
+import 'dart:io';
 
 import 'package:dart_wormhole_william/client/file.dart';
 import 'package:file_picker/file_picker.dart' as file_picker_plugin;
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+
+import '../../constants/app_constants.dart';
 
 abstract class FilePicker {
   Future<File> showSelectFile();
@@ -102,10 +106,37 @@ class _DesktopFilePicker extends FilePicker {
   @override
   Future<File> showSelectFile() {
     return file_picker_plugin.FilePicker.platform
-        .pickFiles(allowMultiple: false)
+        .pickFiles(type: file_picker_plugin.FileType.any, allowMultiple: false)
         .then((result) async {
       assert(result?.files.length == 1);
       final openFile = await io.File((result?.files.first.path)!).open();
+
+      return File(
+          metadata: () async {
+            return Metadata(
+                fileName: result?.files.first.name,
+                fileSize: result?.files.first.size);
+          },
+          read: openFile.readInto,
+          getPosition: openFile.position,
+          setPosition: openFile.setPosition,
+          close: openFile.close);
+    });
+  }
+}
+
+// Allows to open Photos app on iOS
+// API https://github.com/miguelpruivo/flutter_file_picker/wiki/API#filepickergetmultifilepath
+class _MediaPicker extends FilePicker {
+  @override
+  Future<File> showSelectFile() {
+    return file_picker_plugin.FilePicker.platform
+        .pickFiles(
+            type: file_picker_plugin.FileType.media, allowMultiple: false)
+        .then((result) async {
+      assert(result?.files.length == 1);
+      final openFile = await io.File((result?.files.first.path)!).open();
+
       return File(
           metadata: () async {
             return Metadata(
@@ -122,4 +153,37 @@ class _DesktopFilePicker extends FilePicker {
 
 FilePicker getFilePicker() {
   return io.Platform.isAndroid ? _AndroidFilePicker() : _DesktopFilePicker();
+}
+
+FilePicker getMediaPicker() {
+  return _MediaPicker();
+}
+
+Future<String> getDownloadPath() async {
+  Directory? directory;
+  try {
+    if (Platform.isIOS) {
+      directory = await getApplicationDocumentsDirectory();
+    } else if (Platform.isAndroid) {
+      directory = Directory(ANDROID_DOWNLOADS_FOLDER_PATH);
+      if (!await directory.exists()) {
+        directory = await getExternalStorageDirectory();
+      }
+    } else {
+      directory = await getDownloadsDirectory();
+    }
+  } catch (err) {
+    print("Cannot get download folder path");
+  }
+  return directory!.path;
+}
+
+Future<PathConfig> getPathConfig() async {
+  return PathConfig(await getDownloadPath());
+}
+
+class PathConfig {
+  final String downloadPath;
+
+  PathConfig(this.downloadPath);
 }

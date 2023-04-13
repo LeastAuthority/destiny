@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
+import 'package:get_it/get_it.dart';
 
 import 'config/routes/routes_desktop_config.dart';
 import 'config/routes/routes_mobile_config.dart';
@@ -16,12 +17,19 @@ import 'config/theme/custom_theme.dart';
 import 'constants/app_constants.dart';
 import 'generated/codegen_loader.g.dart';
 import 'generated/locale_keys.g.dart';
+import 'locator.dart';
+
+// This is our global ServiceLocator
+GetIt getIt = GetIt.instance;
 
 Future<void> startApp(Config c) async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+  register(getIt, c);
+
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowMinSize(const Size(900, 800));
     setWindowMaxSize(const Size(1600, 1200));
@@ -30,7 +38,7 @@ Future<void> startApp(Config c) async {
   runApp(localized(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => SendSharedState(c)),
     ChangeNotifierProvider(create: (context) => ReceiveSharedState(c))
-  ], child: MyApp(c))));
+  ], child: MyApp())));
 }
 
 Widget localized(Widget widget) {
@@ -44,30 +52,30 @@ Widget localized(Widget widget) {
 }
 
 void main() {
+  final Config magicWormholeIO = Config(
+    rendezvousUrl: "ws://relay.magic-wormhole.io:4000/v1",
+    transitRelayUrl: "tcp://transit.magic-wormhole.io:4001",
+  );
   startApp(magicWormholeIO);
 }
 
 class MyApp extends StatelessWidget {
-  late final Config config;
-
-  MyApp(this.config);
+  MyApp();
 
   Widget onGenerateRoute(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Platform.isAndroid ? Size(375, 590) : Size(1280, 800),
+      designSize: selectSize(),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: () => MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        onGenerateRoute: Platform.isAndroid
-            ? getMobileRoutes(config)
-            : getDesktopRoutes(config),
+        onGenerateRoute: selectRoutes(),
         builder: (context, widget) {
           ScreenUtil.setContext(context);
           WidgetsFlutterBinding.ensureInitialized();
-          if (!Platform.isAndroid) {
+          if (!Platform.isAndroid && !Platform.isIOS) {
             setWindowTitle(LocaleKeys.window_title.tr());
           }
           return MediaQuery(
@@ -76,9 +84,11 @@ class MyApp extends StatelessWidget {
             child: widget!,
           );
         },
-        theme: Platform.isAndroid
+        theme: (Platform.isAndroid || Platform.isIOS)
             ? CustomTheme.darkThemeMobile
             : CustomTheme.darkThemeDesktop,
+        // this allows to disable debug label
+        debugShowCheckedModeBanner: true,
       ),
     );
   }
@@ -87,4 +97,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return onGenerateRoute(context);
   }
+}
+
+Size selectSize() {
+  return (Platform.isAndroid || Platform.isIOS)
+      ? Size(375, 690)
+      : Size(1280, 800);
+}
+
+PageRouteBuilder? Function(RouteSettings p1) selectRoutes() {
+  return (Platform.isAndroid || Platform.isIOS)
+      ? getMobileRoutes()
+      : getDesktopRoutes();
 }

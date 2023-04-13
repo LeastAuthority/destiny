@@ -13,6 +13,10 @@ import 'package:file_picker/file_picker.dart' as f;
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wakelock/wakelock.dart';
+
+import '../../main.dart';
+import '../../settings.dart';
 
 enum ReceiveScreenStates {
   FileReceived,
@@ -34,7 +38,6 @@ class ReceiveSharedState extends ChangeNotifier {
 
   ReceiveScreenStates currentState = ReceiveScreenStates.Initial;
   SharedPreferences? prefs;
-  final Config config;
   late final String? defaultPathForPlatform;
   String? error;
   String? errorMessage;
@@ -44,7 +47,8 @@ class ReceiveSharedState extends ChangeNotifier {
   late String? currentDestinationPath = path;
 
   late final TextEditingController controller = new TextEditingController();
-  late final Client client = Client(config);
+
+  final appSettings = getIt<AppSettings>();
 
   void Function() failWith(String errorMessage) {
     return () {
@@ -93,13 +97,19 @@ class ReceiveSharedState extends ChangeNotifier {
     });
   }
 
-  ReceiveSharedState(this.config) {
+  ReceiveSharedState() {
     SharedPreferences.getInstance().then((prefs) {
       this.prefs = prefs;
     });
 
     if (dartIO.Platform.isAndroid) {
       defaultPathForPlatform = ANDROID_DOWNLOADS_FOLDER_PATH;
+    } else if (dartIO.Platform.isIOS) {
+      getApplicationDocumentsDirectory().then((downloadsDir) {
+        setState(() {
+          defaultPathForPlatform = downloadsDir.path;
+        });
+      });
     } else {
       getDownloadsDirectory().then((downloadsDir) {
         setState(() {
@@ -192,6 +202,8 @@ class ReceiveSharedState extends ChangeNotifier {
     this.setState(() {
       isRequestingConnection = true;
     });
+
+    final Client client = createClient();
     return client.recvFile(_code!, progress.progressHandler).then((result) {
       result.done.then((value) async {
         this.setState(() {
@@ -231,6 +243,8 @@ class ReceiveSharedState extends ChangeNotifier {
       return result;
     }, onError: defaultErrorHandler);
   }
+
+  Client createClient() => Client(appSettings.config());
 
   Future<File> _selectSaveDestinationAndroid(String initialFileName) async {
     final uri = await MethodChannel("destiny.android/save_as")
@@ -302,10 +316,22 @@ class ReceiveSharedState extends ChangeNotifier {
       case ReceiveScreenStates.Initial:
         return enterCodeUI();
       case ReceiveScreenStates.ReceiveError:
+        // Disable Android and iOS screens if failure
+        if (dartIO.Platform.isAndroid || dartIO.Platform.isIOS) {
+          Wakelock.disable();
+        }
         return receiveError();
       case ReceiveScreenStates.ReceiveConfirmation:
+        // Keep Android and iOS screens awake after entering code generation till success or failure
+        if (dartIO.Platform.isAndroid || dartIO.Platform.isIOS) {
+          Wakelock.enable();
+        }
         return receiveConfirmation();
       case ReceiveScreenStates.FileReceived:
+        // Disable Android and iOS screens if failure
+        if (dartIO.Platform.isAndroid || dartIO.Platform.isIOS) {
+          Wakelock.disable();
+        }
         return receivingDone();
       case ReceiveScreenStates.FileReceiving:
         return receiveProgress();

@@ -15,7 +15,7 @@ class CodeInputBox extends StatelessWidget {
       required this.style,
       required this.codeChanged,
       required this.width,
-      required final this.controller,
+      required this.controller,
       required this.onEnterPressed})
       : super(key: key);
   @override

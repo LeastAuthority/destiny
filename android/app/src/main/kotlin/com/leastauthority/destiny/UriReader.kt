@@ -2,7 +2,6 @@ package com.leastauthority.destiny
 
 import android.content.ContentResolver
 import android.net.Uri
-import android.provider.OpenableColumns
 
 class UriReader(contentResolver: ContentResolver, uri: Uri) {
     private val stream = contentResolver.openInputStream(uri)

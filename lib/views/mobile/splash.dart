@@ -3,9 +3,10 @@ import 'package:destiny/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class Splash extends StatelessWidget {
   SharedPreferences? prefs;
-  Future isItAppFirstLunch() async {
+  Future isItAppFirstLaunch() async {
     prefs = await SharedPreferences.getInstance();
     bool _seen = (prefs?.getBool(SEEN) ?? false);
     return _seen;
@@ -16,8 +17,8 @@ class Splash extends StatelessWidget {
   }
 
   Future checkFirstSeen(context) async {
-    bool isItFirstLunch = await isItAppFirstLunch();
-    if (isItFirstLunch) {
+    bool isItFirstLaunch = await isItAppFirstLaunch();
+    if (isItFirstLaunch) {
       Navigator.pushNamed(context, SEND_ROUTE);
     } else {
       await setSeenToTrue();

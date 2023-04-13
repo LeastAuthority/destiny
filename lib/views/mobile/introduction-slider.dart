@@ -12,17 +12,15 @@ import 'package:intro_slider/slide_object.dart';
 import '../../generated/locale_keys.g.dart';
 
 class IntroScreen extends StatefulWidget {
-  final Config config;
-  IntroScreen(this.config);
+  IntroScreen();
 
   @override
-  IntroScreenState createState() => new IntroScreenState(config);
+  IntroScreenState createState() => new IntroScreenState();
 }
 
 // ------------------ Custom config ------------------
 class IntroScreenState extends State<IntroScreen> {
-  final Config config;
-  IntroScreenState(this.config);
+  IntroScreenState();
 
   List<Slide> slides = [];
 
@@ -73,26 +71,18 @@ class IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  ButtonStyle myButtonStyle() {
-    return ButtonStyle(
-      shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
-      backgroundColor: MaterialStateProperty.all<Color>(Color(0x33F3B4BA)),
-      overlayColor: MaterialStateProperty.all<Color>(Color(0x33FFA8B0)),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(375, 590),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: () => MaterialApp(
-        home: new IntroSlider(
+      builder: () => Scaffold(
+        body: new IntroSlider(
           slides: this.slides,
           showSkipBtn: false,
           showNextBtn: false,
-          termsLink: TERMS_LINK,
+          termsLink: termsLink,
           showPrevBtn: false,
           showDoneBtn: false,
           onDonePress: this.onDonePress,
@@ -103,13 +93,6 @@ class IntroScreenState extends State<IntroScreen> {
           backgroundColorAllSlides: Colors.grey,
           verticalScrollbarBehavior: scrollbarBehavior.SHOW_ALWAYS,
         ),
-        builder: (context, widget) {
-          ScreenUtil.setContext(context);
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: widget!,
-          );
-        },
       ),
     );
   }

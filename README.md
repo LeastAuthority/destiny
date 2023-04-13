@@ -8,7 +8,7 @@
 
 Destiny is a secure file transfer application that allows people to transfer files without needing to reveal their identities to each other or the service provider. All files are end-to-end encrypted, meaning no one except the sender and the receiver can decrypt the contents. Users select a file on their device and then share the generated code with the intended recipient for safe delivery. No sign-up is needed.
 
-Key security features: 
+Key security features:
 
 - **Identity-less**: no need to disclose identity information (such as name, email address, or phone number) to be able to transfer files.
 - **End-to-end encryption**: files are end-to-end encrypted and only the sender and recipient can read them.
@@ -26,25 +26,32 @@ Supported platforms
 - [x] Linux (amd64)
 - [x] Windows
 - [x] macOS
-- [x] Android
-- [ ] iOS
+- [x] Android (Google Play & F-Droid)
+- [x] iOS
+
 
 ## Usage
 
 ### Installation
 
-You can find detailed instructions on how to install applications on various [platforms](https://github.com/LeastAuthority/destiny/blob/main/doc/installation.md)
+You can find detailed instructions on how to install applications on various [platforms](https://github.com/LeastAuthority/destiny/blob/main/docs/installation.md)
 
 [Windows](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_windows.msix), [Linux](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_linux_amd64.AppImage), [macOS](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_macos.dmg) files can be downloaded from the latest [release](https://github.com/LeastAuthority/destiny/releases/latest).
 
-Android is available in (Google Play store)[https://play.google.com/store/apps/details?id=com.leastauthority.destiny]. Alternatively, app can be downloaded directly from release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk) and installed manually.
+Available on external stores:
+
+[<img src="assets/images/google-play-store-label.png" height="40" alt="Google Play store">](https://play.google.com/store/apps/details?id=com.leastauthority.destiny)
+[<img src="assets/images/f-droid-store-label.png" height="40" alt="F-Droid  store">](https://f-droid.org/en/packages/com.leastauthority.destiny/)
+[<img src="assets/images/apple-store-label.png" height="40" alt="App store">](https://apps.apple.com/us/app/destiny-secure-file-transfer/id6444721954)
+
+Alternatively, apps can be downloaded directly from GitHub release [assets](https://github.com/LeastAuthority/destiny/releases/latest/download/destiny_android.apk) and installed manually.
 
 
 ### Verification
 
-We recommend to [verify every downloaded file](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md) against the corresponding signature.
+We recommend [verifying every downloaded file](https://github.com/LeastAuthority/destiny/blob/main/docs/releases.md) against the corresponding signature.
 
-### Please check our [**FAQ**](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md), [**Privacy Policy**](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md) and [**Terms & Conditions**](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md) to find more information before to using applications.
+### Please check our [**FAQ**](https://github.com/LeastAuthority/destiny/blob/main/FAQ.md), [**Privacy Policy**](https://github.com/LeastAuthority/destiny/blob/main/PRIVACY-POLICY.md) and [**Terms & Conditions**](https://github.com/LeastAuthority/destiny/blob/main/TERMS.md) to find more information before using applications.
 
 
 ## Cloning
@@ -57,19 +64,20 @@ git clone --recurse-submodules git@github.com:LeastAuthority/destiny.git
 
 ### Dependencies
 
-- Go >= 1.15
+- Go >= 1.19
 - Flutter >= 3.0.0
 - Android SDK for Android builds (>= SDK 24)
 
 ### Unsigned release builds
 
-Builds for magic-wormhole.io:
+Builds for magic-wormhole.io by default:
 
 ```bash
 flutter build linux
 flutter build apk
 flutter build appbundle
 flutter build macos
+flutter build ipa
 ```
 
 Builds for Least Authority servers:
@@ -80,11 +88,20 @@ flutter build linux -t lib/main_la.dart
 
 Builds for local instances:
 
+
 ```bash
 flutter build linux -t lib/main_local.dart
 ```
 
-Checkout detail instructions how to [sign releases](https://github.com/LeastAuthority/destiny/blob/main/doc/releases.md).
+Checkout detailed instructions for [building](https://github.com/LeastAuthority/destiny/blob/main/docs/building.md).
+
+If flutter is not used for web application, worth to set to avoid additional files generation and static analysis warnings:
+```bash
+flutter config --no-enable-web
+```
+
+Checkout detailed instructions on how to [sign](https://github.com/LeastAuthority/destiny/blob/main/docs/releases.md) releases](https://github.com/LeastAuthority/destiny/blob/main/docs/releases.md).
+
 
 ### i18n & l10n
 
@@ -105,6 +122,14 @@ docker-compose up -d
 ## Known Issues:
 - Flutter currently [does not support x86 for android builds](https://github.com/flutter/flutter/issues/9253),
 so x86 emulators or devices are not supported.
-- MacOS M1 chip build is not supported.
+- MacOS M1/M2 (arm64) chip build is not supported yet.
 
+### Other configuration/ notes
 
+- To disable debug label on the app in the emulator, set debugShowCheckedModeBanner: false (two places)
+
+- iOS downloaded files are stored in the app/Documents folder, which is displayed in Files App as a dedicated application folder. If Files doesn't display the application folder, try restarting the phone.
+Note, that if the App is deleted, all downloaded files in the same App folder will be deleted too.
+
+- Delete default settings:
+  - for macOS: `defaults delete com.leastauthority.destiny`

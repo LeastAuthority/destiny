@@ -11,17 +11,15 @@ import 'package:intro_slider/slide_object.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
-  final Config config;
-  IntroScreen(this.config);
+  IntroScreen();
 
   @override
-  IntroScreenState createState() => new IntroScreenState(config);
+  IntroScreenState createState() => new IntroScreenState();
 }
 
 // ------------------ Custom config ------------------
 class IntroScreenState extends State<IntroScreen> {
-  final Config config;
-  IntroScreenState(this.config);
+  IntroScreenState();
 
   List<Slide> slides = [];
 
@@ -81,14 +79,6 @@ class IntroScreenState extends State<IntroScreen> {
     );
   }
 
-  ButtonStyle myButtonStyle() {
-    return ButtonStyle(
-      shape: MaterialStateProperty.all<OutlinedBorder>(StadiumBorder()),
-      backgroundColor: MaterialStateProperty.all<Color>(Color(0x33F3B4BA)),
-      overlayColor: MaterialStateProperty.all<Color>(Color(0x33FFA8B0)),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return new IntroSlider(
@@ -98,7 +88,7 @@ class IntroScreenState extends State<IntroScreen> {
       showPrevBtn: false,
       showDoneBtn: false,
       desktopActionButtonEnabled: true,
-      termsLink: TERMS_LINK,
+      termsLink: termsLink,
       onDonePress: this.onDonePress,
       colorDot: Theme.of(context).scaffoldBackgroundColor,
       colorActiveDot: Theme.of(context).colorScheme.secondary,
