@@ -1,20 +1,19 @@
 import 'dart:io';
 
+import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:destiny/views/shared/receive.dart';
 import 'package:destiny/views/shared/send.dart';
-import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
-import 'package:get_it/get_it.dart';
 
 import 'config/routes/routes_desktop_config.dart';
 import 'config/routes/routes_mobile_config.dart';
 import 'config/theme/custom_theme.dart';
-import 'constants/app_constants.dart';
 import 'generated/codegen_loader.g.dart';
 import 'generated/locale_keys.g.dart';
 import 'locator.dart';
@@ -36,8 +35,8 @@ Future<void> startApp(Config c) async {
     setWindowFrame(Rect.fromLTWH(0, 0, 900, 800));
   }
   runApp(localized(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => SendSharedState(c)),
-    ChangeNotifierProvider(create: (context) => ReceiveSharedState(c))
+    ChangeNotifierProvider(create: (context) => SendSharedState()),
+    ChangeNotifierProvider(create: (context) => ReceiveSharedState())
   ], child: MyApp())));
 }
 
