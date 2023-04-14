@@ -19,6 +19,10 @@ import 'locator.dart';
 // This is our global ServiceLocator
 GetIt getIt = GetIt.instance;
 
+Future<bool> onWillPopHandler() async {
+  return true;
+}
+
 void startApp(Config c) {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(

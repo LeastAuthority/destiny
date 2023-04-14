@@ -1,5 +1,6 @@
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/main.dart';
 import 'package:destiny/views/mobile/receive/widgets/EnterCode.dart';
 import 'package:destiny/views/mobile/receive/widgets/ReceiveConfirmation.dart';
 import 'package:destiny/views/mobile/receive/widgets/ReceiveProgress.dart';
@@ -113,7 +114,7 @@ class ReceiveScreen extends StatelessWidget {
             key: Key(CUSTOM_NAV_BAR),
           ),
           body: WillPopScope(
-            onWillPop: () async => false,
+            onWillPop: onWillPopHandler,
             child: Container(
                 key: Key(RECEIVE_SCREEN_BODY),
                 padding: EdgeInsets.symmetric(horizontal: 16.0),

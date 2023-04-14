@@ -1,6 +1,7 @@
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/config/theme/colors.dart';
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/main.dart';
 import 'package:destiny/views/desktop/receive/widgets/DTReceiveConfirmation.dart';
 import 'package:destiny/views/desktop/receive/widgets/DTReceiveProgress.dart';
 import 'package:destiny/views/desktop/receive/widgets/DTReceivingDone.dart';
@@ -125,7 +126,7 @@ class ReceiveScreen extends StatelessWidget {
       return Scaffold(
           appBar: CustomAppBar(key: Key(CUSTOM_NAV_BAR), path: RECEIVE_ROUTE),
           body: WillPopScope(
-              onWillPop: () async => false,
+              onWillPop: onWillPopHandler,
               child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.only(left: 125.0.w, right: 125.0.w),

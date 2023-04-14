@@ -1,6 +1,7 @@
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/config/theme/colors.dart';
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/main.dart';
 import 'package:destiny/views/desktop/send/widgets/DTCodeGeneration.dart';
 import 'package:destiny/views/desktop/send/widgets/DTErrorUI.dart';
 import 'package:destiny/views/desktop/send/widgets/DTSelectOrDropAFile.dart';
@@ -98,7 +99,7 @@ class SendScreen extends StatelessWidget {
           appBar:
               CustomAppBar(key: Key(CUSTOM_NAV_BAR), path: DESKTOP_SEND_ROUTE),
           body: WillPopScope(
-              onWillPop: () async => false,
+              onWillPop: onWillPopHandler,
               child: Container(
                   width: double.infinity,
                   key: Key(SEND_SCREEN_BODY),

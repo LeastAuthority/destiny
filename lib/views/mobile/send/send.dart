@@ -1,5 +1,6 @@
 import 'package:destiny/config/routes/routes.dart';
 import 'package:destiny/constants/app_constants.dart';
+import 'package:destiny/main.dart';
 import 'package:destiny/views/mobile/send/widgets/CodeGeneration.dart';
 import 'package:destiny/views/mobile/send/widgets/SelectAFileUI.dart';
 import 'package:destiny/views/mobile/send/widgets/SendingDone.dart';
@@ -87,7 +88,7 @@ class SendScreen extends StatelessWidget {
             key: Key(CUSTOM_NAV_BAR),
           ),
           body: WillPopScope(
-              onWillPop: () async => false,
+              onWillPop: onWillPopHandler,
               child: Container(
                   width: double.infinity,
                   key: Key(SEND_SCREEN_BODY),

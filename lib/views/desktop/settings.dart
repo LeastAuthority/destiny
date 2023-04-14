@@ -41,7 +41,7 @@ class _SettingsState extends State<Settings> {
           key: Key(CUSTOM_NAV_BAR),
         ),
         body: WillPopScope(
-            onWillPop: () async => false,
+            onWillPop: onWillPopHandler,
             child: Container(
               width: double.infinity,
               padding: EdgeInsets.only(left: 125.0.w, right: 125.0.w),
