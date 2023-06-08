@@ -136,8 +136,6 @@ Cancellation: Canceling a transfer may lead to the application getting stuck dur
 
 Inability to change wormhole settings: a user is not able to change certain wormhole-william settings such as the mailbox server, relay server, and/or the passphrase component length. 
 
-No iOS support: we currently do not offer an iOS version of the application. 
-
 Unable to set default file destination for Android: a user is not able to change the default directory in Android, so files are all automatically saved to the default Downloads folder. 
 
 Interoperability challenges: While we are striving to ensure interoperability between Destiny and other applications using the Magic Wormhole protocol, this has not fully been tested. As such, we cannot at this stage guarantee full interoperability.  
