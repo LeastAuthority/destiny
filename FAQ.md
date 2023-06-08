@@ -97,7 +97,7 @@ For more details, see our [privacy policy](https://github.com/LeastAuthority/des
 
 **Has Destiny undergone a security audit?**
 
-Destiny has been audited by an independent security audit company, Radically Open Security. You can find their findings and our remediation [here]. 
+Destiny has been audited by an independent security audit company, Radically Open Security. You can find their findings and our remediation [here](http://leastauthority.com/static/publications/ROS_FinalReport_DestinyV1_0.pdf). 
 
 ## **More help:** 
 
