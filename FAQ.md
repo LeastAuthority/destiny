@@ -97,7 +97,7 @@ For more details, see our [privacy policy](https://github.com/LeastAuthority/des
 
 **Has Destiny undergone a security audit?**
 
-Destiny has been audited by an independent security audit company, Radically Open Security. You can find their findings and our remediation [here]. 
+Destiny has been audited by an independent security audit company, Radically Open Security. You can find their findings and our remediation [here](http://leastauthority.com/static/publications/ROS_FinalReport_DestinyV1_0.pdf). 
 
 ## **More help:** 
 
@@ -135,8 +135,6 @@ Error messages: we are not always able to determine the exact reason for an erro
 Cancellation: Canceling a transfer may lead to the application getting stuck during the transfer. And as previously mentioned, if the sender presses Cancel while the transfer is ongoing, it is possible for the receiver to already have a portion of the file.
 
 Inability to change wormhole settings: a user is not able to change certain wormhole-william settings such as the mailbox server, relay server, and/or the passphrase component length. 
-
-No iOS support: we currently do not offer an iOS version of the application. 
 
 Unable to set default file destination for Android: a user is not able to change the default directory in Android, so files are all automatically saved to the default Downloads folder. 
 
