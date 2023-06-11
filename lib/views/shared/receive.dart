@@ -11,7 +11,6 @@ import 'package:dart_wormhole_william/client/native_client.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart' as f;
 import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -102,21 +101,11 @@ class ReceiveSharedState extends ChangeNotifier {
       this.prefs = prefs;
     });
 
-    if (dartIO.Platform.isAndroid) {
-      defaultPathForPlatform = ANDROID_DOWNLOADS_FOLDER_PATH;
-    } else if (dartIO.Platform.isIOS) {
-      getApplicationDocumentsDirectory().then((downloadsDir) {
-        setState(() {
-          defaultPathForPlatform = downloadsDir.path;
-        });
+    getDownloadPath().then((downloadPath) {
+      setState(() {
+        defaultPathForPlatform = downloadPath;
       });
-    } else {
-      getDownloadsDirectory().then((downloadsDir) {
-        setState(() {
-          defaultPathForPlatform = downloadsDir?.path;
-        });
-      });
-    }
+    });
   }
 
   late ProgressSharedState progress = ProgressSharedState(setState, () {
