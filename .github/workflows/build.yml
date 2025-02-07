@@ -70,7 +70,7 @@ jobs:
         run: mv ./build/app/outputs/flutter-apk/app-debug.apk destiny_android_${{ env.DESTINY_VERSION }}.apk
 
       - name: "Copy apk"
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v4"
         with:
           name: "destiny-android-${{ env.DESTINY_VERSION }}-unsigned"
           path: destiny_android_${{ env.DESTINY_VERSION }}.apk
@@ -150,14 +150,14 @@ jobs:
           mv Destiny-x86_64.AppImage destiny_linux_${{ env.DESTINY_VERSION }}.AppImage
 
       - name: "Upload zip"
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v4"
         with:
           name: "destiny-linux-${{ env.DESTINY_VERSION }}-unsigned"
           path: "destiny_linux_${{ env.DESTINY_VERSION }}.tar.gz"
           if-no-files-found: "error"
 
       - name: "Upload AppImage"
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v4"
         with:
           name: "destiny-linux-${{ env.DESTINY_VERSION }}-appimage-unsigned"
           path: "destiny_linux_${{ env.DESTINY_VERSION }}.AppImage"
@@ -224,7 +224,7 @@ jobs:
         run: "create-dmg --app-drop-link 0 0 destiny_macos_debug_${{ env.DESTINY_VERSION }}.dmg build/macos/Build/Products/Debug/Destiny.app"
 
       - name: "Copy DMG"
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v4"
         with:
           name: "destiny-macos-${{ env.DESTINY_VERSION }}-unsigned"
           path: "./destiny_macos_debug_${{ env.DESTINY_VERSION }}.dmg"
@@ -347,14 +347,14 @@ jobs:
           echo y | flutter pub run msix:create --version $version --output-path . --build-windows false --output-name destiny_windows_${{ env.DESTINY_VERSION }}
 
       - name: "Upload zip"
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v4"
         with:
           name: "destiny-windows-${{ env.DESTINY_VERSION }}-unsigned"
           path: "destiny_windows_${{ env.DESTINY_VERSION }}.zip"
           if-no-files-found: "error"
 
       - name: "Upload msix"
-        uses: "actions/upload-artifact@v2"
+        uses: "actions/upload-artifact@v4"
         with:
           name: "destiny-windows-${{ env.DESTINY_VERSION }}-unsigned-msix"
           path: "destiny_windows_${{ env.DESTINY_VERSION }}.msix"
